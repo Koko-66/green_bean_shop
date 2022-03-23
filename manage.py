@@ -6,6 +6,7 @@ import sys
 
 def main():
     """Run administrative tasks."""
+    settings = 'eshop.test_settings' if 'test' in sys.argv else 'eshop.settings'
     os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'eshop.settings')
     try:
         from django.core.management import execute_from_command_line
