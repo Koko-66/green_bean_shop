@@ -140,7 +140,7 @@ If the user decides not to save the changes, they can cancel the process at any 
 
 Clicking __Save__, redirects the user to a view with quiz details. -->
 
-#### __*Quiz details view*__
+<!-- #### __*Quiz details view*__
 
 After creating a quiz, the Admin user is redirected to a _Quiz detail_ page, where they can see information about the quiz: title, status, category, description, image and quiz questions, if any already exist.
 If there are any questions in the database that are assigned the same category as the quiz and are not assigned to any other quiz, they are listed below the main quiz details and can be added to the quiz by clicking the small __+__ icon showing to the right. Similarly, questions can be as easily removed from the quiz by clicking the __x__ icon in the quiz questions list.
@@ -380,4 +380,4 @@ A great thank you to:
 - Stackoverflow community: for pointing in the right direction on so many issues it's not efficient to list them here, though specific mention should be given to Bishwa Karki for solving the issue of [pulling author from the logged user rather than having to set it in the form](https://stackoverflow.com/questions/54048741/nonetype-object-has-no-attribute-is-ajax).
 - TO Izen Oku: for his [blog post](https://medium.com/swlh/overview-building-a-full-stack-quiz-app-with-django-and-react-57fd07449e2f) on creating a Quiz app and pointers on how to organise my database models.
 - [To PyPlane](https://www.youtube.com/channel/UCQtHyVB4O4Nwy1ff5qQnyRw) and [Lara Code](https://www.youtube.com/channel/UClXcbBNNhFU9ATAcXB6U7eQ) for their tutorials on creating a quiz in Django.
-- Creators of Django and Heroku documentation as well as authors of all the plugins and libraries used in this application.
+- Creators of Django and Heroku documentation as well as authors of all the plugins and libraries used in this application. -->
