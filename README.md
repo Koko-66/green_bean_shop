@@ -26,7 +26,7 @@
 
 # <a name="intro"></a>Green Bean e-shop
 
-
+Green Bean is an e-commerce store where responsible attitude to the environment meets great design. All our products are made using recycled and responsibly sourced materials with sustainability in mind. Our designs are truely unique, .
 Link to the deployed app: https://gren-bean-shop.herokuapp.com/
 
 
