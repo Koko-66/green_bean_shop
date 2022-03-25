@@ -1,1 +1,1 @@
-web: gunicorn eshop.wsgi
+web: gunicorn green_bean.wsgi
