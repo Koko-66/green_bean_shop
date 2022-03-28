@@ -31,6 +31,11 @@ In addition, the responsiveness of design was tested extensively in Firefox DevT
 ## <a name="bugs-and-fixes"></a>Development Testing
 Each feature was tested while being developed to ensure correct and error-free functionality. Each of the bugs encountered was resolved by using a combination of error message analysis, print statements, and research for possible causes and solutions.
 
-1. The testing on serving static files was done at the start of the project to avoid issues at later stages, which seems to be a common issue. To carry out the test, added coloured background to the css file and an image from Cloudinary and changed the DEBUG setting to `False` for the time of testing.
+### TEST 1 ###
+
+#### _Test 1: Serving static files_ ####
+The testing on serving static files was done at the start of the project to avoid issues at later stages, which seems to be a common issue. To carry out the test, added coloured background to the css file and an image from Cloudinary and changed the DEBUG setting to `False` for the time of testing.
+#### _Result_ ####
+Static files and an image served on Heroku as expected, and with background in orange and image visible in the corner of the page.
 
 <!-- ### Issues pending fixing -->

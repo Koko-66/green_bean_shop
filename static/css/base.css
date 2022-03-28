@@ -1,4 +1,99 @@
+@import url('https://fonts.googleapis.com/css2?family=Inspiration&display=swap');
 
 body {
-    background-color: coral !important;
+    background: url(https://res.cloudinary.com/dcslh2m3b/image/upload/c_scale,e_vectorize,w_2752/v1648340463/GreenBean/pexels-aden-ardenrich-581339_wz67l9.jpg);
 }
+
+.top-banner-text {
+    color: #fafafa;
+}
+
+#top-banner,
+#top-banner h4,
+#top-banner icon {
+    right: 0px;
+    left: 0px;
+    padding-bottom: 2px;
+    position: absolute;
+    background: #842029;
+    
+}
+
+.logo-text {
+    font-size: 2rem;
+    font-family: 'Inspiration', cursive;
+    color:rgb(30, 49, 35)
+}
+
+#main-nav {
+    right: 0px;
+    left: 0px;
+    /* padding-bottom: 2px; */
+    position: inherit;
+    background: white;
+}
+
+#user-options {
+    text-decoration: none;
+}
+
+.icon {
+    color: rgb(30, 43, 34, 1)
+};
+
+
+/* .overlay {
+    background-color: rgba(93, 142, 109, 0.3);
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    height: 100%;
+    width: 100%;
+    z-index: -999;
+} */
+
+/* ---- Text styling ---- */
+
+/* colors */
+.text-dgreen {
+    color: rgba(30, 43, 34, 1);
+    /* background-color: rgba(30, 34, 43, 1); */
+}
+
+.text-green {
+    color: rgba(18, 95, 61, 1);
+}
+
+.text-lgreen {
+   color: rgb(180, 216, 192);
+}
+
+.text-orange {
+    color: rgba(238, 125, 15, 1);
+}
+
+.text-dorange {
+    color: rgba(247, 96, 18, 1);
+}
+
+.text-red {
+    color: rgba(237, 45, 13, 1);
+}
+
+/* ---- Background colors ---- */
+
+.dgreen {
+    background-color: rgba(30, 34, 43, 1);
+    color: rgba(93, 142, 109, 1);
+}
+
+/* ---- Side Nav ---- */
+
+.side-nav {
+    right: 0;
+    top: 0;
+    bottom: 0;
+    height: 100%;
+    position: fixed;
+}
+
