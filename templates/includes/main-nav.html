@@ -1,6 +1,6 @@
 <div class="collapse navbar-collapse" id="main-nav">
     <div class="container-fluid">
-    <ul class="navbar-nav w-auto mx-auto">
+    <ul class="navbar-nav w-auto mx-auto small text-uppercase">
         <li class="nav-item d-block d-md-none">
             <a class="logo-font font-weight-bold nav-link text-black mr-5" href="{% url 'home:home' %}" id="home-link">
                 Home
@@ -12,8 +12,8 @@
             </a>
             <div class="dropdown-menu border-0" aria-labelledby="all-products-link">
                 <a href="{#% url 'products:products' %#}?sort=price&direction=asc" class="dropdown-item">By Price</a>
-                <a href="{#% url 'products:products' %#}?sort=rating&direction=desc" class="dropdown-item ">By Rating</a>
-                <a href="{#% url 'products:products' %#}?sort=category&direction=asc" class="dropdown-item ">By Category</a>
+                <a href="{#% url 'products:products' %#}?sort=rating&direction=desc" class="dropdown-item">By Rating</a>
+                <a href="{#% url 'products:products' %#}?sort=category&direction=asc" class="dropdown-item">By Category</a>
                 <a href="{#% url 'products:products' %#}" class="dropdown-item">All</a>
             </div>
         </li>
@@ -23,10 +23,11 @@
                 T-shirts
             </a>
             <div class="dropdown-menu border-0" aria-labelledby="clothing-link">
-                <a href="{#% url 'products:products' %#}?category=activewear,essentials" class="dropdown-item">New</a>
-                <a href="{#% url 'products:products' %#}?category=jeans" class="dropdown-item"></a>
-                <a href="{#% url 'products:products' %#}?category=shirts" class="dropdown-item">Category 2</a>
-                <a href="{#% url 'products:products' %#}?category=activewear,essentials,jeans,shirts" class="dropdown-item">Collections</a>
+                <a href="{#% url 'products:products' %#}?category=new_arrivals" class="dropdown-item">New Arrivals</a>
+                <a href="{#% url 'products:products' %#}?category=abstract" class="dropdown-item">Abstract</a>
+                <a href="{#% url 'products:products' %#}?category=nature" class="dropdown-item">Nature</a>
+                <a href="{#% url 'products:products' %#}?category=anime" class="dropdown-item">Anime</a>
+                <a href="{#% url 'products:products' %#}?category=new_arrivals,abstract,nature,anime" class="dropdown-item">Collections</a>
             </div>
         </li>
 
@@ -35,10 +36,10 @@
                 Special Offers
             </a>
             <div class="dropdown-menu border-0" aria-labelledby="specials-link">
-                <a href="{#% url 'products:products' %#}?category=new_arrivals" class="dropdown-item">New Arrivals</a>
+                <!-- <a href="{#% url 'products:products' %#}?category=new_arrivals" class="dropdown-item">New Arrivals</a> -->
                 <a href="{#% url 'products:products' %#}?category=deals" class="dropdown-item">Deals</a>
                 <a href="{#% url 'products:products' %#}?category=clearance" class="dropdown-item">Clearance</a>
-                <a href="{#% url 'products:products' %#}?category=new_arrivals,deals,clearance" class="dropdown-item">All Specials</a>
+                <a href="{#% url 'products:products' %#}?category=deals,clearance" class="dropdown-item">All Specials</a>
             </div>
         </li>
     </ul>

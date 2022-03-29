@@ -1,9 +1,12 @@
+/* --- Fonts --- */
 @import url('https://fonts.googleapis.com/css2?family=Inspiration&display=swap');
 
+/* --- Body --- */
 body {
     background: url(https://res.cloudinary.com/dcslh2m3b/image/upload/c_scale,e_vectorize,w_2752/v1648340463/GreenBean/pexels-aden-ardenrich-581339_wz67l9.jpg);
 }
 
+/* --- Top banner --- */
 .top-banner-text {
     color: #fafafa;
 }
@@ -15,8 +18,8 @@ body {
     left: 0px;
     padding-bottom: 2px;
     position: absolute;
-    background: #842029;
-    
+    /* background: #842029; */
+    background: #0f5132;
 }
 
 .logo-text {
@@ -25,10 +28,11 @@ body {
     color:rgb(30, 49, 35)
 }
 
-#main-nav {
+/* --- Main navigation --- */
+.main-nav {
     right: 0px;
     left: 0px;
-    /* padding-bottom: 2px; */
+    margin-top: 29px;
     position: inherit;
     background: white;
 }
@@ -37,9 +41,17 @@ body {
     text-decoration: none;
 }
 
+#searchBar {
+    margin-top: 97px;
+    right: 0px;
+    left: 0px;
+    position: inherit;
+    background: white;
+}
+
 .icon {
-    color: rgb(30, 43, 34, 1)
-};
+    color: rgb(30, 43, 34, 1);
+}
 
 
 /* .overlay {
