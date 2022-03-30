@@ -1,6 +1,17 @@
 /* --- Fonts --- */
 @import url('https://fonts.googleapis.com/css2?family=Inspiration&display=swap');
 
+/* font-family: 'Rock 3D', cursive; */
+@import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed&family=Bebas+Neue&family=Palette+Mosaic&family=Red+Hat+Mono&family=Rock+3D&display=swap&family=Roboto+Condensed&display=swap&family=Ubuntu&display=swap');
+/* 
+font-family: 'Barlow Condensed', sans-serif;
+font-family: 'Bebas Neue', cursive;
+font-family: 'Josefin Sans', sans-serif;
+font-family: 'Palette Mosaic', cursive;
+font-family: 'Red Hat Mono', monospace;
+font-family: 'Rock 3D', cursive;
+*/
+
 /* --- Body --- */
 body {
     background: url(https://res.cloudinary.com/dcslh2m3b/image/upload/c_scale,e_vectorize,w_2752/v1648340463/GreenBean/pexels-aden-ardenrich-581339_wz67l9.jpg);
@@ -9,6 +20,7 @@ body {
 /* --- Top banner --- */
 .top-banner-text {
     color: #fafafa;
+    font-family: 'Josefin Sans', sans-serif;
 }
 
 #top-banner,
@@ -20,12 +32,13 @@ body {
     position: absolute;
     /* background: #842029; */
     background: #0f5132;
+    font-family: 'Red Hat Mono', monospace;
 }
 
 .logo-text {
     font-size: 2rem;
     font-family: 'Inspiration', cursive;
-    color:rgb(30, 49, 35)
+    color:rgb(30, 49, 35);
 }
 
 /* --- Main navigation --- */
@@ -37,32 +50,58 @@ body {
     background: white;
 }
 
+.dropdown-item {
+    font-family: 'Ubuntu', sans-serif;
+    color: rgb(30, 49, 35) !important;
+    font-size: 0.8em;
+}
+
 #user-options {
     text-decoration: none;
 }
 
+/* Search bar */
 #searchBar {
-    margin-top: 97px;
+    margin-top: 93px;
     right: 0px;
     left: 0px;
     position: inherit;
     background: white;
 }
 
-.icon {
-    color: rgb(30, 43, 34, 1);
+#searchBar input,
+#searchBar input:active,
+#searchBar input:focus,
+#searchBar button {
+    width: 75%;
+    margin: 5 0 5em 0;
+    border: none;
+    border-bottom: rgba(30, 43, 34, 0.8) solid 1.5px;
+    background-color: none !important;
 }
 
+#searchBar i {
+    background-color: none !important;
+}
 
-/* .overlay {
-    background-color: rgba(93, 142, 109, 0.3);
-    position: absolute;
+.icon {
+    color: rgb(30, 43, 34, 0.8);
+    font-size: 0.9em;
+}
+
+#overlay {
+    /* background-color: rgba(93, 142, 109, 0.3); */
+    background-color: rgba(217, 221, 223, 0.5);
+    position: fixed;
+    display: none;
     top: 0;
     bottom: 0;
+    right: 0;
+    left: 0;
     height: 100%;
     width: 100%;
-    z-index: -999;
-} */
+    /* z-index: 2; */
+}
 
 /* ---- Text styling ---- */
 
@@ -96,7 +135,7 @@ body {
 
 .dgreen {
     background-color: rgba(30, 34, 43, 1);
-    color: rgba(93, 142, 109, 1);
+    /* color: rgba(93, 142, 109, 1); */
 }
 
 /* ---- Side Nav ---- */
