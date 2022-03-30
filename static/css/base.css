@@ -67,6 +67,7 @@ body {
     left: 0px;
     position: inherit;
     background: white;
+    z-index: -1;
 }
 
 #searchBar input,
@@ -104,6 +105,10 @@ body {
 }
 
 /* ---- Text styling ---- */
+
+.smaller-text {
+    font-size: 0.7em;
+}
 
 /* colors */
 .text-dgreen {

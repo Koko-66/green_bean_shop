@@ -1,0 +1,29 @@
+<a href="{% url 'home:home'%}" class="nav-link main-logo-link">
+    <h2 class="logo-text d-block d-lg-none my-0 mx-auto ">GreenBean</h2>
+</a>
+<!-- Search bar and shopping basket div-->
+<div class="row">
+    <div class="d-flex flex-row justify-content-end align-items-center">
+        <!-- Search button -->
+        <div class="col fs-5" data-bs-toggle="collapse" href="#searchBar" role="button"
+            aria-expanded="false" aria-controls="searchBarBtn">
+            <i class="fas fa-search icon"></i>
+        </div>
+        <!-- Shopping basket -->
+        <div id="shopping-cart" class="col my-auto py-1 py-lg-0">
+            <a class="{#% if grand_total %#} font-weight-bold{#% else %#}{#% endif %#} nav-link"
+                href="{#% url 'bag:view_bag' %#}">
+                <div class="text-end">
+                    <i class="fas fa-shopping-bag fa-lg icon me-2"></i>
+                    <p class="my-0 icon">
+                        <!-- {% if grand_total %} -->
+                        ${{ grand_total|floatformat:2 }}
+                        <!-- {% else %} -->
+                        £0.00
+                        <!-- {% endif %} -->
+                    </p>
+                </div>
+            </a>
+        </div>
+    </div>
+</div>

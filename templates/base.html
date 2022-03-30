@@ -38,8 +38,8 @@
         <!-- Top banner -->
         <div id="top-banner"
             class="d-flex flex-row justify-content-between align-items-center w-100 p-1 top-banner-text">
-            <div class="offset-1 offset-lg-2">
-                <p class="m-0 small fs-md-5 text-uppercase">Spend £ xx{{ free_delivery_threshold }} and get free
+            <div class="mx-auto smaller-text">
+                <p class="m-0 fs-md-5 text-uppercase">Spend £xx{{ free_delivery_threshold }} for free
                     delivery!
                 </p>
             </div>
@@ -77,7 +77,7 @@
                 <div class="d-flex">
                     <!-- Logo -->
                     <a href="{% url 'home:home'%}" class="nav-link main-logo-link">
-                        <h2 class="f-6 logo-text my-0">GreenBean</h2>
+                        <h2 class="logo-text d-none  d-lg-block my-0">GreenBean</h2>
                     </a>
                     <!-- Main navigation -->
                     <div class="col flex-grow-1">
@@ -85,16 +85,16 @@
                             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                                 data-bs-target="#main-nav" aria-controls="main-nav" aria-expanded="false"
                                 aria-label="Toggle navigation">
-                                <span class="navbar-toggler-icon small fs-md-5"></span>
+                                <span class="navbar-toggler-icon text-smaller fs-md-5"></span>
                             </button>
-                            {% include 'includes/mobile-top-header.html' %}
+                            {% include 'includes/mobile-nav.html' %}
                             {% include 'includes/main-nav.html' %}
                         </nav>
                     </div>
                 </div>
             </div>
             <!-- Search bar and shopping basket div-->
-            <div class="row">
+            <div class="row d-none d-lg-block">
                 <div class="d-flex flex-row justify-content-end align-items-center">
                     <!-- Search button -->
                     <div class="col fs-5" data-bs-toggle="collapse" href="#searchBar" role="button"
