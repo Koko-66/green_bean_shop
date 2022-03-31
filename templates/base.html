@@ -38,8 +38,8 @@
         <!-- Top banner -->
         <div id="top-banner"
             class="d-flex flex-row justify-content-between align-items-center w-100 p-1 top-banner-text">
-            <div class="mx-auto smaller-text">
-                <p class="m-0 fs-md-5 text-uppercase">Spend £xx{{ free_delivery_threshold }} for free
+            <div class="mx-auto">
+                <p class="m-0 fs-md-5 text-uppercase">Spend £{{ free_delivery_threshold }} for free
                     delivery!
                 </p>
             </div>
@@ -82,11 +82,11 @@
                     <!-- Main navigation -->
                     <div class="col flex-grow-1">
                         <nav class="navbar navbar-expand-lg navbar-light w-100">
-                            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                            <a class="icon navbar-toggler" type="button" data-bs-toggle="collapse"
                                 data-bs-target="#main-nav" aria-controls="main-nav" aria-expanded="false"
                                 aria-label="Toggle navigation">
-                                <span class="navbar-toggler-icon text-smaller fs-md-5"></span>
-                            </button>
+                                <span class="fs-5 border-none"><i class="fas fa-bars"></i></span>
+                            </a>
                             {% include 'includes/mobile-nav.html' %}
                             {% include 'includes/main-nav.html' %}
                         </nav>

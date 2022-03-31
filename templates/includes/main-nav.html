@@ -1,30 +1,30 @@
 <div class="collapse navbar-collapse text-dgreen" id="main-nav">
     <div class="container-fluid">
         <ul class="navbar-nav w-auto mx-auto small text-uppercase">
-            <li class="nav-item d-block d-md-none">
-                <a class="logo-font font-weight-bold nav-link text-black mr-5" href="{% url 'home:home' %}"
+            <li class="nav-item menu-text d-block d-md-none">
+                <a class="font-weight-bold nav-link text-black mr-5" href="{% url 'home:home' %}"
                     id="home-link">
                     Home
                 </a>
             </li>
             <li class="nav-item dropdown">
-                <a class="font-weight-bold nav-link text-black mr-5" href="#" id="all-products-link"
+                <a class="font-weight-bold nav-link menu-text mr-5 me-2" href="#" id="all-products-link"
                     data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    All
+                    All by...
                 </a>
                 <div class="dropdown-menu border-0" aria-labelledby="all-products-link">
-                    <a href="{#% url 'products:products' %#}?sort=price&direction=asc" class="dropdown-item">By
+                    <a href="{#% url 'products:products' %#}?sort=price&direction=asc" class="dropdown-item">
                         Price</a>
-                    <a href="{#% url 'products:products' %#}?sort=rating&direction=desc" class="dropdown-item">By
+                    <a href="{#% url 'products:products' %#}?sort=rating&direction=desc" class="dropdown-item">
                         Rating</a>
-                    <a href="{#% url 'products:products' %#}?sort=category&direction=asc" class="dropdown-item">By
+                    <a href="{#% url 'products:products' %#}?sort=category&direction=asc" class="dropdown-item">
                         Category</a>
                     <a href="{#% url 'products:products' %#}" class="dropdown-item">All</a>
                 </div>
             </li>
-
+           
             <li class="nav-item dropdown">
-                <a class="logo-font font-weight-bold nav-link text-black mr-5" href="#" id="clothing-link"
+                <a class="font-weight-bold nav-link menu-text mr-5" href="#" id="clothing-link"
                     data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     T-shirts
                 </a>
@@ -40,7 +40,7 @@
             </li>
 
             <li class="nav-item dropdown">
-                <a class="logo-font font-weight-bold nav-link text-black" href="#" id="specials-link"
+                <a class="font-weight-bold nav-link menu-text" href="#" id="specials-link"
                     data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     Special Offers
                 </a>

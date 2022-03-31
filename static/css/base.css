@@ -13,11 +13,13 @@ font-family: 'Rock 3D', cursive;
 */
 
 /* --- Body --- */
+
 body {
     background: url(https://res.cloudinary.com/dcslh2m3b/image/upload/c_scale,e_vectorize,w_2752/v1648340463/GreenBean/pexels-aden-ardenrich-581339_wz67l9.jpg);
 }
 
 /* --- Top banner --- */
+
 .top-banner-text {
     color: #fafafa;
     font-family: 'Josefin Sans', sans-serif;
@@ -30,18 +32,17 @@ body {
     left: 0px;
     padding-bottom: 2px;
     position: absolute;
-    /* background: #842029; */
     background: #0f5132;
     font-family: 'Red Hat Mono', monospace;
 }
+
+/* --- Main navigation --- */
 
 .logo-text {
     font-size: 2rem;
     font-family: 'Inspiration', cursive;
     color:rgb(30, 49, 35);
 }
-
-/* --- Main navigation --- */
 .main-nav {
     right: 0px;
     left: 0px;
@@ -50,17 +51,29 @@ body {
     background: white;
 }
 
+/* Override bootstrap styling for menu collapse button */
+.navbar-toggler {
+    border: none !important;
+}
+
 .dropdown-item {
     font-family: 'Ubuntu', sans-serif;
     color: rgb(30, 49, 35) !important;
     font-size: 0.8em;
 }
 
-#user-options {
-    text-decoration: none;
+.menu-text {
+    font-family: 'Ubuntu', sans-serif;
+    color: rgb(30, 49, 35) !important;
+    /* font-size: 0.8em; */
 }
 
-/* Search bar */
+/* #user-options {
+    text-decoration: none;
+} */
+
+/* --- Search bar --- */
+
 #searchBar {
     margin-top: 93px;
     right: 0px;
@@ -153,3 +166,9 @@ body {
     position: fixed;
 }
 
+@media only screen and (max-width: 350px) {
+    #top-banner p {
+        font-size: 0.8em;
+    }
+
+}
