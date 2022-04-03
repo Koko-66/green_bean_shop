@@ -10,9 +10,10 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.0/ref/settings/
 """
 
+from pathlib import Path
 import os
 import dj_database_url
-from pathlib import Path
+
 
 # Import env file if exists
 if os.path.isfile('env.py'):
@@ -33,7 +34,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 DEBUG = os.environ.get('DEBUG', 'False') == 'True'
 
 ALLOWED_HOSTS = ['green-bean-shop.herokuapp.com', 'localhost']
-
+CSRF_TRUSTED_ORIGINS = [os.environ.get('CSRF_TRUSTED_ORIGINS')]
 
 # Application definition
 
@@ -50,6 +51,7 @@ INSTALLED_APPS = [
     # third party
     # this project
     'home',
+    'products',
 ]
 
 MIDDLEWARE = [

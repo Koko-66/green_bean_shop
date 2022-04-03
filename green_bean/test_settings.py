@@ -50,6 +50,7 @@ INSTALLED_APPS = [
     # third party
     # this project
     'home',
+    'products',
 ]
 
 MIDDLEWARE = [
