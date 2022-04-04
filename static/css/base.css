@@ -45,9 +45,11 @@ font-family: 'Rock 3D', cursive;
 /* --- Body --- */
 
 body {
-    /* background: url(https://res.cloudinary.com/dcslh2m3b/image/upload/c_scale,e_vectorize,w_2752/v1648340463/GreenBean/pexels-aden-ardenrich-581339_wz67l9.jpg); */
-    background: url(https://res.cloudinary.com/dcslh2m3b/image/upload/c_scale,w_3983/v1648760899/GreenBean/pexels-max-ravier-3331094_jx7dgf.jpg) left no-repeat;
-    background-size: 1500px auto;
+    /* background: url(https://res.cloudinary.com/dcslh2m3b/image/upload/c_scale,w_3983/v1648760899/GreenBean/pexels-max-ravier-3331094_jx7dgf.jpg) left no-repeat; */
+    /* background: url(https://res.cloudinary.com/dcslh2m3b/image/upload/a_90/v1649102808/GreenBean/pexels-max-ravier-3331094_g5p58l.jpg) center no-repeat; */
+    background-color: rgb(29, 68, 116) !important;
+    background: url(https://res.cloudinary.com/dcslh2m3b/image/upload/v1649103642/GreenBean/pexels-teddy-tavan-4890733_mxqmip.jpg) no-repeat right center;
+    background-size: 1200px auto;
 }
 
 /* --- Top banner --- */
@@ -138,7 +140,7 @@ body {
 
 #overlay {
     /* background-color: rgba(93, 142, 109, 0.3); */
-    background-color: rgba(217, 221, 223, 0.5);
+    background-color: rgba(18, 95, 61, 1);
     position: fixed;
     display: none;
     top: 0;
@@ -147,7 +149,7 @@ body {
     left: 0;
     height: 100%;
     width: 100%;
-    /* z-index: 2; */
+    z-index: 2;
 }
 
 /* ---- Text styling ---- */
@@ -198,24 +200,70 @@ button {
     height: 75px;
 } */
 
+@media only screen and (max-width: 1500px) {
+
+    body {
+        background-size: 700px auto;
+    }
+    
+}
+
+@media only screen and (max-width: 1160px) {
+
+    body {
+        background-size: 700px auto;
+    }
+
+    #about {
+        /* margin-top: 200px; */
+        width: 400px;
+        margin-top: 95px;
+        font-size: 1.3em;
+        background-color: rgb(29, 68, 116);
+
+        /* background: rgba(41, 42, 42, 0.5) */
+    }
+    
+}
+
 @media only screen and (max-width: 991px) {
+
+    body {
+        background: url(https://res.cloudinary.com/dcslh2m3b/image/upload/v1649103642/GreenBean/pexels-teddy-tavan-4890733_mxqmip.jpg) no-repeat right top;
+        background-size: 800px auto;
+    }
 
     #top-banner p {
         font-size: 0.8em;
     }
 
     #about {
-        /* margin-top: 200px; */
-        border-radius: 5px;
-        color:rgb(180, 216, 192);
-        font-size: 1.1em;
-        /* background: rgba(217, 221, 223, 0.5) */
-        /* font-family: 'Ubuntu', sans-serif; */
+        margin-top: 150px;
+        font-size: 1.2em;
+        /* background: rgba(41, 42, 42, 0.5) */
+        background: rgba(29, 68, 116, 0.5)
     }
-    
+}
+
+@media only screen and (max-width: 860px) {
+    h2 {
+        font-size: 1.3em !important;
+    }
+    #about {
+        margin-top: 120px;
+        width: 320px;
+        font-size: 1.2em;
+        /* background: rgba(41, 42, 42, 0.5) */
+        background: rgba(29, 68, 116, 0.5)
+    }
 }
 
 @media only screen and (max-width: 450px) {
+
+    body {
+        background: url(https://res.cloudinary.com/dcslh2m3b/image/upload/v1649103642/GreenBean/pexels-teddy-tavan-4890733_mxqmip.jpg) no-repeat center top;
+        background-size: 500px auto;
+    }
 
     #top-banner p {
         font-size: 0.8em;
