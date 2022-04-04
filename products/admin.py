@@ -1,6 +1,12 @@
 """Register product models in the admin"""
 from django.contrib import admin
-from .models import Size, Color, Category, Product
+from .models import Type, Size, Color, Category, Product
+
+
+@admin.register(Type)
+class TypeAdmin(admin.ModelAdmin):
+    """Register Size on admin"""
+    list_display = ('product_type', 'type_code')
 
 
 @admin.register(Size)

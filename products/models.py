@@ -4,6 +4,16 @@ from django.db import models
 from cloudinary.models import CloudinaryField
 
 
+class Type(models.Model):
+    """Create instance of Type"""
+    product_type = models.CharField(max_length=100)
+    type_code = models.CharField(max_length=5)
+
+    def __str__(self):
+        """String method for type"""
+        return self.pruduct_type
+
+
 class Size(models.Model):
     """Create instance of Size"""
     size_short = models.CharField(max_length=25)  # e.g. 'M'
