@@ -62,6 +62,7 @@ class Product(models.Model):
             editable=False,
             unique=True,
         )
+    product_type = models.ForeignKey(Type, null=True, on_delete=models.SET_NULL)
     image = CloudinaryField('image', default='No image provided', blank=True)
     categories = models.ManyToManyField(Category, related_name='categories')
     size = models.ManyToManyField(Size, related_name='sizes')
