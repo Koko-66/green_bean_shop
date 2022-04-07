@@ -71,6 +71,7 @@ class Product(models.Model):
     size = models.ManyToManyField(Size, related_name='sizes')
     color = models.ManyToManyField(Color, related_name='colors')
     price = models.FloatField(max_length=6, default=000.00)
+    rating = models.DecimalField(max_digits=6, decimal_places=2, null=True, blank=True)
 
     def get_sizes(self):
         """Get all sizes for a product"""
