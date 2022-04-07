@@ -1,8 +1,11 @@
-from django.shortcuts import render
+"""Home app views"""
+# from django.shortcuts import HttpResponse
 from django.views.generic import TemplateView
-from django.conf import settings
+# from django.contrib import messages
 
-# Create your views here.
+
 class HomeView(TemplateView):
     """Render home view"""
     template_name = 'home/home.html'
+    success_message = 'Home page rendered successfully'
+    print(success_message)

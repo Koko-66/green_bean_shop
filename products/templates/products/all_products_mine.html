@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'products/css/products.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="overlay"></div>
+<!-- Main container for cards -->
+<div class="container px-1 py-1 pb-5 min-top-margin">
+    <p class="pb-lg-0 mt-lg-0 text-yellow fs-6">All Products |</span>
+
+        <div class="row">
+            {% for product in product_list %}
+            <div class="col-sm-6 col-md-6 col-lg-4 col-xl-3 mb-4">
+                <div class="card border-white" style="width: 18rem; hright: ">
+                    {% if product.image %}
+                    <img src="{{ product.image.url }}" alt="{{ product.name }}" class="card-img-top img-fluid">
+                    {% else %}
+                    <img src="https://res.cloudinary.com/dcslh2m3b/image/upload/b_rgb:faec70,o_29/v1645729817/seux34sx1yipyvm740l0.jpg"
+                        alt="" class="card-img-top img-fluid">
+                    {% endif %}
+                    <div class="card-body">
+                        <div class="d-flex flex-row justify-content-between m-0 mt-3 lh-1 fw-bold text-green fs-5">
+                            <span class=" small flex-grow-1 fs-lg-5">
+                                {{ product.product_name }}
+                            </span>
+                            <span class="text-end small fs-lg-5">
+                                £{{ product.price }}
+                            </span>
+                        </div>
+                        <hr>
+                        <div class="bg-yellow-transparent mb-3 px-2 rounded">
+                            <p class="small">{{ product.description }}</p>
+                            <div>
+                                Sizes: {% for size in product.get_sizes %}
+                                <span class="me-1 fs-heavy">{{ size }}</span>
+                                {% endfor %}
+                            </div>
+                            <div class="d-flex flex-row p-2">
+                                {% for color in product.get_colors %}
+                                <div class="circle bg-{{ color.lower }} me-2"><a href=""></a></div>
+                                {% endfor %}
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="text-center">
+                        <a class="link-button p-2"><strong>Add to <i class="fas fa-shopping-bag fa-lg icon me-2"
+                                    aria-hidden="true"></i></strong></a>
+                    </div>
+                
+            </div>
+        </div>
+        {% endfor %}
+</div>
+</div>
+
+{% endblock %}
