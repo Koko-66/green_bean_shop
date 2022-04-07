@@ -2,39 +2,41 @@
     <div class="container-fluid">
         <ul class="navbar-nav w-auto mx-auto small text-uppercase">
             <li class="nav-item menu-text d-block d-md-none">
-                <a class="font-weight-bold nav-link text-black mr-5" href="{% url 'home:home' %}"
+                <a class="font-weight-bold nav-link text-black mr-5" href="{% url 'products:products' %}"
                     id="home-link">
-                    Home
+                    All products
                 </a>
             </li>
             <li class="nav-item dropdown">
                 <a class="font-weight-bold nav-link menu-text mr-5 me-2" href="#" id="all-products-link"
                     data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    All by...
+                    Sort by...
                 </a>
                 <div class="dropdown-menu border-0" aria-labelledby="all-products-link">
-                    <a href="{#% url 'products:products' %#}?sort=price&direction=asc" class="dropdown-item">
-                        Price</a>
-                    <a href="{#% url 'products:products' %#}?sort=rating&direction=desc" class="dropdown-item">
-                        Rating</a>
-                    <a href="{#% url 'products:products' %#}?sort=category&direction=asc" class="dropdown-item">
+                    <a href="{% url 'products:products' %}?sort=price&direction=asc" class="dropdown-item">
+                        Price (high to low)</a>
+                    <a href="{% url 'products:products' %}?sort=price&direction=desc" class="dropdown-item">
+                        Price (low to high)</a>    
+                    <!-- <a href="{% url 'products:products' %}?sort=rating&direction=desc" class="dropdown-item">
+                        Rating</a> -->
+                    <a href="{% url 'products:products' %}?sort=category&direction=asc" class="dropdown-item">
                         Category</a>
-                    <a href="{#% url 'products:products' %#}" class="dropdown-item">All</a>
+                    <a href="{% url 'products:products' %}" class="dropdown-item">All</a>
                 </div>
             </li>
            
             <li class="nav-item dropdown">
-                <a class="font-weight-bold nav-link menu-text mr-5" href="#" id="clothing-link"
+                <a class="font-weight-bold nav-link menu-text mr-5" href="#" id="tshirts-link"
                     data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     T-shirts
                 </a>
-                <div class="dropdown-menu border-0" aria-labelledby="clothing-link">
-                    <a href="{#% url 'products:products' %#}?category=new_arrivals" class="dropdown-item">New
+                <div class="dropdown-menu border-0" aria-labelledby="tshirts-link">
+                    <a href="{% url 'products:products' %}?category=new_arrivals" class="dropdown-item">New
                         Arrivals</a>
-                    <a href="{#% url 'products:products' %#}?category=abstract" class="dropdown-item">Abstract</a>
-                    <a href="{#% url 'products:products' %#}?category=nature" class="dropdown-item">Nature</a>
-                    <a href="{#% url 'products:products' %#}?category=anime" class="dropdown-item">Anime</a>
-                    <a href="{#% url 'products:products' %#}?category=new_arrivals,abstract,nature,anime"
+                    <a href="{% url 'products:products' %}?category=abstract" class="dropdown-item">Abstract</a>
+                    <a href="{% url 'products:products' %}?category=nature" class="dropdown-item">Nature</a>
+                    <a href="{% url 'products:products' %}?category=anime" class="dropdown-item">Anime</a>
+                    <a href="{% url 'products:products' %}?category=new_arrivals,abstract,nature,anime"
                         class="dropdown-item">Collections</a>
                 </div>
             </li>

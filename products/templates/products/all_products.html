@@ -20,14 +20,14 @@
     <div class="container-fluid min-top-margin">
         <div class="row">
             <div class="col text-left mt-5">
-                <h2 class="logo-font text-lgreen text d-inline">Showing products:</h2>
-                <span class="text-lgreen smaller d-inline">{{ product_list.count }}</span>
+                <!-- <h2 class="logo-font text-lgreen text d-inline">Products: </h2> -->
+                <span class="text-lgreen fs-4 d-inline">
+                    {% if search_term %}
+                    Results for "{{ search_term }}": {{ product_list.count }} products</span>
+                    {% else %}
+                    All products
+                    {% endif %}
                 <hr class="text-lgreen">
-                <!-- {% for c in current_categories %}
-                    <a href="{% url 'products:products' %}?category={{ c.name }}" class="category-badge text-decoration-none">
-                        <span class="p-2 mt-2 badge badge-white text-black rounded-0 border border-dark">{{ c.friendly_name }}</span>
-                    </a>
-                {% endfor %} -->
             </div>
         </div>
         <div class="row">
@@ -51,26 +51,30 @@
                                 <div class="card-footer bg-white pt-0 border-0 text-left">
                                     <div class="row">
                                         <div class="col">
-                                            <!-- <div class="mb-0 position-absolute start-2">{{ product.product_name }}</div> -->
+                                            <div class="">{{ product.product_name }}</div>
                                             <div class="lead text-left font-weight-bold position-absolute end-0 fw-bold me-2">£{{ product.price }}</div>
                                             <br><br>
-                                            <!-- {% if product.category %}
-                                            <p class="mt-1 mb-0">
-                                                <a class="text-muted" href="{#% url 'products:products' %#}?category={{ product.category.name }}">
-                                                    <i class="fas fa-tag mr-1"></i>{{ product.category.friendly_name }}
-                                                </a>
-                                            </p>
-                                            {% endif %} -->
-                                            <div class="">
-                                                Sizes: {% for size in product.get_sizes %}
-                                                <span class="me-1 fs-heavy d-inline size-box">{{ size }}</span>
+                                            
+                                            <div class="d-flex flex-row flex-wrap my-2">
+                                                <span class="me-2">Sizes:</span>
+                                                {% for size in product.get_sizes %}
+                                                <span class="col me-1 fs-heavy size-box me-2">{{ size }}</span>
                                                 {% endfor %}
                                             </div>
-                                            <div class="d-flex flex-row p-2">
+                                            <div class="d-flex flex-row p-2 my-2">
                                                 {% for color in product.get_colors %}
                                                 <div class="circle bg-{{ color.lower }} me-2"><a href=""></a></div>
                                                 {% endfor %}
                                             </div>
+                                            {% if product.categories %}
+                                            <p class="mt-1 mb-0">
+                                                {% for category in product.get_categories %}
+                                                <a class="text-muted small text-undecorated" href="{% url 'products:products' %}?categories={{ product.get_categories}}">
+                                                    <i class="fas fa-tag me-1"></i>{{ category }}
+                                                </a>
+                                                {% endfor %}
+                                            </p>
+                                            {% endif %}
                                             {% if product.rating %}
                                                 <small class="text-muted"><i class="fas fa-star mr-1"></i>{{ product.rating }} / 5</small>
                                             {% else %}
@@ -127,7 +131,7 @@
             window.scrollTo(0,0)
         })
     </script>
-    <script type="text/javascript">
+    <!-- <script type="text/javascript">
         $("#sort-selector").change(function() {
             let selector = $(this);
             let currentUrl = new URL(window.location);
@@ -148,5 +152,5 @@
                 window.location.replace(currentUrl);
             }
         })
-    </script>
+    </script> -->
 {% endblock %}
