@@ -61,10 +61,10 @@
                             </li>
                             {#% endif %#}
                             <li><a href="{#% url 'profile' %#}" class="dropdown-item">My Profile</a></li>
-                            <li><a href="{#% url 'account_logout' %#}" class="dropdown-item">Logout</a></li>
+                            <li><a href="{% url 'account_logout' %}" class="dropdown-item">Logout</a></li>
                             {#% else %#}
-                            <li><a href="{#% url 'account_signup' %#}" class="dropdown-item">Register</a></li>
-                            <li><a href="{#% url 'account_login' %#}" class="dropdown-item">Login</a></li>
+                            <li><a href="{% url 'account_signup' %}" class="dropdown-item">Register</a></li>
+                            <li><a href="{% url 'account_login' %}" class="dropdown-item">Login</a></li>
                             {#% endif %#}
                         </ul>
                     </div>
@@ -125,19 +125,19 @@
 
     {% if messages %}
     <div class="message-container">
-        {% for message in messages %}
-        {% with message.level as level %}
-        {% if level == 40 %}
-        {% include 'includes/toasts/toast_error.html' %}
-        {% elif level == 30 %}
-        {% include 'includes/toasts/toast_warning.html' %}
-        {% elif level == 25 %}
-        {% include 'includes/toasts/toast_success.html' %}
-        {% else %}
-        {% include 'includes/toasts/toast_info.html' %}
-        {% endif %}
-        {% endwith %}
-        {% endfor %}
+        {#% for message in messages %#}
+        {#% with message.level as level %#}
+        {#% if level == 40 %#}
+        {#% include 'includes/toasts/toast_error.html' %#}
+        {#% elif level == 30 %#}
+        {#% include 'includes/toasts/toast_warning.html' %#}
+        {#% elif level == 25 %#}
+        {#% include 'includes/toasts/toast_success.html' %#}
+        {#% else %#}
+        {#% include 'includes/toasts/toast_info.html' %#}
+        {#% endif %#}
+        {#% endwith %#}
+        {#% endfor %#}
     </div>
     {% endif %}
 

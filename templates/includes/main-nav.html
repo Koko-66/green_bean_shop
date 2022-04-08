@@ -1,7 +1,8 @@
 <div class="collapse navbar-collapse text-dgreen" id="main-nav">
     <div class="container-fluid">
         <ul class="navbar-nav w-auto mx-auto small text-uppercase">
-            <li class="nav-item menu-text d-block d-md-none">
+            <!-- <li class="nav-item menu-text d-block d-md-none"> -->
+            <li class="nav-item menu-text d-block">
                 <a class="font-weight-bold nav-link text-black mr-5" href="{% url 'products:products' %}"
                     id="home-link">
                     All products
@@ -47,9 +48,9 @@
                     Other
                 </a>
                 <div class="dropdown-menu border-0" aria-labelledby="clothing-link">
-                    <a href="{#% url 'products:products' %#}?category=bracelets" class="dropdown-item">Bracelets</a>
-                    <a href="{#% url 'products:products' %#}?category=hats" class="dropdown-item">Accessories</a>
-                    <a href="{#% url 'products:products' %#}?category=artwork" class="dropdown-item">Artwork</a>
+                    <a href="{% url 'products:products' %}?category=bracelets" class="dropdown-item">Bracelets</a>
+                    <a href="{% url 'products:products' %}?category=accessories" class="dropdown-item">Accessories</a>
+                    <a href="{% url 'products:products' %}?category=artwork" class="dropdown-item">Artwork</a>
                     <!-- <a href="{#% url 'products:products' %#}?category=new_arrivals,abstract,nature,anime"
                         class="dropdown-item">Collections</a> -->
                 </div>
@@ -62,9 +63,9 @@
                 </a>
                 <div class="dropdown-menu border-0" aria-labelledby="specials-link">
                     <!-- <a href="{#% url 'products:products' %#}?category=new_arrivals" class="dropdown-item">New Arrivals</a> -->
-                    <a href="{#% url 'products:products' %#}?category=deals" class="dropdown-item">Deals</a>
-                    <a href="{#% url 'products:products' %#}?category=clearance" class="dropdown-item">Clearance</a>
-                    <a href="{#% url 'products:products' %#}?category=deals,clearance" class="dropdown-item">All
+                    <a href="{% url 'products:products' %}?category=deals" class="dropdown-item">Deals</a>
+                    <a href="{% url 'products:products' %}?category=clearance" class="dropdown-item">Clearance</a>
+                    <a href="{% url 'products:products' %}?category=deals,clearance" class="dropdown-item">All
                         Specials</a>
                 </div>
             </li>

@@ -46,9 +46,9 @@ class Category(models.Model):
         """Meta options for Product model"""
         verbose_name_plural = "categories"
 
-    def get_friendly_name(self):
-        """Friendly name for product category"""
-        return self.friendly_name
+    # def get_friendly_name(self):
+    #     """Friendly name for product category"""
+    #     return self.friendly_name
 
     def __str__(self):
         """String method for category"""
@@ -78,7 +78,7 @@ class Product(models.Model):
         sizes = []
         for size in self.size.all():
             sizes.append(size.size_short)
-        print(sizes)
+        # print(sizes)
         return(sizes)
 
     def get_colors(self):
@@ -86,15 +86,15 @@ class Product(models.Model):
         colors = []
         for color in self.color.all():
             colors.append(color.color)
-        print(colors)
+        # print(colors)
         return(colors)
 
     def get_categories(self):
         """Get list of categories for a product"""
         categories = []
         for category in self.category.all():
-            categories.append(category.category_name)
-        print(categories)
+            categories.append(category.friendly_name)
+        # print(categories)
         return(categories)
 
     def _generate_code(self):
@@ -102,7 +102,7 @@ class Product(models.Model):
         code = random.randint(10000, 99999)
         products = Product.objects.all()
         codes = [product.code for product in products]
-        print(codes)
+        # print(codes)
 
         while code in codes:
             new_code = random.randint(10000, 99999)
@@ -123,4 +123,3 @@ class Product(models.Model):
     def __str__(self):
         """String method for product"""
         return self.product_name
-

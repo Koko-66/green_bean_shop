@@ -176,7 +176,7 @@ button {
     left: 0px;
     position: inherit;
     background: white;
-    z-index: inherit;
+    z-index: -1;
 }
 
 #searchBar input,
@@ -214,13 +214,6 @@ button {
     margin-top: 75px;
 }
 
-/* Color indicators */
-
-.circle {
-    height: 25px;
-    width: 25px;
-    border-radius: 50%;
-}
 
 /* --- Media queries --- */
 
