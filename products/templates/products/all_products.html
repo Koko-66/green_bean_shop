@@ -24,10 +24,14 @@
                 <span class="text-lgreen fs-4 d-inline">
                     {% if search_term %}
                     Results for "{{ search_term }}": {{ product_list.count }} products</span>
+                    <span class="ms-5">
+                        <a href="{% url 'products:products' %}" class="text-yellow undecorated">Clear search</a>
+                    </span>
                     {% else %}
-                    All products
+                    All products: {{ product_list.count }}
                     {% endif %}
                 <hr class="text-lgreen">
+            <div
             </div>
         </div>
         <div class="row">

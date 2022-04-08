@@ -31,5 +31,5 @@ class CategoryAdmin(admin.ModelAdmin):
 class ProductAdmin(admin.ModelAdmin):
     """Register Product on admin"""
     list_display = ('product_name', 'description', 'code', 'price')
-    list_filter = ('product_name', 'categories')
-    search_fields = ['product_name', 'categories']
+    list_filter = ('product_name', 'category')
+    search_fields = ['product_name', 'category']

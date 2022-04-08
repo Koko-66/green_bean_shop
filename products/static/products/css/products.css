@@ -36,9 +36,12 @@
 .btt-link,
 .update-link,
 .remove-item {
-    cursor: hand;
+    cursor: pointer;
 }
 
+.undecorated {
+    text-decoration: none;
+}
 /* Color indicators */
 
 .circle {

@@ -67,7 +67,7 @@ class Product(models.Model):
         )
     product_type = models.ForeignKey(Type, null=True, on_delete=models.SET_NULL)
     image = CloudinaryField('image', blank=True)
-    categories = models.ManyToManyField(Category, related_name='categories')
+    category = models.ManyToManyField(Category, related_name='categories')
     size = models.ManyToManyField(Size, related_name='sizes')
     color = models.ManyToManyField(Color, related_name='colors')
     price = models.FloatField(max_length=6, default=000.00)
@@ -92,7 +92,7 @@ class Product(models.Model):
     def get_categories(self):
         """Get list of categories for a product"""
         categories = []
-        for category in self.categories.all():
+        for category in self.category.all():
             categories.append(category.category_name)
         print(categories)
         return(categories)
