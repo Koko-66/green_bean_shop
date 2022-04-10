@@ -57,11 +57,11 @@
                         <div class="col-sm-6 col-md-6 col-lg-4 col-xl-3">
                             <div class="card h-100 border-bottom border-light">
                                 {% if product.image %}
-                                <a href="{#% url 'products:product_detail' product.id %#}">
+                                <a href="{% url 'products:product_details' product.pk %}">
                                     <img class="card-img-top img-fluid" src="{{ product.image.url }}" alt="{{ product.name }}">
                                 </a>
                                 {% else %}
-                                <a href="{#% url 'products:product_detail' product.id %#}">
+                                <a href="{% url 'products:product_details' product.pk %}">
                                     <!-- <img class="card-img-top img-fluid" src="https://res.cloudinary.com/dcslh2m3b/image/upload/b_rgb:faec70,o_29/v1645729817/seux34sx1yipyvm740l0.jpg" alt="{{ product.name }}"> -->
                                     <img class="card-img-top img-fluid" src="../{{MEDIA_URL}}/—Pngtree—tshirt white front blank mockup_6639255.png" alt="{{ product.name }}">
                                 </a>

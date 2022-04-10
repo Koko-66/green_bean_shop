@@ -228,6 +228,8 @@ button {
 
     body {
         background-size: 700px auto;
+        background-position-y: top;
+        background-position-x: right;
     }
 
     #about {

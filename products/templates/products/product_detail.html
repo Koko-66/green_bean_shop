@@ -1,0 +1,90 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block page_header %}
+<div class="container header-container">
+    <div class="row">
+        <div class="col text-lgreen">Product details</div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'products/css/products.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="overlay"></div>
+<div class="container-fluid min-top-margin pt-5">
+    <div class="row bg-light m-4 px-2">
+        <div class="col-12 col-md-6 col-lg-4 offset-lg-2 bg-light">
+            <!-- Image -->
+            <div class="mt-5 py-auto">
+                {% if product.image %}
+                <!-- <a href="{{ product.image.url }}" target="_blank"> -->
+                <img class="card-img-top img-fluid" src="{{ product.image.url }}" alt="{{ product.name }}">
+                <!-- </a> -->
+                {% else %}
+                <a href="{% url 'products:product_detail' product.pk %}">
+                    <!-- <img class="card-img-top img-fluid" src="https://res.cloudinary.com/dcslh2m3b/image/upload/b_rgb:faec70,o_29/v1645729817/seux34sx1yipyvm740l0.jpg" alt="{{ product.name }}"> -->
+                    <img class="card-img-top img-fluid"
+                        src="../{{MEDIA_URL}}/—Pngtree—tshirt white front blank mockup_6639255.png"
+                        alt="{{ product.name }}">
+                </a>
+                {% endif %}
+            </div>
+        </div>
+        <div class="col-12 col-md-6 col-lg-4">
+            <div class="product-details-container mt-md-5">
+                <!-- Product name and price -->
+                <div class="lead d-flex flex-row justify-content-between">
+                    <p class="col mb-0 text-green">{{ product.product_name }}</p>
+                    <p class="col mb-0 d-inline text-left fw-bold text-green">£{{ product.price }}</p>
+                </div>
+                <!-- Rating -->
+                {% if product.rating %}
+                <small class="text-dgreen"><i class="fas fa-star mr-1"></i>{{ product.rating }} / 5</small>
+                {% else %}
+                <small class="text-muted">No Rating</small>
+                {% endif %}
+
+                <!-- Description -->
+                <p class="mt-5 text-dgreen fs-6">{{ product.description }}</p>
+
+                <!-- Sizes -->
+                <div class="d-flex flex-row flex-wrap mt-3">
+                    <span class="me-2">Sizes:</span>
+                    {% for size in product.get_sizes %}
+                    <span class="col fs-heavy size-box me-2">{{ size }}</span>
+                    {% endfor %}
+                </div>
+
+                <!-- Colors -->
+                <div class="d-flex flex-row flex-wrap mt-3">
+                    Available colors: {% for color in product.get_colors %}
+                    <div class="circle bg-{{ color.lower }} ms-2"><a href=""></a></div>
+                    {% endfor %}
+                </div>
+
+                <div class="mt-3">Select quantity</div>
+                <!-- Categories -->
+                {% if product.category %}
+                <p class="mt-1 mb-0 mt-3">
+                    {% for category in product.get_categories %}
+                    <small><a class="text-dgreen undecorated"
+                            href="{% url 'products:products' %}?category={{ product.get_categories}}">
+                            <i class="fas fa-tag me-1"></i>{{ category }}</small>
+                    </a>
+                    {% endfor %}
+                </p>
+                {% endif %}
+            </div>
+
+        </div>
+        <div class="mb-3 end-0 d-flex justify-content-end">
+            <a href="" class="link-button p-2 text-center">Add to bag</a>
+        </div>
+    </div>
+</div>
+{% endblock %}
