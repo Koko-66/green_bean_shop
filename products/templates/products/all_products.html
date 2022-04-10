@@ -18,33 +18,38 @@
 {% block content %}
 <div class="overlay img-fluid"></div>
     <div class="container-fluid min-top-margin">
-        <div class="row">
-            <div class="col text-left mt-5">
-                <!-- <h2 class="logo-font text-lgreen text d-inline">Products: </h2> -->
-                <span class="text-lgreen fs-4 d-inline">
+        <div class="row mt-5">
+            <div class="col text-left mt-5 d-flex flex-row align-items-sm-top align-items-md-center mx-3">
+                <div class="col text-lgreen fs-6 d-inline lh-2">
                     {% if search_term %}
-                    Results for {{ search_term }} | {{ product_list.count }} products</span> 
-                    <span class="ms-5">
-                        <a href="{% url 'products:products' %}" class="text-yellow undecorated">Clear search</a>
-                        
+                    <a href="{% url 'products:products' %}" class=" undecorated text-lgreen">Show all</a> | 
+                    <span class="fs-6">{{ product_list.count }} {% if product_list.count == 1 %}product{% else %}products{% endif %} with keyword '{{ search_term }}'  </span> 
+
                     {% elif current_categories %}
-                    Results for 
-                    {% for category in current_categories %}{{ category.friendly_name }} | {% endfor %}  {{ product_list.count }} products</span>
-                    <span class="ms-5">
-                        <a href="{% url 'products:products' %}" class="text-yellow undecorated">Clear filter</a>
-                    </span>
+                    <a href="{% url 'products:products' %}" class=" undecorated text-yellow"> Show all</a> | 
+                    <span class="fs-6">{{ product_list.count }} products in {% for category in current_categories %}{{ category.friendly_name }}{% endfor %} category</span>
+
                     {% elif product_list.count == 0 %}
-                    No products found
-                    <span class="ms-5">
-                        <a href="{% url 'products:products' %}" class="text-yellow undecorated">Clear filter</a>
-                    </span>
+                    <a href="{% url 'products:products' %}" class="undecorated text-yellow"> Show all</a> | 
+                    √No products found
+
                     {% else %}
-                    All products: {{ product_list.count }}
+                    <span class=" text-lgreen"> All | {{ product_list.count }} {% if product_list.count == 1 %}product{% else %}products{% endif %}</span> 
                     {% endif %}
-                    <hr class="text-lgreen">
-            
+                    
+                </div>
+
+                <!-- <div class="col order-md-last d-flex justify-content-center justify-content-md-end align-items- mt-5"> -->
+                    <!-- <div class="sort-select-wrapper"> -->
+                    <div class="">
+                            <small class="text-lgreen text-uppercase undecorated" data-bs-toggle="offcanvas" href="#filters" role="button" aria-expanded="false" aria-controls="filters_div">Filter / sort</small>
+                            {% include 'includes/filters.html' with color_list=color_list category_list=category_list size_list=size_list %}
+                    </div>
+                </div>
             </div>
+            <hr class="text-lgreen">
         </div>
+        
         <div class="row">
             <div class="product-container col-10 offset-1">
                 <div class="row">
@@ -58,11 +63,11 @@
                                 {% else %}
                                 <a href="{#% url 'products:product_detail' product.id %#}">
                                     <!-- <img class="card-img-top img-fluid" src="https://res.cloudinary.com/dcslh2m3b/image/upload/b_rgb:faec70,o_29/v1645729817/seux34sx1yipyvm740l0.jpg" alt="{{ product.name }}"> -->
-                                    <img class="card-img-top img-fluid" src="{{ MEDIA_URL }}stock-photo-white-t-shirt-isolated-199781549.jpeg" alt="{{ product.name }}">
+                                    <img class="card-img-top img-fluid" src="../{{MEDIA_URL}}/—Pngtree—tshirt white front blank mockup_6639255.png" alt="{{ product.name }}">
                                 </a>
                                 {% endif %}
                                 <div class="card-body pb-0">
-                                    <!-- <p class="mb-0">{{ product.description }}</p> -->
+                                    <p class="mb-0">{{ product.description }}</p>
                                 </div>
                                 <div class="card-footer bg-white pt-0 border-0 text-left">
                                     <div class="row">
@@ -74,10 +79,10 @@
                                             <div class="d-flex flex-row flex-wrap my-2">
                                                 <span class="me-2">Sizes:</span>
                                                 {% for size in product.get_sizes %}
-                                                <span class="col me-1 fs-heavy size-box me-2">{{ size }}</span>
+                                                <span class="col fs-heavy size-box me-2">{{ size }}</span>
                                                 {% endfor %}
                                             </div>
-                                            <div class="d-flex flex-row p-2 my-2">
+                                            <div class="d-flex flex-row flex-wrap p-2 my-2">
                                                 {% for color in product.get_colors %}
                                                 <div class="circle bg-{{ color.lower }} me-2"><a href=""></a></div>
                                                 {% endfor %}
@@ -85,8 +90,8 @@
                                             {% if product.category %}
                                             <p class="mt-1 mb-0">
                                                 {% for category in product.get_categories %}
-                                                <a class="text-muted small text-undecorated" href="{% url 'products:products' %}?category={{ product.get_categories}}">
-                                                    <i class="fas fa-tag me-1"></i>{{ category }}
+                                                <small><a class="text-muted undecorated" href="{% url 'products:products' %}?category={{ product.get_categories}}">
+                                                    <i class="fas fa-tag me-1"></i>{{ category }}</small>
                                                 </a>
                                                 {% endfor %}
                                             </p>
@@ -142,31 +147,5 @@
 
 {% block postloadjs %}
     {{ block.super }}
-    <script type="text/javascript">
-        $(".btt-link").click(function(e){
-            window.scrollTo(0,0)
-        })
-    </script>
-    <!-- <script type="text/javascript">
-        $("#sort-selector").change(function() {
-            let selector = $(this);
-            let currentUrl = new URL(window.location);
-
-            let selectedVal = selector.val();
-            if(selectedVal != "reset"){
-                let sort = selectedVal.split("_")[0];
-                let direction = selectedVal.split("_")[1];
-
-                currentUrl.searchParams.set("sort", sort);
-                currentUrl.searchParams.set("direction", direction);
-
-                window.location.replace(currentUrl);
-            }else{
-                currentUrl.searchParams.delete("sort");
-                currentUrl.searchParams.delete("direction");
-                
-                window.location.replace(currentUrl);
-            }
-        })
-    </script> -->
+    <script src="{% static 'products/js/products.js' %}"></script>
 {% endblock %}

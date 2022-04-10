@@ -45,11 +45,25 @@
 /* Color indicators */
 
 .circle {
-    height: 25px;
-    width: 25px;
+    height: 20px;
+    width: 20px;
     border-radius: 50%;
+    cursor: pointer;
 }
 
 .card-img-top {
     size: 120px;
+}
+
+#filters {
+    top: 200px;
+
+    height: 100px !important;
+    position: fixed;
+    /* background: white; */
+    /* z-index: 2 ; */
+}
+
+small {
+    font-size: 0.7em;
 }
