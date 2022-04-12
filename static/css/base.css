@@ -20,6 +20,10 @@ font-family: 'Rock 3D', cursive;
     font-size: 0.7em;
 }
 
+.undecorated {
+    text-decoration: none;
+}
+
 /* Text colors */
 
 .text-dgreen {
@@ -62,6 +66,10 @@ font-family: 'Rock 3D', cursive;
     background-color: rgb(25, 116, 48)
 }
 
+.bg-lgreen {
+    background-color: rgb(180, 216, 192);
+ }
+
 .bg-yellow {
     background-color: rgba(233, 179, 20, 1);
 }
@@ -75,7 +83,7 @@ font-family: 'Rock 3D', cursive;
 }
 
 .bg-blue {
-    background-color: rgb(16, 108, 200);
+    background-color: rgb(29, 68, 116);
 }
 
 
@@ -83,10 +91,10 @@ font-family: 'Rock 3D', cursive;
 
 body {
     margin-top: 350px;
-    background-color: rgb(29, 68, 116) !important;
-    /* background: url(https://res.cloudinary.com/dcslh2m3b/image/upload/v1649103642/GreenBean/pexels-teddy-tavan-4890733_mxqmip.jpg) no-repeat right top; */
-    background: url(https://res.cloudinary.com/dcslh2m3b/image/upload/c_crop,h_3357,w_3456/v1649103642/GreenBean/pexels-teddy-tavan-4890733_mxqmip.jpg) no-repeat right top;
-    background-size: 1000px auto;
+    /* font-family: 'Ubuntu', sans-serif; */
+}
+
+.main-font {
     font-family: 'Ubuntu', sans-serif;
 }
 
@@ -111,11 +119,24 @@ button {
     text-decoration: none;
 }
 
+/* User login/registration background */
+.auth-overlay {
+    background: rgb(199, 215, 234);
+    /* background: #153d4b; */
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    height: 100%;
+    z-index: -1;
+}
+
 /* --- Top banner --- */
 
 .top-banner-text {
     color: #fafafa;
-    font-family: 'Josefin Sans', sans-serif;
+    /* font-family: 'Josefin Sans', sans-serif; */
 }
 
 #top-banner,
@@ -126,7 +147,6 @@ button {
     padding-bottom: 2px;
     position: absolute;
     background: #0b6e80;
-    /* background: #0f5132; */
     font-family: 'Red Hat Mono', monospace;
 }
 
@@ -137,6 +157,14 @@ button {
     font-size: 2rem;
     font-family: 'Inspiration', cursive;
     color:rgb(30, 49, 35) !important;
+}
+
+.logo-watermark {
+    text-decoration: none;
+    font-size: 5rem;
+    font-family: 'Inspiration', cursive;
+    color:rgba(30, 49, 35, 0.17);
+    transform: rotate(6.2rad);
 }
 
 .main-nav {
@@ -166,7 +194,7 @@ button {
 
 /* Margin equal to nav bar */
 .min-top-margin {
-    margin-top: 95px;
+    margin-top: 105px;
 }
 
 /* --- Search bar --- */
@@ -209,16 +237,31 @@ button {
     /* font-family: 'Ubuntu', sans-serif; */
 }
 
+.home-img {
+    right: 0;
+    top: 0;
+    bottom: 0;
+    position: fixed;
+    background-color: rgb(29, 68, 116) !important;
+    /* background: url(https://res.cloudinary.com/dcslh2m3b/image/upload/v1649103642/GreenBean/pexels-teddy-tavan-4890733_mxqmip.jpg) no-repeat right top; */
+    background: url(https://res.cloudinary.com/dcslh2m3b/image/upload/c_crop,h_3357,w_3456/v1649103642/GreenBean/pexels-teddy-tavan-4890733_mxqmip.jpg) no-repeat right top;
+    /* background-size: 1500px auto; */
+}
+
 .message-container {
     margin-top: 75px;
 }
 
+/* Login, logout and registration screens */
+/* .centered-box {
+    margin: 30vh 2vh 20vh 2vh;
+} */
 
 /* --- Media queries --- */
 
 @media only screen and (max-width: 1500px) {
 
-    body {
+    .home-img {
         background: url(https://res.cloudinary.com/dcslh2m3b/image/upload/v1649103642/GreenBean/pexels-teddy-tavan-4890733_mxqmip.jpg) no-repeat right center;
         background-size: 700px auto;
     } 
@@ -226,7 +269,7 @@ button {
 
 @media only screen and (max-width: 1160px) {
 
-    body {
+    .home-img {
         background-size: 700px auto;
         background-position-y: top;
         background-position-x: right;
@@ -240,7 +283,7 @@ button {
         width: 400px;
         margin-top: 95px;
         font-size: 1.3em;
-        background-color: rgb(29, 68, 116);
+        /* background-color: rgb(29, 68, 116); */
 
     }
     
@@ -248,7 +291,7 @@ button {
 
 @media only screen and (max-width: 991px) {
 
-    body {
+    .home-img {
         background: url(https://res.cloudinary.com/dcslh2m3b/image/upload/c_crop,h_3357,w_2456/v1649103642/GreenBean/pexels-teddy-tavan-4890733_mxqmip.jpg) no-repeat right top;
         background-size: 800px auto;
     }
@@ -275,13 +318,13 @@ button {
         width: 320px;
         font-size: 1.2em;
         /* background: rgba(41, 42, 42, 0.5) */
-        background: rgba(29, 68, 116, 0.5)
+        /* background: rgba(29, 68, 116, 0.5) */
     }
 }
 
 @media only screen and (max-width: 450px) {
 
-    body {
+    .home-img {
         background: url(https://res.cloudinary.com/dcslh2m3b/image/upload/v1649103642/GreenBean/pexels-teddy-tavan-4890733_mxqmip.jpg) no-repeat center top;
         background-size: 500px auto;
     }

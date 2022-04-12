@@ -1,8 +1,9 @@
 /* CSS for products page */
 
 .overlay {
-    /* background: rgba(29, 68, 116, 1); */
-    background: #153d4b;
+    background: rgba(29, 68, 116, 1);
+    /* background: rgb(136, 174, 221); */
+    /* background: #153d4b; */
     position: fixed;
     /* display: none; */
     top: 0;
@@ -39,14 +40,11 @@
     cursor: pointer;
 }
 
-.undecorated {
-    text-decoration: none;
-}
 /* Color indicators */
 
 .circle {
-    height: 20px;
-    width: 20px;
+    height: 25px;
+    width: 25px;
     border-radius: 50%;
     cursor: pointer;
 }
