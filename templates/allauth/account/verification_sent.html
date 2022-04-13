@@ -5,8 +5,25 @@
 {% block head_title %}{% trans "Verify Your E-mail Address" %}{% endblock %}
 
 {% block content %}
-    <h1>{% trans "Verify Your E-mail Address" %}</h1>
-
-    <p>{% blocktrans %}We have sent an e-mail to you for verification. Follow the link provided to finalize the signup process. If you do not see the verification e-mail in your main inbox, check your spam folder. Please contact us if you do not receive the verification e-mail within a few minutes.{% endblocktrans %}</p>
+<div class="container-fluid min-top-margin col-xs-12 col-sm-11 col-md-8 p-2">
+    <div class="d-md-flex flex-md-row bg-light mt-3 mt-md-5">
+        <div class="col m-2 p-2 main-text bg-light my-auto">
+            <!-- <div class="my-auto mt-md-5"> -->
+            <h2 class="smaller my-auto ms-1 ms-md-3 mt-2">{% trans "Verify Your E-mail Address" %}</h2>
+            <p class="my-auto ms-1 ms-md-3 me-1 small mt-3">
+                {% blocktrans %}We have sent an e-mail to you for verification. Follow the link provided to finalize the
+                signup process. If you do not see the verification e-mail in your main inbox, check your spam folder.
+                Please contact us if you do not receive the verification e-mail within a few minutes.{% endblocktrans %}
+            </p>
+        </div>
+        <div class="col img-fluid m-auto">
+            <img src="https://res.cloudinary.com/dcslh2m3b/image/upload/v1649103642/GreenBean/pexels-teddy-tavan-4890733_mxqmip.jpg"
+                alt="" class="img-fluid">
+        </div>
+    </div>
+</div>
+<div class="auth-overlay">
+    <div class="position-absolute bottom-0 end-0 logo-watermark me-3">GreenBean</div>
+</div>
 
 {% endblock %}

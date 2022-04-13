@@ -19,6 +19,9 @@
                 <!-- Custom styling using widget tweaks -->
                 {% for field in form %}
                 <div class="form-group small mx-0 mx-lg-3">
+                    {% if field.name == "Username" %}
+                        {% empty %}
+                    {% else %}
                     <!-- <label for="{{ field.id_for_label }}" class="my-2">{{ field.label }}</label> -->
                     <div>{% render_field field class="form-control p-1 text-smaller" placeholder=field.label %}</div>
                     <!-- Block to display field errros -->
@@ -27,6 +30,7 @@
                         <p class="help-block text-warning">{{ error }}</p>
                         {% endfor %}
                     </div>
+                    {% endif %}
                 </div>
                 {% endfor %}
                 {% if redirect_field_value %}

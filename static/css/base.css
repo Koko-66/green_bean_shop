@@ -108,6 +108,10 @@ button {
     font-size: 1em;
 }
 
+.input-btn {
+    border: none;
+}
+
 .link-button {
     background: rgba(233, 179, 20, 1);
     color: rgb(72, 65, 62);
@@ -121,8 +125,9 @@ button {
 
 /* User login/registration background */
 .auth-overlay {
-    background: rgb(199, 215, 234);
-    /* background: #153d4b; */
+    /* background: rgb(199, 215, 234); */
+
+    background: rgba(11, 110, 128, 0.369);
     position: fixed;
     top: 0;
     bottom: 0;
@@ -243,9 +248,9 @@ button {
     bottom: 0;
     position: fixed;
     background-color: rgb(29, 68, 116) !important;
-    /* background: url(https://res.cloudinary.com/dcslh2m3b/image/upload/v1649103642/GreenBean/pexels-teddy-tavan-4890733_mxqmip.jpg) no-repeat right top; */
-    background: url(https://res.cloudinary.com/dcslh2m3b/image/upload/c_crop,h_3357,w_3456/v1649103642/GreenBean/pexels-teddy-tavan-4890733_mxqmip.jpg) no-repeat right top;
-    /* background-size: 1500px auto; */
+    background: url(https://res.cloudinary.com/dcslh2m3b/image/upload/v1649103642/GreenBean/pexels-teddy-tavan-4890733_mxqmip.jpg) no-repeat right top;
+    /* background: url(https://res.cloudinary.com/dcslh2m3b/image/upload/c_crop,h_3357,w_3456/v1649103642/GreenBean/pexels-teddy-tavan-4890733_mxqmip.jpg) no-repeat right top; */
+    background-size: 1000px auto;
 }
 
 .message-container {

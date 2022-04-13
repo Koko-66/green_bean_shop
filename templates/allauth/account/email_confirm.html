@@ -7,25 +7,37 @@
 
 
 {% block content %}
-<h1>{% trans "Confirm E-mail Address" %}</h1>
+<div class="container-fluid min-top-margin col-xs-12 col-sm-11 col-md-8 p-2">
+    <div class="d-md-flex flex-md-row bg-light mt-3 mt-md-5">
+        <div class="col m-2 p-2 main-text bg-light my-auto">
+            <h2 class="smaller my-auto mx-0 mx-lg-3 mt-2">{% trans "Confirm E-mail Address" %}</h2>
+            {% if confirmation %}
+            {% user_display confirmation.email_address.user as user_display %}
 
-{% if confirmation %}
+            <p class="my-3 ms-1 ms-md-3 me-1">{% blocktrans with confirmation.email_address.email as email %}Please
+                confirm that <a href="mailto:{{ email }}">{{ email }}</a> is an e-mail address for user
+                {{ user_display }}.{% endblocktrans %}</p>
 
-{% user_display confirmation.email_address.user as user_display %}
+            <form method="post" action="{% url 'account_confirm_email' confirmation.key %}">
+                {% csrf_token %}
+                <button type="submit" class="bg-success text-light px-2 m-3">{% trans 'Confirm' %}</button>
+            </form>
 
-<p>{% blocktrans with confirmation.email_address.email as email %}Please confirm that <a href="mailto:{{ email }}">{{ email }}</a> is an e-mail address for user {{ user_display }}.{% endblocktrans %}</p>
+            {% else %}
 
-<form method="post" action="{% url 'account_confirm_email' confirmation.key %}">
-{% csrf_token %}
-    <button type="submit">{% trans 'Confirm' %}</button>
-</form>
+            {% url 'account_email' as email_url %}
 
-{% else %}
-
-{% url 'account_email' as email_url %}
-
-<p>{% blocktrans %}This e-mail confirmation link expired or is invalid. Please <a href="{{ email_url }}">issue a new e-mail confirmation request</a>.{% endblocktrans %}</p>
-
-{% endif %}
-
+            <p>{% blocktrans %}This e-mail confirmation link expired or is invalid. Please <a
+                    href="{{ email_url }}">issue a new e-mail confirmation request</a>.{% endblocktrans %}</p>
+            {% endif %}
+        </div>
+        <div class="col img-fluid m-auto">
+            <img src="https://res.cloudinary.com/dcslh2m3b/image/upload/v1649103642/GreenBean/pexels-teddy-tavan-4890733_mxqmip.jpg"
+                alt="" class="img-fluid">
+        </div>
+    </div>
+</div>
+<div class="auth-overlay">
+    <div class="position-absolute bottom-0 end-0 logo-watermark me-3">GreenBean</div>
+</div>
 {% endblock %}

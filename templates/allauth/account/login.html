@@ -56,7 +56,6 @@
                         {% elif field.label == "Login" %}
                         <div class="my-2">{% render_field field class="form-control" placeholder="Username" %}</div>
                         {% else %}
-                        <!-- <label for="{{ field.id_for_label }}">{{ field.label }}</label> -->
                         <div class="my-2">{% render_field field class="form-control" placeholder=field.label %}</div>
                         {% endif %}
                         <!-- Block to display field errors -->
