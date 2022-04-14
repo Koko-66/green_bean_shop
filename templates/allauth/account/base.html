@@ -1,28 +1,13 @@
 {% extends 'base.html' %}
 
-    <!-- {% if messages %}
-    <div>
-      <strong>Messages:</strong>
-      <ul>
-        {% for message in messages %}
-        <li>{{message}}</li>
-        {% endfor %}
-      </ul>
-    </div>
-    {% endif %} -->
   {% block content %}
-    <!-- <div class="min-top-margin pt-5">
-      <strong>Menu:</strong>
-      <ul>
-        {% if user.is_authenticated %}
-        <li><a href="{% url 'account_email' %}">Change E-mail</a></li>
-        <li><a href="{% url 'account_logout' %}">Sign Out</a></li>
-        {% else %}
-        <li><a href="{% url 'account_login' %}">Sign In</a></li>
-        <li><a href="{% url 'account_signup' %}">Sign Up</a></li>
-        {% endif %}
-      </ul>
-    </div> -->
+  <div class="container-fluid min-top-margin col-xs-12 col-sm-11 col-md-8 p-2">
+   {% block inner_content %}
+   {% endblock %}
+  </div>
+  <div class="auth-overlay">
+    <div class="position-absolute bottom-0 end-0 logo-watermark me-3">GreenBean</div>
+  </div>
   {% endblock %}
     {% block extra_body %}
     
