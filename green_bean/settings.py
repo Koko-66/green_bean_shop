@@ -59,6 +59,7 @@ INSTALLED_APPS = [
     # this project
     'home',
     'products',
+    'profiles'
 ]
 
 MIDDLEWARE = [
