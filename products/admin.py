@@ -5,7 +5,7 @@ from .models import Type, Size, Color, Category, Product
 
 @admin.register(Type)
 class TypeAdmin(admin.ModelAdmin):
-    """Register Size on admin"""
+    """Register Type on admin"""
     list_display = ('product_type', 'type_code')
 
 
