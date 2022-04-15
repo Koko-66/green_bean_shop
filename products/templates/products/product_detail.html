@@ -17,7 +17,7 @@
 {% block content %}
 <div class="overlay"></div>
 <div class="container-fluid min-top-margin pt-5">
-    <div class="row bg-light m-4 px-2">
+    <div class="row bg-light m-1 m-md-4 px-md-2">
         <div class="col-12 col-md-6 col-lg-4 offset-lg-2 bg-light">
             <!-- Image -->
             <div class="mt-5 py-auto">
@@ -51,40 +51,72 @@
 
                 <!-- Description -->
                 <p class="mt-5 text-dgreen fs-6">{{ product.description }}</p>
+                <form action="{% url 'bag:add_to_bag' product.pk %}" method="POST">
+                    {% csrf_token %}
+                    <div class="form-row">
+                        <!-- Sizes -->
+                        <div class="d-flex flex-row flex-wrap mt-3">
+                            <span class="me-2">Sizes:</span>
+                            {% for size in product.get_sizes %}
+                            <span class="col fs-heavy size-box me-2">{{ size }}</span>
+                            {% endfor %}
+                        </div>
 
-                <!-- Sizes -->
-                <div class="d-flex flex-row flex-wrap mt-3">
-                    <span class="me-2">Sizes:</span>
-                    {% for size in product.get_sizes %}
-                    <span class="col fs-heavy size-box me-2">{{ size }}</span>
-                    {% endfor %}
-                </div>
+                        <!-- Colors -->
+                        <div class="d-flex flex-row flex-wrap mt-3">
+                            Available colors: {% for color in product.get_colors %}
+                            <div class="circle bg-{{ color.lower }} ms-2"><a href=""></a></div>
+                            {% endfor %}
+                        </div>
+                        <div class="col-12">
+                            <p class="mt-3"><strong>Quantity:</strong></p>
+                            <div class="form-group w-50">
+                                <div class="input-group input-group-{{ product.id }}">
+                                    <div class="input-group-prepend">
+                                        <button
+                                            class="decrement-qty btn btn-black rounded-0 decrement-qty_{{ product.id }}"
+                                            data-item_id="{{ product.id }}">
+                                            <span class="icon">
+                                                <i class="fas fa-minus"></i>
+                                            </span>
+                                        </button>
+                                    </div>
+                                    <input class="form-control qty_input id_qty_{{ product.id }}" type="number"
+                                        name="quantity" value="1" min="1" max="99" data-item_id="{{ product.id }}">
+                                    <div class="input-group-append">
+                                        <button
+                                            class="increment-qty btn btn-black rounded-0 increment-qty_{{ product.id }}"
+                                            data-item_id="{{ product.id }}">
+                                            <span class="icon">
+                                                <i class="fas fa-plus"></i>
+                                            </span>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mt-3">Select quantity</div>
+                            <!-- Categories -->
+                            {% if product.category %}
+                            <p class="mt-1 mb-0 mt-3">
+                                {% for category in product.get_categories %}
+                                <small><a class="text-dgreen undecorated"
+                                        href="{% url 'products:products' %}?category={{ product.get_categories}}">
+                                        <i class="fas fa-tag me-1"></i>{{ category }}</small>
+                                </a>
+                                {% endfor %}
+                            </p>
+                            {% endif %}
+                        </div>
 
-                <!-- Colors -->
-                <div class="d-flex flex-row flex-wrap mt-3">
-                    Available colors: {% for color in product.get_colors %}
-                    <div class="circle bg-{{ color.lower }} ms-2"><a href=""></a></div>
-                    {% endfor %}
-                </div>
-
-                <div class="mt-3">Select quantity</div>
-                <!-- Categories -->
-                {% if product.category %}
-                <p class="mt-1 mb-0 mt-3">
-                    {% for category in product.get_categories %}
-                    <small><a class="text-dgreen undecorated"
-                            href="{% url 'products:products' %}?category={{ product.get_categories}}">
-                            <i class="fas fa-tag me-1"></i>{{ category }}</small>
-                    </a>
-                    {% endfor %}
-                </p>
-                {% endif %}
+                    </div>
+                    <p class="mb-3 end-0 d-flex justify-content-end">
+                        <a href="{% url 'products:products' %}" class="link-button bg-success text-light p-2 text-center">Keep shopping</a>
+                    </p>
+                    <div class="mb-3 end-0 d-flex justify-content-end">
+                        <input type="submit" class="link-button p-2 text-center" value="Add to bag">
+                    <input type="hidden" name="redirect_url" value="{{ request.path }}">
             </div>
-
-        </div>
-        <div class="mb-3 end-0 d-flex justify-content-end">
-            <a href="" class="link-button p-2 text-center">Add to bag</a>
+            </form>
         </div>
     </div>
-</div>
-{% endblock %}
+    {% endblock %}

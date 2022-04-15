@@ -16,11 +16,11 @@
                 <div class="text-end">
                     <i class="fas fa-shopping-bag fa-lg icon me-2"></i>
                     <p class="my-0 icon">
-                        <!-- {% if grand_total %} -->
-                        £{{ grand_total|floatformat:2 }}
-                        <!-- {% else %} -->
+                        {% if total %}
+                        £{{ total|floatformat:2 }}
+                        {% else %}
                         £0.00
-                        <!-- {% endif %} -->
+                        {% endif %}
                     </p>
                 </div>
             </a>
