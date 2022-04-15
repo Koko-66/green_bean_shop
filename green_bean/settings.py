@@ -34,7 +34,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 DEBUG = os.environ.get('DEBUG', 'False') == 'True'
 DEVELOPMENT = os.environ.get('DEVELOPMENT', 'False') == 'True'
 
-ALLOWED_HOSTS = ['green-bean-shop.herokuapp.com', 'localhost']
+ALLOWED_HOSTS = ['green-bean-shop.herokuapp.com', 'localhost', '127.0.0.1']
 CSRF_TRUSTED_ORIGINS = [os.environ.get('CSRF_TRUSTED_ORIGINS')]
 
 # Application definition
@@ -54,12 +54,14 @@ INSTALLED_APPS = [
     'allauth.account',
     'allauth.socialaccount',
     'widget_tweaks',
+    'crispy_forms',
 
     # third party
     # this project
     'home',
     'products',
-    'profiles'
+    'profiles',
+    'bag',
 ]
 
 MIDDLEWARE = [
@@ -145,6 +147,13 @@ DATABASES = {
     'default': dj_database_url.parse(os.environ.get('DATABASE_URL'))
 }
 
+# Database settings for testing
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
+# }
 
 # Password validation
 # https://docs.djangoproject.com/en/4.0/ref/settings/#auth-password-validators

@@ -104,7 +104,7 @@
                     <!-- Shopping basket -->
                     <div id="shopping-cart" class="col my-auto py-1 py-lg-0">
                         <a class="{#% if grand_total %#} font-weight-bold{#% else %#}{#% endif %#} nav-link"
-                            href="{#% url 'bag:view_bag' %#}">
+                            href="{% url 'bag:view_bag' %}">
                             <div class="text-end">
                                 <i class="fas fa-shopping-bag fa-lg icon me-2"></i>
                                 <p class="my-0 icon">

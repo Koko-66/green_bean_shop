@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block extra_css %}
+    <!-- <link rel="stylesheet" href="{% static 'bag/css/bag.css' %}"> -->
+{% endblock %}
+
+<!-- {% block page_header %}
+<div class="container-fluid header-container">
+    <div class="row">
+        <div class="col">
+            All products
+        </div>
+    </div>
+</div>
+{% endblock %} -->
+
+{% block content %}
+<div class="auth-overlay"></div>
+<div class="container min-top-margin">
+    <div class="row">
+        <div class="col">
+            <h2 class="text-dgreen">Shopping bag</h2>
+            <hr>
+        </div>
+    </div>
+    <div>
+        <!-- Show only if there are items in the shopping bag -->
+        {% if bag_items %}
+            <div class="table-responsive rounded"></div>
+        {% else %}
+            <p class="lead mb-5">Your bag is empty.</p>
+            <a href="{% url 'products:products' %}" class="link-btn">Go back</a>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}
+
+{% block postloadjs %}
+    {{ block.super }}
+
+{% endblock %}
