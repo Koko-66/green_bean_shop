@@ -86,6 +86,37 @@ font-family: 'Rock 3D', cursive;
     background-color: rgb(29, 68, 116);
 }
 
+/* --- Overlays and backgrounds --- */
+
+/* User login/registration background */
+.auth-overlay {
+    /* background: rgb(199, 215, 234); */
+    background: rgba(11, 110, 128, 0.369);
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    height: 100%;
+    z-index: -1;
+}
+
+.img-background {
+    /* background: rgb(199, 215, 234); */
+    background: url(https://res.cloudinary.com/dcslh2m3b/image/upload/v1649103645/GreenBean/pexels-gin-patin-2692556_tvfmnu.jpg);
+    position: fixed;
+    background-size: 1500px;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    height: 100%;
+    z-index: -1;
+}
+
+.bg-light-transparent {
+    background-color: rgb(248, 249, 250, 0.7);
+}
 
 /* --- Body --- */
 
@@ -121,20 +152,6 @@ button {
     margin: 2px;
     font-size: 1em;
     text-decoration: none;
-}
-
-/* User login/registration background */
-.auth-overlay {
-    /* background: rgb(199, 215, 234); */
-
-    background: rgba(11, 110, 128, 0.369);
-    position: fixed;
-    top: 0;
-    bottom: 0;
-    right: 0;
-    left: 0;
-    height: 100%;
-    z-index: -1;
 }
 
 /* --- Top banner --- */
@@ -199,7 +216,8 @@ button {
 
 /* Margin equal to nav bar */
 .min-top-margin {
-    margin-top: 105px;
+    /* margin-top: 105px; */
+    margin-top: 25vh
 }
 
 /* --- Search bar --- */

@@ -6,6 +6,7 @@ from django.dispatch import receiver
 from django_countries.fields import CountryField
 
 
+# Code from CI Boutique Ado walkthrough project
 class UserProfile(models.Model):
     """Create instance of User Profile with default delivery address
     and order history"""
@@ -23,7 +24,7 @@ class UserProfile(models.Model):
     default_postcode = models.CharField(
         max_length=20, null=True, blank=True)
     default_country = CountryField(
-        blank_label='Country *', null=True, blank=True)
+        blank_label='Country', null=True, blank=True)
     default_phone_number = models.CharField(
         max_length=20, null=True, blank=True)
 
