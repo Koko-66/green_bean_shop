@@ -3,7 +3,7 @@
 # TABLE OF CONTENTS
 1. [Introduction](#intro)
 2. [UX](#ux)<br>
-  2.1 [User Stories](#user-story)
+  2.1 [User Stories](#user-stories)
 3. [Features and design](#features-design)<br>
   3.1. [Existing features](#existing-features)<br>
     3.1.1. [Sign up and Login](#sign-up)<br>
@@ -26,31 +26,36 @@
 
 # <a name="intro"></a>Green Bean e-shop
 
-Green Bean is an e-commerce store where responsible attitude to the environment meets great design. All our products are made using recycled and responsibly sourced materials with sustainability in mind. Our designs are truely unique, .
-Link to the deployed app: https://gren-bean-shop.herokuapp.com/
-
+Green Bean is an e-commerce store where responsible attitude to the environment meets great design. All our products are made using recycled and responsibly sourced materials with sustainability in mind. Our designs are truely unique and varied, to suit every taste.
+The site has been deployed to https://gren-bean-shop.herokuapp.com/
 
 # <a name="ux"></a>UX
 
+The design of the site aims to follow best User Experience practices, focusing on easy browsing and pleasant shopping experience. Condsidering the website is an e-commerce one, it is important it is visually appealing and that functionality and aesthetics is balanced correctly. 
 
+## <a name="user-stories"></a>User Stories 
 
-
-## <a name="user-story"></a>User Stories 
-
-The application was developed using Agile methodology, with User Stories managed within a Github Project. All completed and outstanding User Stories can be viewed [here]().
+The application was developed using Agile methodology, with User Stories managed within a Github Project. All completed and outstanding User Stories can be viewed [here](https://github.com/Koko-66/green_bean_shop/projects/1).
 
 
 # <a name="features-design"></a>Features and Design
 
 ## Models and functional design
 
-<!-- The application uses the Postgres relationship database to store its data and the data model is comprised of `Quiz`, `Question`, `Option`, `Category`, `Assessment` and `Answer`. The components of each model and the relationships between them are represented in a graphic model representation available [here](https://github.com/Koko-66/teaze/blob/main/static/data/teaze_data_model.pdf).
+The database underlying the website is a Postgres relationship database, where the product, user and all other relevant data are stored. 
+The database model comprises of the following main tables:
 
-The decision to keep `Quiz`, `Question` and `Options` as separate models was driven by flexibility. This kind of approach allows maximum flexibility when creating quizzes and questions, as the user is not restricted to a pre-set structure, number of questions per quiz, options per question etc. It also allows for the questions to be reused even if the quiz has been deleted, as they are not inherently a part of the quiz either.
+### Product:
+`Product` is the core model for the site, which has relationships with the following supporting models: `Type` (type of product), `Size`, `Color` and `Category`.
 
-This approach, however, calls for careful consideration of the relationships between various models and what should happen if instances of these are deleted while related to an instance of another model. These considerations are still pending in Teaze app, and need to be addressed.
+### Order and OrderLineItem:
+`Order` stores information about an order placed by the users, and delivery address, to allow orders to be completed by shoppers who are not registered.
+`OrderLineItem` model stores information about the purchased product and its details - quantity, size and color.
 
-At present, the relationship between quiz and question is One-to-Many, though it would, arguably, be more beneficial to the user to be able to use the same question in more than one quiz. The deletion of questions, options and categories also poses a problem due to their links with other models for which cascading deletion is not an option. In the future, the `Delete` will be replaced with the __Active/Disabled__ approach instead. -->
+### UserProfile: 
+`UserProfile` model stores information about the user, their default delivery address, linking with their order history.
+
+The components of each model and the relationships between them are represented in a graphic model representation available [here](https://github.com/Koko-66/green-bean-shop).
 
 ## <a name="existing-features"></a>Existing Features
 
