@@ -6,19 +6,20 @@ class ViewBag(TemplateView):
     """Render bag view."""
     template_name = 'bag/bag.html'
 
-def add_to_bag(request, pk):
+def add_to_bag(request, item_id):
     """Add item to bag"""
 
     template = 'products/product_detail.html'
     quantity = int(request.POST.get('quantity'))
     redirect_url = request.POST.get('redirect_url')
-    # get bag if exists, if not initiate an empty dictionary
+    # create bag object in the session to store number of items added
+    # to bag, or grab it if already exists
     bag = request.session.get('bag', {})
 
-    if pk in list(bag.keys()):
-        bag[pk] += quantity
+    if item_id in list(bag.keys()):
+        bag[item_id] += quantity
     else:
-        bag[pk] = quantity
+        bag[item_id] = quantity
 
     # overwrite bag in the session with updated one
     request.session['bag'] = bag

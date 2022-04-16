@@ -7,7 +7,7 @@ from django.shortcuts import render, get_object_or_404
 from profiles.forms import UserProfileForm
 from .models import UserProfile
 
-    
+# Code from CI Boutique Ado walkthrough project
 def profile(request):
     """Display the user's profile."""
 

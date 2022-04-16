@@ -26,12 +26,10 @@
                 <img class="card-img-top img-fluid" src="{{ product.image.url }}" alt="{{ product.name }}">
                 <!-- </a> -->
                 {% else %}
-                <a href="{% url 'products:product_detail' product.pk %}">
                     <!-- <img class="card-img-top img-fluid" src="https://res.cloudinary.com/dcslh2m3b/image/upload/b_rgb:faec70,o_29/v1645729817/seux34sx1yipyvm740l0.jpg" alt="{{ product.name }}"> -->
                     <img class="card-img-top img-fluid"
                         src="../{{MEDIA_URL}}/—Pngtree—tshirt white front blank mockup_6639255.png"
                         alt="{{ product.name }}">
-                </a>
                 {% endif %}
             </div>
         </div>
@@ -51,7 +49,7 @@
 
                 <!-- Description -->
                 <p class="mt-5 text-dgreen fs-6">{{ product.description }}</p>
-                <form action="{% url 'bag:add_to_bag' product.pk %}" method="POST">
+                <form action="{% url 'bag:add_to_bag' product.id %}" method="POST">
                     {% csrf_token %}
                     <div class="form-row">
                         <!-- Sizes -->
