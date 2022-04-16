@@ -5,21 +5,21 @@
     <link rel="stylesheet" href="{% static 'products/css/products.css' %}">
 {% endblock %}
 
-{% block page_header %}
-<div class="container header-container">
+<!-- {% block page_header %}
+<div class="container-fluid header-container">
     <div class="row">
         <div class="col">
-            
+            All products
         </div>
     </div>
 </div>
-{% endblock %}
+{% endblock %} -->
 
 {% block content %}
 <div class="overlay img-fluid"></div>
     <div class="container-fluid min-top-margin">
-        <div class="row mt-5">
-            <div class="col text-left mt-5 d-flex flex-row align-items-sm-top align-items-md-center mx-3">
+        <div class="row">
+            <div class="col text-left d-flex flex-row align-items-sm-top align-items-md-center mx-3">
                 <div class="col text-lgreen fs-6 d-inline lh-2">
                     {% if search_term %}
                     <a href="{% url 'products:products' %}" class=" undecorated text-lgreen">Show all</a> | 

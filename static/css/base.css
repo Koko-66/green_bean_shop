@@ -214,10 +214,13 @@ button {
     color: rgb(30, 49, 35) !important;
 }
 
-/* Margin equal to nav bar */
+/* Min top margin */x
 .min-top-margin {
-    /* margin-top: 105px; */
-    margin-top: 25vh
+    margin-top: 7vh;
+}
+
+.top-margin {
+    margin-top: 15vh;
 }
 
 /* --- Search bar --- */
