@@ -68,6 +68,17 @@ Static files and an image served on Heroku as expected, with orange background a
 
 ### TEST 2 ###
 
-#### _Testing product model in the admin_ ####
+#### _Testing models in the admin_ ####
+All models were tested in the admin to ensure everything works as expected before moving on with the development.
+#### _Result_ ####
+No issues found.
+
+### TEST 3 ###
+
+#### _Testing adding sizes to bag_ ####
+Testing of the walkthrough method for adding sizes to bag 
+revealed an issue in updating the product list in the bag. If the same product already existed in the bag and another was added, it would replace the previously listed product, rather than update its amount, or create a new listing with a different size.
+#### _Result_ ####
+Testing showed the issue to be the type of the `item_id` (`int`). Conversion of the `item_id` to a string and using this value in the function instead, solved the issue.
 
 <!-- ### Issues pending fixing -->
