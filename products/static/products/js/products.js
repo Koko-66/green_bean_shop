@@ -24,9 +24,8 @@ $(document).ready(function () {
         } else {
             currentUrl.searchParams.set("sort");
             currentUrl.searchParams.set("direction");
-
             window.location.replace(currentUrl);
         }
     })
-
 })
+
