@@ -16,14 +16,24 @@
 
 /* Size indicator box */
 
-.size-box {
+.size-box label {
     box-sizing: border-box;
-    max-width: 32px;
-    max-height: 32px;
+    width: 32px;
     text-align: center;
     background-color: rgba(29, 68, 116, 0.1);
-    border: 1px solid rgba(29, 68, 116, 0.2);
+    /* border: 1px solid rgba(29, 68, 116, 0.2); */
+    cursor: pointer;
+    z-index:-1;
 }
+
+.size-box input[type="radio"]:checked+label {
+    /* background-color: rgba(29, 68, 116, 1); */
+    background-color: rgba(29, 68, 116, 0.5);
+    color: rgba(29, 68, 116, 0.1);
+    border: 1px solid rgba(7, 19, 33, 0.2);
+}
+
+
 
 /* Back to top button */
 .btt-button {
@@ -49,6 +59,12 @@
     cursor: pointer;
 }
 
+.circle input[type="radio"]:checked+label {
+    height: 29px;
+    width: 29px;
+    transform:translate(-2px, -2px);
+    border: 1px solid rgba(7, 19, 33, 1);
+}
 .card-img-top {
     size: 120px;
 }

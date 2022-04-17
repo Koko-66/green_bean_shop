@@ -29,8 +29,9 @@ class Color(models.Model):
     color = models.CharField(max_length=100)  # display color
     color_code = models.CharField(max_length=5)
 
-    def color_lower(self):
-        return self.color_lower()
+    # def color_lower(self):
+    #     """Change color name to lowercase"""
+    #     return self.color_lower()
 
     def __str__(self):
         """String method for color"""
@@ -65,13 +66,15 @@ class Product(models.Model):
             editable=False,
             unique=True,
         )
-    product_type = models.ForeignKey(Type, null=True, on_delete=models.SET_NULL)
+    product_type = models.ForeignKey(
+        Type, null=True, on_delete=models.SET_NULL)
     image = CloudinaryField('image', blank=True)
     category = models.ManyToManyField(Category, related_name='categories')
     size = models.ManyToManyField(Size, related_name='sizes')
     color = models.ManyToManyField(Color, related_name='colors')
     price = models.FloatField(max_length=6, default=000.00)
-    rating = models.DecimalField(max_digits=6, decimal_places=2, null=True, blank=True)
+    rating = models.DecimalField(
+        max_digits=6, decimal_places=2, null=True, blank=True)
 
     def get_sizes(self):
         """Get all sizes for a product"""
@@ -79,7 +82,7 @@ class Product(models.Model):
         for size in self.size.all():
             sizes.append(size.size_short)
         # print(sizes)
-        return(sizes)
+        return sizes
 
     def get_colors(self):
         """Get all colors for a product"""
@@ -87,7 +90,7 @@ class Product(models.Model):
         for color in self.color.all():
             colors.append(color.color)
         # print(colors)
-        return(colors)
+        return colors
 
     def get_categories(self):
         """Get list of categories for a product"""
@@ -95,7 +98,7 @@ class Product(models.Model):
         for category in self.category.all():
             categories.append(category.friendly_name)
         # print(categories)
-        return(categories)
+        return categories
 
     def _generate_code(self):
         """Generate random number as SKU and check for uniqueness"""

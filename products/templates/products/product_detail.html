@@ -16,7 +16,7 @@
 
 {% block content %}
 <div class="overlay"></div>
-<div class="container-fluid min-top-margin pt-5">
+<div class="container-fluid top-margin pt-5">
     <div class="row bg-light m-1 m-md-4 px-md-2">
         <div class="col-12 col-md-6 col-lg-4 offset-lg-2 bg-light">
             <!-- Image -->
@@ -56,14 +56,20 @@
                         <div class="d-flex flex-row flex-wrap mt-3">
                             <span class="me-2">Sizes:</span>
                             {% for size in product.get_sizes %}
-                            <span class="col fs-heavy size-box me-2">{{ size }}</span>
+                            <div class="size-box me-2">
+                                <input id="id_size-{{ size }}_prod-{{ product.id }}" type="radio" class="d-none" name="size" value="{{ size }}" data-item_id="{{ product.id }}">
+                                <label for="id_size-{{ size }}_prod-{{ product.id }}" class="border size-box">{{ size }}</label>
+                            </div>
                             {% endfor %}
                         </div>
 
                         <!-- Colors -->
                         <div class="d-flex flex-row flex-wrap mt-3">
                             Available colors: {% for color in product.get_colors %}
-                            <div class="circle bg-{{ color.lower }} ms-2"><a href=""></a></div>
+                            <div class="circle bg-{{ color.lower }} ms-2">
+                                <input id="id_color-{{ color }}_prod-{{ product.id }}" type="radio" class="d-none" name="color" value="{{ color.lower }}" data-item_id="{{ product.id }}">
+                                <label for="id_color-{{ color }}_prod-{{ product.id }}" class="circle"></label>
+                            </div>
                             {% endfor %}
                         </div>
                         <div class="col-12">
@@ -80,7 +86,7 @@
                                         </button>
                                     </div>
                                     <input class="form-control qty_input id_qty_{{ product.id }}" type="number"
-                                        name="quantity" value="1" min="1" max="99" data-item_id="{{ product.id }}">
+                                        name="quantity" value="1" min="1" max="99" data-item_id="{{ product.id }}" id="id_qty_{{ product.id }}">
                                     <div class="input-group-append">
                                         <button
                                             class="increment-qty btn btn-black rounded-0 increment-qty_{{ product.id }}"
