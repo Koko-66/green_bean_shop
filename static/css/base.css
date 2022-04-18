@@ -278,6 +278,14 @@ button {
     margin-top: 75px;
 }
 
+/* Apply coursor to links accross the site */
+/* Update and remvoe link in the bag, used to apply js */
+.btt-link, 
+.update-link, 
+.remove-item {
+    cursor: pointer;
+}
+
 /* Login, logout and registration screens */
 /* .centered-box {
     margin: 30vh 2vh 20vh 2vh;

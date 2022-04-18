@@ -26,10 +26,10 @@
                 <img class="card-img-top img-fluid" src="{{ product.image.url }}" alt="{{ product.name }}">
                 <!-- </a> -->
                 {% else %}
-                    <!-- <img class="card-img-top img-fluid" src="https://res.cloudinary.com/dcslh2m3b/image/upload/b_rgb:faec70,o_29/v1645729817/seux34sx1yipyvm740l0.jpg" alt="{{ product.name }}"> -->
-                    <img class="card-img-top img-fluid"
-                        src="../{{MEDIA_URL}}/—Pngtree—tshirt white front blank mockup_6639255.png"
-                        alt="{{ product.name }}">
+                <!-- <img class="card-img-top img-fluid" src="https://res.cloudinary.com/dcslh2m3b/image/upload/b_rgb:faec70,o_29/v1645729817/seux34sx1yipyvm740l0.jpg" alt="{{ product.name }}"> -->
+                <img class="card-img-top img-fluid"
+                    src="../{{MEDIA_URL}}/—Pngtree—tshirt white front blank mockup_6639255.png"
+                    alt="{{ product.name }}">
                 {% endif %}
             </div>
         </div>
@@ -53,31 +53,37 @@
                     {% csrf_token %}
                     <div class="form-row">
                         <!-- Sizes -->
-                        <div class="d-flex flex-row flex-wrap mt-3">
+                        {% if product.get_sizes %}
+                        <div class="d-flex flex-row flex-wrap mt-3" id="sizes">
                             <span class="me-2">Sizes:</span>
                             {% for size in product.get_sizes %}
                             <div class="size-box me-2">
-                                <input id="id_size-{{ size }}_prod-{{ product.id }}" type="radio" class="d-none" name="size" value="{{ size }}">
-                                <label for="id_size-{{ size }}_prod-{{ product.id }}" class="border size-box">{{ size }}</label>
+                                <input id="id_size-{{ size }}_prod-{{ product.id }}" type="radio" class="size d-none"
+                                    name="size" value="{{ size }}">
+                                <label for="id_size-{{ size }}_prod-{{ product.id }}"
+                                    class="border size-box">{{ size }}</label>
                             </div>
                             {% endfor %}
                         </div>
-
+                        {% endif %}
                         <!-- Colors -->
+                        {% if product.get_colors %}
                         <div class="d-flex flex-row flex-wrap mt-3">
                             Colors: {% for color in product.get_colors %}
                             <div class="circle bg-{{ color.lower }} ms-2">
-                                <input id="id_color-{{ color }}_prod-{{ product.id }}" type="radio" class="d-none" name="color" value="{{ color.lower }}" >
+                                <input id="id_color-{{ color }}_prod-{{ product.id }}" type="radio" class="color d-none"
+                                    name="color" value="{{ color.lower }}">
                                 <label for="id_color-{{ color }}_prod-{{ product.id }}" class="circle"></label>
                             </div>
                             {% endfor %}
                         </div>
+                        {% endif %}
                         <div class="col-12">
                             <p class="mt-3"><strong>Quantity:</strong></p>
                             <div class="form-group w-50">
                                 <div class="input-group input-group-{{ product.id }}">
                                     <div class="input-group-prepend">
-                                        <button class="decrement-qty btn btn-black rounded-0" 
+                                        <button class="decrement-qty btn rounded-0"
                                             data-item_id="{{ product.id }}" id="decrement-qty_{{ product.id }}">
                                             <span class="icon">
                                                 <i class="fas fa-minus"></i>
@@ -85,14 +91,15 @@
                                         </button>
                                     </div>
                                     <input class="form-control qty_input id_qty_{{ product.id }}" type="number"
-                                        name="quantity" value="1" min="1" max="99" data-item_id="{{ product.id }}" id="id_qty_{{ product.id }}">
+                                        name="quantity" value="1" min="1" max="99" data-item_id="{{ product.id }}"
+                                        id="id_qty_{{ product.id }}">
                                     <div class="input-group-append">
-                                        <button class="increment-qty btn btn-black rounded-0"
-                                                data-item_id="{{ product.id }}" id="increment-qty_{{ product.id }}">
-                                                <span class="icon">
-                                                    <i class="fas fa-plus"></i>
-                                                </span>
-                                            </button>
+                                        <button class="increment-qty btn rounded-0"
+                                            data-item_id="{{ product.id }}" id="increment-qty_{{ product.id }}">
+                                            <span class="icon">
+                                                <i class="fas fa-plus"></i>
+                                            </span>
+                                        </button>
                                     </div>
                                 </div>
                             </div>
@@ -111,18 +118,20 @@
 
                     </div>
                     <p class="mb-3 end-0 d-flex justify-content-end">
-                        <a href="{% url 'products:products' %}" class="link-button bg-success text-light p-2 text-center">Keep shopping</a>
+                        <a href="{% url 'products:products' %}"
+                            class="link-button bg-success text-light p-2 text-center">Keep shopping</a>
                     </p>
                     <div class="mb-3 end-0 d-flex justify-content-end">
                         <input type="submit" class="link-button p-2 text-center" value="Add to bag">
-                    <input type="hidden" name="redirect_url" value="{{ request.path }}">
+                        <input type="hidden" name="redirect_url" value="{{ request.path }}">
+                    </div>
+                </form>
             </div>
-            </form>
         </div>
-    </div>
-    {% endblock %}
+        {% endblock %}
 
-    {% block postloadjs %}
+        {% block postloadjs %}
         {{ block.super }}
         {% include 'products/includes/quantity_input_script.html' %}
-    {% endblock %}
+        <script src="{% static 'products/js/products.js' %}"></script>
+        {% endblock %}
