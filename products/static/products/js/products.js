@@ -1,5 +1,5 @@
 
-console.log('hello world')
+// Code taken and adapted from CI Boutique Ado walkthrough
 $(document).ready(function () {
     // scroll to the top (from Boutique Ado walkthrough)
     $(".btt-link").click(function(e){
@@ -27,5 +27,9 @@ $(document).ready(function () {
             window.location.replace(currentUrl);
         }
     })
+    console.log('working')
+    $(".size").first().attr("required", true);
+    $(".size").first().attr("checked", true);
+    $(".color").first().attr("required", true);
+    $(".color").first().attr("checked", true);
 })
-
