@@ -125,6 +125,7 @@ body {
     /* font-family: 'Ubuntu', sans-serif; */
 }
 
+
 .main-font {
     font-family: 'Ubuntu', sans-serif;
 }
@@ -270,14 +271,21 @@ button {
     position: fixed;
     background-color: rgb(29, 68, 116) !important;
     background: url(https://res.cloudinary.com/dcslh2m3b/image/upload/v1649103642/GreenBean/pexels-teddy-tavan-4890733_mxqmip.jpg) no-repeat right top;
-    /* background: url(https://res.cloudinary.com/dcslh2m3b/image/upload/c_crop,h_3357,w_3456/v1649103642/GreenBean/pexels-teddy-tavan-4890733_mxqmip.jpg) no-repeat right top; */
     background-size: 1000px auto;
 }
 
+/* Toast */
 .message-container {
-    margin-top: 75px;
+    z-index: 9999;
 }
 
+.custom-toast {
+    overflow: visible;
+}
+ 
+.toast-capper {
+    height: 2px;
+}
 /* Apply coursor to links accross the site */
 /* Update and remvoe link in the bag, used to apply js */
 .btt-link, 
@@ -291,6 +299,9 @@ button {
     margin: 30vh 2vh 20vh 2vh;
 } */
 
+.toast {
+    margin-top: 18vh;
+}
 /* --- Media queries --- */
 
 @media only screen and (max-width: 1500px) {

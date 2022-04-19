@@ -1,10 +1,12 @@
 """Views for 'bag' app"""
+from django.contrib import messages
 from django.shortcuts import (
     redirect,
     reverse,
     HttpResponse,
 )
 from django.views.generic import TemplateView
+from products.models import Product
 
 
 class ViewBag(TemplateView):
@@ -15,6 +17,7 @@ class ViewBag(TemplateView):
 def add_to_bag(request, item_id):
     """Add item to bag"""
 
+    product = Product.objects.get(pk=item_id)
     quantity = int(request.POST.get('quantity'))
     redirect_url = request.POST.get('redirect_url')
     size = None
@@ -57,6 +60,7 @@ def add_to_bag(request, item_id):
             else:
                 bag[str_item_id] = {'items_by_size': {size: quantity}}
     # Handling products without size
+        
     else:
         if color:
             if str_item_id in list(bag.keys()):
@@ -71,7 +75,7 @@ def add_to_bag(request, item_id):
                 bag[str_item_id] += quantity
             else:
                 bag[str_item_id] = quantity
-
+    messages.error(request, f'Added {product.product_name} to the bag.')
     # overwrite bag in the session with updated one
     request.session['bag'] = bag
 
