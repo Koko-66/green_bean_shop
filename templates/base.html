@@ -109,7 +109,7 @@
                                 <i class="fas fa-shopping-bag fa-lg icon me-2"></i>
                                 <p class="my-0 icon">
                                     {% if total %}
-                                    ${{ total|floatformat:2 }}
+                                    £{{ total|floatformat:2 }}
                                     {% else %}
                                     £0.00
                                     {% endif %}
@@ -125,19 +125,19 @@
 
     {% if messages %}
     <div class="message-container">
-        {#% for message in messages %#}
+        {% for message in messages %}
         {#% with message.level as level %#}
         {#% if level == 40 %#}
         {#% include 'includes/toasts/toast_error.html' %#}
         {#% elif level == 30 %#}
         {#% include 'includes/toasts/toast_warning.html' %#}
         {#% elif level == 25 %#}
-        {#% include 'includes/toasts/toast_success.html' %#}
+        {% include 'includes/toasts/toast_success.html' %}
         {#% else %#}
         {#% include 'includes/toasts/toast_info.html' %#}
         {#% endif %#}
         {#% endwith %#}
-        {#% endfor %#}
+        {% endfor %}
     </div>
     {% endif %}
 
@@ -158,9 +158,13 @@
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
     </script>
     <!-- Toast -->
-    <!-- <script type="text/javascript">
-        $('.toast').toast('show');
-    </script> -->
+    <script type="text/javascript">
+        var toastElList = [].slice.call(document.querySelectorAll('.toast'))
+        var toastList = toastElList.map(function (toastEl) {
+            return new bootstrap.Toast(toastEl, option)
+        })
+        toast.show()
+    </script>
     {% endblock %}
 
     {% block extra_js %}

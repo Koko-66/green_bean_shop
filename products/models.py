@@ -70,8 +70,8 @@ class Product(models.Model):
         Type, null=True, on_delete=models.SET_NULL)
     image = CloudinaryField('image', blank=True)
     category = models.ManyToManyField(Category, related_name='categories')
-    size = models.ManyToManyField(Size, related_name='sizes')
-    color = models.ManyToManyField(Color, related_name='colors')
+    size = models.ManyToManyField(Size, blank=True, related_name='sizes')
+    color = models.ManyToManyField(Color, blank=True, related_name='colors')
     price = models.FloatField(max_length=6, default=000.00)
     rating = models.DecimalField(
         max_digits=6, decimal_places=2, null=True, blank=True)

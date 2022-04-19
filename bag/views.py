@@ -1,4 +1,3 @@
-
 """Views for 'bag' app"""
 from django.shortcuts import (
     redirect,
@@ -104,7 +103,10 @@ def adjust_bag(request, item_id):
                         'items_by_color'][color]
                 if not bag[str_item_id]['items_by_size'][size][
                         'items_by_color']:
+                    del bag[str_item_id]['items_by_size'][size]
+                if not bag[str_item_id]['items_by_size']:
                     bag.pop(str_item_id)
+
         else:
             if quantity > 0:
                 bag[str_item_id]['items_by_size'][size] = quantity
@@ -145,7 +147,6 @@ def remove_item(request, item_id):
         if 'color' in request.POST:
             color = request.POST['color']
         bag = request.session.get('bag', {})
-        print(bag)
 
         str_item_id = str(item_id)
         # Handle different types of products depending on whether they
@@ -154,10 +155,12 @@ def remove_item(request, item_id):
             if color:
                 del bag[str_item_id]['items_by_size'][size][
                     'items_by_color'][color]
+
                 if not bag[str_item_id]['items_by_size'][size][
                         'items_by_color']:
+                    del bag[str_item_id]['items_by_size'][size]
+                if not bag[str_item_id]['items_by_size']:
                     bag.pop(str_item_id)
-                print(f'Bag after remvoving item {bag}')
             else:
                 del bag[str_item_id]['items_by_size'][size]
                 if not bag[str_item_id]['items_by_size']:

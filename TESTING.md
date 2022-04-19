@@ -78,7 +78,14 @@ No issues found.
 #### _Testing adding sizes to bag_ ####
 Testing of the walkthrough method for adding sizes to bag 
 revealed an issue in updating the product list in the bag. If the same product already existed in the bag and another was added, it would replace the previously listed product, rather than update its amount, or create a new listing with a different size.
-#### _Result_ ####
+#### _Fix and Result_ ####
 Testing showed the issue to be the type of the `item_id` (`int`). Conversion of the `item_id` to a string and using this value in the function instead, solved the issue.
 
-<!-- ### Issues pending fixing -->
+### TEST 4 ###
+
+#### _Testing adjusting and removing items from bag_ ####
+Testing this functionality revealed an issue whereby sometimes all sizes and colors for the same items get deleted all at once.
+#### _Fix and Result_ ####
+Considering the chaining of sizes and then colors, the view function needed and additional step to first delete the size if no color already exists for that size in the dictionary, rather then the whole item. 
+In the adjust view, the part of the function handling the deletion of item having size and color needed an adjustment so that first the selected color is delete, and then checks for any other color performed.
+
