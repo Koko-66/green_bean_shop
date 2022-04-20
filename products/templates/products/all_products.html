@@ -68,17 +68,6 @@
                                             <div class="text-smaller">{{ product.product_name }}</div>
                                             <br><br>
                                             
-                                            <!-- <div class="d-flex flex-row flex-wrap my-2">
-                                                <span class="me-2">Sizes:</span>
-                                                {% for size in product.get_sizes %}
-                                                <span class="col fs-heavy size-box me-2">{{ size }}</span>
-                                                {% endfor %}
-                                            </div> -->
-                                            <!-- <div class="d-flex flex-row flex-wrap p-2 my-2">
-                                                {% for color in product.get_colors %}
-                                                <div class="circle bg-{{ color.lower }} me-2"><a href=""></a></div>
-                                                {% endfor %}
-                                            </div> -->
                                             {% if product.category %}
                                             <p class="mt-1 mb-0">
                                                 {% for category in product.get_categories %}

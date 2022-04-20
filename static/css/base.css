@@ -277,7 +277,8 @@ button {
 }
 
 /* Toast */
-.message-container {
+.toast {
+    margin-top: 100px;
     z-index: 9999;
 }
 
@@ -288,6 +289,12 @@ button {
 .toast-capper {
     height: 2px;
 }
+
+.bag-items-wrapper {
+    height: 120px;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
 /* Apply coursor to links accross the site */
 /* Update and remvoe link in the bag, used to apply js */
 .btt-link, 
@@ -296,14 +303,6 @@ button {
     cursor: pointer;
 }
 
-/* Login, logout and registration screens */
-/* .centered-box {
-    margin: 30vh 2vh 20vh 2vh;
-} */
-
-.toast {
-    margin-top: 18vh;
-}
 /* --- Media queries --- */
 
 @media only screen and (max-width: 1500px) {
