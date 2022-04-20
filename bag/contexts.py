@@ -72,7 +72,7 @@ def bag_contents(request):
             delivery = 2.99
         else:
             delivery = 4.99
-        free_delivery_delta = free_delivery_threshold - total
+        free_delivery_delta = round(free_delivery_threshold - total + 0.01, 2)
     else:
         delivery = 0
         free_delivery_delta = 0
