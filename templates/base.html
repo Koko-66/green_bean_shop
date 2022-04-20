@@ -57,7 +57,7 @@
                         <!-- User dropdown menu -->
                         <ul class="dropdown-menu" aria-labelledby="userMenuBtn">{% if request.user.is_authenticated %}
                             {% if request.user.is_superuser %}
-                            <li><a href="{#% url 'products:add_product' %#}" class="dropdown-item">Manage Products</a>
+                            <li><a href="{% url 'products:add_product' %}" class="dropdown-item">Manage Products</a>
                             </li>
                             {% endif %}
                             <li><a href="{% url 'profiles:profile' %}" class="dropdown-item">My Profile</a></li>
@@ -83,7 +83,7 @@
                     <div class="col flex-grow-1">
                         <nav class="navbar navbar-expand-lg navbar-light w-100">
                             <a class="icon navbar-toggler m-2 m-sm-0" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#main-nav" aria-controls="main-nav" aria-expanded="false"
+                                data-bs-target="main-nav" aria-controls="main-nav" aria-expanded="false"
                                 aria-label="Toggle navigation">
                                 <span class="fs-5 border-none"><i class="fas fa-bars"></i></span>
                             </a>
@@ -125,17 +125,17 @@
     {% if messages %}
     <div class="message-container">
         {% for message in messages %}
-        {#% with message.level as level %#}
-        {#% if level == 40 %#}
-        {#% include 'includes/toasts/toast_error.html' %#}
-        {#% elif level == 30 %#}
-        {#% include 'includes/toasts/toast_warning.html' %#}
-        {#% elif level == 25 %#}
+        {% with message.level as level %}
+        {% if level == 40 %}
+        {% include 'includes/toasts/toast_error.html' %}
+        {% elif level == 30 %}
+        {% include 'includes/toasts/toast_warning.html' %}
+        {% elif level == 25 %}
         {% include 'includes/toasts/toast_success.html' %}
-        {#% else %#}
-        {#% include 'includes/toasts/toast_info.html' %#}
-        {#% endif %#}
-        {#% endwith %#}
+        {% else %}
+        {% include 'includes/toasts/toast_info.html' %}
+        {% endif %}
+        {% endwith %}
         {% endfor %}
     </div>
     {% endif %}
@@ -143,7 +143,7 @@
     {% block page_header%}
     {% endblock %}
 
-    <div class="page-content-container">
+    <div id="page-container">
     {% block content %}
     
     {% endblock %}

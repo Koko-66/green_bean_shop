@@ -6,20 +6,13 @@
 {% endblock %}
 
 <!-- {% block page_header %}
-<div class="container-fluid header-container">
-    <div class="row">
-        <div class="col">
-            All products
-        </div>
-    </div>
-</div>
 {% endblock %} -->
 
 {% block content %}
 <div class="overlay img-fluid"></div>
-    <div class="container-fluid top-margin">
+    <div class="container-fluid py-3 pt-md-4">
         <div class="row">
-            <div class="col text-left d-flex flex-row align-items-sm-top align-items-md-center mx-3">
+            <div class="col text-left d-flex flex-row align-items-sm-top align-items-md-center mx-3 mb-2 mb-md-3">
                 <div class="col text-lgreen fs-6 d-inline lh-2">
                     {% if search_term %}
                     <a href="{% url 'products:products' %}" class=" undecorated text-lgreen">Show all</a> | 
@@ -35,23 +28,22 @@
 
                     {% else %}
                     <span class=" text-lgreen"> All | {{ product_list.count }} {% if product_list.count == 1 %}product{% else %}products{% endif %}</span> 
-                    {% endif %}
-                    
+                    {% endif %}   
                 </div>
 
                 <!-- <div class="col order-md-last d-flex justify-content-center justify-content-md-end align-items- mt-5"> -->
                     <!-- <div class="sort-select-wrapper"> -->
-                    <div class="">
+                    <div>
                             <small class="text-lgreen text-uppercase undecorated" data-bs-toggle="offcanvas" href="#filters" role="button" aria-expanded="false" aria-controls="filters_div">Filter / sort</small>
                             {% include 'includes/filters.html' with color_list=color_list category_list=category_list size_list=size_list %}
                     </div>
-                </div>
+                
             </div>
             <hr class="text-lgreen">
         </div>
         
         <div class="row">
-            <div class="product-container col-10 offset-1">
+            <div class="product-container col-sm-11 col-md-10 mx-auto">
                 <div class="row">
                     {% for product in product_list %}
                         <div class="col-sm-6 col-md-6 col-lg-4 col-xl-3">
@@ -71,9 +63,9 @@
                                 </div>
                                 <div class="card-footer bg-white pt-0 border-0 text-left">
                                     <div class="row">
-                                        <div class="col text-green fs-5">
-                                            <div class="lead text-left font-weight-bold position-absolute end-0 fw-bold me-2">£{{ product.price }}</div>
-                                            <div>{{ product.product_name }}</div>
+                                        <div class="col text-green fs-6">
+                                            <div class="text-left font-weight-bold position-absolute end-0 fw-bold me-2">£{{ product.price }}</div>
+                                            <div class="text-smaller">{{ product.product_name }}</div>
                                             <br><br>
                                             
                                             <!-- <div class="d-flex flex-row flex-wrap my-2">
@@ -114,22 +106,22 @@
                             </div>
                         </div>
                         {% if forloop.counter|divisibleby:1 %}
-                            <div class="col-12 d-sm-none mb-5">
+                            <div class="col-12 d-sm-none mb-2">
                                 <hr>
                             </div>
                         {% endif %}                        
                         {% if forloop.counter|divisibleby:2 %}
-                            <div class="col-12 d-none d-sm-block d-md-block d-lg-none mb-5">
+                            <div class="col-12 d-none d-sm-block d-md-block d-lg-none mb-2">
                                 <hr>
                             </div>
                         {% endif %}
                         {% if forloop.counter|divisibleby:3 %}
-                            <div class="col-12 d-none d-lg-block d-xl-none mb-5">
+                            <div class="col-12 d-none d-lg-block d-xl-none mb-2">
                                 <hr>
                             </div>
                         {% endif %}
                         {% if forloop.counter|divisibleby:4 %}
-                            <div class="col-12 d-none d-xl-block mb-5">
+                            <div class="col-12 d-none d-xl-block mb-2">
                                 <hr>
                             </div>
                         {% endif %}

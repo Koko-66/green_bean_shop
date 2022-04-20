@@ -59,7 +59,6 @@ font-family: 'Rock 3D', cursive;
 
 .bg-dgreen {
     background-color: rgba(30, 34, 43, 1);
-    /* color: rgba(93, 142, 109, 1); */
 }
 
 .bg-green {
@@ -121,10 +120,13 @@ font-family: 'Rock 3D', cursive;
 /* --- Body --- */
 
 body {
-    margin-top: 350px;
-    /* font-family: 'Ubuntu', sans-serif; */
+    margin: 0;
+    padding: 0;
 }
 
+#page-container {
+    margin-top: 90px;
+}
 
 .main-font {
     font-family: 'Ubuntu', sans-serif;
@@ -342,7 +344,7 @@ button {
     }
 
     #top-banner p {
-        font-size: 0.8em;
+        font-size: 0.9em;
     }
 
     #about {
@@ -350,6 +352,10 @@ button {
         font-size: 1.2em;
         /* background: rgba(41, 42, 42, 0.5) */
         background: rgba(29, 68, 116, 0.5)
+    }
+
+    #page-container {
+        margin-top: 110px;
     }
 }
 
@@ -375,7 +381,7 @@ button {
     }
 
     #top-banner p {
-        font-size: 0.8em;
+        font-size: 0.9em;
     }
 
     #about {
