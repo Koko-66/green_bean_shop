@@ -101,7 +101,7 @@ class Product(models.Model):
         return categories
 
     def _generate_code(self):
-        """Generate random number as SKU and check for uniqueness"""
+        """Generate random number to use in the SKU and check for uniqueness"""
         code = random.randint(10000, 99999)
         products = Product.objects.all()
         codes = [product.code for product in products]
@@ -111,8 +111,22 @@ class Product(models.Model):
             new_code = random.randint(10000, 99999)
             code = new_code
             break
-
         return code
+    
+    def _generate_sku(self):
+        """Generate SKU"""
+        sku = f'{self.code}-{self.type}'
+        if self.size: 
+            if self.color:
+                sku = f'{sku}{self.size}{self.color}'
+            else: 
+                sku = f'{sku}{self.size}'
+        else:
+            if self.color:
+                sku = sku = f'{sku}{self.color}'
+            else:
+                sku
+        return sku
 
     def save(self, *args, **kwargs):
         """
@@ -121,6 +135,7 @@ class Product(models.Model):
         """
         if not self.code:
             self.code = self._generate_code()
+            self.sku = self._generate_sku()
         super().save(*args, **kwargs)
 
     def __str__(self):

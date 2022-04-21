@@ -62,6 +62,7 @@ INSTALLED_APPS = [
     'products',
     'profiles',
     'bag',
+    'checkout',
 ]
 
 MIDDLEWARE = [
@@ -97,7 +98,7 @@ TEMPLATES = [
     },
 ]
 # required by gitpod
-MESSAGE_STORAGE = 'django.contrib.messages.storage.session.SessionStorage' 
+MESSAGE_STORAGE = 'django.contrib.messages.storage.session.SessionStorage'
 
 AUTHENTICATION_BACKENDS = [
     # Needed to login by username in Django admin, regardless of `allauth`
@@ -196,3 +197,5 @@ DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 FREE_DELIVERY_THRESHOLD = 40
+STANDARD_DELIVERY_LOWER = 2.99
+STANDARD_DELIVERY_HIGHER = 4.99
