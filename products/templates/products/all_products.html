@@ -53,9 +53,8 @@
                                     <img class="card-img-top img-fluid" src="{{ product.image.url }}" alt="{{ product.name }}">
                                 </a>
                                 {% else %}
-                                <a href="{% url 'products:product_details' product.id %}">
-                                    <!-- <img class="card-img-top img-fluid" src="https://res.cloudinary.com/dcslh2m3b/image/upload/b_rgb:faec70,o_29/v1645729817/seux34sx1yipyvm740l0.jpg" alt="{{ product.name }}"> -->
-                                    <img class="card-img-top img-fluid" src="../{{MEDIA_URL}}/—Pngtree—tshirt white front blank mockup_6639255.png" alt="{{ product.name }}">
+                                <a href="{% url 'products:product_details' product.id %}" target="_blank">
+                                    <img class="card-img-top img-fluid" src="{{MEDIA_URL}}Pngtree—tshirt_cropped.png" alt="{{ product.name }}">
                                 </a>
                                 {% endif %}
                                 <div class="card-body pb-0">
