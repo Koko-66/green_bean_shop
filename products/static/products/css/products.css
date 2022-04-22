@@ -59,7 +59,7 @@
 }
 
 .card-img-top {
-    size: 120px;
+    margin-top: -15px;
 }
 
 #filters {

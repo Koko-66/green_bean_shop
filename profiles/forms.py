@@ -28,5 +28,6 @@ class UserProfileForm(forms.ModelForm):
             if field != 'default_country':
                 placeholder = placeholders[field]
                 self.fields[field].widget.attrs['placeholder'] = placeholder
+                self.fields[field].widget.attrs['id'] = "default_country"
             self.fields[field].widget.attrs['class'] = 'form-group form-text'
             self.fields[field].label = False
