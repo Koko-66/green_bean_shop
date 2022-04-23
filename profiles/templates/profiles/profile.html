@@ -1,6 +1,5 @@
 {% extends "base.html" %}
 {% load static %}
-{% load widget_tweaks %}
 
 {% block extra_css %}
     <!-- <link rel="stylesheet" href="{% static 'profiles/css/profiles.css' %}"> -->
@@ -27,19 +26,15 @@
                     <p class="text-dgreen fs-5">Default Delivery Address</p>
                     <form class="mt-3" action="{% url 'profiles:profile' %}" method="POST" id="profile-update-form">
                         {% csrf_token %}
-                        {% for field in form %}
-                        {% if field.name == "default_country" %}
-                            <div>{% render_field field id="default_country" class="form-select p-1 text-smaller" %}</div>
-                        {% else %}
-                            <div>{% render_field field class="form-control p-1 text-smaller" %}</div>
-                        {% endif %}
-                            <!-- Block to display field errros -->
-                        <div class="mt-1 {% if field.errors %} invalid{% endif %}">
-                            {% for error in field.errors %}
-                            <p class="help-block text-warning">{{ error }}</p>
-                            {% endfor %}
-                        </div>
-                    {% endfor %}
+                        
+                        {{ form.default_street_address1 | as_crispy_field }}
+                        {{ form.default_street_address2 | as_crispy_field }}
+                        {{ form.default_town_or_city | as_crispy_field }}
+                        {{ form.default_county | as_crispy_field }}
+                        {{ form.default_postcode | as_crispy_field }}
+                        {{ form.default_country | as_crispy_field }}
+                        {{ form.default_phone_number | as_crispy_field }}
+
                         <button class="bg-success text-light float-right px-2 my-2">Update Information</button>
                     </form>
                 </div>
@@ -51,5 +46,5 @@
 
 {% block postloadjs %}
     {{ block.super }}
-    <script type="text/javascript" src="{% static 'profiles/js/profiles.js' %}"></script>
+    <script src="{% static 'js/country_selector_color.js' %}"></script>
 {% endblock %}

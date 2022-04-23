@@ -1,10 +1,11 @@
 // Adjust color of Coutry field in the form
 // Code from CI Boutique Ado walkthrough project
-let countrySelected = $('#default_country').val();
+let countrySelected = $('.default-country').val();
+console.log(countrySelected);
 if(!countrySelected) {
-    $('#default_country').css('color', '#6c757d');
+    $('.default-country').css('color', '#6c757d');
 };
-$('#default_country').change(function() {
+$('.default-country').change(function() {
     countrySelected = $(this).val();
     if(!countrySelected) {
         $(this).css('color', '#6c757d');

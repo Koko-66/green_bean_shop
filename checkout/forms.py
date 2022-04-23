@@ -1,3 +1,5 @@
+
+"""Checkout form"""
 from django import forms
 from .models import Order
 
@@ -7,8 +9,8 @@ class OrderForm(forms.ModelForm):
     class Meta:
         """Specify fields to display in the form"""
         model = Order
-        fields = ('full_name', 'email', 'street_address1', 
-                  'street_address2', 'town_or_city', 
+        fields = ('full_name', 'email', 'street_address1',
+                  'street_address2', 'town_or_city',
                   'postcode', 'county', 'country',
                   'phone_number')
 
@@ -37,7 +39,9 @@ class OrderForm(forms.ModelForm):
             else:
                 placeholder = placeholders[field]
             self.fields[field].widget.attrs['placeholder'] = placeholder
-            if field == 'country':
-                self.fields[field].widget.attrs['id'] = "default_country"
-            self.fields[field].widget.attrs['class'] = 'stripe-style-input'
+            if field != 'country':
+                self.fields[field].widget.attrs['class'] = 'stripe-style-input'
+            else:
+                self.fields[field].widget.attrs[
+                    'class'] = 'stripe-style-input default-country'
             self.fields[field].label = False
