@@ -1,8 +1,8 @@
 """Order model"""
-import uuid
+from uuid import uuid4
 
 from django.db import models
-# from django.db.models import Sum
+from django.db.models import Sum
 from django.conf import settings
 
 from django_countries.fields import CountryField
@@ -40,14 +40,15 @@ class Order(models.Model):
 
     def _generate_order_number(self):
         """Generate order number"""
-        return uuid.uddid4().hex.upper()
+        return uuid4().hex.upper()
 
     def update_total(self):
         """
         Update grand total each time a line item is added,
         accounting for delivery costs.
         """
-        self.order_total = self.lineitems.aggregate(models.
+        
+        self.order_total = self.lineitems.aggregate(
             Sum('lineitem_total'))['lineitem_total__sum'] or 0
         if self.order_total < settings.FREE_DELIVERY_THRESHOLD:
             if self.order_total < 10:
@@ -56,7 +57,7 @@ class Order(models.Model):
                 self.delivery_cost = settings.STANDARD_DELIVERY_HIGHER
         else:
             self.delivery_cost = 0
-        self.grand_total = self.order_total + self.delivery_cost
+        self.grand_total = float(self.order_total) + float(self.delivery_cost)
         self.save()
 
     def save(self, *args, **kwargs):
@@ -86,19 +87,35 @@ class OrderLineItem(models.Model):
     product_size = models.CharField(max_length=3, null=True,
                                     blank=True)
     product_color = models.CharField(max_length=100, null=True,
-                                    blank=True) 
+                                     blank=True)
     quantity = models.IntegerField(null=False, blank=False, default=0)
     lineitem_total = models.DecimalField(max_digits=6, decimal_places=2,
                                          null=False, blank=False,
                                          editable=False)
+
+    def _generate_sku(self):
+        """Generate SKU"""
+        sku = f'{self.product.code}-{self.product.product_type}'
+        if self.product_size: 
+            if self.product_color:
+                sku = f'{sku}{self.product_size}{self.product_color}'
+            else: 
+                sku = f'{sku}{self.product_size}'
+        else:
+            if self.product_color:
+                sku = sku = f'{sku}{self.product_color}'
+            else:
+                sku
+        return sku
 
     def save(self, *args, **kwargs):
         """
         Override the save method to set the lineitem total
         and update the order total.
         """
+        print(type(self.product.price))
         self.lineitem_total = self.product.price * self.quantity
         super().save(*args, **kwargs)
 
     def __str__(self):
-        return f'SKU {self.product.sku} on order {self.order.order_number}'
+        return f'SKU {self._generate_sku()} on order {self.order.order_number}'

@@ -72,7 +72,7 @@ class Product(models.Model):
     category = models.ManyToManyField(Category, related_name='categories')
     size = models.ManyToManyField(Size, blank=True, related_name='sizes')
     color = models.ManyToManyField(Color, blank=True, related_name='colors')
-    price = models.FloatField(max_length=6, default=000.00)
+    price = models.DecimalField( max_digits=6, decimal_places=2, null=True, blank=True, default=00.00)
     rating = models.DecimalField(
         max_digits=6, decimal_places=2, null=True, blank=True)
 
@@ -112,21 +112,7 @@ class Product(models.Model):
             code = new_code
             break
         return code
-    
-    def _generate_sku(self):
-        """Generate SKU"""
-        sku = f'{self.code}-{self.type}'
-        if self.size: 
-            if self.color:
-                sku = f'{sku}{self.size}{self.color}'
-            else: 
-                sku = f'{sku}{self.size}'
-        else:
-            if self.color:
-                sku = sku = f'{sku}{self.color}'
-            else:
-                sku
-        return sku
+
 
     def save(self, *args, **kwargs):
         """

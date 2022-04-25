@@ -72,11 +72,11 @@ def bag_contents(request):
             delivery = settings.STANDARD_DELIVERY_LOWER
         else:
             delivery = settings.STANDARD_DELIVERY_HIGHER
-        free_delivery_delta = round(free_delivery_threshold - total + 0.01, 2)
+        free_delivery_delta = free_delivery_threshold - float(total)
     else:
         delivery = 0
         free_delivery_delta = 0
-    grand_total = total + delivery
+    grand_total = float(total) + delivery
 
     context = {
         'bag_items': bag_items,

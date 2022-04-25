@@ -43,7 +43,7 @@
                             {% if item.product.image %}
                                 <img class="w-100" src="{{ item.product.image.url }}" alt="{{ product.name }}">
                             {% else %}
-                                <img class="w-100" src="{{ MEDIA_URL }}—Pngtree—tshirt white front blank mockup_6639255.png" alt="{{ product.name }}">
+                                <img class="w-100" src="{{ MEDIA_URL }}noimage.png" alt="{{ product.name }}">
                             {% endif %}
                         </a>
                     </div>
@@ -53,7 +53,7 @@
                         <p class="my-0 small text-muted">Qty: {{ item.quantity }}</p>
                     </div>
                     <div class="col-3 text-right">
-                        <p class="my-0 small text-muted">${{ item.product.price | calc_subtotal:item.quantity }}</p>
+                        <p class="my-0 small text-muted">£{{ item.product.price | calc_subtotal:item.quantity }}</p>
                     </div>
                 </div>
             {% endfor %}
@@ -65,9 +65,9 @@
                     <p class="my-0">Grand Total:</p>
                 </div>
                 <div class="col-3">
-                    <p class="my-0">${{ total | floatformat:2 }}</p>
-                    <p class="my-0">${{ delivery | floatformat:2 }}</p>
-                    <p class="my-0"><strong>${{ grand_total | floatformat:2 }}</strong></p>
+                    <p class="my-0">£{{ total | floatformat:2 }}</p>
+                    <p class="my-0">£{{ delivery | floatformat:2 }}</p>
+                    <p class="my-0"><strong>£{{ grand_total | floatformat:2 }}</strong></p>
                 </div>
             </div>
         </div>
@@ -104,10 +104,10 @@
                 <fieldset class="rounded px-3 mb-5">
                     <legend class="fieldset-label small text-black px-2 w-auto">Payment</legend>
                         <!-- Stripe.js injects the Payment Element here-->
-                        <div class="mb-3 form-control" id="payment-element"></div>
+                        <div class="mb-3 form-control" id="card-element"></div>
 
                         <!-- Used to display form errors -->
-                        <div class="mb-3 text-danger" id="payment-errors" role="alert"></div>
+                        <div class="mb-3 text-danger" id="card-errors" role="alert"></div>
                 </fieldset>
                 <div class="submit-button text-right mt-5 mb-2">                    
                     <a href="{% url 'bag:view_bag' %}" class="btn btn-outline-black rounded-0">
@@ -116,14 +116,14 @@
                         </span>
                         <span class="font-weight-bold">Adjust Bag</span>
                     </a>
-                    <button id="submit" class="btn rounded-0">
+                    <button id="submit-button" type="submit" class="btn rounded-0">
                         <div class="spinner hidden" id="spinner"></div>
                         <span id="button-text" class="font-weight-bold">Pay now</span>
                         <span class="icon">
                             <i class="fas fa-lock"></i>
                         </span>
                     </button>
-                    <div id="payment-message" class="hidden"></div>
+                    <div id="card-message" class="hidden"></div>
                     <p class="small text-danger my-0">
                         <span class="icon">
                             <i class="fas fa-exclamation-circle"></i>
