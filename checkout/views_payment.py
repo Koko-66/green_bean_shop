@@ -22,6 +22,8 @@ def checkout(request):
 
     stripe_public_key = settings.STRIPE_PUBLIC_KEY
     stripe_secret_key = settings.STRIPE_SECRET_KEY
+    success_url = f'{settings.DOMAIN}/checkout/success/',
+    cancel_url = f'{settings.DOMAIN}/checkout/cancel/',
 
     if request.method == 'POST':
         # print('Reached post')
@@ -113,6 +115,9 @@ def checkout(request):
             # Check if user wanted to save their info
 
             request.session['save_info'] = 'save-info' in request.POST
+            success_url = f'{success_url}{order.pk}/',
+            cancel_url = f'{cancel_url}{order.pk}/',
+            # return redirect(reverse('checkout:success'))
             return redirect(reverse('checkout:success', args=[order.pk]))
         else:
             messages.error(request, "Something went wrong. \
@@ -150,6 +155,8 @@ def checkout(request):
         'order_form': form,
         'stripe_public_key': stripe_public_key,
         'client_secret': intent.client_secret,
+        'success_url': success_url,
+        'cancel_url': cancel_url,
         # 'pk': order.pk,
     }
 
@@ -181,3 +188,4 @@ class CancelView(TemplateView):
     """Stripe cancel view"""
 
     template_name = 'checkout/cancel.html'
+
