@@ -1,20 +1,40 @@
 """Checkout app views"""
-
+import json
 import stripe
 from django.conf import settings
-# from django.views.decorators.http import require_POST
 from django.contrib import messages
+from django.http import HttpResponse
 from django.shortcuts import (
     render,
     redirect,
     reverse,
-    # get_object_or_404,
 )
+from django.views.decorators.http import require_POST
 from django.views.generic import TemplateView
 from bag.contexts import bag_contents
 from products.models import Product
 from .forms import OrderForm
 from .models import Order, OrderLineItem
+
+
+# Code from CI BoutiqueAdo walkthrough project
+@require_POST
+def cache_checkout_data(request):
+    """"Store checkout data to pass to webhook"""
+
+    try:
+        pid = request.POST.get('client_secret').split('_secret')[0]
+        stripe.api_key = settings.STRIPE_SECRET_KEY
+        stripe.PaymentIntent.modify(pid, metadata={
+            'bag': json.dumps(request.session.get('bag', {})),
+            'save_info': request.POST.get('save_info'),
+            'username': request.user,
+        })
+        return HttpResponse(status=200)
+    except Exception as e:
+        messages.error(request, 'Sorry, your payment cannot be \
+            processed right now. Please try again later.')
+        return HttpResponse(content=e, status=400)
 
 
 def checkout(request):
@@ -113,7 +133,8 @@ def checkout(request):
             # Check if user wanted to save their info
 
             request.session['save_info'] = 'save-info' in request.POST
-            return redirect(reverse('checkout:success', args=[order.pk]))
+            return redirect(reverse('checkout:success',
+                            args=[order.order_number]))
         else:
             messages.error(request, "Something went wrong. \
             Please double check the information you provided.")
@@ -156,13 +177,13 @@ def checkout(request):
     return render(request, template, context)
 
 
-def checkout_success(request, pk):
+def checkout_success(request, order_number):
     """Stripe success view"""
 
     save_info = request.session.get('save_info')
-    order = Order.objects.get(pk=pk)
+    order = Order.objects.get(order_number=order_number)
     messages.success(request, f'Order successfully processed! \
-        Your order number is {order.order_number}. A confirmation \
+        Your order number is {order_number}. A confirmation \
         email will be sent to {order.email}.')
 
     if 'bag' in request.session:

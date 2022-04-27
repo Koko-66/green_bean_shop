@@ -1,11 +1,13 @@
 """Checkout app urls"""
 from django.urls import path
 from . import views
+from .webhooks import webhook
 
 app_name = 'checkout'
-
 urlpatterns = [
      path('', views.checkout, name='checkout'),
-     path('success/<int:pk>/', views.checkout_success, name='success'),
-     path('cancel/<int:pk>/', views.CancelView.as_view(), name='cancel'),
+     path('success/<order_number>/', views.checkout_success, name='success'),
+     path('cache_checkout_data/', views.cache_checkout_data,
+          name='cache_checkout_data'),
+     path('wh/', webhook, name='webhook'),
 ]
