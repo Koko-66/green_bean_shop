@@ -34,6 +34,9 @@ class Order(models.Model):
                                       null=False, default=0)
     grand_total = models.DecimalField(max_digits=10, decimal_places=2,
                                       null=False, default=0)
+    # Used to prevent the part of webhook handler that checks if order already
+    # exists in the databse from matching purchases with same items by the same
+    # client, since these two values will be unique.
     original_bag = models.TextField(null=False, blank=False, default='')
     stripe_pid = models.CharField(max_length=254, null=False, blank=False,
                                   default='')
