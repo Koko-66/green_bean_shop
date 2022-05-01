@@ -4,7 +4,7 @@ from uuid import uuid4
 from django.db import models
 from django.db.models import Sum
 from django.conf import settings
-
+from django.template.defaultfilters import slugify
 from django_countries.fields import CountryField
 
 from products.models import Product
@@ -37,6 +37,7 @@ class Order(models.Model):
     # Used to prevent the part of webhook handler that checks if order already
     # exists in the databse from matching purchases with same items by the same
     # client, since these two values will be unique.
+    slug = models.SlugField(max_length=32, unique=True)
     original_bag = models.TextField(null=False, blank=False, default='')
     stripe_pid = models.CharField(max_length=254, null=False, blank=False,
                                   default='')
@@ -66,10 +67,13 @@ class Order(models.Model):
     def save(self, *args, **kwargs):
         """
         Override the save method to set the order number
-        if it hasn't been set already
+        if it hasn't been set already and set it as slug
         """
         if not self.order_number:
             self.order_number = self._generate_order_number()
+        
+        self.slug = slugify(self.order_number)
+        
         super().save(*args, **kwargs)
 
     def __str__(self):
