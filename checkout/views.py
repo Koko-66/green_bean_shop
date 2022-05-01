@@ -76,8 +76,6 @@ def checkout(request):
                     # Handle products without color or size
                     product = Product.objects.get(id=item_id)
                     if isinstance(item_data, int):
-                        # product = get_object_or_404(Product, pk=item_id)
-
                         order_line_item = OrderLineItem(
                             order=order,
                             product=product,
@@ -87,7 +85,6 @@ def checkout(request):
                     else:
                         # Handle products with color, no size
                         if 'items_by_color' in item_data.keys():
-                            # product = get_object_or_404(Product, pk=item_id)
                             for color, quantity in item_data[
                                     'items_by_color'].items():
                                 order_line_item = OrderLineItem(
@@ -103,8 +100,6 @@ def checkout(request):
                                     'items_by_size'].values())[0], int):
                                 for size, quantity in item_data[
                                         'items_by_size'].items():
-                                    # product = get_object_or_404(
-                                    #   Product, pk=item_id)
                                     order_line_item = OrderLineItem(
                                         order=order,
                                         product=product,
@@ -118,8 +113,6 @@ def checkout(request):
                                         'items_by_size'].items():
                                     for color, quantity in colors[
                                             'items_by_color'].items():
-                                        # product = get_object_or_404(
-                                        #   Product, pk=item_id)
                                         order_line_item = OrderLineItem(
                                             order=order,
                                             product=product,
@@ -137,8 +130,8 @@ def checkout(request):
                     order.delete()
                     return redirect(reverse('bag:view_bag'))
             # Check if user wanted to save their info
-
             request.session['save_info'] = 'save-info' in request.POST
+
             return redirect(reverse('checkout:success',
                             args=[order.order_number]))
         else:
@@ -244,7 +237,7 @@ def checkout_success(request, order_number):
     return render(request, template, context)
 
 
-class CancelView(TemplateView):
-    """Stripe cancel view"""
+# class CancelView(TemplateView):
+#     """Stripe cancel view"""
 
-    template_name = 'checkout/cancel.html'
+#     template_name = 'checkout/cancel.html'
