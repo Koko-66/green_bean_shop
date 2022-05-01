@@ -2,49 +2,90 @@
 {% load static %}
 
 {% block extra_css %}
-    <!-- <link rel="stylesheet" href="{% static 'profiles/css/profiles.css' %}"> -->
+<!-- <link rel="stylesheet" href="{% static 'profiles/css/profiles.css' %}"> -->
 {% endblock %}
 
 {% block page_header %}
-    <div class="container header-container min-top-margin">
-        <div class="row">
-            <div class="col"></div>
-        </div>
+<div class="container header-container min-top-margin">
+    <div class="row">
+        <div class="col"></div>
     </div>
+</div>
 {% endblock %}
 
 {% block content %}
-    <div class="img-background"></div>
-    <div class="container-fluid min-top-margin">
-        <div class="row bg-light-transparent p-3 rounded mt-5">
-            <div class="col">
-                <h2 class="text-dgreen">My Profile</h2>
-                <hr>
-            </div>
-            <div class="row">
-                <div class="col-12 col-lg-6">
-                    <p class="text-dgreen fs-5">Default Delivery Address</p>
-                    <form class="mt-3" action="{% url 'profiles:profile' %}" method="POST" id="profile-update-form">
-                        {% csrf_token %}
-                        
-                        {{ form.default_street_address1 | as_crispy_field }}
-                        {{ form.default_street_address2 | as_crispy_field }}
-                        {{ form.default_town_or_city | as_crispy_field }}
-                        {{ form.default_county | as_crispy_field }}
-                        {{ form.default_postcode | as_crispy_field }}
-                        {{ form.default_country | as_crispy_field }}
-                        {{ form.default_phone_number | as_crispy_field }}
+<div class="img-background"></div>
 
-                        <button class="bg-success text-light float-right px-2 my-2">Update Information</button>
-                    </form>
-                </div>
-                <div class="col-12 col-lg-6">
-                    <p class="text-dgreen fs-5">My orders</p>
-                </div>
+<div class="container-fluid min-top-margin">
+    <div class="row bg-light-transparent p-3 rounded mt-5">
+        <div class="col">
+            <p>You are logged in as {{ userprofile.user }}</p>
+            <h2 class="text-dgreen">My Profile</h2>
+            <hr>
         </div>
-{% endblock %}
+        <div class="row">
+            <div class="col-12 col-lg-6 border-bottom">
+                <p class="text-dgreen fs-5">Default Delivery Address</p>
+                <div>
+                    <p class="py-0 my-1"><strong></strong>{{ userprofile.default_street_address1 }}</p>
+                    <p class="py-0 my-1">{{ userprofile.default_street_address2 }}</p>
+                    <p class="py-0 my-1">{{ userprofile.default_county }}</p>
+                    <p class="py-0 my-1">{{ userprofile.default_town_or_city }}</p>
+                    <p class="py-0 my-1">{{ userprofile.default_postcode }}</p>
+                    <p class="py-0 my-1">{{ userprofile.default_country }}</p>
+                    <p class="py-0 my-1">{{ userprofile.default_phone_number }}</p>
+                </div> 
+            </div> 
+            <div class="col-12 col-lg-6">
+                <p class="text-dgreen fs-5">My orders</p>
+                {{ userprofile.user.orders }}
 
-{% block postloadjs %}
-    {{ block.super }}
-    <script src="{% static 'js/country_selector_color.js' %}"></script>
-{% endblock %}
+                <div class="col order-history table-responsive">
+                    <table class="table table-sm table-boderless">
+                        <thead>
+                            <tr>
+                                <th>Order Number</th>
+                                <th>Date</th>
+                                <th>Items</th>
+                                <th>Order Total</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for order in orders %}
+                            <tr>
+                                <td>
+                                    <a href="{% url 'profiles:past_order' profile.pk order.slug %}"
+                                        title="{{ order.slug }}">
+                                        {{ order.order_number|truncatechars:6 }}
+                                    </a>
+                                </td>
+                                <td>{{ order.date }}</td>
+                                <td>
+                                    <ul class="list-unstyled">
+                                        {% for item in order.lineitems.all %}
+                                        <li class="small">
+                                            {% if item.product.product_size %}
+                                            Size {{ item.product.product_size|upper }}
+                                            {% endif %}
+                                            {% if item.product.product_color %}
+                                            Color {{ item.product.product_color|upper }}
+                                            {% endif %}
+                                            {{ item.product.name }} x{{ item.quantity }}
+                                        </li>
+                                        {% endfor %}
+                                    </ul>
+                                </td>
+                                <td>${{ order.grand_total }}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        {% endblock %}
+
+        {% block postloadjs %}
+        {{ block.super }}
+        <script src="{% static 'js/country_selector_color.js' %}"></script>
+        {% endblock %}

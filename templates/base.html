@@ -60,7 +60,7 @@
                             <li><a href="{#% url 'products:add_product' %#}" class="dropdown-item">Manage Products</a>
                             </li>
                             {% endif %}
-                            <li><a href="{% url 'profiles:profile' %}" class="dropdown-item">My Profile</a></li>
+                            <li><a href="{% url 'profiles:profile' request.user.userprofile.pk %}" class="dropdown-item">My Profile</a></li>
                             <li><a href="{% url 'account_logout' %}" class="dropdown-item">Logout</a></li>
                             {% else %}
                             <li><a href="{% url 'account_signup' %}" class="dropdown-item">Register</a></li>
