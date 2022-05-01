@@ -66,7 +66,7 @@ def bag_contents(request):
                                 'size': size,
                                 'color': color
                             })
-    
+
     if total < free_delivery_threshold:
         if total < 10:
             delivery = settings.STANDARD_DELIVERY_LOWER
@@ -76,7 +76,7 @@ def bag_contents(request):
     else:
         delivery = 0
         free_delivery_delta = 0
-    
+
     if total != 0:
         grand_total = float(total) + delivery
     else:

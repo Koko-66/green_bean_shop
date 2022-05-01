@@ -10,7 +10,7 @@ from django.shortcuts import (
     reverse,
 )
 from django.views.decorators.http import require_POST
-from django.views.generic import TemplateView
+# from django.views.generic import TemplateView
 from bag.contexts import bag_contents
 from products.models import Product
 from profiles.forms import UserProfileForm
@@ -175,8 +175,8 @@ def checkout(request):
 
                 })
             except UserProfile.DoesNotExist:
-                form=OrderForm()
-        else:        
+                form = OrderForm()
+        else:
             form = OrderForm()
 
     if not stripe_public_key:
@@ -221,7 +221,7 @@ def checkout_success(request, order_number):
             user_profile_form = UserProfileForm(profile_data, instance=profile)
             if user_profile_form.is_valid():
                 user_profile_form.save()
-    
+
     messages.success(request, f'Order successfully processed! \
         Your order number is {order_number}. A confirmation \
         email will be sent to {order.email}.')

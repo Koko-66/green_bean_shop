@@ -11,12 +11,13 @@ from .models import Order, OrderLineItem
 
 # All functions adapted slightly from CI BoutiqueAdo walkthrough project
 
+
 class StripeWhHandler:
     """Handle Stripe webhooks"""
 
     def __init__(self, request):
         self.request = request
-    
+
     def _send_confirmation_email(self, order):
         customer_email = order.email
         subject = render_to_string(
@@ -65,13 +66,13 @@ class StripeWhHandler:
         if username != "AnonymousUser":
             profile = UserProfile.objects.get(user__username=username)
             if save_info:
-                profile.default_street_address1=shipping_details.address.line1
-                profile.default_street_address2=shipping_details.address.line2
-                profile.default_town_or_city=shipping_details.address.city
-                profile.default_county=shipping_details.address.state
-                profile.default_postcode=shipping_details.address.postal_code
-                profile.default_country=shipping_details.address.country
-                profile.default_phone_number=shipping_details.phone
+                profile.default_street_address1 = shipping_details.address.line1
+                profile.default_street_address2 = shipping_details.address.line2
+                profile.default_town_or_city = shipping_details.address.city
+                profile.default_county = shipping_details.address.state
+                profile.default_postcode = shipping_details.address.postal_code
+                profile.default_country = shipping_details.address.country
+                profile.default_phone_number = shipping_details.phone
         # Check if the order already exists and if not create it in the webhook
         order_exists = False
         # Add a delay to prevent creating an order in the view and webhook as
@@ -80,7 +81,7 @@ class StripeWhHandler:
         while attempt <= 5:
             try:
                 order = Order.objects.get(
-                    full_name__iexact=shipping_details.name,    
+                    full_name__iexact=shipping_details.name,
                     email__iexact=billing_details.email,
                     street_address1__iexact=shipping_details.address.line1,
                     street_address2__iexact=shipping_details.address.line2,
@@ -103,7 +104,8 @@ class StripeWhHandler:
             # Send confirmation email if created by the view
             self._send_confirmation_email(order)
             return HttpResponse(
-                content=f'Webhook received: {event["type"]} | SUCCESS: Verified order already in database',
+                content=f'Webhook received: {event["type"]} |\
+                 SUCCESS: Verified order already in database',
                 status=200)
         else:
             order = None
@@ -179,7 +181,8 @@ class StripeWhHandler:
         # Send confirmation email if created by webhook handler
         self._send_confirmation_email(order)
         return HttpResponse(
-            content=f'Webhook received: {event["type"]} | SUCCESS: Created order in webhook',
+            content=f'Webhook received: {event["type"]} |\
+                 SUCCESS: Created order in webhook',
             status=200)
 
     def handle_payment_intent_payment_failed(self, event):
