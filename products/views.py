@@ -16,13 +16,6 @@ from django.views.generic import (
     CreateView,
 )
 
-from bootstrap_modal_forms.generic import (
-#   BSModalCreateView,
-#   BSModalUpdateView,
-#   BSModalReadView,
-  BSModalDeleteView
-)
-
 from .models import (
     Category,
     Product,
