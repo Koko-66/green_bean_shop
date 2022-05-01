@@ -72,7 +72,7 @@ class Order(models.Model):
         if not self.order_number:
             self.order_number = self._generate_order_number()
         
-        self.slug = slugify(self.order_number)
+        self.slug = slugify(self.order_number).upper()
         
         super().save(*args, **kwargs)
 
