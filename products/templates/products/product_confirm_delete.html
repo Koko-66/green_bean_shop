@@ -1,0 +1,16 @@
+<form method="post">
+    {% csrf_token %}
+    <!-- Modal content injected into the modal div in the main manage categories view  -->
+    <div class="modal-header">
+      <h3 class="modal-title">Delete product?</h3>
+      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+    </div>
+  
+    <div class="modal-body">
+      <p>Are you sure you want to delete <strong>{{ product.name }}</strong>? This action cannot be undone.</p>
+    </div>
+  
+    <div class="modal-footer">
+      <button type="submit" class="btn">Delete</button>
+    </div>
+</form>

@@ -15,6 +15,15 @@
 {% endblock %}
 
 {% block content %}
+<!-- Modal to display delete view -->
+<div class="modal fade" tabindex="-1" role="dialog" id="modal">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <!-- Form goes here -->
+        </div>
+    </div>
+</div>
+
 <div class="overlay"></div>
 <div class="container-fluid pt-1">
     <div class="row bg-light m-1 m-md-4 px-md-2">
@@ -125,6 +134,12 @@
                         <input type="hidden" name="redirect_url" value="{{ request.path }}">
                     </div>
                 </form>
+                {% if request.user.is_superuser %}
+                <small class="ml-3">
+                    <a href="{% url 'products:edit_product' product.pk %}">Edit</a> | 
+                    <a class="text-danger" href="{% url 'products:delete_product' product.pk %}">Delete</a>
+                </small>
+            {% endif %}
             </div>
         </div>
         {% endblock %}

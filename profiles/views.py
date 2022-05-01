@@ -36,6 +36,7 @@ class UserProfileDetails(DetailView):
 
     model = UserProfile
     template_name = 'profiles/profile.html'
+    success_message = 'Profile successfully updated.'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)

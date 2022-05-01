@@ -57,7 +57,7 @@
                         <!-- User dropdown menu -->
                         <ul class="dropdown-menu" aria-labelledby="userMenuBtn">{% if request.user.is_authenticated %}
                             {% if request.user.is_superuser %}
-                            <li><a href="{#% url 'products:add_product' %#}" class="dropdown-item">Manage Products</a>
+                            <li><a href="{% url 'products:add_product' %}" class="dropdown-item">Manage Products</a>
                             </li>
                             {% endif %}
                             <li><a href="{% url 'profiles:profile' request.user.userprofile.pk %}" class="dropdown-item">My Profile</a></li>

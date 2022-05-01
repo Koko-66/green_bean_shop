@@ -47,9 +47,9 @@ class Category(models.Model):
         """Meta options for Product model"""
         verbose_name_plural = "categories"
 
-    # def get_friendly_name(self):
-    #     """Friendly name for product category"""
-    #     return self.friendly_name
+    def get_friendly_name(self):
+        """Friendly name for product category"""
+        return self.friendly_name
 
     def __str__(self):
         """String method for category"""
@@ -113,7 +113,6 @@ class Product(models.Model):
             break
         return code
 
-
     def save(self, *args, **kwargs):
         """
         Override the original save method to set the sku number
@@ -121,7 +120,6 @@ class Product(models.Model):
         """
         if not self.code:
             self.code = self._generate_code()
-            self.sku = self._generate_sku()
         super().save(*args, **kwargs)
 
     def __str__(self):

@@ -1,4 +1,5 @@
 """Views for products"""
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib import messages
 from django.db.models import Q, functions
 from django.shortcuts import (
@@ -6,17 +7,29 @@ from django.shortcuts import (
     redirect,
     reverse,
 )
+from django.urls import reverse_lazy
 from django.views.generic import (
     ListView,
     DetailView,
-    # CreateView,
+    UpdateView,
+    DeleteView,
+    CreateView,
 )
+
+from bootstrap_modal_forms.generic import (
+#   BSModalCreateView,
+#   BSModalUpdateView,
+#   BSModalReadView,
+  BSModalDeleteView
+)
+
 from .models import (
     Category,
     Product,
     Color,
     Size,
 )
+from .forms import CreateProductForm
 
 
 class ProductListView(ListView):
@@ -115,3 +128,37 @@ class ProductDetailView(DetailView):
     """Product details view"""
     model = Product
     template_name = 'products/product_detail.html'
+
+
+class CreateProductView(LoginRequiredMixin, CreateView):
+    """Add new product"""
+    form_class = CreateProductForm
+    template_name = 'products/add_product.html'
+    success_message = 'New product successfully added.'
+
+    def get_success_url(self):
+        """Get success url after creating product."""
+        pk = self.object.pk
+        return reverse_lazy('products:product_details', args=[pk])
+
+
+class UpdateProductView(LoginRequiredMixin, UpdateView):
+    """Update product view"""
+
+    form_class = CreateProductForm
+    queryset = Product.objects.all()
+    template_name = 'products/edit_product.html'
+    
+    success_message = 'Product successfully edited.'
+
+    def get_success_url(self):
+        """Get success url after updating product."""
+        pk = self.object.pk
+        return reverse_lazy('products:product_details', args=[pk])
+
+
+class DeleteProductView(DeleteView):
+    """Delete prduct view"""
+    queryset = Product.objects.all()
+    template = 'product/product_confirm_delete.html'
+    success_url = reverse_lazy('products:products')

@@ -27,7 +27,7 @@ $(document).ready(function () {
             window.location.replace(currentUrl);
         }
     })
-    console.log('working')
+    // Preselect the first size and color in the product detai view
     $(".size").first().attr("required", true);
     $(".size").first().attr("checked", true);
     $(".color").first().attr("required", true);
