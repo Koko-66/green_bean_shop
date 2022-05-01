@@ -1,0 +1,22 @@
+Order for: {{ order.full_name }}
+
+Thank you for shopping with us. Your oder information is below: 
+
+Order Number: {{ order.slug }}
+Order Date: {{ order.date }}
+
+Order Total: £{{ order.order_total }}
+Delivery: £{{ order.delivery_cost }}
+Grand Total: £{{ order.grand_total }}
+
+We will deliver your order to {{ order.street_address1 }} in {{ order.town_or_city }}, {{ order.postcode }}, {{ order.country }}.
+
+The phone number we have for you is: {{ order.phone_number }}. 
+
+If you have any questions, feel free to contact us at {{ contact_email }}.
+
+Welcome to the GreenBean family!
+
+Sincerely,
+
+Green Bean Team

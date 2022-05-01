@@ -1,7 +1,10 @@
 """Webhook handlers for integraton with Stripe"""
 import json
 import time
+from django.conf import settings
+from django.core.mail import send_mail
 from django.http import HttpResponse
+from django.template.loader import render_to_string
 from products.models import Product
 from profiles.models import UserProfile
 from .models import Order, OrderLineItem
@@ -13,6 +16,22 @@ class StripeWhHandler:
 
     def __init__(self, request):
         self.request = request
+    
+    def _send_confirmation_email(self, order):
+        customer_email = order.email
+        subject = render_to_string(
+            'checkout/confirmation_emails/confirmation_email_subject.txt', {
+                'order': order})
+        body = render_to_string(
+            'checkout/confirmation_emails/confirmation_email_body.txt', {
+                'order': order, 'contact_email': settings.DEFAULT_FROM_EMAIL})
+
+        send_mail(
+            subject,
+            body,
+            settings.DEFAULT_FROM_EMAIL,
+            [customer_email]
+        )
 
     def handle_event(self, event):
         """
@@ -81,6 +100,8 @@ class StripeWhHandler:
                 time.sleep(1)
 
         if order_exists:
+            # Send confirmation email if created by the view
+            self._send_confirmation_email(order)
             return HttpResponse(
                 content=f'Webhook received: {event["type"]} | SUCCESS: Verified order already in database',
                 status=200)
@@ -104,8 +125,6 @@ class StripeWhHandler:
                 for item_id, item_data in json.loads(bag).items():
                     product = Product.objects.get(id=item_id)
                     if isinstance(item_data, int):
-                        # product = get_object_or_404(Product, pk=item_id)
-
                         order_line_item = OrderLineItem(
                             order=order,
                             product=product,
@@ -115,7 +134,6 @@ class StripeWhHandler:
                     else:
                         # Handle products with color, no size
                         if 'items_by_color' in item_data.keys():
-                            # product = get_object_or_404(Product, pk=item_id)
                             for color, quantity in item_data[
                                     'items_by_color'].items():
                                 order_line_item = OrderLineItem(
@@ -131,8 +149,6 @@ class StripeWhHandler:
                                     'items_by_size'].values())[0], int):
                                 for size, quantity in item_data[
                                         'items_by_size'].items():
-                                    # product = get_object_or_404(
-                                    #   Product, pk=item_id)
                                     order_line_item = OrderLineItem(
                                         order=order,
                                         product=product,
@@ -146,8 +162,6 @@ class StripeWhHandler:
                                         'items_by_size'].items():
                                     for color, quantity in colors[
                                             'items_by_color'].items():
-                                        # product = get_object_or_404(
-                                        #   Product, pk=item_id)
                                         order_line_item = OrderLineItem(
                                             order=order,
                                             product=product,
@@ -162,6 +176,8 @@ class StripeWhHandler:
                 return HttpResponse(
                     content=f'Webhook received: {event["type"]} | ERROR: {e}',
                     status=500)
+        # Send confirmation email if created by webhook handler
+        self._send_confirmation_email(order)
         return HttpResponse(
             content=f'Webhook received: {event["type"]} | SUCCESS: Created order in webhook',
             status=200)
