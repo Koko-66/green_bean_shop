@@ -1,11 +1,11 @@
 <div class="offcanvas offcanvas-top" id="searchBar">
-    <div class="container-fluid">
-        <div class="row bg-light">
+    <div class="container-fluid my-auto mt-4">
+        <div class="m-auto py-lg-0 search-bar bg-light w-100">
             <form method="GET" action="{% url 'products:products' %}">
-                <div class="input-group w-75 mx-auto border-bottom  rounded-0">
-                     <input class="mx-auto bg-light my-5 me-0" type="text" name="q" placeholder="Search">
-                    <span class="my-5 me-2">
-                        <button class="bg-light  rounded-0 pe-2" type="submit">
+                <div class="d-flex flex-row">
+                    <input class="flex-grow-1 mx-auto ms-2 search-input py-1" type="text" name="q" placeholder="Search">
+                    <span class="me-2 ">
+                        <button class="form-group-text rounded-0 pe-2" type="submit">
                             <i class="fas fa-search icon"></i>
                         </button>
                     </span>
