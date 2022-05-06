@@ -1,9 +1,12 @@
 /* CSS for products page */
 
 .overlay {
-    background: rgba(29, 68, 116, 1);
+    background: rgba(29, 68, 116, 0.05);
     /* background: rgb(136, 174, 221); */
     /* background: #153d4b; */
+    /* background: url(https://res.cloudinary.com/dcslh2m3b/image/upload/c_scale,e_art:incognito,w_1465/v1649103642/GreenBean/pexels-fwstudio-131683_vme1s9.jpg); */
+    /* background: url(https://res.cloudinary.com/dcslh2m3b/image/upload/v1649103642/GreenBean/pexels-fwstudio-131683_vme1s9.jpg); */
+    background-size: 1150px;
     position: fixed;
     /* display: none; */
     top: 0;
@@ -14,6 +17,9 @@
     z-index: -1;
 }
 
+#prod-info-bar {
+    margin-top: -1.5%;
+}
 /* Size indicator box */
 
 .size-box label {
@@ -58,8 +64,30 @@
     border: 1px solid rgba(7, 19, 33, 1);
 }
 
+.small-circle {
+    height: 22px;
+    width: 22px;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.small-circle input[type="radio"]:checked+label {
+    height: 26px;
+    width: 26px;
+    transform:translate(-2px, -2px);
+    border: 1px solid rgba(7, 19, 33, 1);
+}
+
+/* cards */
 .card-img-top {
-    margin-top: -15px;
+    margin-top: -6%;
+}
+
+.card-container {
+    width: 20%;
+    box-shadow: 1px 1px 138px -44px rgba(0,0,0,0.52);
+    -webkit-box-shadow: 1px 1px 138px -44px rgba(0,0,0,0.52);
+    -moz-box-shadow: 1px 1px 138px -44px rgba(0,0,0,0.52);
 }
 
 #filters {
@@ -73,4 +101,35 @@
 
 small {
     font-size: 0.7em;
+}
+
+@media only screen and (max-width: 1100px) {
+    .card-container {
+        width: 25%;
+    }
+}
+
+@media only screen and (max-width: 1000px) {
+    .card-container {
+        width: 33%;
+    }
+}
+
+@media only screen and (max-width: 768px) {
+    .card-container {
+        width: 50%;
+    }
+}
+
+/* @media only screen and (max-width: 768px) {
+    .card-container {
+        width: 50%;
+    }
+} */
+
+
+@media only screen and (max-width: 468px) {
+    .card-container {
+        width: 100%;
+    }
 }
