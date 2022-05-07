@@ -14,6 +14,11 @@
             <a class="nav-link {% if grand_total %}fw-bold{% else %}{% endif %}"
                 href="{% url 'bag:view_bag' %}">
                 <div class="text-end">
+                    <div class="position-relative m-0 p-0">
+                        <div class="position-absolute top-0 start-100 translate-middle bag-item-counter mt-1 me-2"">
+                        <!-- <div class="bag-item-counter"> -->
+                           {{ product_count }}
+                        </div>
                     <i class="fas fa-shopping-bag fa-lg icon me-2"></i>
                     <p class="my-0 icon">
                         {% if total %}
@@ -22,6 +27,7 @@
                         £0.00
                         {% endif %}
                     </p>
+                    </div>
                 </div>
             </a>
         </div>
