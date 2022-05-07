@@ -27,9 +27,19 @@ $(document).ready(function () {
             window.location.replace(currentUrl);
         }
     })
+
+    // $('.circle').hover(function() {
+    //     $(this).toggleClass('outline');
+    // });
     // Preselect the first size and color in the product detai view
-    $(".size").first().attr("required", true);
-    $(".size").first().attr("checked", true);
-    $(".color").first().attr("required", true);
-    $(".color").first().attr("checked", true);
+    $('.color-selector').each(function(index){
+        $(this).find('*').filter(':input:first').attr("checked", true);
+        $(this).find('*').filter(':input:first').attr("required", true);
+    });
+
+    $('.size-selector').each(function(index){
+        // $(this).find('*').filter(':input:first').attr("checked", true);
+        $(this).find('*').filter(':input[value="M"]').attr("checked", true);
+        $(this).find('*').filter(':input:first').attr("required", true);
+    });
 })

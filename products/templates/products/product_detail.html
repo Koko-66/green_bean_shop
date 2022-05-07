@@ -24,10 +24,10 @@
     </div>
 </div>
 
-<div class="overlay"></div>
+<div class="overlay img-fluid"></div>
 <div class="container-fluid pt-1">
-    <div class="row bg-light m-1 m-md-4 px-md-2">
-        <div class="col-12 col-md-6 col-lg-4 offset-lg-2 bg-light">
+    <div class="row bg-light w-md-75 px-md-2 m-auto">
+        <div class="col-12 col-md-6 bg-light">
             <!-- Image -->
             <div class="mt-5 py-auto">
                 {% if product.image %}
@@ -39,28 +39,27 @@
                 {% endif %}
             </div>
         </div>
-        <div class="col-12 col-md-6 col-lg-4">
+        <div class="col-12 col-md-6">
             <div class="product-details-container mt-md-5">
-                <!-- Product name and price -->
-                <div class="lead d-flex flex-row justify-content-between">
-                    <p class="col mb-0 text-green">{{ product.product_name }}</p>
-                    <p class="col mb-0 d-inline text-left fw-bold text-green">£{{ product.price }}</p>
-                </div>
                 <!-- Rating -->
                 {% if product.rating %}
-                <small class="text-dgreen"><i class="fas fa-star mr-1"></i>{{ product.rating }} / 5</small>
+                <small class="text-dgreen"><i class="fas fa-star me-1"></i>{{ product.rating }} / 5</small>
                 {% else %}
                 <small class="text-muted">No Rating</small>
                 {% endif %}
+                <!-- Product name and price -->
+                <div class="lead">
+                    <p class="col mb-0 text-green">{{ product.product_name }}</p>
+                    <p class="col mb-0 d-inline text-left fw-bold text-green">£{{ product.price }}</p>
+                </div>
+                
 
-                <!-- Description -->
-                <p class="mt-5 text-dgreen fs-6">{{ product.description }}</p>
                 <form action="{% url 'bag:add_to_bag' product.id %}" method="POST">
                     {% csrf_token %}
                     <div class="form-row">
                         <!-- Sizes -->
                         {% if product.get_sizes %}
-                        <div class="d-flex flex-row flex-wrap mt-3" id="sizes">
+                        <div class="size-selector d-flex flex-row flex-wrap mt-3" id="sizes">
                             <span class="me-2">Sizes:</span>
                             {% for size in product.get_sizes %}
                             <div class="size-box me-2">
@@ -74,7 +73,7 @@
                         {% endif %}
                         <!-- Colors -->
                         {% if product.get_colors %}
-                        <div class="d-flex flex-row flex-wrap mt-3">
+                        <div class="color-selector d-flex flex-row flex-wrap mt-3">
                             Colors: {% for color in product.get_colors %}
                             <div class="circle bg-{{ color.lower }} ms-2">
                                 <input id="id_color-{{ color }}_prod-{{ product.id }}" type="radio" class="color d-none"
@@ -109,7 +108,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <!-- Categories -->
+                            <!-- Categories
                             {% if product.category %}
                             <p class="mt-1 mb-0 mt-3">
                                 {% for category in product.get_categories %}
@@ -119,18 +118,17 @@
                                 </a>
                                 {% endfor %}
                             </p>
-                            {% endif %}
+                            {% endif %} -->
                         </div>
 
                     </div>
-                    <p class="mb-3 end-0 d-flex justify-content-end">
+                    <div class="my-3 end-0 d-flex justify-content-end">
                         <a href="{% url 'products:products' %}"
-                            class="link-button bg-success text-light p-2 text-center">Keep shopping</a>
-                    </p>
-                    <div class="mb-3 end-0 d-flex justify-content-end">
-                        <input type="submit" class="link-button p-2 text-center" value="Add to bag">
+                            class="main-btn-2 m-2">Go back</a>
+                        <input type="submit" class="main-btn-1 m-2" value="Add to bag">
                         <input type="hidden" name="redirect_url" value="{{ request.path }}">
                     </div>
+                </div>
                 </form>
                 {% if request.user.is_superuser %}
                 <small class="ml-3">
@@ -140,6 +138,11 @@
             {% endif %}
             </div>
         </div>
+        <div class="row">
+            <p class="mt-5 text-dgreen fs-6">{{ product.description }}</p>
+        </div>
+    </div>
+    
         {% endblock %}
 
         {% block postloadjs %}
