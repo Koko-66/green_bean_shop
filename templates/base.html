@@ -37,7 +37,7 @@
         <div id="overlay"></div>
         <!-- Top banner -->
         <div id="top-banner"
-            class="d-flex flex-row justify-content-between align-items-center w-100 p-1 top-banner-text">
+            class="mx-0 d-flex flex-row justify-content-between align-items-center w-100 p-1 top-banner-text">
             <div class="mx-auto">
                 <p class="d-block d-md-none m-0 small fs-md-5 text-uppercase text-center mx-1">Free delivery over £{{ free_delivery_threshold }}!
                 <p class="d-none d-md-block m-0 small fs-md-5 text-uppercase text-center mx-1">Free delivery for orders over £{{ free_delivery_threshold }}!
@@ -162,11 +162,23 @@
     {% block page_header%}
     {% endblock %}
 
-    <div id="page-container">
+    <div id="page-container" class="container-fluid">
     {% block content %}
     
     {% endblock %}
     </div>
+    {% block page_footer%}
+    <footer>
+        <div id="footer" class="px-1 px-md-3 text-muted small border-top bg-light">
+         <!-- Policies and name of site creator -->
+            <div class="text-smaller mt-1">made by&nbsp;<span>kokoMedia</span></div>
+            <div class="">
+                <p class="me-2 d-inline">GreenBean Shop</p>|
+                <p class="d-inline ms-2">Our <a href="https://www.privacypolicygenerator.info/live.php?token=cTUZDunlPrcGF9jii9s8srNcGa36rZPa" rel="noopener" target="_blank" class=" link-text">Privacy policy</a></p>
+            </div>
+        </div>
+    </footer>
+    {% endblock %}
     {% block corejs %}
     <!-- Font Awesome -->
     <script src="https://kit.fontawesome.com/e9c73d7092.js" crossorigin="anonymous"></script>

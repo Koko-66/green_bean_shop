@@ -13,7 +13,10 @@ font-family: 'Red Hat Mono', monospace;
 font-family: 'Rock 3D', cursive;
 */
 
-
+* {
+    padding: 0;
+    margin: 0;
+}
 /* ---- Text styling ---- */
 
 .smaller-text {
@@ -60,7 +63,6 @@ font-family: 'Rock 3D', cursive;
 }
 
 /* ---- Background colors ---- */
-
 .bg-dgreen {
     background-color: rgba(30, 34, 43, 1);
 }
@@ -93,9 +95,14 @@ font-family: 'Rock 3D', cursive;
     background: rgba(29, 68, 116, 1);
 }
 
+.link-text {
+    text-decoration: none;
+    color: rgba(11, 110, 128, 1);
+    font-weight: bolder;
+}
 /* --- Overlays and backgrounds --- */
 
-/* User login/registration background */
+/* User login/registration overlay */
 .auth-overlay {
     /* background: rgb(199, 215, 234); */
     background: rgba(11, 110, 128, 0.369);
@@ -126,15 +133,19 @@ font-family: 'Rock 3D', cursive;
 }
 
 /* --- Body --- */
-
 body {
     margin: 0;
     padding: 0;
     font-family: 'Ubuntu', sans-serif;
+    min-height: auto !important;
 }
 
 #page-container {
     margin-top: 90px;
+    min-height: 100%;
+    position: relative;
+    margin-bottom: 60px;
+
 }
 
 .main-font {
@@ -193,25 +204,32 @@ button:active {
 }
 
 /* --- Top banner --- */
-
 .top-banner-text {
     color: #fafafa;
     /* font-family: 'Josefin Sans', sans-serif; */
 }
 
-#top-banner,
-#top-banner h4,
-#top-banner icon {
-    right: 0px;
-    left: 0px;
+header {
+    padding-right: 0 !important;
+    padding-left: 0 !important;
+    right: 0;
+    left: 0;
+}
+
+#top-banner {
+    right: 0;
+    left: 0;
+    width: 100vw;
     padding-bottom: 2px;
-    position: absolute;
+    /* position: absolute; */
     background: #0b6e80;
     font-family: 'Red Hat Mono', monospace;
 }
 
-/* --- Main navigation --- */
+/* #top-banner h4,
+#top-banner icon  */
 
+/* --- Main navigation --- */
 .logo-text {
     text-decoration: none;
     font-size: 2rem;
@@ -230,8 +248,8 @@ button:active {
 .main-nav {
     right: 0;
     left: 0;
-    margin-top: 29px;
-    position: inherit;
+    /* margin-top: 31px; */
+    /* position: absolute; */
     background: white;
 }
 
@@ -262,7 +280,6 @@ button:active {
 }
 
 /* --- Search bar --- */
-
 #searchBar {
     margin-top: 105px;
     right: 0px;
@@ -343,6 +360,29 @@ button:active {
     background: url(https://res.cloudinary.com/dcslh2m3b/image/upload/v1649103642/GreenBean/pexels-teddy-tavan-4890733_mxqmip.jpg) no-repeat right top;
     background-size: 1000px auto;
 }
+
+/* --- Footer --- */
+
+footer {
+    bottom: 0;
+    position: absolute;
+    /* height:60px;  */
+    /* margin-top: 20px; */
+    /* width: 100%; */
+}
+
+#footer  {
+    /* bottom: 0; */
+    /* position: relative; */
+    height: 60px;
+    width: 100%;
+    z-index: -1;
+  }
+  
+  /* Font styling for author name */
+  footer span {
+    font-family: "Festive", cursive;
+  }
 
 /* Toast */
 .toast {
@@ -461,5 +501,8 @@ button:active {
         /* background: rgba(217, 221, 223, 0.5) */
         /* font-family: 'Ubuntu', sans-serif; */
     }
-    
+
+    footer div {
+        font-size: 0.7em;
+      }
 }

@@ -54,3 +54,7 @@
     margin: 0;
     height: 100%;
 }
+
+#newsletter-consent label {
+  line-height: 0.8em important!;
+}
