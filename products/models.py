@@ -1,6 +1,7 @@
 """Models for products app"""
 import random
 from django.db import models
+from django.template.defaultfilters import slugify
 from cloudinary.models import CloudinaryField
 
 
@@ -8,6 +9,14 @@ class Type(models.Model):
     """Create instance of Type"""
     product_type = models.CharField(max_length=100)
     type_code = models.CharField(max_length=5)
+    slug = models. SlugField(max_length=100)
+
+    def save(self, *args, **kwargs):
+        """
+        Override the save method to set the product_type as slug
+        """
+        self.slug = slugify(self.product_type)
+        super().save(*args, **kwargs)
 
     def __str__(self):
         """String method for type"""
@@ -18,6 +27,14 @@ class Size(models.Model):
     """Create instance of Size"""
     size_short = models.CharField(max_length=25)  # e.g. 'M'
     size_long = models.CharField(max_length=50)  # e.g. 'Medium'
+    slug = models. SlugField(max_length=25)
+
+    def save(self, *args, **kwargs):
+        """
+        Override the save method to set the size_short as slug
+        """
+        self.slug = slugify(self.size_short)
+        super().save(*args, **kwargs)
 
     def __str__(self):
         """String method for size"""
@@ -28,10 +45,18 @@ class Color(models.Model):
     """Create instance of Color"""
     color = models.CharField(max_length=100)  # display color
     color_code = models.CharField(max_length=5)
+    slug = models. SlugField(max_length=100)
+
+    def save(self, *args, **kwargs):
+        """
+        Override the save method to set the color as slug
+        """
+        self.slug = slugify(self.color)
+        super().save(*args, **kwargs)
 
     # def color_lower(self):
     #     """Change color name to lowercase"""
-    #     return self.color_lower()
+    #     return self.color.lower()
 
     def __str__(self):
         """String method for color"""
@@ -42,6 +67,14 @@ class Category(models.Model):
     """Create instance of Category"""
     category_name = models.CharField(max_length=200)
     friendly_name = models.CharField(max_length=254, null=True, blank=True)
+    slug = models. SlugField(max_length=200)
+
+    def save(self, *args, **kwargs):
+        """
+        Override the save method to set the category_name as slug
+        """
+        self.slug = slugify(self.category_name)
+        super().save(*args, **kwargs)
 
     class Meta:
         """Meta options for Product model"""
@@ -72,7 +105,8 @@ class Product(models.Model):
     category = models.ManyToManyField(Category, related_name='categories')
     size = models.ManyToManyField(Size, blank=True, related_name='sizes')
     color = models.ManyToManyField(Color, blank=True, related_name='colors')
-    price = models.DecimalField( max_digits=6, decimal_places=2, null=True, blank=True, default=00.00)
+    price = models.DecimalField(max_digits=6, decimal_places=2, null=True,
+                                blank=True, default=00.00)
     rating = models.DecimalField(
         max_digits=6, decimal_places=2, null=True, blank=True)
 

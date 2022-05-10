@@ -6,25 +6,25 @@ from .models import Type, Size, Color, Category, Product
 @admin.register(Type)
 class TypeAdmin(admin.ModelAdmin):
     """Register Type on admin"""
-    list_display = ('product_type', 'type_code')
+    list_display = ('product_type', 'type_code', 'slug')
 
 
 @admin.register(Size)
 class SizeAdmin(admin.ModelAdmin):
     """Register Size on admin"""
-    list_display = ('size_long', 'size_short')
+    list_display = ('size_long', 'size_short', 'slug')
 
 
 @admin.register(Color)
 class ColorAdmin(admin.ModelAdmin):
     """Register Color on admin"""
-    list_display = ('color', 'color_code')
+    list_display = ('color', 'color_code', 'slug')
 
 
 @admin.register(Category)
 class CategoryAdmin(admin.ModelAdmin):
     """Register Category on admin"""
-    list_display = ('category_name', 'friendly_name')
+    list_display = ('category_name', 'friendly_name', 'slug')
 
 
 @admin.register(Product)
