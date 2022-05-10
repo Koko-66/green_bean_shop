@@ -7,5 +7,3 @@ from django.views.generic import TemplateView
 class HomeView(TemplateView):
     """Render home view"""
     template_name = 'home/index.html'
-    # success_message = 'Home page rendered successfully'
-    # print(success_message)
