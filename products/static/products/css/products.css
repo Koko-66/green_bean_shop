@@ -17,9 +17,7 @@
     z-index: -1;
 }
 
-#prod-info-bar {
-    margin-top: -1.5%;
-}
+/*   */
 
 /* Size indicator box */
 .size-box {
@@ -75,10 +73,19 @@
     height: 29px;
     width: 29px;
     border-radius: 50%;
-
     transform:translate(-2px, -2px);
     border: 1px solid rgba(7, 19, 33, 1);
 }
+
+.category input[type="radio"]:checked+label {
+    /* transform:translate(-2px, -2px); */
+    border: 1px solid rgba(7, 19, 33, 1);
+}
+
+.sort-type input[type="radio"]:checked+label {
+    border: 1px solid rgba(7, 19, 33, 1);
+}
+
 
 /* .small-circle {
     height: 22px;
@@ -117,12 +124,10 @@
 }
 
 #filters {
-    top: 200px;
-
-    height: 100px !important;
+    top: 20vh;
+    height: fit-content;
     position: fixed;
-    /* background: white; */
-    /* z-index: 2 ; */
+    width: 75vw;
 }
 
 small {
@@ -144,6 +149,10 @@ small {
 @media only screen and (max-width: 768px) {
     .card-container {
         width: 50%;
+    }
+
+    #filters {
+        width: 100vw;
     }
 }
 

@@ -1,118 +1,221 @@
-<div class="offcanvas offcanvas-top" id="filters">
-    <div class="row text-uppercase small m-2 mb-0 me-3 justify-content-center justify-content-md-end bg-light fw-bolder small">
-        Filter / Sort 
-        <small type="button" class="btn-close ms-1 mt-1 fw-bold text-dgreen" data-bs-dismiss="offcanvas" aria-label="Close"></small>
-    </div>
-    
-    <div class="container-fluid p-3 bg-light d-none d-lg-flex flex-row">
-        <div class="col">
-            <p class="text-dgreen text-uppercase fs-6 fw-bold mb-2">Color</p>
-            <div class="d-flex flex-row flex-wrap">
-                {% for color in color_list %}
-                <a href="{% url 'products:products' %}?color={{ color.color }}" title="{{ color.color }}">
-                    <div class="circle bg-{{ color.color.lower }} me-2"></div>
-                </a>
-                {% endfor %}
+<!-- Filters and sort options -->
+<div id="filters" class="offcanvas offcanvas-top mx-auto bg-light w-sm-100 w-md-75" >
+    <div class="row mb-3">
+    <form action="{% url 'products:products' %}" method="GET">
+        <div
+            class="row text-uppercase small m-2 mb-0 me-5 justify-content-center justify-content-md-end fw-bolder small">
+            Filter / Sort
+            <small type="button" class="btn-close ms-1 mt-1 fw-bold text-dgreen" data-bs-dismiss="offcanvas"
+                aria-label="Close"></small>
+        </div>
+        {% csrf_token %}
+        <!-- Filters for LARGE SCREENS -->
+        <div class="container-fluid p-3 d-none d-lg-flex flex-row">
+            <!-- Select color -->
+            <div class="col px-5">
+                <p class="text-dgreen text-uppercase fs-6 fw-bold mb-2">Color</p>
+                <div class="d-flex flex-row flex-wrap lh-2">
+                    <div class="color-selector d-flex flex-row flex-wrap mt-2">
+                        {% for color in color_list %}
+                        <!-- <a href="{% url 'products:products' %}?color={{ color.color }}" title="{{ color.color }}"> -->
+                        <div class="circle bg-{{ color.color.lower }} me-2">
+                            <input id="id_color-lg-{{ color.color.lower }}" type="radio" class="color d-none" name="color"
+                                value="{{ color.color.lower }}">
+                            <label for="id_color-lg-{{ color.color.lower }}" class="circle"></label>
+                        </div>
+                        <!-- </a> -->
+                        {% endfor %}
+                    </div>
+                </div>
             </div>
-        </div>
-        <div class="col">
-            <p class="text-dgreen text-uppercase fs-6 fw-bold mb-2">Size</p>
-            <div class="d-flex flex-row flex-wrap my-2">
-                {% for size in size_list %}
-                <span class="col size-box me-2 small">
-                    <a href="{% url 'products:products' %}?size={{ size.size_short }}" title="{{ size.size_short }}"
-                        class="undecorated text-dgreen">{{ size.size_short }}</a>
-                </span>
-                {% endfor %}
-
-            </div>
-        </div>
-        <div class="col">
-            <p class="text-dgreen text-uppercase fs-6 fw-bold mb-2">Category</p>
-            {% for category in category_list %}
-            <a href="{% url 'products:products' %}?category={{ category.category_name }}"
-                class="dropdown-item">{{ category.friendly_name}}</a>
-            {% endfor %}
-        </div>
-        <div class="col">
-            <p class="text-dgreen text-uppercase fs-6 fw-bold mb-2">Sort by...</p>
-            <a class="dropdown-item">New Arrivals</a><a href="{% url 'products:products' %}?sort=rating&direction=asc"
-                class="dropdown-item">
-                Rating</a>
-            <a href="{% url 'products:products' %}?sort=price&direction=asc" class="dropdown-item">Price (lowest
-                first)</a>
-            <a href="{% url 'products:products' %}?sort=price&direction=desc" class="dropdown-item">Price (highest
-                first)</a>
-            <a href="{% url 'products:products' %}?sort=product_name&direction=asc" class="dropdown-item">Name (A-Z)</a>
-            <a href="{% url 'products:products' %}?sort=product_name&direction=desc" class="dropdown-item">Name
-                (Z-A)</a>
-        </div>
-    </div>
-    <!-- Filters for mobiles -->
-    <div id="filters-small" class="container-fluid p-3 bg-light d-sm-block d-md-block d-lg-none justify-content-center">
-        <div class="col my-2">
-            <a class="text-dgreen text-uppercase undecorated fs-6 fw-bold mb-3" data-bs-toggle="collapse" href="#colors">Color</a>
-            <div id="colors" class="collapse">
-                <div class="d-flex flex-row flex-wrap">
-                    {% for color in color_list %}
-                    <a href="{% url 'products:products' %}?color={{ color.color }}" title="{{ color.color }}" class="circle">
-                        <div class="circle bg-{{ color.color.lower }} me-2"></div>
-                    </a>
+            <!-- Select size -->
+            <div class="col px-5">
+                <p class="text-dgreen text-uppercase fs-6 fw-bold mb-2">Size</p>
+                <div class="d-flex flex-row flex-wrap my-2 lh-2">
+                    {% for size in size_list %}
+                    <!-- <span class="size-box me-2 small">
+                        <a href="{% url 'products:products' %}?size={{ size.size_short }}" title="{{ size.size_short }}"
+                            class="undecorated text-dgreen">{{ size.size_short }}</a>
+                    </span> -->
+                    <div class="size-box my-2 me-2">
+                        <input id="id_size-lg-{{ size.size_short }}" type="radio" class="size d-none" name="size"
+                            value="{{ size.size_short }}">
+                        <label for="id_size-lg-{{ size.size_short }}"
+                            class="border size-box smaller-text">{{ size.size_short}}</label>
+                    </div>
                     {% endfor %}
                 </div>
             </div>
-        </div>
-        <div class="col my-2">
-            <a class="text-dgreen text-uppercase undecorated fs-6 fw-bold mb-3" data-bs-toggle="collapse" href="#size">Size</a>
-            <div id="size" class="collapse">
-                <div class="d-flex flex-row flex-wrap my-2">
-                {% for size in size_list %}
-                <span class="col size-box me-2 small">
-                    <a href="{% url 'products:products' %}?size={{ size.size_short }}" title="{{ size.size_short }}"
-                        class="undecorated text-dgreen">{{ size.size_short }}</a>
-                </span>
-                {% endfor %}
-                {% if product.get_sizes %}
-                        <div class="d-flex flex-row flex-wrap mt-3" id="sizes">
-                            <span class="me-2">Sizes:</span>
-                            {% for size in product.get_sizes %}
-                            <div class="size-box me-2">
-                                <input id="id_size-{{ size }}_prod-{{ product.id }}" type="radio" class="size d-none"
-                                    name="size" value="{{ size }}">
-                                <label for="id_size-{{ size }}_prod-{{ product.id }}"
-                                    class="border size-box">{{ size }}</label>
-                            </div>
-                            {% endfor %}
-                        </div>
-                {% endif %}
+            <!-- Select category -->
+            <div class="col px-5">
+                <p class="text-dgreen text-uppercase fs-6 fw-bold mb-2">Category</p>
+                <div class="category-selector mt-2">
+                    {% for category in category_list %}
+                    <!-- <a href="{% url 'products:products' %}?category={{ category.category_name }}"
+                    class="dropdown-item">{{ category.friendly_name}}</a> -->
+                    <div class="category">
+                        <input id="id_category-lg-{{ category.friendly_name }}" type="radio" class="d-none" name="category"
+                            value="{{ category.friendly_name }}">
+                        <label for="id_category-lg-{{ category.friendly_name }}"
+                            class="dropdown-item">{{ category.friendly_name}}</label>
+                    </div>
+                    <!-- </a> -->
+                    {% endfor %}
+                </div>
+            </div>
+            <!-- Sorting -->
+            <div class="col px-5">
+                <p class="text-dgreen text-uppercase fs-6 fw-bold mb-2">Sort by...</p>
+                <!-- <a class="dropdown-item">New Arrivals</a> -->
+                <div class="sort-type">
+                    <input id="lg-new-arrivals" name="sorting" value="new-arrivals" type="radio" class="d-none">
+                    <label for="lg-new-arrivals" class="dropdown-item sort-type">New Arrivals</label>
+                </div>
+                <!-- <a href="{% url 'products:products' %}?sort=rating&direction=asc"
+                    class="dropdown-item">
+                    Rating</a> -->
+                <div class="sort-type">
+                    <input id="lg-rating" name="sorting" value="rating" type="radio" class="d-none">
+                    <label for="lg-rating" class="dropdown-item sort-type">Rating</label>
+                </div>
+                <!-- <a href="{% url 'products:products' %}?sort=price&direction=asc" class="dropdown-item">Price (lowest
+                    first)</a> -->
+                <div class="sort-type">
+                    <input id="lg-price-low-first" name="sorting" value="price-low-first" type="radio" class="d-none">
+                    <label for="lg-price-low-first" class="dropdown-item sort-type">Price (lowest
+                        first)</label>
+                </div>
+                <!-- <a href="{% url 'products:products' %}?sort=price&direction=desc" class="dropdown-item">Price (highest
+                    first)</a> -->
+                <div class="sort-type">
+                    <input id="lg-price-high-first" name="sorting" value="price-high-first" type="radio" class="d-none">
+                    <label for="lg-price-high-first" class="dropdown-item sort-type">Price (highest
+                        first)</label>
+                </div>
+                <!-- <a href="{% url 'products:products' %}?sort=product_name&direction=asc" class="dropdown-item">Name (A-Z)</a> -->
+                <div class="sort-type">
+                    <input id="lg-name-a-z" name="sorting" value="name-a-z" type="radio" class="d-none">
+                    <label for="lg-name-a-z" class="dropdown-item sort-type">Name (A-Z)</label>
+                </div>
+                <!-- <a href="{% url 'products:products' %}?sort=product_name&direction=desc" class="dropdown-item">Name
+                    (Z-A)</a> -->
+                <div class="sort-type">
+                    <input id="lg-name-z-a" name="sorting" value="name-z-a" type="radio" class="d-none">
+                    <label for="lg-name-z-a" class="dropdown-item sort-type">Name (Z-A)</label>
                 </div>
             </div>
         </div>
-        <div class="col my-2">
-            <a class="text-dgreen text-uppercase undecorated fs-6 fw-bold mb-2" data-bs-toggle="collapse" href="#category">Category</a>
-            <div id="category" class="collapse">
-                {% for category in category_list %}
-                    <a href="{% url 'products:products' %}?category={{ category.category_name }}"
-                        class="dropdown-item">{{ category.friendly_name}}</a>
-                {% endfor %}
+        <!-- Filters for SMALL SCREENS/MOBILES -->
+        <div id="filters-small"
+            class="container-fluid p-3 px-md-5 d-sm-block d-md-block d-lg-none justify-content-center">
+            <!-- Select color -->
+            <div class="col my-2">
+                <a class="text-dgreen text-uppercase undecorated fs-6 fw-bold mb-3" data-bs-toggle="collapse"
+                    href="#colors">Color</a>
+                <div id="colors" class="collapse">
+                    <div class="d-flex flex-row flex-wrap">
+                        <div class="color-selector d-flex flex-row flex-wrap mt-2">
+                            {% for color in color_list %}
+                            <!-- <a href="{% url 'products:products' %}?color={{ color.color }}" title="{{ color.color }}"> -->
+                            <div class="circle bg-{{ color.color.lower }} me-2">
+                                <input id="id_color-{{ color.color.lower }}" type="radio" class="color d-none"
+                                    name="color" value="{{ color.color.lower }}">
+                                <label for="id_color-{{ color.color.lower }}" class="circle"></label>
+                            </div>
+                            <!-- </a> -->
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Select size -->
+            <div class="col my-2">
+                <a class="text-dgreen text-uppercase undecorated fs-6 fw-bold mb-3" data-bs-toggle="collapse"
+                    href="#size">Size</a>
+                <div id="size" class="collapse">
+                    <div class="d-flex flex-row flex-wrap my-2">
+                        {% for size in size_list %}
+                        <!-- <span class="size-box me-2 small">
+                            <a href="{% url 'products:products' %}?size={{ size.size_short }}" title="{{ size.size_short }}"
+                                class="undecorated text-dgreen">{{ size.size_short }}</a>
+                        </span> -->
+                        <div class="size-box my-2 me-2">
+                            <input id="id_size-{{ size.size_short }}" type="radio" class="size d-none" name="size"
+                                value="{{ size.size_short }}">
+                            <label for="id_size-{{ size.size_short }}"
+                                class="border size-box smaller-text">{{ size.size_short}}</label>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+            <!-- Select category -->
+            <div class="col my-2">
+                <a class="text-dgreen text-uppercase undecorated fs-6 fw-bold mb-2" data-bs-toggle="collapse"
+                    href="#category">Category</a>
+                <div id="category" class="collapse">
+                    {% for category in category_list %}
+                    <!-- <a href="{% url 'products:products' %}?category={{ category.category_name }}"
+                    class="dropdown-item">{{ category.friendly_name}}</a> -->
+                    <div class="category w-50">
+                        <input id="id_category-{{ category.friendly_name }}" type="radio" class="d-none" name="category"
+                            value="{{ category.friendly_name }}">
+                        <label for="id_category-{{ category.friendly_name }}"
+                            class="dropdown-item">{{ category.friendly_name}}</label>
+                    </div>
+                    <!-- </a> -->
+                    {% endfor %}
+                </div>
+            </div>
+            <!-- Sorting -->
+            <div class="col my-2">
+                <p class="text-dgreen text-uppercase undecorated fs-6 fw-bold mb-2" data-bs-toggle="collapse"
+                    href="#sort">Sort by...</p>
+                <div id="sort" class="collapse">
+                    <!-- <a class="dropdown-item">New Arrivals</a> -->
+                    <div class="sort-type w-50">
+                        <input id="new-arrivals" name="sorting" value="new-arrivals" type="radio" class="d-none">
+                        <label for="new-arrivals" class="dropdown-item">New Arrivals</label>
+                    </div>
+                    <!-- <a href="{% url 'products:products' %}?sort=rating&direction=asc"
+                        class="dropdown-item">
+                        Rating</a> -->
+                    <div class="sort-type w-50">
+                        <input id="rating" name="sorting" value="rating" type="radio" class="d-none">
+                        <label for="rating" class="dropdown-item">Rating</label>
+                    </div>
+                    <!-- <a href="{% url 'products:products' %}?sort=price&direction=asc" class="dropdown-item">Price (lowest
+                        first)</a> -->
+                    <div class="sort-type w-50">
+                        <input id="price-low-first" name="sorting" value="price-low-first" type="radio" class="d-none">
+                        <label for="price-low-first" class="dropdown-item">Price (lowest
+                            first)</label>
+                    </div>
+                    <!-- <a href="{% url 'products:products' %}?sort=price&direction=desc" class="dropdown-item">Price (highest
+                        first)</a> -->
+                    <div class="sort-type w-50">
+                        <input id="price-high-first" name="sorting" value="price-high-first" type="radio" class="d-none">
+                        <label for="price-high-first" class="dropdown-item">Price (highest
+                            first)</label>
+                    </div>
+                    <!-- <a href="{% url 'products:products' %}?sort=product_name&direction=asc" class="dropdown-item">Name (A-Z)</a> -->
+                    <div class="sort-type w-50">
+                        <input id="name-a-z" name="sorting" value="name-a-z" type="radio" class="d-none">
+                        <label for="name-a-z" class="dropdown-item">Name (A-Z)</label>
+                    </div>
+                    <!-- <a href="{% url 'products:products' %}?sort=product_name&direction=desc" class="dropdown-item">Name
+                        (Z-A)</a> -->
+                    <div class="sort-type w-50">
+                        <input id="name-z-a" name="sorting" value="name-z-a" type="radio" class="d-none">
+                        <label for="name-z-a" class="dropdown-item">Name (Z-A)</label>
+                    </div>
+                </div>
             </div>
         </div>
-        <div class="col my-2">
-            <a class="text-dgreen text-uppercase undecorated fs-6 fw-bold mb-2" data-bs-toggle="collapse" href="#sort">Sort by...</p>
-            <div id="sort" class="collapse">
-                <a class="dropdown-item">New Arrivals</a><a href="{% url 'products:products' %}?sort=rating&direction=asc"
-                    class="dropdown-item">
-                    Rating</a>
-                <a href="{% url 'products:products' %}?sort=price&direction=asc" class="dropdown-item">Price (lowest
-                    first)</a>
-                <a href="{% url 'products:products' %}?sort=price&direction=desc" class="dropdown-item">Price (highest
-                    first)</a>
-                <a href="{% url 'products:products' %}?sort=product_name&direction=asc" class="dropdown-item">Name (A-Z)</a>
-                <a href="{% url 'products:products' %}?sort=product_name&direction=desc" class="dropdown-item">Name
-                    (Z-A)</a>
-            </div>
+        <div id="filter-controls" class="text-center">
+            <button function="" class="main-btn-2 me-2">Clear filter</button>
+            <button class="main-btn-1 mx-auto" type="submit">Apply filters</button>
         </div>
+    </form>
     </div>
-    <div id="filter-controls">Clear filter</div>
 </div>
-

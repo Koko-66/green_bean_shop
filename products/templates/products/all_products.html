@@ -17,11 +17,11 @@
 </div>
 
 <div class="overlay"></div>
-<div class="py-2">
+<div class="py-0">
     <!-- Number of products and applied sort/filter -->
-    <div id="prod-info-bar" class="row prod-info-bar bg-blue p-2 my-auto">
+    <div id="prod-info-bar" class="row prod-info-bar bg-blue p-2">
         <div class="col text-left d-flex flex-row align-items-sm-top align-items-md-center mx-1 mx-md-2">
-            <div class="col text-lgreen fs-6 d-inline lh-2">
+            <div class="col text-light fs-6 d-inline lh-2">
                 {% if search_term %}
                 <a href="{% url 'products:products' %}" class=" undecorated text-lgreen">Show all</a> |
                 <span class="fs-6">{{ product_list.count }}
@@ -42,10 +42,10 @@
             <!-- <div class="col order-md-last d-flex justify-content-center justify-content-md-end align-items- mt-5"> -->
             <!-- <div class="sort-select-wrapper"> -->
             <div>
-                <small class="text-lgreen text-uppercase undecorated" data-bs-toggle="offcanvas" href="#filters"
+                <small class="text-light text-uppercase undecorated" data-bs-toggle="offcanvas" href="#filters"
                     role="button" aria-expanded="false" aria-controls="filters_div">Filter / sort</small>
-                {% include 'includes/filters.html' with color_list=color_list category_list=category_list size_list=size_list %}
             </div>
+            {% include 'includes/filters.html' with color_list=color_list category_list=category_list size_list=size_list %}
         </div>
     </div>
 
@@ -115,11 +115,11 @@
                                             <div class="color-selector d-flex flex-row flex-wrap mt-2">
                                                 <!-- Colors:  -->
                                                 {% for color in product.get_colors %}
-                                            <div class="circle bg-{{ color.lower }} me-2">
-                                                <input id="id_color-{{ color }}_prod-{{ product.id }}" type="radio" class="color d-none"
-                                                    name="color" value="{{ color.lower }}">
-                                                <label for="id_color-{{ color }}_prod-{{ product.id }}" class="circle"></label>
-                                            </div>
+                                                <div class="circle bg-{{ color.lower }} me-2">
+                                                    <input id="id_color-{{ color }}_prod-{{ product.id }}" type="radio" class="color d-none"
+                                                        name="color" value="{{ color.lower }}">
+                                                    <label for="id_color-{{ color }}_prod-{{ product.id }}" class="circle"></label>
+                                                </div>
                                                 {% endfor %}
                                             </div>
                                         {% endif %} 
