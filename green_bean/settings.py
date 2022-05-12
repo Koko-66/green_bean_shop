@@ -56,6 +56,7 @@ INSTALLED_APPS = [
     'widget_tweaks',
     'crispy_forms',
     "crispy_bootstrap5",
+    'bootstrap_modal_forms',
 
     # third party
     # this project

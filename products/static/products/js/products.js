@@ -2,7 +2,8 @@ $(document).ready(function () {
     // scroll to the top (from Boutique Ado walkthrough)
     $(".btt-link").click(function(e){
         window.scrollTo(0,0)
-    }) 
+    })
+
     // sort the content based on criteria passed in the url
     // (from Boutique Ado walkthrough)
     $("#sort-selector").change(function() {
@@ -27,18 +28,23 @@ $(document).ready(function () {
     })
 
     // Preselect the first color in the product detail and all products views
-    $('.color-selector').each(function(index){
-        $(this).find('*').filter(':input:first').attr("checked", true);
-        $(this).find('*').filter(':input:first').attr("required", true);
+    $(".color-selector").each(function(index){
+        $(this).find("*").filter(":input:first").attr("checked", true);
+        $(this).find("*").filter(":input:first").attr("required", true);
     });
     // Preselect size M in the product detail and all products views
-    $('.size-selector').each(function(index){
+    $(".size-selector").each(function(index){
         // $(this).find('*').filter(':input:first').attr("checked", true);
-        $(this).find('*').filter(':input[value="M"]').attr("checked", true);
-        $(this).find('*').filter(':input:first').attr("required", true);
+        $(this).find("*").filter(":input[value='M']").attr("checked", true);
+        $(this).find("*").filter(":input:first").attr("required", true);
     });
     // clear selected filters in filters pop up
-    $('#clear-filters').click(function(event){
+    $("#clear-filters").click(function(event){
         $("input[type='radio']").prop("checked", false);
-    }) 
+    });
+
+    // Delete product link - formURL is retrieved from the data of the element
+    $(".delete-product").each(function () {
+        $(this).modalForm({formURL: $(this).data("form-url"), isDeleteForm: true});
+    });
 })

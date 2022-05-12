@@ -141,8 +141,8 @@
                                 {% if request.user.is_superuser %}
                                 <small class="ms-3">
                                     <a href="{% url 'products:edit_product' product.pk %}">Edit</a>
-                                    <a class="text-danger"
-                                        href="{% url 'products:delete_product' product.pk %}">Delete</a>
+                                    <a type="button" class="delete-product bs-modal text-danger"
+                                        data-form-url="{% url 'products:delete_product' product.pk %}">Delete</a>
                                 </small>
                                 {% endif %}
                                 <!-- </div> -->
@@ -186,11 +186,5 @@
 {{ block.super }}
 <script src="{% static 'products/js/products.js' %}"></script>
 
-<!-- <script>
-  	$('.color-selector').each(function(index){
-        $(this).find('*').filter(':input:first').attr("checked", true);
-        $(this).find('*').filter(':input:first').attr("required", true);
-    });
-</script> -->
 <!-- <script src="{% static 'products/js/bs_modal_forms.js' %}"></script> -->
 {% endblock %}

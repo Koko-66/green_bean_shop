@@ -12,9 +12,10 @@ from django.views.generic import (
     ListView,
     DetailView,
     UpdateView,
-    DeleteView,
+    # DeleteView,
     CreateView,
 )
+from bootstrap_modal_forms.generic import BSModalDeleteView
 from .models import (
     Category,
     Product,
@@ -67,7 +68,7 @@ class ProductListView(ListView):
 
             if sortkey == 'price-desc':
                 sortkey = 'price'
-                direction = 'desc'
+                direction = 'des'
 
 
             if sortkey == 'rating':
@@ -181,8 +182,9 @@ class UpdateProductView(LoginRequiredMixin, UpdateView):
         return reverse_lazy('products:product_details', args=[pk])
 
 
-class DeleteProductView(DeleteView):
+class DeleteProductView(LoginRequiredMixin, BSModalDeleteView):
     """Delete prduct view"""
-    queryset = Product.objects.all()
-    template = 'product/product_confirm_delete.html'
+    model = Product
+    template_name = 'products/product_delete.html'
+    success_message = 'Product successfully deleted'
     success_url = reverse_lazy('products:products')
