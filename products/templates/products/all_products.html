@@ -17,7 +17,7 @@
 </div>
 
 <div class="overlay"></div>
-<div class="py-0">
+<div class="py-2">
     <!-- Number of products and applied sort/filter -->
     <div id="prod-info-bar" class="row prod-info-bar bg-blue p-2">
         <div class="col text-left d-flex flex-row align-items-sm-top align-items-md-center mx-1 mx-md-2">
@@ -31,11 +31,21 @@
                 <a href="{% url 'products:products' %}" class=" undecorated text-yellow"> Show all</a> |
                 <span class="fs-6">{{ product_list.count }} products in
                     {% for category in current_categories %}{{ category.friendly_name }}{% endfor %} category</span>
+                {% elif current_colors %}
+                <a href="{% url 'products:products' %}" class=" undecorated text-lgreen">Show all</a> |
+                <span class="fs-6">{{ product_list.count }} products in
+                    {% for color in current_colors %}
+                    {{ color.color }}
+                    {% endfor %}, </span>
+                {% elif current_sizes %}
+                <a href="{% url 'products:products' %}" class=" undecorated text-lgreen">Show all</a> |
+                <span class="fs-6">{{ product_list.count }} products in size
+                    {% for size in current_sizes %} {{ size.size_short }}{% endfor %}</span>
                 {% elif product_list.count == 0 %}
                 <a href="{% url 'products:products' %}" class="undecorated text-yellow"> Show all</a> |
                 No products found
                 {% else %}
-                <span class=" text-lgreen"> All | {{ product_list.count }}
+                <span class=" text-light"> All | {{ product_list.count }}
                     {% if product_list.count == 1 %}product{% else %}products{% endif %}</span>
                 {% endif %}
             </div>
@@ -102,10 +112,10 @@
                                             <!-- <span class="me-2">Sizes:</span> -->
                                             {% for size in product.get_sizes %}
                                             <div class="size-box my-2 me-2">
-                                                <input id="id_size-{{ size }}_prod-{{ product.id }}" type="radio"
-                                                    class="size d-none" name="size" value="{{ size }}">
-                                                <label for="id_size-{{ size }}_prod-{{ product.id }}"
-                                                    class="border size-box smaller-text">{{ size }}</label>
+                                                <input id="id_size-{{ size.slug }}_prod-{{ product.id }}" type="radio"
+                                                    class="size d-none" name="size" value="{{ size.slug }}">
+                                                <label for="id_size-{{ size.slug }}_prod-{{ product.id }}"
+                                                    class="border size-box smaller-text">{{ size.size_short }}</label>
                                             </div>
                                             {% endfor %}
                                         </div>
@@ -115,10 +125,10 @@
                                             <div class="color-selector d-flex flex-row flex-wrap mt-2">
                                                 <!-- Colors:  -->
                                                 {% for color in product.get_colors %}
-                                                <div class="circle bg-{{ color.lower }} me-2">
-                                                    <input id="id_color-{{ color }}_prod-{{ product.id }}" type="radio" class="color d-none"
-                                                        name="color" value="{{ color.lower }}">
-                                                    <label for="id_color-{{ color }}_prod-{{ product.id }}" class="circle"></label>
+                                                <div class="circle bg-{{ color.slug }} me-2">
+                                                    <input id="id_color-{{ color.slug }}_prod-{{ product.id }}" type="radio" class="d-none"
+                                                        name="color" value="{{ color.slug }}">
+                                                    <label for="id_color-{{ color.slug }}_prod-{{ product.id }}" class="circle{% if color.slug == 'white' %}-white{% endif %}"></label>
                                                 </div>
                                                 {% endfor %}
                                             </div>

@@ -63,10 +63,10 @@
                             <span class="me-2">Sizes:</span>
                             {% for size in product.get_sizes %}
                             <div class="size-box me-2">
-                                <input id="id_size-{{ size }}_prod-{{ product.id }}" type="radio" class="size d-none"
-                                    name="size" value="{{ size }}">
-                                <label for="id_size-{{ size }}_prod-{{ product.id }}"
-                                    class="border size-box">{{ size }}</label>
+                                <input id="id_size-{{ size.slug }}_prod-{{ product.id }}" type="radio" class="size d-none"
+                                    name="size" value="{{ size.slug }}">
+                                <label for="id_size-{{ size.slug }}_prod-{{ product.id }}"
+                                    class="border size-box">{{ size.size_short }}</label>
                             </div>
                             {% endfor %}
                         </div>
@@ -75,9 +75,9 @@
                         {% if product.get_colors %}
                         <div class="color-selector d-flex flex-row flex-wrap mt-3">
                             Colors: {% for color in product.get_colors %}
-                            <div class="circle bg-{{ color.lower }} ms-2">
+                            <div class="circle bg-{{ color.slug }} ms-2">
                                 <input id="id_color-{{ color }}_prod-{{ product.id }}" type="radio" class="color d-none"
-                                    name="color" value="{{ color.lower }}">
+                                    name="color" value="{{ color.slug }}">
                                 <label for="id_color-{{ color }}_prod-{{ product.id }}" class="circle"></label>
                             </div>
                             {% endfor %}
