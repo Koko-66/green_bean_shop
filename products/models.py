@@ -9,7 +9,7 @@ class Type(models.Model):
     """Create instance of Type"""
     product_type = models.CharField(max_length=100)
     type_code = models.CharField(max_length=5)
-    slug = models. SlugField(max_length=100)
+    slug = models. SlugField(max_length=100, unique=True)
 
     def save(self, *args, **kwargs):
         """
@@ -27,7 +27,7 @@ class Size(models.Model):
     """Create instance of Size"""
     size_short = models.CharField(max_length=25)  # e.g. 'M'
     size_long = models.CharField(max_length=50)  # e.g. 'Medium'
-    slug = models. SlugField(max_length=25)
+    slug = models. SlugField(max_length=25, unique=True)
 
     def save(self, *args, **kwargs):
         """
@@ -45,7 +45,7 @@ class Color(models.Model):
     """Create instance of Color"""
     color = models.CharField(max_length=100)  # display color
     color_code = models.CharField(max_length=5)
-    slug = models. SlugField(max_length=100)
+    slug = models. SlugField(max_length=100, unique=True)
 
     def save(self, *args, **kwargs):
         """
@@ -67,7 +67,7 @@ class Category(models.Model):
     """Create instance of Category"""
     category_name = models.CharField(max_length=200)
     friendly_name = models.CharField(max_length=254, null=True, blank=True)
-    slug = models. SlugField(max_length=200)
+    slug = models. SlugField(max_length=200, unique=True)
 
     def save(self, *args, **kwargs):
         """
@@ -114,7 +114,8 @@ class Product(models.Model):
         """Get all sizes for a product"""
         sizes = []
         for size in self.size.all():
-            sizes.append(size.size_short)
+            # sizes.append(size.size_short)
+            sizes.append(size)
         # print(sizes)
         return sizes
 
@@ -122,7 +123,8 @@ class Product(models.Model):
         """Get all colors for a product"""
         colors = []
         for color in self.color.all():
-            colors.append(color.color)
+            # colors.append(color.color)
+            colors.append(color)
         # print(colors)
         return colors
 
@@ -130,7 +132,8 @@ class Product(models.Model):
         """Get list of categories for a product"""
         categories = []
         for category in self.category.all():
-            categories.append(category.friendly_name)
+            # categories.append(category.friendly_name)
+            categories.append(category)
         # print(categories)
         return categories
 
