@@ -35,7 +35,7 @@ $(document).ready(function () {
     // Preselect size M in the product detail and all products views
     $(".size-selector").each(function(index){
         // $(this).find('*').filter(':input:first').attr("checked", true);
-        $(this).find("*").filter(":input[value='M']").attr("checked", true);
+        $(this).find("*").filter(":input[value='m']").attr("checked", true);
         $(this).find("*").filter(":input:first").attr("required", true);
     });
     // clear selected filters in filters pop up
