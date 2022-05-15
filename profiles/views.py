@@ -1,6 +1,7 @@
 """User profile views"""
 # from django.contrib import messages
-from django.http import HttpResponseRedirect
+# from django.http import HttpResponseRedirect
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render, get_object_or_404
 from django.views.generic import (
     DetailView,
@@ -10,28 +11,8 @@ from checkout.models import Order
 from .forms import UserProfileForm
 from .models import UserProfile
 
-# Code from CI Boutique Ado walkthrough project
-# def profile(request):
-#     """Display the user's profile."""
 
-#     profile = get_object_or_404(UserProfile, user=request.user)
-#     form = UserProfileForm(instance=profile)
-    
-#     if request.method == 'POST':
-#         form = UserProfileForm(request.POST, instance=profile)
-#         if form.is_valid():
-#             form.save()
-#             messages.success(request, 'Profile updated.')
-#     template = 'profiles/profile.html'
-#     context = {
-#         'profile': profile,
-#         'form': form
-#     }
-
-#     return render(request, template, context)
-
-
-class UserProfileDetails(DetailView):
+class UserProfileDetails(LoginRequiredMixin, DetailView):
     """Display and update userprofile"""
 
     model = UserProfile
@@ -47,7 +28,7 @@ class UserProfileDetails(DetailView):
         return context
 
 
-class UpdateProfile(UpdateView):
+class UpdateProfile(LoginRequiredMixin, UpdateView):
     """Display and update userprofile"""
 
     form_class = UserProfileForm
@@ -62,7 +43,7 @@ class UpdateProfile(UpdateView):
         return context
 
 
-class PastOrderDetailView(DetailView):
+class PastOrderDetailView(LoginRequiredMixin, DetailView):
     """View details of past order"""
     model = Order
     # success_message = f'Details of order placed on {order.date}.'
