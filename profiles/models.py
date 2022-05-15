@@ -35,7 +35,7 @@ class UserProfile(models.Model):
 
     def get_absolute_url(self):
         """Define absolute url"""
-        return reverse('profiles:profile', kwargs={'pk' : self.pk})
+        return reverse('profiles:profile', kwargs={'pk': self.pk})
 
 
 @receiver(post_save, sender=User)
@@ -44,6 +44,6 @@ def create_or_update_user_profile(sender, instance, created, **kwargs):
     Create or update the user profile
     """
     if created:
-        # If user exist, save profile rather than creating new one
         UserProfile.objects.create(user=instance)
+     # If user exist, save profile rather than creating new one
     instance.userprofile.save()
