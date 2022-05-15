@@ -47,7 +47,7 @@ The database underlying the website is a Postgres relationship database, where t
 The database model comprises of the following main tables:
 
   ### Product:
-  `Product` is the core model for the site, which has relationships with the following __supporting models__: `Type` (type of product), `Size`, `Color` and `Category`. All supporting models are optional, and can be left blank when creating a product for greater flexibility and to allow scaling product range.
+  `Product` is the core model for the site, which has relationships with the following __supporting models__: `Type` (type of product), `Size`, `Color` and `Category`. All supporting models are optional, and can be left blank when creating a product for greater flexibility and to allow scaling product range. They also include a `slug` field to programatically enforce consistency of formatting (capitalisation) for use in the code to prevent errors. 
 
   ### Order and OrderLineItem:
   `Order` stores information about an order placed by the users, and delivery address, to allow orders to be completed by shoppers who are not registered.
@@ -132,6 +132,8 @@ Admin user's home page<br>
 
 
 ## <a name="left-to-implement"></a>Features Left to Implement
+
+### Filtering by more than one color, size and category
 
 
 # <a name="django-admin"></a>Management via Django admin site
