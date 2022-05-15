@@ -7,7 +7,7 @@ import sys
 def main():
     """Run administrative tasks."""
     settings = 'green_bean.test_settings' if 'test' in sys.argv else 'green_bean.settings'
-    os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'green_bean.settings')
+    os.environ.setdefault('DJANGO_SETTINGS_MODULE', settings)
     try:
         from django.core.management import execute_from_command_line
     except ImportError as exc:
