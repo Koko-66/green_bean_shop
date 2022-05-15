@@ -73,6 +73,7 @@ def bag_contents(request):
         else:
             delivery = settings.STANDARD_DELIVERY_HIGHER
         free_delivery_delta = free_delivery_threshold - float(total)
+        free_delivery_delta = round(free_delivery_delta, 2)
     else:
         delivery = 0
         free_delivery_delta = 0
