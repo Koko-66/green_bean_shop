@@ -55,6 +55,8 @@ INSTALLED_APPS = [
     'allauth.socialaccount',
     'widget_tweaks',
     'crispy_forms',
+    "crispy_bootstrap5",
+    'bootstrap_modal_forms',
 
     # third party
     # this project
@@ -77,6 +79,10 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'green_bean.urls'
 
+CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
+
+CRISPY_TEMPLATE_PACK = 'bootstrap5'
+
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
@@ -92,11 +98,19 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'django.template.context_processors.media',
                 'bag.contexts.bag_contents',
             ],
+            'builtins': [
+                'crispy_forms.templatetags.crispy_forms_tags',
+                'crispy_forms.templatetags.crispy_forms_field',
+            ]
         },
     },
 ]
+
+# required by gitpod
+MESSAGE_STORAGE = 'django.contrib.messages.storage.session.SessionStorage'
 
 AUTHENTICATION_BACKENDS = [
     # Needed to login by username in Django admin, regardless of `allauth`
@@ -132,7 +146,6 @@ LOGIN_REDIRECT_URL = '/'
 
 WSGI_APPLICATION = 'green_bean.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
@@ -140,6 +153,7 @@ WSGI_APPLICATION = 'green_bean.wsgi.application'
 #     'default': dj_database_url.parse(os.environ.get('DATABASE_URL'))
 # }
 
+# Database settings for testing
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
@@ -200,9 +214,8 @@ STANDARD_DELIVERY_HIGHER = 4.99
 
 # Stripe settings
 STRIPE_CURRENCY = 'gbp'
-STRIPE_WH_SECRET = os.environ.get('STRIPE_WEBHOOK_SECRET')
 if os.path.isfile('env.py'):
     STRIPE_PUBLIC_KEY = os.environ.get('STRIPE_PUBLIC_KEY')
     STRIPE_SECRET_KEY = os.environ.get('STRIPE_SECRET_KEY')
     DOMAIN = os.environ.get('DOMAIN')
-        STRIPE_WH_SECRET = os.environ.get('STRIPE_WH_SECRET')
+    STRIPE_WH_SECRET = os.environ.get('STRIPE_WH_SECRET')
