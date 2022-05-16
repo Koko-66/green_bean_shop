@@ -115,27 +115,21 @@ class Product(models.Model):
         """Get all sizes for a product"""
         sizes = []
         for size in self.size.all():
-            # sizes.append(size.size_short)
             sizes.append(size)
-        # print(sizes)
         return sizes
 
     def get_colors(self):
         """Get all colors for a product"""
         colors = []
         for color in self.color.all():
-            # colors.append(color.color)
             colors.append(color)
-        # print(colors)
         return colors
 
     def get_categories(self):
         """Get list of categories for a product"""
         categories = []
         for category in self.category.all():
-            # categories.append(category.friendly_name)
             categories.append(category)
-        # print(categories)
         return categories
 
     def _generate_code(self):
@@ -168,7 +162,6 @@ class Product(models.Model):
 class Rating(models.Model):
     """Create instance of rating"""
     RATING = (
-        (0, '0'),
         (1, '1'),
         (2, '2'),
         (3, '3'),
@@ -178,3 +171,7 @@ class Rating(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name='rating')
     rating = models.IntegerField(default=0, choices=RATING)
+
+    def __str__(self):
+        """String method for rating"""
+        return f'{self.product.product_name}_{self.rating}'

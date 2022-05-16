@@ -71,14 +71,6 @@
                 </div>
             </div>
         </div>
-        <!-- Modal to display delete view -->
-        <div class="modal fade" tabindex="-1" role="dialog" id="modal">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <!-- Form goes here -->
-                </div>
-            </div>
-        </div>
         <div class="main-nav pt-1 d-flex flex-col justify-content-between align-items-center mb-0 pe-md-2">
             <!-- Logo and main nav div -->
             <div class="col">
@@ -174,6 +166,15 @@
     {% block content %}
     
     {% endblock %}
+    <!-- Modal to display BS modal -->
+    <div class="modal fade" tabindex="-1" role="dialog" id="modal">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <!-- Form goes here -->
+            </div>
+        </div>
+    </div>
+    {% include 'includes/mailchimp_form.html' %}
     </div>
     {% block page_footer%}
     <!-- Footer -->
@@ -204,7 +205,7 @@
     <script src="{% static 'js/jquery.bootstrap.modal.forms.js' %}"></script>
     <!-- <script src="checkout.js" defer></script> -->
     <!-- Mailchimp script -->
-    <script id="mcjs">!function(c,h,i,m,p){m=c.createElement(h),p=c.getElementsByTagName(h)[0],m.async=1,m.src=i,p.parentNode.insertBefore(m,p)}(document,"script","https://chimpstatic.com/mcjs-connected/js/users/8472d8143796a74cb56d90d96/49603e05f1240b697c8780ba2.js");</script>
+    <!-- <script id="mcjs">!function(c,h,i,m,p){m=c.createElement(h),p=c.getElementsByTagName(h)[0],m.async=1,m.src=i,p.parentNode.insertBefore(m,p)}(document,"script","https://chimpstatic.com/mcjs-connected/js/users/8472d8143796a74cb56d90d96/49603e05f1240b697c8780ba2.js");</script> -->
     {% endblock %}
 
     {% block extra_js %}

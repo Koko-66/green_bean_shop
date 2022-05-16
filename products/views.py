@@ -6,23 +6,31 @@ from django.shortcuts import (
     render,
     redirect,
     reverse,
+    # HttpResponse,
+    # get_object_or_404,
 )
 from django.urls import reverse_lazy
 from django.views.generic import (
     ListView,
     DetailView,
     UpdateView,
-    # DeleteView,
     CreateView,
 )
-from bootstrap_modal_forms.generic import BSModalDeleteView
+from bootstrap_modal_forms.generic import (
+    BSModalDeleteView,
+    BSModalCreateView,
+)
 from .models import (
     Category,
     Product,
     Color,
     Size,
+    Rating,
 )
-from .forms import CreateProductForm
+from .forms import (
+    CreateProductForm,
+    AddRatingForm,
+)
 
 
 class ProductListView(ListView):
@@ -51,9 +59,9 @@ class ProductListView(ListView):
             #     )
 
             if sortkey == 'name-asc':
-               sortkey = 'product_name'
-               direction = 'asc'
-               products = products.annotate(
+                sortkey = 'product_name'
+                direction = 'asc'
+                products = products.annotate(
                     lower_name=functions.Lower('product_name'))
 
             if sortkey == 'name-desc':
@@ -61,15 +69,14 @@ class ProductListView(ListView):
                 direction = 'desc'
                 products = products.annotate(
                     lower_name=functions.Lower('product_name'))
-            
+
             if sortkey == 'price-asc':
-               sortkey = 'price'
-               direction = 'asc'
+                sortkey = 'price'
+                direction = 'asc'
 
             if sortkey == 'price-desc':
                 sortkey = 'price'
                 direction = 'des'
-
 
             if sortkey == 'rating':
                 sortkey = 'rating'
@@ -77,9 +84,9 @@ class ProductListView(ListView):
                 # products = products.annotate(
                 #     rating_int=int('products__rating'))
 
-            if 'direction':
-                if direction == 'desc':
-                    sortkey = f'-{sortkey}'
+            if 'direction' and direction == 'desc':
+                # if direction == 'desc':
+                sortkey = f'-{sortkey}'
 
                 products = products.order_by(sortkey)
                 # print(products)
@@ -126,12 +133,10 @@ class ProductListView(ListView):
         sort_type = current_sorting.split('-')[0]
         sort_direction = current_sorting.split('-')[1]
 
-        # # All categories, sizes and colors for a div with filter
+        # All categories, sizes and colors for a div with filter
         category_list = Category.objects.all()
         color_list = Color.objects.all()
         size_list = Size.objects.all()
-        # print(colors)
-        # print(sizes)
 
         context = {
             'product_list': products,
@@ -188,3 +193,29 @@ class DeleteProductView(LoginRequiredMixin, BSModalDeleteView):
     template_name = 'products/product_delete.html'
     success_message = 'Product successfully deleted'
     success_url = reverse_lazy('products:products')
+
+
+class AddRating(LoginRequiredMixin, BSModalCreateView):
+    """Rate the product"""
+    form_class = AddRatingForm
+    template_name = 'products/includes/add_rating.html'
+    success_message = 'Rating successfully added.'
+
+    def get(self, *args, **kwargs):
+    
+        pk = self.kwargs.get('pk')
+        product = Product.objects.get(pk=pk)
+        initial_data = {
+            'user': self.request.user,
+            'product': product,
+        }
+        form = AddRatingForm(self.request.POST or None, initial=initial_data)
+        context = {
+            'form': form
+        }
+        return render(self.request, 'products/includes/add_rating.html', context)
+
+    def get_success_url(self, *args, **kwargs):
+        pk = self.kwargs.get('pk')
+        print(pk)
+        return reverse_lazy('products:product_details', args=[pk])

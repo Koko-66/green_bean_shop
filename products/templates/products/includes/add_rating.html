@@ -1,0 +1,59 @@
+<!-- <form method="POST">
+    {% csrf_token %}
+    <input type="hidden" name="product" value="{{ product }}">
+    <input type="hidden" name="user" value="{{ request.user }}">
+
+    <input type="radio" id="1-star" name=rating value="1" class="d-none">
+    <label for="1-star"><i class="far fa-star"></i></label>
+
+    <input type="hidden" id="2-star" name=rating value="2" class="d-none">
+    <label for="2-star"><i class="far fa-star"></i></label>
+
+    <input type="radio" id="3-star" name=rating value="3" class="d-none">
+    <label for="3-star"><i class="far fa-star"></i></label>
+    
+    <input type="radio" id="4-star" name=rating value="4" class="d-none">
+    <label for="4-star"><i class="far fa-star"></i></label>
+    
+    <input type="radio" id="1-star" name=rating value="5" class="d-none">
+    <label for="5-star"><i class="far fa-star"></i></label>
+
+    <button type="submit">Rate this product</button>
+</form> -->
+
+{% load widget_tweaks %}
+
+<form method="post" action="">
+  {% csrf_token %}
+
+  <div class="modal-header">
+    <h3 class="modal-title">Rate {{ product }}</h3>
+    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+  </div>
+
+  <div class="modal-body">
+
+    <div class="{% if form.non_field_errors %}invalid{% endif %} mb-2">
+      {% for error in form.non_field_errors %}
+        {{ error }}
+      {% endfor %}
+    </div>
+
+    {% for field in form %}
+      <div class="form-group">
+        <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+        {% render_field field class="form-select" placeholder=field.label %}
+        <div class="{% if field.errors %} invalid{% endif %}">
+          {% for error in field.errors %}
+            <p class="help-block">{{ error }}</p>
+          {% endfor %}
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+
+  <div class="modal-footer">
+    <button type="submit" class="btn btn-primary">Add rating</button>
+  </div>
+
+</form>

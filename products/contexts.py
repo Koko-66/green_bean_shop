@@ -23,6 +23,7 @@ def get_ratings(request):
                 count += 1
 
     context = {
+        'avg_rating': avg_rating,
         'avg_ratings': avg_ratings,
         'stars': stars,
         'h_star': h_star,

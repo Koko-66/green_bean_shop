@@ -12,4 +12,6 @@ urlpatterns = [
          name='edit_product'),
     path('product_details/<int:pk>/delete/', views.DeleteProductView.as_view(),
          name='delete_product'),
+    path('product_details/<int:pk>/add_rating/', views.AddRating.as_view(),
+         name='add_rating'),
 ]

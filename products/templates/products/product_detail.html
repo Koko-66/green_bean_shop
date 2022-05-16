@@ -15,14 +15,6 @@
 {% endblock %}
 
 {% block content %}
-<!-- Modal to display delete view -->
-<div class="modal fade" tabindex="-1" role="dialog" id="modal">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <!-- Form goes here -->
-        </div>
-    </div>
-</div>
 
 <div class="overlay img-fluid"></div>
 <div class="container-fluid pt-1">
@@ -41,24 +33,22 @@
         </div>
         <div class="col-12 col-md-6">
             <div class="product-details-container mt-md-5">
-                <!-- Rating -->
-                <!-- {% if product.rating %}
-                <small class="text-dgreen"><i class="fas fa-star me-1"></i>{{ product.rating }} / 5</small>
-                {% else %}
-                <small class="text-muted">No Rating</small>
-                {% endif %} -->
                 {% if avg_ratings %}
-                    {{ avg_rating }}
-                    {% for star in stars %}
-                        <i class="fas fa-star"></i>
+                    {% for rated_product, rating in avg_ratings.items %}
+                        {% if rated_product == product %}
+                            {% for star in stars %}
+                                <i class="fas fa-star"></i>
+                            {% endfor %}
+                            {% if h_star %}
+                                <i class="fas fa-star-half"></i>
+                            {% endif %}
+                        {% endif %}
                     {% endfor %}
-                    {% if h_star %}
-                        <i class="fas fa-star-half"></i>
-                    {% endif %}
                 {% else %}
-                Not yet rated
+                    Not yet rated
                 {% endif %}
-                <a href="{#% url '' %#}" class="link-button">Rate this product</a>
+                {#% include 'products/includes/add_rating.html' %#}
+                <!-- <a href="{#% url '' %#}" class="link-button">Rate this product</a> -->
                 <!-- Product name and price -->
                 <div class="lead">
                     <p class="col mb-0 text-green">{{ product.product_name }}</p>
@@ -145,7 +135,8 @@
                 {% if request.user.is_superuser %}
                 <small class="ml-3">
                     <a href="{% url 'products:edit_product' product.pk %}">Edit</a> | 
-                    <a class="text-danger" href="{% url 'products:delete_product' product.pk %}">Delete</a>
+                    <a type="button" class="delete-product bs-modal text-danger"
+                                        data-form-url="{% url 'products:delete_product' product.pk %}">Delete</a>
                 </small>
             {% endif %}
             </div>
@@ -153,6 +144,7 @@
         <div class="row">
             <p class="mt-5 text-dgreen fs-6">{{ product.description }}</p>
         </div>
+        <a data-form-url="{% url 'products:add_rating' product.pk %}" class="add-rating main-btn-1" title="Rate product" aria-label="Rate product">Rate product</a>
     </div>
     
         {% endblock %}
@@ -161,4 +153,5 @@
         {{ block.super }}
         {% include 'products/includes/quantity_input_script.html' %}
         <script src="{% static 'products/js/products.js' %}"></script>
+        <script src="{% static 'products/js/bs_modal_forms.js' %}"></script>
         {% endblock %}
