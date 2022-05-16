@@ -1,5 +1,6 @@
 """Models for products app"""
 import random
+from django.contrib.auth.models import User
 from django.db import models
 from django.template.defaultfilters import slugify
 from cloudinary.models import CloudinaryField
@@ -107,8 +108,8 @@ class Product(models.Model):
     color = models.ManyToManyField(Color, blank=True, related_name='colors')
     price = models.DecimalField(max_digits=6, decimal_places=2, null=True,
                                 blank=True, default=00.00)
-    rating = models.DecimalField(
-        max_digits=6, decimal_places=2, null=True, blank=True)
+    # rating = models.DecimalField(
+        # max_digits=6, decimal_places=2, null=True, blank=True)
 
     def get_sizes(self):
         """Get all sizes for a product"""
@@ -162,3 +163,18 @@ class Product(models.Model):
     def __str__(self):
         """String method for product"""
         return self.product_name
+
+
+class Rating(models.Model):
+    """Create instance of rating"""
+    RATING = (
+        (0, '0'),
+        (1, '1'),
+        (2, '2'),
+        (3, '3'),
+        (4, '4'),
+        (5, '5'),
+    )
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name='rating')
+    rating = models.IntegerField(default=0, choices=RATING)

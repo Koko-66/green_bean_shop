@@ -99,12 +99,24 @@
                                                             {% endfor %}
                                                         </p> -->
                                             <!-- {% endif %} -->
-                                            {% if product.rating %}
+                                            <!-- {% if product.rating %}
                                                 <small class="px-0 text-muted border-bottom"><i
                                                         class="fas fa-star mt-0 mb-1 me-1"></i>{{ product.rating }} / 5</small>
                                             {% else %}
                                                 <small class="px-0 text-muted border-bottom">No rating</small>
-                                            {% endif %}
+                                            {% endif %} -->
+                                        {% if avg_ratings %}
+                                        <!-- {{ avg_ratings }} -->
+                                            {% for rated_product, rating in avg_ratings.items %}
+                                                {% if rated_product == product %}
+                                                <small class="px-0 text-muted border-bottom"><i
+                                                        class="fas fa-star mt-0 mb-1 me-1"></i>{{ rating }} / 5</small>
+                                                
+                                                {% endif %}
+                                            {% endfor %}
+                                        {% else %}
+                                            <small class="px-0 text-muted border-bottom">No rating</small>
+                                        {% endif %}
                                     <div class="form-row px-0">
                                         <!-- Sizes -->
                                         {% if product.get_sizes %}

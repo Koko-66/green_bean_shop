@@ -1,6 +1,6 @@
 """Register product models in the admin"""
 from django.contrib import admin
-from .models import Type, Size, Color, Category, Product
+from .models import Type, Size, Color, Category, Product, Rating
 
 
 @admin.register(Type)
@@ -25,6 +25,13 @@ class ColorAdmin(admin.ModelAdmin):
 class CategoryAdmin(admin.ModelAdmin):
     """Register Category on admin"""
     list_display = ('category_name', 'friendly_name', 'slug')
+
+
+@admin.register(Rating)
+class CategoryAdmin(admin.ModelAdmin):
+    """Register Rating on admin"""
+    list_display = ('rating', 'user', 'product')
+    list_filter = ['product']
 
 
 @admin.register(Product)
