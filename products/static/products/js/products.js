@@ -42,9 +42,4 @@ $(document).ready(function () {
     $("#clear-filters").click(function(event){
         $("input[type='radio']").prop("checked", false);
     });
-
-    // // Delete product link - formURL is retrieved from the data of the element
-    // $(".delete-product").each(function () {
-    //     $(this).modalForm({formURL: $(this).data("form-url"), isDeleteForm: true});
-    // });
 })
