@@ -32,7 +32,9 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.environ.get('DEBUG', 'False') == 'True'
+# DEBUG = False
 DEVELOPMENT = os.environ.get('DEVELOPMENT', 'False') == 'True'
+
 
 ALLOWED_HOSTS = ['green-bean-shop.herokuapp.com', 'localhost', '127.0.0.1']
 CSRF_TRUSTED_ORIGINS = [os.environ.get('CSRF_TRUSTED_ORIGINS')]
@@ -100,6 +102,7 @@ TEMPLATES = [
                 'django.contrib.messages.context_processors.messages',
                 'django.template.context_processors.media',
                 'bag.contexts.bag_contents',
+                'products.contexts.get_ratings',
             ],
             'builtins': [
                 'crispy_forms.templatetags.crispy_forms_tags',

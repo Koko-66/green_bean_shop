@@ -109,8 +109,15 @@
                                         <!-- {{ avg_ratings }} -->
                                             {% for rated_product, rating in avg_ratings.items %}
                                                 {% if rated_product == product %}
-                                                <small class="px-0 text-muted border-bottom"><i
-                                                        class="fas fa-star mt-0 mb-1 me-1"></i>{{ rating }} / 5</small>
+                                                <small class="px-0 text-muted border-bottom">
+                                                    {% for star in stars %}
+                                                    <i class="fas fa-star"></i>
+                                                {% endfor %}
+                                                {% if h_star %}
+                                                    <i class="fas fa-star-half"></i>
+                                                {% endif %}
+                                                    <!-- {{ rating }} / 5 -->
+                                                </small>
                                                 
                                                 {% endif %}
                                             {% endfor %}

@@ -42,11 +42,23 @@
         <div class="col-12 col-md-6">
             <div class="product-details-container mt-md-5">
                 <!-- Rating -->
-                {% if product.rating %}
+                <!-- {% if product.rating %}
                 <small class="text-dgreen"><i class="fas fa-star me-1"></i>{{ product.rating }} / 5</small>
                 {% else %}
                 <small class="text-muted">No Rating</small>
+                {% endif %} -->
+                {% if avg_ratings %}
+                    {{ avg_rating }}
+                    {% for star in stars %}
+                        <i class="fas fa-star"></i>
+                    {% endfor %}
+                    {% if h_star %}
+                        <i class="fas fa-star-half"></i>
+                    {% endif %}
+                {% else %}
+                Not yet rated
                 {% endif %}
+                <a href="{#% url '' %#}" class="link-button">Rate this product</a>
                 <!-- Product name and price -->
                 <div class="lead">
                     <p class="col mb-0 text-green">{{ product.product_name }}</p>

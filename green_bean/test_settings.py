@@ -100,6 +100,7 @@ TEMPLATES = [
                 'django.contrib.messages.context_processors.messages',
                 'django.template.context_processors.media',
                 'bag.contexts.bag_contents',
+                'products.contexts.get_ratings',
             ],
             'builtins': [
                 'crispy_forms.templatetags.crispy_forms_tags',
@@ -135,6 +136,7 @@ else:
     EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER')
     EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PSWD')
     DEFAULT_FROM_EMAIL = os.environ.get('EMAIL_HOST_USER')
+
 
 ACCOUNT_AUTHENTICATION_METHOD = 'username_email'
 ACCOUNT_EMAIL_REQUIRED = True
