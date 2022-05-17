@@ -144,7 +144,9 @@
         <div class="row">
             <p class="mt-5 text-dgreen fs-6">{{ product.description }}</p>
         </div>
+        {% if request.user.is_authenticated %}
         <a data-form-url="{% url 'products:add_rating' product.pk %}" class="add-rating main-btn-1" title="Rate product" aria-label="Rate product">Rate product</a>
+        {% endif %}
     </div>
     
         {% endblock %}

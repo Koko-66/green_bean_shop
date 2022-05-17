@@ -38,4 +38,13 @@ class AddRatingForm(PopRequestMixin,
     class Meta:
         """Specify model and form fields"""
         model = Rating
-        fields = ('user', 'product', 'rating',)
+        fields = ('user', 'product', 'rating', 'comment')
+        # fields = ('rating',)
+
+        widgets = {
+            'rating': forms.RadioSelect(),
+            'comment': forms.Textarea(attrs={
+                'lines':'5', 
+                'max-width': '200px',
+            })
+        }

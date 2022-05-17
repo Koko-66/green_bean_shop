@@ -162,15 +162,17 @@ class Product(models.Model):
 class Rating(models.Model):
     """Create instance of rating"""
     RATING = (
-        (1, '1'),
-        (2, '2'),
-        (3, '3'),
-        (4, '4'),
-        (5, '5'),
+        (1, 'Poor'),
+        (2, 'Ok'),
+        (3, 'Good'),
+        (4, 'Very good'),
+        (5, 'Excellent'),
     )
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name='rating')
+    product = models.ForeignKey(Product, on_delete=models.CASCADE,
+                                related_name='rating')
     rating = models.IntegerField(default=0, choices=RATING)
+    comment = models.TextField(max_length=1500)
 
     def __str__(self):
         """String method for rating"""

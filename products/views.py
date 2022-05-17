@@ -211,7 +211,8 @@ class AddRating(LoginRequiredMixin, BSModalCreateView):
         }
         form = AddRatingForm(self.request.POST or None, initial=initial_data)
         context = {
-            'form': form
+            'form': form,
+            'product': product,
         }
         return render(self.request, 'products/includes/add_rating.html', context)
 

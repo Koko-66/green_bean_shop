@@ -399,13 +399,35 @@ footer {
 }
 
 
-
 /* Apply coursor to links accross the site */
 /* Update and remvoe link in the bag, used to apply js */
 .btt-link, 
 .update-link, 
 .remove-item {
     cursor: pointer;
+}
+
+/* Mailchimp form */
+
+#mc_embed_signup {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+}
+
+#mc-toggle-btn{
+    margin-bottom: -105px;
+    margin-right: 70px;
+    padding: 4px;
+    /* padding-bottom: 10px; */
+}
+
+.offcanvas-end {
+    top: auto !important;
+    right: 0;
+    width: 400px;
+    border-left: 1px solid rgba(0,0,0,.2);
+    transform: translateX(100%);
 }
 
 /* --- Media queries --- */
