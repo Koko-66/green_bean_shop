@@ -2,7 +2,19 @@
     {% csrf_token %}
     <!-- Modal content injected into the modal div in the main manage categories view  -->
     <div class="modal-header">
-      <h3 class="modal-title">Delete product?</h3>
+      <h3 class="modal-title">
+        {% if product %}
+        Delete product?
+        {% elif type %}
+        Delete type?
+        {% elif category %}
+        Delete category?
+        {% elif color %}
+        Delete color?
+        {% else %}
+        Delete size?
+        {% endif %}
+      </h3>
       <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
     </div>
   

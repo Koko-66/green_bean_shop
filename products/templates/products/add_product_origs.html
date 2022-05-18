@@ -1,0 +1,93 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load crispy_forms_field %}
+
+<!-- <!-- {% block page_header %} -->
+<div class="container-fluid header-container">
+    <div class="row">
+        <div class="col">
+            All products
+        </div>
+    </div>
+</div>
+{% endblock %} -->
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'products/css/products.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="auth-overlay"></div>
+<div class="container mt-5">
+    <!-- <div class="row"> -->
+        <div class="col-12 col-lg-6">
+            <h2 class="text-dgreen">Product management</h2>
+            <h5>Add product</h5>
+            <hr>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12 col-lg-8 ">
+            <form method="POST" action="{% url 'products:add_product' %}" class="form mb-2"
+                enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="form-group">
+                    {{ form.product_name|as_crispy_field }}
+                </div>
+                <div class="form-group">
+                    {{ form.description|as_crispy_field }}
+                </div>
+                <div class="row">
+                    <button class="create-new" data-form-url="{% url 'products:create_type' %}">new type</button>
+                    <div class="form-group col-md-6 mb-0">
+                        <div class="d-flex flex-row-reverse">
+                            
+                            <a data-form-url="{% url 'products:create_type' %}" class="create-new add-button" title="Create new product type" aria-label="Create new product type"><i class="fas fa-plus-square flex-shrink-1"></i></a>
+                            <div class="col">{{ form.product_type|as_crispy_field }}</div>
+                        </div>
+                    </div>
+                    <div class="form-group col-md-6 mb-0">
+                        <div class="d-flex flex-row-reverse">
+                            <div class="add-button"><i class="fas fa-plus-square flex-shrink-1"></i></div>
+                            <div class="col">{{ form.category|as_crispy_field }}</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-md-6 mb-0">
+                        <div class="d-flex flex-row-reverse">
+                            <div class="add-button"><i class="fas fa-plus-square flex-shrink-1"></i></div>
+                            <div class="col">{{ form.color|as_crispy_field }}</div>
+                        </div>
+                    </div>
+                    <div class="form-group col-md-6 mb-0">
+                        <div class="d-flex flex-row-reverse">
+                            <a class="add-button undecorated"><i class="fas fa-plus-square flex-shrink-1"></i></a>
+                            <div class="col">{{ form.size|as_crispy_field }}</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-md-6 mb-0">
+                        {{ form.image|as_crispy_field }}
+                    </div>
+                    <div class="form-group col-md-6 mb-0">
+                        {{ form.price|as_crispy_field }}
+                    </div>
+                </div>
+
+
+                <!-- {{ form | crispy }} -->
+                <div class="text-right">
+                    <a class="btn btn-outline-black rounded-0" href="{% url 'products:products' %}">Cancel</a>
+                    <button class="btn btn-black rounded-0" type="submit">Add Product</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
+{% block postloadjs %}
+    {{ block.super }}
+        <!-- <script src="{% static 'products/js/products.js' %}"></script> -->
+        <script src="{% static 'products/js/bs_modal_forms.js' %}"></script>
+{% endblock %}

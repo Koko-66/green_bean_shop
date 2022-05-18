@@ -1,0 +1,235 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block page_header %}
+<div class="container header-container">
+    <div class="row">
+        <div class="col text-lgreen">Product details</div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'products/css/products.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="container pt-1 pt-md-3 pt-lg-5">
+    <div class="accordion accordion-flush" id="accordionProductMangement">
+        <!-- Products -->
+        <div class="accordion-item">
+            <div class="d-flex flex-row align-items-center justify-content-end">
+                <h2 class="accordion-header flex-grow-1" id="flush-headingOne">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+                        Products
+                    </button>
+                </h2>
+                <div><a href="{% url 'products:add_product' %}" type="button" class="main-btn-1 small py-0">Add new</a>
+                </div>
+            </div>
+            <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne"
+                data-bs-parent="#accordionProductMangement">
+                <div class="accordion-body">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Product</th>
+                                <th>Type</th>
+                                <th class="text-center">Edit</th>
+                                <th class="text-center">Delete</th>
+                            </tr>
+                        </thead>
+                        <tbody class="small">
+                            {% for product in products %}
+                            <tr>
+                                <td>{{ product }}</td>
+                                <td>{{ product.product_type }}</td>
+                                <td class="text-center"><a href="{% url 'products:edit_product' product.pk %}"><i
+                                            class="fas fa-pen text-green"></i></a></td>
+                                <td class="text-center"><a type="button" class="delete bs-modal"
+                                        data-form-url="{% url 'products:delete_product' product.pk %}"><i
+                                            class="far fa-trash-alt text-green"></i></a></td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <!-- Categories -->
+        <div class="accordion-item">
+            <div class="d-flex flex-row align-items-center justify-content-end">
+                <h2 class="accordion-header flex-grow-1" id="flush-headingTwo">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
+                       Categories
+                    </button>
+                </h2>
+                <div><a data-form-url="{% url 'products:create_category' %}" type="button" class="create-new main-btn-1 py-0 small">Add new</a></div>
+            </div>
+            <div id="flush-collapseTwo" class="accordion-collapse collapse" aria-labelledby="flush-headingTwo"
+                data-bs-parent="#accordionProductMangement">
+                <div class="accordion-body">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Friendly name</th>
+                                <!-- <th></th> -->
+                                <th class="text-center">Edit</th>
+                                <th class="text-center">Delete</th>
+                            </tr>
+                        </thead>
+                        <tbody class="small">
+                            {% for category in categories %}
+                            <tr>
+                                <td>{{ category.friendly_name }}</td>
+                                <!-- <td>{{ product.product_type }}</td> -->
+                                <td class="text-center"><a
+                                        data-form-url="{% url 'products:update_category' category.pk %}" class="edit"><i
+                                            class="fas fa-pen text-green"></i></a></td>
+                                <td class="text-center"><a type="button" class="delete bs-modal"
+                                        data-form-url="{% url 'products:delete_category' category.pk %}"><i
+                                            class="far fa-trash-alt text-green"></i></a></td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <!-- Types -->
+        <div class="accordion-item">
+            <div class="d-flex flex-row align-items-center justify-content-end">
+            <h2 class="accordion-header flex-grow-1" id="flush-headingThree">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree">
+                    Product Types
+                </button>
+            </h2>
+            <div><a data-form-url="{% url 'products:create_type' %}" type="button" class="create-new main-btn-1 py-0 small">Add new</a></div>
+            </div>
+            <div id="flush-collapseThree" class="accordion-collapse collapse" aria-labelledby="flush-headingThree"
+                data-bs-parent="#accordionProductMangement">
+                <div class="accordion-body">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Type</th>
+                                <th>Code</th>
+                                <th class="text-center">Edit</th>
+                                <th class="text-center">Delete</th>
+                            </tr>
+                        </thead>
+                        <tbody class="small">
+                            {% for type in types %}
+                            <tr>
+                                <td>{{ type.product_type }}</td>
+                                <td>{{ type.type_code }}</td>
+                                <td class="text-center"><a
+                                        data-form-url="{% url 'products:update_type' type.pk %}" class="edit"><i
+                                            class="fas fa-pen text-green"></i></a></td>
+                                <td class="text-center"><a type="button" class="delete bs-modal"
+                                        data-form-url="{% url 'products:delete_type' type.pk %}"><i
+                                            class="far fa-trash-alt text-green"></i></a></td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <!-- Colors -->
+        <div class="accordion-item">
+            <div class="d-flex flex-row align-items-center justify-content-end">
+            <h2 class="accordion-header flex-grow-1" id="flush-headingThree">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#flush-collapseFour" aria-expanded="false" aria-controls="flush-collapseFour">
+                    Colors
+                </button>
+            </h2>
+            <div><a data-form-url="{% url 'products:create_color' %}" type="button" class="create-new main-btn-1 py-0 small">Add new</a></div>
+            </div>
+            <div id="flush-collapseFour" class="accordion-collapse collapse" aria-labelledby="flush-headingFour"
+                data-bs-parent="#accordionProductMangement">
+                <div class="accordion-body">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Color</th>
+                                <th>Code</th>
+                                <th class="text-center">Edit</th>
+                                <th class="text-center">Delete</th>
+                            </tr>
+                        </thead>
+                        <tbody class="small">
+                            {% for color in colors %}
+                            <tr>
+                                <td>{{ color.color }}</td>
+                                <td>{{ color.color_code }}</td>
+                                <td class="text-center"><a
+                                        data-form-url="{% url 'products:update_color' color.pk %}" class="edit"><i
+                                            class="fas fa-pen text-green"></i></a></td>
+                                <td class="text-center"><a type="button" class="delete bs-modal"
+                                        data-form-url="{% url 'products:delete_color' color.pk %}"><i
+                                            class="far fa-trash-alt text-green"></i></a></td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+            <!-- Sizes -->
+        <div class="accordion-item">
+            <div class="d-flex flex-row align-items-center justify-content-end">
+            <h2 class="accordion-header flex-grow-1" id="flush-headingThree">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#flush-collapseFive" aria-expanded="false" aria-controls="flush-collapseFive">
+                    Sizes
+                </button>
+            </h2>
+            <div><a data-form-url="{% url 'products:create_size' %}" type="button" class="create-new main-btn-1 py-0 small">Add new</a></div>
+            </div>
+            <div id="flush-collapseFive" class="accordion-collapse collapse" aria-labelledby="flush-headingFive"
+                data-bs-parent="#accordionProductMangement">
+                <div class="accordion-body">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Size</th>
+                                <th>Size short</th>
+                                <th class="text-center">Edit</th>
+                                <th class="text-center">Delete</th>
+                            </tr>
+                        </thead>
+                        <tbody class="small">
+                            {% for size in sizes %}
+                            <tr>
+                                <td>{{ size.size_long }}</td>
+                                <td>{{ size.size_short }}</td>
+                                <td class="text-center"><a
+                                        data-form-url="{% url 'products:update_size' size.pk %}" class="edit"><i
+                                            class="fas fa-pen text-green"></i></a></td>
+                                <td class="text-center"><a type="button" class="delete bs-modal"
+                                        data-form-url="{% url 'products:delete_size' size.pk %}"><i
+                                            class="far fa-trash-alt text-green"></i></a></td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block postloadjs %}
+{{ block.super }}
+{% include 'products/includes/quantity_input_script.html' %}
+<!-- <script src="{% static 'products/js/products.js' %}"></script> -->
+<script src="{% static 'products/js/bs_modal_forms.js' %}"></script>
+{% endblock %}

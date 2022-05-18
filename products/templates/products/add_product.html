@@ -1,7 +1,8 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load widget_tweaks %}
 
-<!-- {% block page_header %}
+{% block page_header %}
 <div class="container-fluid header-container">
     <div class="row">
         <div class="col">
@@ -9,30 +10,79 @@
         </div>
     </div>
 </div>
-{% endblock %} -->
+{% endblock %}
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'products/css/products.css' %}">
+{% endblock %}
 
 {% block content %}
-<!-- <div class="overlay"></div> -->
+
+<!-- Add product form -->
+<div class="overlay"></div>
 <div class="container mt-5">
     <div class="row">
         <div class="col-12 col-lg-6">
             <h2 class="text-dgreen">Product management</h2>
             <h5>Add product</h5>
+            <!-- <a href="{% url 'products:products' %}" class="btn-close d-inline" aria-label="Close"></a> -->
             <hr>
         </div>
     </div>
     <div class="row">
-        <div class="col-12 col-md-6">
-            <form method="POST" action="{% url 'products:add_product' %}" class="form mb-2" enctype="multipart/form-data">
-                {% csrf_token %}
-                {{ form | crispy }}
-                <div class="text-right">
-                    <a class="btn btn-outline-black rounded-0" href="{% url 'products:products' %}">Cancel</a>
-                    <button class="btn btn-black rounded-0" type="submit">Add Product</button>
+        <div class="col-12 col-lg-8 ">
+            <form method="POST" action="{% url 'products:add_product' %}" class="form mb-2">
+                <div class="">
+                    <div class="{% if form.non_field_errors %}invalid{% endif %} mb-2">
+                        {% for error in form.non_field_errors %}
+                        {{ error }}
+                        {% endfor %}
+                    </div>
+                    {% for field in form %}
+                    <div class="form-group">
+                        <label for="{{ field.id_for_label }}" class="mt-2 mb-1">{{ field.label }}</label>
+                        <!-- Check if field is category and add button to add new category -->
+                        {% if field.label == "Product type" %}
+                        <div class="d-flex flex-row">{% render_field field class="form-select" %}
+                        <a data-form-url="{% url 'products:add_type'%}" class="create-new" title="Add new product type" aria-label="Add new product type"><i class="fas fa-plus btn py-2"></i></a></div>
+                        {% elif field.label == "Category" %}
+                        <div class="d-flex flex-row">{% render_field field class="form-select" %}
+                        <a data-form-url="{% url 'products:add_category' %}" class="create-new" title="Add new product category" aria-label="Add new product category"><i class="fas fa-plus btn py-2"></i></a></div>
+                        {% elif field.label == "Color" %}
+                        <div class="d-flex flex-row">{% render_field field class="form-control" %}
+                        <a data-form-url="{% url 'products:add_color' %}" class="create-new" title="Add new product color" aria-label="Add new product color"><i class="fas fa-plus btn py-2"></i></a></div>
+                        {% elif field.label == "Size" %}
+                        <div class="d-flex flex-row">{% render_field field class="form-control" %}
+                        <a data-form-url="{% url 'products:add_size' %}" class="create-new" title="Add new product size" aria-label="Add new product size"><i class="fas fa-plus btn py-2"></i></a></div>
+                        {% elif field.label == "Price" %}
+                        <label for="{{ field.id_for_label }}" class="mt-2 mb-1">{{ field.label }} (GBP)</label>
+                        <div class="w-25">{% render_field field class="form-control" placeholder=field.label %}</div>
+                        {% else %}
+                        <div class="">{% render_field field class="form-control" placeholder=field.label %}</div>
+                        {% endif %}
+                        <div class="{% if field.errors %} invalid{% endif %}">
+                            {% for error in field.errors %}
+                            <p class="help-block">{{ error }}</p>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    {% endfor %} 
+                </div>
+                <!-- Form footer -->
+                <div class="modal-footer m-auto">
+                    <div class="m-auto">
+                        <a href="{% url 'products:products' %}" class="main-btn-2">Cancel</a>
+                        <button type="submit" class="main-btn-1" aria-label="Save">Save</button>
+                    </div>
                 </div>
             </form>
-        </div>            
+        </div>
     </div>
 </div>
+
 {% endblock %}
 
+{% block postloadjs %}
+    {{ block.super }}
+        <!-- <script src="{% static 'products/js/products.js' %}"></script> -->
+        <script src="{% static 'products/js/bs_modal_forms.js' %}"></script>
+{% endblock %}

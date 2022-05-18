@@ -135,7 +135,7 @@
                 {% if request.user.is_superuser %}
                 <small class="ml-3">
                     <a href="{% url 'products:edit_product' product.pk %}">Edit</a> | 
-                    <a type="button" class="delete-product bs-modal text-danger"
+                    <a type="button" class="delete bs-modal text-danger"
                                         data-form-url="{% url 'products:delete_product' product.pk %}">Delete</a>
                 </small>
             {% endif %}

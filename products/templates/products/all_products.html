@@ -19,9 +19,9 @@
 <div class="overlay"></div>
 <div class="py-2">
     <!-- Number of products and applied sort/filter -->
-    <div id="prod-info-bar" class="row prod-info-bar bg-blue p-2">
+    <div id="prod-info-bar" class="row shadow bg-light p-2 pt-3 mt-2 mt-lg-3 text-dgreen">
         <div class="col text-left d-flex flex-row align-items-sm-top align-items-md-center mx-1 mx-md-2">
-            <div class="col text-light fs-6 d-inline lh-2">
+            <div class="col fs-6 d-inline lh-2">
                 {% if search_term %}
                 <a href="{% url 'products:products' %}" class=" undecorated text-lgreen">Show all</a> |
                 <span class="fs-6">{{ product_list.count }}
@@ -45,14 +45,14 @@
                 <a href="{% url 'products:products' %}" class="undecorated text-yellow"> Show all</a> |
                 No products found
                 {% else %}
-                <span class=" text-light"> All | {{ product_list.count }}
+                <span class=""> All | {{ product_list.count }}
                     {% if product_list.count == 1 %}product{% else %}products{% endif %}</span>
                 {% endif %}
             </div>
             <!-- <div class="col order-md-last d-flex justify-content-center justify-content-md-end align-items- mt-5"> -->
             <!-- <div class="sort-select-wrapper"> -->
             <div>
-                <small class="text-light text-uppercase undecorated" data-bs-toggle="offcanvas" href="#filters"
+                <small class="text-uppercase undecorated" data-bs-toggle="offcanvas" href="#filters"
                     role="button" aria-expanded="false" aria-controls="filters_div">Filter / sort</small>
             </div>
             {% include 'includes/filters.html' with color_list=color_list category_list=category_list size_list=size_list %}

@@ -63,9 +63,9 @@
                 </table>
             </div>
             {% else %}
-            <div class="d-none">
+            <div class="">
                 <h3 class="my-2"><label for="{{ field.id_for_label }}">{{ field.label }}</label></h3>
-                {% render_field field class="form-select" placeholder=field.label %}
+                {% render_field field class="form-control-plaintext" placeholder=field.label %}
             </div>
             {% endif %}
         </div>

@@ -7,27 +7,7 @@
                     id="home-link">
                     All products
                 </a>
-            </li>
-            <!-- <li class="nav-item dropdown"> -->
-                <!-- <a class="font-weight-bold nav-link menu-text mr-5 me-2" href="#" id="all-products-link"
-                    data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Sort by...
-                </a>
-                <div class="dropdown-menu border-0" aria-labelledby="all-products-link">
-                    <a href="{% url 'products:products' %}?sort=price&direction=desc" class="dropdown-item">
-                        Price (high to low)</a>
-                    <a href="{% url 'products:products' %}?sort=price&direction=asc" class="dropdown-item">
-                        Price (low to high)</a>
-                    <a href="{% url 'products:products' %}?sort=product_name&direction=asc" class="dropdown-item">
-                        Name</a>   
-                    <a href="{% url 'products:products' %}?sort=rating&direction=asc" class="dropdown-item">
-                        Rating</a> -->
-                    <!-- <a href="{% url 'products:products' %}?sort=category&direction=asc" class="dropdown-item">
-                        Category</a> -->
-                    <!-- <a href="{% url 'products:products' %}" class="dropdown-item">All</a> -->
-                <!-- </div> -->
-            <!-- </li> -->
-           
+            </li>           
             <li class="nav-item dropdown">
                 <a class="font-weight-bold nav-link menu-text mr-5" href="#" id="tshirts-link"
                     data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -43,7 +23,6 @@
                         class="dropdown-item">Collections</a>
                 </div>
             </li>
-
             <li class="nav-item dropdown">
                 <a class="font-weight-bold nav-link menu-text mr-5" href="#" id="clothing-link"
                     data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -56,7 +35,6 @@
                         class="dropdown-item">Collections</a> -->
                 </div>
             </li>
-
             <li class="nav-item dropdown">
                 <a class="font-weight-bold nav-link menu-text" href="#" id="specials-link"
                     data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -69,6 +47,11 @@
                         Special Offers</a>
                 </div>
             </li>
+            {% if request.user.is_superuser %}
+                <li class="nav-item dropdown">
+                    <a class="font-weight-bold nav-link menu-text" href="{% url 'products:manage_products' %}" id="manage-products-link">Manage products</a>
+                </li>  
+            {% endif %}
         </ul>
     </div>
 </div>

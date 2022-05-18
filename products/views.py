@@ -15,6 +15,7 @@ from django.views.generic import (
     DetailView,
     UpdateView,
     CreateView,
+    TemplateView,
 )
 from bootstrap_modal_forms.generic import (
     BSModalDeleteView,
@@ -25,11 +26,20 @@ from .models import (
     Product,
     Color,
     Size,
-    Rating,
+    # Rating,
+    Type,
 )
 from .forms import (
     CreateProductForm,
     AddRatingForm,
+    CreateTypeForm,
+    UpdateTypeForm,
+    CreateColorForm,
+    UpdateColorForm,
+    CreateSizeForm,
+    # UpdateSizeForm,
+    CreateCategoryForm,
+    # UpdateCategoryForm,
 )
 
 
@@ -173,12 +183,11 @@ class CreateProductView(LoginRequiredMixin, CreateView):
 
 
 class UpdateProductView(LoginRequiredMixin, UpdateView):
-    """Update product view"""
+    """Update product"""
 
     form_class = CreateProductForm
     queryset = Product.objects.all()
     template_name = 'products/edit_product.html'
-
     success_message = 'Product successfully edited.'
 
     def get_success_url(self):
@@ -188,14 +197,14 @@ class UpdateProductView(LoginRequiredMixin, UpdateView):
 
 
 class DeleteProductView(LoginRequiredMixin, BSModalDeleteView):
-    """Delete prduct view"""
+    """Delete product"""
     model = Product
-    template_name = 'products/product_delete.html'
+    template_name = 'products/delete.html'
     success_message = 'Product successfully deleted'
     success_url = reverse_lazy('products:products')
 
 
-class AddRating(LoginRequiredMixin, BSModalCreateView):
+class RateProduct(LoginRequiredMixin, BSModalCreateView):
     """Rate the product"""
     form_class = AddRatingForm
     template_name = 'products/includes/add_rating.html'
@@ -220,3 +229,155 @@ class AddRating(LoginRequiredMixin, BSModalCreateView):
         pk = self.kwargs.get('pk')
         print(pk)
         return reverse_lazy('products:product_details', args=[pk])
+
+
+# CRUD views for Type
+class CreateTypeView(LoginRequiredMixin, BSModalCreateView):
+    """Add new type"""
+    form_class = CreateTypeForm
+    template_name = 'products/create_category.html'
+    success_message = 'New product type successfully added.'
+    success_url = reverse_lazy('products:manage_products')
+
+
+class AddType(CreateTypeView):
+    "Add type while adding new product"
+    success_url = reverse_lazy('products:add_product')
+
+
+class UpdateTypeView(LoginRequiredMixin, UpdateView):
+    """Update type"""
+
+    form_class = UpdateTypeForm
+    queryset = Type.objects.all()
+    template_name = 'products/edit.html'
+    success_message = 'Type successfully edited.'
+    success_url = reverse_lazy('products:manage_products')
+
+
+class DeleteTypeView(LoginRequiredMixin, BSModalDeleteView):
+    """Delete type"""
+    model = Type
+    template_name = 'products/delete.html'
+    success_message = 'Type successfully deleted'
+    success_url = reverse_lazy('products:manage_products')
+
+
+# CRUD views for Category
+class CreateCategoryView(LoginRequiredMixin, BSModalCreateView):
+    """Add new product"""
+    form_class = CreateCategoryForm
+    template_name = 'products/create.html'
+    success_message = 'New category successfully added.'
+    success_url = reverse_lazy('products:manage_products')
+
+
+class AddCategory(CreateCategoryView):
+    "Add category while adding new product"
+    success_url = reverse_lazy('products:add_product')
+
+
+class UpdateCategoryView(LoginRequiredMixin, UpdateView):
+    """Update category"""
+
+    form_class = CreateCategoryForm
+    queryset = Category.objects.all()
+    template_name = 'products/edit.html'
+    success_message = 'Category successfully edited.'
+    success_url = reverse_lazy('products:manage_products')
+
+
+class DeleteCategoryView(LoginRequiredMixin, BSModalDeleteView):
+    """Delete category"""
+    model = Category
+    template_name = 'products/delete.html'
+    success_message = 'Category successfully deleted'
+    success_url = reverse_lazy('products:manage_products')
+
+
+# CRUD views for Color
+class CreateColorView(LoginRequiredMixin, BSModalCreateView):
+    """Add new color"""
+    form_class = CreateColorForm
+    template_name = 'products/create.html'
+    success_message = 'New color successfully added.'
+    success_url = reverse_lazy('products:manage_products')
+
+
+class AddColor(CreateColorView):
+    "Add color while adding new product"
+    success_url = reverse_lazy('products:add_product')
+
+
+class UpdateColorView(LoginRequiredMixin, UpdateView):
+    """Update color"""
+
+    form_class = UpdateColorForm
+    queryset = Color.objects.all()
+    template_name = 'products/edit.html'
+    success_message = 'Color successfully edited.'
+    success_url = reverse_lazy('products:manage_products')
+
+
+class DeleteColorView(LoginRequiredMixin, BSModalDeleteView):
+    """Delete color"""
+    model = Color
+    template_name = 'products/delete.html'
+    success_message = 'Color successfully deleted'
+    success_url = reverse_lazy('products:manage_products')
+
+
+# CRUD views for Size
+class CreateSizeView(LoginRequiredMixin, BSModalCreateView):
+    """Add new size"""
+    form_class = CreateSizeForm
+    template_name = 'products/create.html'
+    success_message = 'New size successfully added.'
+    success_url = reverse_lazy('products:manage_products')
+
+
+class AddSize(CreateSizeView):
+    "Add category while adding new product"
+    success_url = reverse_lazy('products:add_product')
+
+
+class UpdateSizeView(LoginRequiredMixin, UpdateView):
+    """Update size"""
+
+    form_class = CreateSizeForm
+    queryset = Size.objects.all()
+    template_name = 'products/edit.html'
+    success_message = 'Size successfully edited.'
+    success_url = reverse_lazy('products:manage_products')
+
+
+class DeleteSizeView(LoginRequiredMixin, BSModalDeleteView):
+    """Delete size"""
+    model = Size
+    template_name = 'products/delete.html'
+    success_message = 'Size successfully deleted'
+    success_url = reverse_lazy('products:manage_products')
+
+
+class ManageProductsView(LoginRequiredMixin, TemplateView):
+    """
+    Renders products and supporting models for Product Management
+    page
+    """
+    template_name = 'products/manage_products.html'
+
+    def get(self, *args, **kwargs):
+        products = Product.objects.all()
+        types = Type.objects.all()
+        categories = Category.objects.all()
+        colors = Color.objects.all()
+        sizes = Size.objects.all()
+
+        context = {
+            'products': products,
+            'types': types,
+            'categories': categories,
+            'colors': colors,
+            'sizes': sizes,
+        }
+        return render(self.request, self.template_name, context)
