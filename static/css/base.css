@@ -127,9 +127,12 @@ footer span {
 }
 
 .bg-red {
-    background-color: rgb(245 96 70);
+    background-color: rgb(197, 22, 39)
 }
-
+.bg-dred {
+    /* background-color: rgba(131, 59, 47, 1); */
+    background-color: rgb(231, 208, 205);
+}
 .bg-black {
     background-color: rgb(54 49 49);
 }
@@ -243,6 +246,10 @@ button:active {
     margin: 2px;
     font-size: 1em;
     text-decoration: none;
+}
+
+.border-dgreen {
+    border: 1px solid rgb(17, 65, 74);
 }
 
 /* --- Top banner --- */
@@ -378,32 +385,37 @@ button:active {
 }
 
 #about {
-    margin-top: 200px;
+    /* margin-top: 200px; */
     border-radius: 5px;
-    color:rgb(180, 216, 192);
+    /* color:rgb(180, 216, 192); */
     font-size: 1.3em;
 
     /* font-family: 'Ubuntu', sans-serif; */
 }
 
-.home-img {
-    right: 0;
-    top: 0;
-    bottom: 0;
-    position: fixed;
-    background-color: rgb(29, 68, 116) !important;
-    background: url(https://res.cloudinary.com/dcslh2m3b/image/upload/v1649103642/GreenBean/pexels-teddy-tavan-4890733_mxqmip.jpg) no-repeat right top;
-    background-size: 1000px auto;
+.home-img-square {
+     background: url(https://res.cloudinary.com/dcslh2m3b/image/upload/v1649103642/GreenBean/pexels-teddy-tavan-4890733_mxqmip.jpg) no-repeat right top;
 }
 
-/* --- Footer --- */
+.home-img-container {
+    /* right: 0; */
+    top: 0;
+    bottom: 0;
+    /* position: fixed; */
+    background-color: rgb(29, 68, 116) !important;
+    /* background: url(https://res.cloudinary.com/dcslh2m3b/image/upload/v1649103642/GreenBean/pexels-teddy-tavan-4890733_mxqmip.jpg) no-repeat right top; */
+    background-size: 1000px auto;
+    min-height: 100vh;
+}
+
+/* --- Footer ---
 footer {
     bottom: 0;
     position: relative;
     height:60px;
     width: 65%;
     z-index: -2;
-}
+} */
 
 
 /* Toast */
@@ -436,18 +448,22 @@ footer {
 }
 
 /* Mailchimp form */
-
 #mc_embed_signup {
-    position: absolute;
-    bottom: 20px;
-    right: 20px;
+    /* position: absolute; */
+    /* bottom: 20px; */
+    /* right: 0; */
+    background: #fff;
+    clear: left;
+    font: 14px Helvetica, Arial, sans-serif;
+    width: 90%;
 }
 
-#mc-toggle-btn{
-    margin-bottom: -105px;
-    margin-right: 70px;
-    padding: 4px;
-    /* padding-bottom: 10px; */
+#mc-toggle-btn {
+    right: 0;
+    transform: rotate(-90deg);
+    margin-right: -35px;
+    padding-bottom: 10px;
+    background-color: rgba(131, 59, 47, 1);
 }
 
 .offcanvas-end {
@@ -460,7 +476,10 @@ footer {
 
 /* --- Media queries --- */
 
-pexels-teddy-tavan-4890733_mxqmip.jpg) 
+@media only screen and (max-width: 1500px) {
+
+    .home-img {
+        /* background: url(https://res.cloudinary.com/dcslh2m3b/image/upload/v1649103642/GreenBean/pexels-teddy-tavan-4890733_mxqmip.jpg) 
         no-repeat right center; */
         background: url(https://res.cloudinary.com/dcslh2m3b/image/upload/v1652894048/GreenBean/pexels-teddy-tavan-4890733_mxqmip_square_czzo7j.jpg) no-repeat right center;
         background-size: 700px auto;
@@ -469,10 +488,10 @@ pexels-teddy-tavan-4890733_mxqmip.jpg)
 
 @media only screen and (max-width: 1160px) {
 
-    .home-img {
+    .home-img-container {
         background-size: 700px auto;
-        background-position-y: top;
-        background-position-x: right;
+        background-position-y: center;
+        background-position-x: center;
     }
 
     #about {
@@ -575,94 +594,5 @@ pexels-teddy-tavan-4890733_mxqmip.jpg)
     footer div {
         font-size: 0.7em;
       }
-
-}@media only screen and (max-width: 1500px) {
-
-    .home-img {
-        background: url(https://res.cloudinary.com/dcslh2m3b/image/upload/v1649103642/GreenBean/pexels-teddy-tavan-4890733_mxqmip.jpg) no-repeat right center;
-        background-size: 700px auto;
-    } 
 }
 
-@media only screen and (max-width: 1160px) {
-
-    .home-img {
-        background-size: 700px auto;
-        background-position-y: top;
-        background-position-x: right;
-    }
-
-    #about {
-        /* margin-top: 200px; */
-        top: 0;
-        bottom: 0;
-        position: absolute;
-        width: 400px;
-        margin-top: 95px;
-        font-size: 1.3em;
-        /* background-color: rgb(29, 68, 116); */
-
-    } 
-}
-
-@media only screen and (max-width: 991px) {
-
-    .home-img {
-        background: url(https://res.cloudinary.com/dcslh2m3b/image/upload/c_crop,h_3357,w_2456/v1649103642/GreenBean/pexels-teddy-tavan-4890733_mxqmip.jpg) no-repeat right top;
-        background-size: 800px auto;
-    }
-
-    #top-banner p {
-        font-size: 0.9em;
-    }
-
-    #about {
-        margin-top: 150px;
-        font-size: 1.2em;
-        /* background: rgba(41, 42, 42, 0.5) */
-        background: rgba(29, 68, 116, 0.5)
-    }
-
-    #page-container {
-        margin-top: 110px;
-    }
-}
-
-@media only screen and (max-width: 860px) {
-    h3 {
-        font-size: 1.2em !important;
-    }
-
-    #about {
-        margin-top: 120px;
-        width: 320px;
-        font-size: 1.2em;
-        /* background: rgba(41, 42, 42, 0.5) */
-        /* background: rgba(29, 68, 116, 0.5) */
-    }
-}
-
-@media only screen and (max-width: 450px) {
-
-    .home-img {
-        background: url(https://res.cloudinary.com/dcslh2m3b/image/upload/v1649103642/GreenBean/pexels-teddy-tavan-4890733_mxqmip.jpg) no-repeat center top;
-        background-size: 500px auto;
-    }
-
-    #top-banner p {
-        font-size: 0.9em;
-    }
-
-    #about {
-        margin-top: 150px;
-        border-radius: 5px;
-        color:rgb(180, 216, 192);
-        /* font-size: 1.em; */
-        /* background: rgba(217, 221, 223, 0.5) */
-        /* font-family: 'Ubuntu', sans-serif; */
-    }
-
-    footer div {
-        font-size: 0.7em;
-      }
-}

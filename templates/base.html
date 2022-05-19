@@ -164,11 +164,9 @@
     {% block page_header%}
     {% endblock %}
     <main class="page-wrapper">
-        <!-- <div id="page-container" class="container-fluid"> -->
             {% block content %}
             <!-- Main page content -->
             {% endblock %}
-        <!-- </div> -->
     </main>
         <!-- Modal to display BS modal -->
         <div class="modal fade" tabindex="-1" role="dialog" id="modal">
@@ -178,9 +176,7 @@
                 </div>
             </div>
         </div>
-    
         {% include 'includes/mailchimp_form.html' %}
-    <!-- </div> -->
     {% block page_footer%}
     <!-- Footer -->
     <footer class="site-footer">
