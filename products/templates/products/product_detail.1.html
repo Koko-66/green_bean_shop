@@ -17,12 +17,14 @@
 
 {% block content %}
 
-<div class="container px-md-5">
-    <div class="row bg-light p-md-2 m-auto">
+<!-- <div class="overlay img-fluid"></div> -->
+<div class="container-fluid px-5">
+    <div class="row bg-light w-md-75 p-md-2 m-auto">
         <div class="col-12 col-md-7">
             <!-- Image -->
             <div class="py-auto">
                 {% if product.image %}
+                <!-- <a href="{{ product.image.url }}" target="_blank" class="undecorated"> -->
                 <img class="img-fluid" src="{{ product.image.url }}" alt="{{ product.name }}">
                 {% else %}
                 <img class="img-fluid"
@@ -33,6 +35,7 @@
         <div class="col-12 col-md-5">
             <div class="product-details-container mt-md-5">
                 {#% include 'products/includes/add_rating.html' %#}
+                <!-- <a href="{#% url '' %#}" class="link-button">Rate this product</a> -->
                 <!-- Product name and price -->
                 <div class="lead">
                     <h3 class="col">{{ product.product_name|upper}}</h3>
@@ -140,7 +143,76 @@
         (display other products in the same category)
     </div>
     
-    {% include 'products/includes/product_ratings.html' %}
+    <div class="container-fluid mt-4">
+        <h5 class="mb-5">What our clients say about <strong>{{ product.product_name }}</strong></h5>
+        {% if product %}
+        {% for rated_product, ratings in latest_product_ratings.items %}
+        <!-- {{ rated_product }} - {{ ratings }} -->
+            {% if rated_product.pk == product.pk %}
+            {% for rating in ratings %}
+            {{ rating.rating }}
+            {% endfor %}
+            {% endif %}
+        {% endfor %}
+            {% for rating in latest_product_ratings.product %}
+            <div class="small">
+                <div class="d-flex flex-row mt5">
+                    <p class="me-4">{{ rating.user }}</p>
+                    <!-- <p>Rating:  -->
+                        {% if rating.rating == 5 %}
+                            {% include 'products/includes/5_stars.html' %}
+                        {% elif rating.rating == 4 %}
+                            {% include 'products/includes/4_stars.html' %}
+                        {% elif rating.rating == 3 %}
+                            {% include 'products/includes/3_stars.html' %}
+                        {% elif rating.rating == 2 %}
+                            {% include 'products/includes/2_stars.html' %}
+                        {% else %}
+                            {% include 'products/includes/1_star.html' %}
+                        {% endif %}
+                </div>
+                <div>{% if rating.comment %}
+                    Comment: {{ rating.comment }}
+                    {% endif %}
+                </div>
+            </div>
+            <hr class="w-50">
+            {% endfor %}
+        {% else %}
+            <div>No ratings yet, be the first</div>
+        {% endif %}
+        {% if older_product_ratings %}
+        <div class="older_ratings">
+            <a data-bs-toggle="collapse" href="#collapseMoreRatings" role="button" aria-expanded="false" aria-controls="collapseMoreRatings">
+                More ratings...</a>
+            <div class="collapse" id="collapseMoreRatings">
+                {% for rating in older_product_ratings %}
+            <div>
+                <div class="d-flex flex-row mt5">
+                    <p class="me-5">User: {{ rating.user }}</p>
+                        {% if rating.rating == 5 %}
+                            {% include 'products/includes/5_stars.html' %}
+                        {% elif rating.rating == 4 %}
+                            {% include 'products/includes/4_stars.html' %}
+                        {% elif rating.rating == 3 %}
+                            {% include 'products/includes/3_stars.html' %}
+                        {% elif rating.rating == 2 %}
+                            {% include 'products/includes/2_stars.html' %}
+                        {% else %}
+                            {% include 'products/includes/1_star.html' %}
+                        {% endif %}
+                </div>
+                <div>{% if rating.comment %}
+                    Comment: {{ rating.comment }}
+                    {% endif %}
+                </div>
+            </div>
+            <hr class="w-50">
+            {% endfor %}
+            </div>
+        </div>
+        {% endif %}
+    </div>
     
         {% endblock %}
 

@@ -1,0 +1,73 @@
+<div class="container-fluid mt-4">
+    <h4 class="mb-5 ">What our clients say about <strong>{{ product.product_name }}</strong></h4>
+    <!-- Show latest 3 reviews -->
+    {% for rated_product, ratings in latest_product_ratings.items %}
+        {% if rated_product.pk == product.pk %}
+            {% if ratings %}
+                {% for rating in ratings %}
+                <div class="small">
+                    <div class="d-flex flex-row">
+                        <p class="me-3">User: {{ rating.user }}</p>
+                        <!-- <p>Rating:  -->
+                            {% if rating.rating == 5 %}
+                                {% include 'products/includes/5_stars.html' %}
+                            {% elif rating.rating == 4 %}
+                                {% include 'products/includes/4_stars.html' %}
+                            {% elif rating.rating == 3 %}
+                                {% include 'products/includes/3_stars.html' %}
+                            {% elif rating.rating == 2 %}
+                                {% include 'products/includes/2_stars.html' %}
+                            {% else %}
+                                {% include 'products/includes/1_star.html' %}
+                            {% endif %}
+                    </div>
+                    <div>{% if rating.comment %}
+                        Comment: {{ rating.comment }}
+                        {% endif %}
+                    </div>
+                </div>
+                <hr class="w-50">
+                {% endfor %}
+            {% else %}
+                <div>No ratings yet, be the first</div>
+            {% endif %}
+        {% endif %}
+    {% endfor %}
+    <!-- Show all remaining reviews -->
+    {% for rated_product, ratings in older_product_ratings.items %}
+        {% if rated_product.pk == product.pk %}
+            {% if ratings %}
+            <div class="older_ratings mb-5 small">
+                <a id="show-reviews" data-bs-toggle="collapse" href="#collapseMoreRatings" role="button" aria-expanded="false" aria-controls="collapseMoreRatings">
+                    Show more...</a>
+                <div class="collapse" id="collapseMoreRatings">
+                {% for rating in ratings %}
+                <div>
+                    <div class="d-flex flex-row">
+                        <p class="me-3">User: {{ rating.user }}</p>
+                        <!-- <p>Rating:  -->
+                            {% if rating.rating == 5 %}
+                                <span class="small">{% include 'products/includes/5_stars.html' %}</span>
+                            {% elif rating.rating == 4 %}
+                                <span class="small">{% include 'products/includes/4_stars.html' %}</span>
+                            {% elif rating.rating == 3 %}
+                                <span class="small">{% include 'products/includes/3_stars.html' %}</span>
+                            {% elif rating.rating == 2 %}
+                                <span class="small">{% include 'products/includes/2_stars.html' %}</span>
+                            {% else %}
+                                <span class="small">{% include 'products/includes/1_star.html' %}</span>
+                            {% endif %}
+                    </div>
+                    <div>{% if rating.comment %}
+                        Comment: {{ rating.comment }}
+                        {% endif %}
+                    </div>
+                </div>
+                <hr class="w-50">
+                {% endfor %}
+            {% else %}
+                <div>No ratings yet, be the first</div>
+            {% endif %}
+        {% endif %}
+    {% endfor %}  
+</div>

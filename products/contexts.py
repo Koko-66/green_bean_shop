@@ -9,6 +9,9 @@ def get_ratings(request):
     """Get ratings for products"""
     products = Product.objects.all()
     avg_ratings = {}
+    latest_product_ratings = {}
+    older_product_ratings = {}
+
     for product in products:
         avg_rating = Rating.objects.filter(
             product__pk=product.pk).aggregate(Avg('rating'))['rating__avg']
@@ -21,8 +24,12 @@ def get_ratings(request):
             while count < f_stars:
                 stars.append('star')
                 count += 1
+        latest_product_ratings[product] = Rating.objects.filter(product=product)[:3]
+        older_product_ratings[product] = Rating.objects.filter(product=product)[4::]
 
     context = {
+        'latest_product_ratings': latest_product_ratings,
+        'older_product_ratings': older_product_ratings,
         'avg_rating': avg_rating,
         'avg_ratings': avg_ratings,
         'stars': stars,

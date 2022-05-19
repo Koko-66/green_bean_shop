@@ -169,6 +169,18 @@ class ProductDetailView(DetailView):
     model = Product
     template_name = 'products/product_detail.html'
 
+    # def get_context_data(self, **kwargs):
+    #     """Get ratings for the product"""
+    #     context = super().get_context_data(**kwargs)
+    #     pk = self.kwargs.get('pk')
+    #     product = Product.objects.get(pk=pk)
+    #     latest_product_ratings = Rating.objects.filter(product=product)[:3]
+    #     older_product_ratings = Rating.objects.filter(product=product)[4::]
+        
+    #     context['latest_product_ratings'] = latest_product_ratings
+    #     context['older_product_ratings'] = older_product_ratings
+    #     return context
+
 
 class CreateProductView(LoginRequiredMixin, CreateView):
     """Add new product"""
@@ -211,7 +223,7 @@ class RateProduct(LoginRequiredMixin, BSModalCreateView):
     success_message = 'Rating successfully added.'
 
     def get(self, *args, **kwargs):
-    
+        """Overwrite default get method and pass inital data."""
         pk = self.kwargs.get('pk')
         product = Product.objects.get(pk=pk)
         initial_data = {
@@ -381,3 +393,4 @@ class ManageProductsView(LoginRequiredMixin, TemplateView):
             'sizes': sizes,
         }
         return render(self.request, self.template_name, context)
+
