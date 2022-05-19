@@ -1,15 +1,15 @@
 {% extends 'base.html' %}
 {% load static %}
 
-
-{% block page_header %}
+<!-- 
+{#% block page_header %#}
 <div class="container-fluid p-5 pb-2">
     <div class="row">
         <h3 class="col text-dgreen">Product details</h3>
     </div>
     <hr>
 </div>
-{% endblock %}
+{#% endblock %#} -->
 
 {% block extra_css %}
 <link rel="stylesheet" href="{% static 'products/css/products.css' %}">
@@ -18,26 +18,26 @@
 {% block content %}
 
 <div class="container px-md-5">
-    <div class="row bg-light p-md-2 m-auto">
+    <div class="row p-md-2 m-auto">
         <div class="col-12 col-md-7">
             <!-- Image -->
             <div class="py-auto">
                 {% if product.image %}
-                <img class="img-fluid" src="{{ product.image.url }}" alt="{{ product.name }}">
+                <img class="img-fluid card-img-bg detail-img" src="{{ product.image.url }}" alt="{{ product.name }}">
                 {% else %}
-                <img class="img-fluid"
+                <img class="img-fluid card-img-bg detail-img"
                     src="{{MEDIA_URL}}noimage.png" alt="{{ product.name }}">
                 {% endif %}
             </div>
         </div>
         <div class="col-12 col-md-5">
-            <div class="product-details-container mt-md-5">
+            <div class="product-details-container mt-md-4">
                 {#% include 'products/includes/add_rating.html' %#}
                 <!-- Product name and price -->
                 <div class="lead">
-                    <h3 class="col">{{ product.product_name|upper}}</h3>
-                    <p class="fs-5">{{ product.description }}</p>
-                    <p class="col d-inline text-left fw-bold text-dorange">£{{ product.price }}</p>
+                    <h5 class="col">{{ product.product_name|upper}}</h5>
+                    <p class="fs-6">{{ product.description }}</p>
+                    <p class="col d-inline text-left">£{{ product.price }}</p>
                 </div>
                 
                 <form action="{% url 'bag:add_to_bag' product.id %}" method="POST">
@@ -52,7 +52,7 @@
                                 <input id="id_size-{{ size.slug }}_prod-{{ product.id }}" type="radio" class="size d-none"
                                     name="size" value="{{ size.slug }}">
                                 <label for="id_size-{{ size.slug }}_prod-{{ product.id }}"
-                                    class="border size-box">{{ size.size_short }}</label>
+                                    class="border size-box" title="{{ size.size_long }}" aria-label="{{ size.size_long }}">{{ size.size_short }}</label>
                             </div>
                             {% endfor %}
                         </div>
@@ -65,7 +65,7 @@
                             <div class="circle bg-{{ color.slug }} ms-2">
                                 <input id="id_color-{{ color }}_prod-{{ product.id }}" type="radio" class="color d-none"
                                     name="color" value="{{ color.slug }}">
-                                <label for="id_color-{{ color }}_prod-{{ product.id }}" class="circle"></label>
+                                <label for="id_color-{{ color }}_prod-{{ product.id }}" class="circle" title="{{ color }}" aria-label="{{ color }}"></label>
                             </div>
                             {% endfor %}
                         </div>
@@ -87,9 +87,9 @@
                             Not yet rated
                         </div>
                         {% endif %}
-                        {% if request.user.is_authenticated %}
-                        <a data-form-url="{% url 'products:add_rating' product.pk %}" class="add-rating undecorated text-uppercase text-dgreen ms-2" title="Rate product" aria-label="Rate product">Rate product</a>
-                        {% endif %}
+                        <!-- {% if request.user.is_authenticated %}
+                        <a data-form-url="{% url 'products:add_rating' product.pk %}" class="add-rating undecorated text-uppercase text-dgreen ms-2 link-text" title="Rate this product" aria-label="Rate product">Rate product</a>
+                        {% endif %} -->
                         <div class="col-12">
                             <p class="mt-3"><strong>Quantity:</strong></p>
                             <div class="form-group w-50">
@@ -137,7 +137,90 @@
     </div>
     <div class="container-fluid mt-4">
         <h4>You might also like</h4>
-        (display other products in the same category)
+        <div class="container-fluid align-items-center">
+            <div class="d-flex flex-row flex-nowrap overflow-scroll">
+                {% for product in similar_prod %}
+                <div class="card card-suggest-cont pt-2 px-3 pb-0 m-2 my-md-4">
+                    <div
+                        class="card border-bottom border-light">
+                        <div class="card-img my-auto h-100 {% if product.product_type.type_code == 'TS' %}card-img-bg{% endif %}">
+                            {% if product.image %}
+                            <a href="{% url 'products:product_details' product.id %}">
+                                <img class="{% if product.product_type.type_code == 'TS' %}card-img-top{% endif %} img-fluid"
+                                    src="{{ product.image.url }}" alt="{{ product.name }}">
+                            </a>
+                            {% else %}
+                            <a href="{% url 'products:product_details' product.id %}" class="m-auto">
+                                <img class="img-fluid" src="{{MEDIA_URL}}noimage.png" alt="{{ product.name }}">
+                            </a>
+                            {% endif %}
+                        </div>
+                        <!-- <form action="{% url 'bag:add_to_bag' product.id %}" method="POST" class="px-0 py-0">
+                            {% csrf_token %} -->
+                            <!-- <div class="mt-3 end-0 d-flex justify-content-end"> -->
+                            <!-- <input type="submit" class="main-btn-1 w-100 smaller-text" value="Add to bag">
+                            <input type="hidden" name="redirect_url" value="{{ request.path }}"> -->
+                            <!-- </div> -->
+                            <div class="card-footer bg-white pt-0 order-0 justify-content-center h-100">
+                                <div class="row mt-1">
+                                    <p class="smaller-text mb-1 border-bottom text-blue px-0">{{ product.product_name }}
+                                    </p>
+                                    <p class="smaller-text mb-1 border-bottom px-0">£{{ product.price }}</p>
+                                    {% if avg_ratings %}
+                                    {% for rated_product, rating in avg_ratings.items %}
+                                    {% if rated_product == product %}
+                                    <small class="px-0 text-muted border-bottom pb-1">
+                                        {% for star in stars %}
+                                        <i class="fas fa-star text-yellow"></i>
+                                        {% endfor %}
+                                        {% if h_star %}
+                                        <i class="fas fa-star-half"></i>
+                                        {% endif %}
+                                    </small>
+                                    {% endif %}
+                                    {% endfor %}
+                                    {% else %}
+                                    <small class="px-0 text-muted border-bottom">No rating</small>
+                                    {% endif %}
+                                    <!-- <div class="form-row px-0"> -->
+                                        <!-- Sizes -->
+                                        <!-- {% if product.get_sizes %}
+                                        <div class="size-selector border-secondary d-flex flex-row flex-wrap" id="sizes">
+                                            {% for size in product.get_sizes %}
+                                            <div class="size-box my-2 me-2">
+                                                <input id="id_size-{{ size.slug }}_prod-{{ product.id }}" type="radio"
+                                                    class="size d-none" name="size" value="{{ size.slug }}">
+                                                <label for="id_size-{{ size.slug }}_prod-{{ product.id }}"
+                                                    class="border size-box smaller-text">{{ size.size_short }}</label>
+                                            </div>
+                                            {% endfor %}
+                                        </div>
+                                        {% endif %} -->
+                                        <!-- Colors -->
+                                        <!-- {% if product.get_colors %}
+                                        <div class="color-selector d-flex flex-row flex-wrap mt-2">
+                                            {% for color in product.get_colors %}
+                                            <div class="circle bg-{{ color.slug }} me-2 mb-1">
+                                                <input id="id_color-{{ color.slug }}_prod-{{ product.id }}" type="radio"
+                                                    class="d-none" name="color" value="{{ color.slug }}">
+                                                <label for="id_color-{{ color.slug }}_prod-{{ product.id }}"
+                                                    class="circle{% if color.slug == 'white' %}-white{% endif %}"></label>
+                                            </div>
+                                            {% endfor %}
+                                        </div>
+                                        {% endif %}
+                                        <input class="form-control qty_input id_qty_{{ product.id }}" type="hidden"
+                                            name="quantity" value="1" data-item_id="{{ product.id }}"
+                                            id="id_qty_{{ product.id }}"> -->
+                                    <!-- </div> -->
+                                </div>
+                            </div>
+                        <!-- </form> -->
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
     </div>
     
     {% include 'products/includes/product_ratings.html' %}

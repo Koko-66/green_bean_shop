@@ -100,11 +100,18 @@
     background-color: rgb(199, 205, 212);
 }
 
+.detail-img {
+    width: 400px;
+    margin-top: 5%;
+    margin-left: 10%;
+}
+
 .card-container {
     width: 230px;
-    /* box-shadow: 1px 1px 138px -44px rgba(0,0,0,0.52);
-    -webkit-box-shadow: 1px 1px 138px -44px rgba(0,0,0,0.52);
-    -moz-box-shadow: 1px 1px 138px -44px rgba(0,0,0,0.52); */
+}
+
+.card-suggest-cont {
+    width: 150px;
 }
 
 #filters {

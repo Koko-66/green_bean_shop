@@ -4,7 +4,7 @@
     {% csrf_token %}
 
     <div class="modal-header">
-        <h3 class="modal-title">You are rating: {{ product }}</h3>
+        <h4 class="modal-title">You are rating "{{ product }}"</h4>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
     </div>
 
@@ -19,9 +19,9 @@
         <div class="form-group">
             <!-- Hide the fields for user and product -->
             {% if field.label == 'Comment' %}
-            <div class="d-block">
-                <h3 class="my-2"><label for="{{ field.id_for_label }}">{{ field.label }}</label></h3>
-                {% render_field field class="form-control" placeholder=field.label %}
+            <div class="d-block mt-2">
+                <!-- <h3 class="my-2"><label for="{{ field.id_for_label }}">{{ field.label }}</label></h3> -->
+                {% render_field field class="form-control" placeholder="Leave commment" %}
             </div>
             {% elif field.label == "Rating" %}
             <!-- Table for ratings -->
@@ -36,11 +36,7 @@
                                     for="{{ radio.id_for_label }}">{{ radio.choice_label }}</label></td>
                             <td><label for="{{ radio.id_for_label }}">
                                     {% if radio.id_for_label == 'id_rating_4' %}
-                                    <i class="fas fa-star text-warning"></i>
-                                    <i class="fas fa-star text-warning"></i>
-                                    <i class="fas fa-star text-warning"></i>
-                                    <i class="fas fa-star text-warning"></i>
-                                    <i class="fas fa-star text-warning"></i>
+                                        {% include 'products/includes/5_stars.html' %}
                                     {% elif radio.id_for_label == 'id_rating_3' %}
                                     <i class="fas fa-star text-warning"></i>
                                     <i class="fas fa-star text-warning"></i>
@@ -63,9 +59,9 @@
                 </table>
             </div>
             {% else %}
-            <div class="">
+            <div class="d-none">
                 <h3 class="my-2"><label for="{{ field.id_for_label }}">{{ field.label }}</label></h3>
-                {% render_field field class="form-control-plaintext" placeholder=field.label %}
+                {% render_field field class="form-control" placeholder=field.label %}
             </div>
             {% endif %}
         </div>
