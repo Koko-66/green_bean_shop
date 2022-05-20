@@ -1,15 +1,33 @@
 {% extends 'base.html' %}
+
+
 {% block content %}
-<div class="container-fluid home-img">
-    <div class="row">
-        <div id="about" class="col-xs-12 col-sm-11 col-md-8 col-lg-5">
-            <h3 class="m-3 ms-lg-4 ps-lg-2 pt-3">The perfect place to get your perfect <i class="fas fa-tshirt"></i> and more!</h3>
-            <p class="m-2 ms-lg-4 p-2 lh-2">At Green Bean we believe that with great design comes great responsibily for the environment and those who help us make it happen. That's why all our products are responsibly sourced, made from recycled and recycable materials and by those who we know are compensated fairly for their work.
-            <span class="text-yellow">Support our passion and our partners!</span></p>
-            <div class="d-flex justify-content-center my-2 my-md-3">
-                <a class="link-button p-2 my-3 me-md-5 fs-6 text-uppercase" href="{% url 'products:products' %}">Shop with us <strong>NOW!</strong></a>
-            </div>
+<div class="home-overlay"></div>
+<div class="container-fluid home p-2 px-lg-5">
+    <div class="row gx-3">
+        <div class="col-12 text-center p-3 specials">
+            <a href="{% url 'products:products' %}?category=specials,clearance">Check out our latest offers</a>
         </div>
+        <hr class="d-block d-md-none m-2">
+        <div class="col-12 col-md-4 landing-1 border pt-3 pt-lg-5">
+            <a href="{% url 'products:products' %}?category=new,abstract,nature,anime">
+            <div><img class="img-fluid img-thumb" src="https://res.cloudinary.com/dcslh2m3b/image/upload/c_scale,h_1310/v1652947043/GreenBean/pexels-maria-luiza-melo-10990006_rskpbs.jpg"></div>
+            <div class="pt-4 undecorated">Shop our T-shirt collection! All made of 100% cotton - always responsibly sourced and recycled. Start finding your style!</div>
+            </a>
+        </div>
+        <hr class="d-block d-md-none m-2">
+        <div class="col-12 col-md-4 landing-2 border pt-3 pt-lg-5">
+            <a href="{% url 'products:products' %}">
+                <img class="img-fluid" src="https://res.cloudinary.com/dcslh2m3b/image/upload/c_scale,h_1010/v1652947033/GreenBean/pexels-jane-pham-1571673_m8xkqk.jpg"><span class="text-black ">Find inspiration for your style with us.</span>
+            </a>
+        </div>
+        <hr class="d-block d-md-none m-2">
+        <div class="col-12 col-md-4 landing-3 border pt-3 pt-lg-5">
+            <a href="{% url 'products:products' %}?category=bracelets,accessories,necklaces">
+                <div class="pb-md-5">Complete your outfit with our beautiful jewelery. Browse now.</div>
+                <div><img class="img-fluid" src="https://res.cloudinary.com/dcslh2m3b/image/upload/c_scale,h_1240/v1652947052/GreenBean/pexels-artem-beliaikin-994515_a1p8we.jpg"></div></a>
+        </div>
+    </div>
     </div>
 </div>
 

@@ -4,6 +4,9 @@
 /* font-family: 'Rock 3D', cursive; */
 @import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed&family=Bebas+Neue&family=Palette+Mosaic&family=Red+Hat+Mono&family=Rock+3D&display=swap&family=Roboto+Condensed&display=swap&family=Ubuntu&display=swap');
 
+@import url('https://fonts.googleapis.com/css2?family=EB+Garamond:ital@1&family=Macondo&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Shadows+Into+Light&display=swap');
+
 /* 
 font-family: 'Barlow Condensed', sans-serif;
 font-family: 'Bebas Neue', cursive;
@@ -64,6 +67,7 @@ footer span {
 small {
     font-size: 0.7em;
 }
+
 .undecorated {
     text-decoration: none;
 }
@@ -324,11 +328,11 @@ button:active {
     right: 0px;
     left: 0px;
     /* border-bottom: #0b6e80; */
-    border-top: 1px solid rgb(29, 68, 116);
-    border-bottom-right-radius: 2%;
-    border-bottom-left-radius: 40%;
-    /* background: rgba(233, 179, 20); */
-    background: rgb(187 145 22);
+    /* border-top: 1px solid rgb(29, 68, 116); */
+    /* border-bottom-right-radius: 2%;
+    border-bottom-left-radius: 40%; */
+    background: rgba(30, 49, 35, 0.17)
+    /* background: rgb(187 145 22); */
     box-shadow: 0 1px 2px 0 rgb(11, 110, 128, 0.2);
 }
 
@@ -336,9 +340,11 @@ button:active {
 .search-bar:active,
 .search-bar:focus {
     /* border: 1px solid rgba(233, 179, 20); */
-    box-shadow: 0 1px 1px 0 rgb(11, 110, 128, 0.2);
-    border-radius: 15px;
-    background-color: rgba(233, 179, 20, 0.8);
+    /* box-shadow: 0 2px 2px 0 rgb(11, 110, 128, 0.2); */
+    box-shadow: 0 2px 2px 0 rgba(11, 110, 128, 0.5);
+    border-radius: 5px;
+    /* background-color: rgba(233, 179, 20, 0.8); */
+    background-color: rgb(231 231 231);
 }
 
 .search-input {
@@ -352,7 +358,7 @@ button:active {
     border-color: none;
     box-shadow: none;
     outline: none;
-    background: rgba(233, 179, 20, 0.8);
+    /* background: rgba(233, 179, 20, 0.8); */
 }
 
 .icon {
@@ -374,11 +380,36 @@ button:active {
     /* color: rgb(29, 68, 116); */
     font-size: 0.7em;
     text-align: center;
-    /* justify-content:space-evenly;
-    margin-top: -1%;
-    margin-left: 3%; */
-    /* z-index: 99; */
+}
 
+/* --- Landing page --- */
+.home {
+    font-size: 1.5rem;
+    /* font-family: 'Rock 3D', cursive; */
+    /* font-family: 'EB Garamond', serif; */
+    font-family: 'Shadows Into Light', cursive;
+    /* bottom: 0;    
+    height: calc(100vh - 60px); */
+}
+
+.home a {
+    text-decoration: none;
+    color:rgb(17, 65, 74)
+}
+
+.specials  {
+    border: 4px solid #fafafa;
+}
+
+.home-overlay {
+    background: #e6e3e3;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    height: 100%;
+    position: fixed;
+    z-index: -1;
 }
 
 #about {
@@ -575,7 +606,6 @@ footer {
     }
 }
 
-
 @media only screen and (max-width: 450px) {
 
     .home-img-container {
@@ -600,4 +630,3 @@ footer {
         font-size: 0.7em;
       }
 }
-
