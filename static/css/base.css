@@ -455,8 +455,9 @@ footer {
 #mc-toggle-btn,
 #mc-toggle-btn-sm {
     right: 0;
+    bottom: 20%;
     transform: rotate(-90deg);
-    margin-right: -20px;
+    margin-right: -30px;
     background-color: rgba(131, 59, 47, 1);
 }
 
