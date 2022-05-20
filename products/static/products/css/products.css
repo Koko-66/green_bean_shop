@@ -121,12 +121,7 @@
     width: 75vw;
 }
 
-small {
-    font-size: 0.7em;
-}
-
 /* --- Product details page--- */
-
 .qty_input {
     max-width: 55px;
 }
@@ -153,6 +148,18 @@ small {
 .add-button {
     margin-left: -15px;
     color: black;
+}
+
+.clear-color,
+.clear-size,
+.clear-category {
+    cursor: pointer; 
+}
+
+.form-control,
+.form-select,
+.form-label {
+    font-size: 0.9rem;
 }
 
 /* Media queries for products pages */

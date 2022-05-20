@@ -42,4 +42,23 @@ $(document).ready(function () {
     $("#clear-filters").click(function(event){
         $("input[type='radio']").prop("checked", false);
     });
+
+    // $(".rating-list").each(function(){
+    //     // $('.rating-list td label').children().css({"opacity":"0"});
+    //     $(this).find(':radio').attr('checked','checked').end().find('label').children().css({"color":"yellow"});
+    // })
+
+    // Clear selected items in the add and edit product forms
+
+    $(".clear_color").click(function(){
+        $("#id_color").val([]);
+    })
+
+    $(".clear_size").click(function(){
+        $("#id_size").val([]);
+    })
+
+    $(".clear_category").click(function(){
+        $("#id_category").val([]);
+    })
 })

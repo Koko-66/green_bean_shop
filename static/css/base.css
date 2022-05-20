@@ -32,15 +32,6 @@ body {
     height: 100%;
 }
 
-/* --- Header --- */
-/* header {
-    padding-right: 0 !important;
-    padding-left: 0 !important;
-    right: 0;
-    left: 0;
-    z-index: 1000;
-
-} */
 /* --- Footer --- */
 
 .page-wrapper {
@@ -66,10 +57,13 @@ footer span {
 
 /* ---- Text styling ---- */
 
-.smaller-text {
-    font-size: 0.85em;
+.text-smaller {
+    font-size: 0.9rem;
 }
 
+small {
+    font-size: 0.7em;
+}
 .undecorated {
     text-decoration: none;
 }
@@ -190,8 +184,13 @@ footer span {
     margin-bottom: 60px;
 } */
 
+/* --- Other global --- */
 .main-font {
     font-family: 'Ubuntu', sans-serif;
+}
+
+.pointer {
+    cursor: pointer;
 }
 
 button {
@@ -211,10 +210,8 @@ button:active {
 }
 
 .main-btn-1 {
-    /* background-color: rgb(29, 68, 116); */
     background: rgb(26 29 31);
     color: rgb(248, 249, 250);
-    /* border-radius: 0.3em !important; */
     border: none;
     text-transform: uppercase;
     text-decoration: none;
@@ -449,20 +446,17 @@ footer {
 
 /* Mailchimp form */
 #mc_embed_signup {
-    /* position: absolute; */
-    /* bottom: 20px; */
-    /* right: 0; */
     background: #fff;
     clear: left;
     font: 14px Helvetica, Arial, sans-serif;
     width: 90%;
 }
 
-#mc-toggle-btn {
+#mc-toggle-btn,
+#mc-toggle-btn-sm {
     right: 0;
     transform: rotate(-90deg);
-    margin-right: -35px;
-    padding-bottom: 10px;
+    margin-right: -20px;
     background-color: rgba(131, 59, 47, 1);
 }
 
@@ -569,7 +563,17 @@ footer {
         /* background: rgba(29, 68, 116, 0.5) */
         z-index: -4;
     }
+
+    #mc-toggle-btn-sm {
+        right: 0;
+        transform: rotate(0deg);
+        margin-right: 35px;
+        padding-bottom: 0px;
+        bottom: 0;
+        background-color: rgba(131, 59, 47, 1);
+    }
 }
+
 
 @media only screen and (max-width: 450px) {
 

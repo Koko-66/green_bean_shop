@@ -5,7 +5,7 @@
 {% block page_header %}
 <div class="container p-5">
     <div class="row">
-        <h2 class="col text-dgreen">Manage products</h2>
+        <h3 class="col text-dgreen">Manage products</h3>
     </div>
     <hr>
 </div>
@@ -38,17 +38,17 @@
                             <tr>
                                 <th>Product</th>
                                 <th>Type</th>
-                                <th class="text-center">Edit</th>
+                                <th class="text-center">Preview</th>
                                 <th class="text-center">Delete</th>
                             </tr>
                         </thead>
                         <tbody class="small">
                             {% for product in products %}
                             <tr>
-                                <td>{{ product }}</td>
+                                <td><a href="{% url 'products:edit_product' product.pk %}" class="undecorated link-text">{{ product }}</a></td>
                                 <td>{{ product.product_type }}</td>
-                                <td class="text-center"><a href="{% url 'products:edit_product' product.pk %}"><i
-                                            class="fas fa-pen text-green"></i></a></td>
+                                <td class="text-center"><a href="{% url 'products:product_details' product.pk %}"><i
+                                            class="fas fa-eye text-green"></i></a></td>
                                 <td class="text-center"><a type="button" class="delete bs-modal"
                                         data-form-url="{% url 'products:delete_product' product.pk %}"><i
                                             class="far fa-trash-alt text-green"></i></a></td>
