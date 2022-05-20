@@ -169,17 +169,33 @@ class ProductDetailView(DetailView):
     model = Product
     template_name = 'products/product_detail.html'
 
-    # def get_context_data(self, **kwargs):
-    #     """Get ratings for the product"""
-    #     context = super().get_context_data(**kwargs)
-    #     pk = self.kwargs.get('pk')
-    #     product = Product.objects.get(pk=pk)
-    #     latest_product_ratings = Rating.objects.filter(product=product)[:3]
-    #     older_product_ratings = Rating.objects.filter(product=product)[4::]
-        
-    #     context['latest_product_ratings'] = latest_product_ratings
-    #     context['older_product_ratings'] = older_product_ratings
-    #     return context
+    def get_context_data(self, **kwargs):
+        """Get products with same categories"""
+        context = super().get_context_data(**kwargs)
+
+        pk = self.kwargs.get('pk')
+        product = Product.objects.get(pk=pk)
+        product_cs = product.get_categories()
+        print(f'Product categories: {product_cs}')
+        products = Product.objects.exclude(pk=pk)
+        similar_prod = []
+        for product in products:
+            c = product.get_categories()
+            common = any(check in product_cs for check in c)
+            if common:
+                similar_prod.append(product)
+        print(similar_prod)
+        context['similar_prod'] = similar_prod
+        # """Get ratings for the product"""
+
+        # pk = self.kwargs.get('pk')
+        # product = Product.objects.get(pk=pk)
+        # latest_product_ratings = Rating.objects.filter(product=product)[:3]
+        # older_product_ratings = Rating.objects.filter(product=product)[4::]
+
+        # context['latest_product_ratings'] = latest_product_ratings
+        # context['older_product_ratings'] = older_product_ratings
+        return context
 
 
 class CreateProductView(LoginRequiredMixin, CreateView):
@@ -205,7 +221,7 @@ class UpdateProductView(LoginRequiredMixin, UpdateView):
     def get_success_url(self):
         """Get success url after updating product."""
         pk = self.object.pk
-        return reverse_lazy('products:product_details', args=[pk])
+        return reverse_lazy('products:edit_product', args=[pk])
 
 
 class DeleteProductView(LoginRequiredMixin, BSModalDeleteView):
@@ -235,7 +251,7 @@ class RateProduct(LoginRequiredMixin, BSModalCreateView):
             'form': form,
             'product': product,
         }
-        return render(self.request, 'products/includes/add_rating.html', context)
+        return render(self.request, self.template_name, context)
 
     def get_success_url(self, *args, **kwargs):
         pk = self.kwargs.get('pk')
@@ -247,7 +263,7 @@ class RateProduct(LoginRequiredMixin, BSModalCreateView):
 class CreateTypeView(LoginRequiredMixin, BSModalCreateView):
     """Add new type"""
     form_class = CreateTypeForm
-    template_name = 'products/create_category.html'
+    template_name = 'products/create.html'
     success_message = 'New product type successfully added.'
     success_url = reverse_lazy('products:manage_products')
 
@@ -393,4 +409,3 @@ class ManageProductsView(LoginRequiredMixin, TemplateView):
             'sizes': sizes,
         }
         return render(self.request, self.template_name, context)
-
