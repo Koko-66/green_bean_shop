@@ -173,6 +173,7 @@ class Rating(models.Model):
                                 related_name='rating')
     rating = models.IntegerField(default=0, choices=RATING)
     comment = models.TextField(max_length=1500)
+    date = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
         """String method for rating"""
