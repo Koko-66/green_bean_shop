@@ -1,6 +1,14 @@
 <div class="container-fluid mt-4">
     <h4 class="">What our clients say about <strong>{{ product.product_name }}</strong></h4>
-    <div class="mb-5"><a {% if request.user.is_authenticated %}data-form-url="{% url 'products:add_rating' product.pk %}"{% else %}href="{% url 'account_login' %}"{% endif %} class="add-rating undecorated text-dgreen link-text" title="Rate this product" aria-label="Rate product">Rate this product</a>
+    <div class="mb-5">
+        {% for rated_product, userlist in all_rev_users.items %}
+            {% if rated_product == product %}
+                {% if request.user in userlist %}
+                You already rated this product 
+                {% else %}
+                <a {% if request.user.is_authenticated %}data-form-url="{% url 'products:add_rating' product.pk %}"{% else %}href="{% url 'account_login' %}"{% endif %} class="add-rating undecorated text-dgreen link-text" title="Rate this product" aria-label="Rate product">Rate this product{% endif %}</a>
+            {% endif %}
+        {% endfor %}
     </div>
     <!-- Show latest 3 reviews -->
     {% for rated_product, ratings in latest_product_ratings.items %}

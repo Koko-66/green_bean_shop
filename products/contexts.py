@@ -3,6 +3,7 @@
 from math import modf
 from django.db.models import Avg
 from products.models import Product, Rating
+from django.db.models import Exists, OuterRef
 
 
 def get_ratings(request):
@@ -11,19 +12,31 @@ def get_ratings(request):
     avg_ratings = {}
     latest_product_ratings = {}
     older_product_ratings = {}
+    all_rev_users = {}
 
     for product in products:
         avg_rating = Rating.objects.filter(
             product__pk=product.pk).aggregate(Avg('rating'))['rating__avg']
+        all_prod_ratings = Rating.objects.filter(product=product)
+        # Make avarage rating and number of stars available to the application
         if avg_rating:
             avg_rating = round(avg_rating * 2) / 2
             avg_ratings[product] = avg_rating
+
             h_star, f_stars = modf(avg_rating)
             stars = []
             count = 0
             while count < f_stars:
                 stars.append('star')
                 count += 1
+            # Get list of users who rated the product
+            users_rev = []
+            for rating in all_prod_ratings:
+                users_rev.append(rating.user)
+                all_rev_users[product] = users_rev
+
+        print(all_rev_users)
+
         latest_product_ratings[product] = Rating.objects.filter(product=product)[:3]
         older_product_ratings[product] = Rating.objects.filter(product=product)[4::]
 
@@ -34,5 +47,6 @@ def get_ratings(request):
         'avg_ratings': avg_ratings,
         'stars': stars,
         'h_star': h_star,
+        'all_rev_users': all_rev_users,
     }
     return context
