@@ -6,27 +6,20 @@
 {% endblock %}
 
 {% block page_header %}
-    <div class="container header-container min-top-margin">
-        <div class="row">
-            <div class="col"></div>
-        </div>
-    </div>
+<div class="container p-4 p-lg-5 pb-0 pb-lg-1">
+    <h2 class="text-dgreen">Update information</h2>
+    <h3 class="text-secondary">{{ user.username }}</h3>
+    <hr>
+</div>
 {% endblock %}
 
 {% block content %}
-    <div class="img-background"></div>
-    <div class="container-fluid min-top-margin">
-        <div class="row bg-light-transparent p-3 rounded mt-5">
-            <div class="col">
-                <h2 class="text-dgreen">My Profile</h2>
-                <hr>
-            </div>
+<div class="container px-4 px-lg-5">
             <div class="row">
                 <div class="col-12 col-lg-6">
                     <p class="text-dgreen fs-5">Default Delivery Address</p>
-                    <form class="mt-3" action="{% url 'profiles:profile' request.user.userprofile.pk %}" method="POST" id="profile-update-form">
+                    <form class="mt-3" action="{% url 'profiles:update_profile' request.user.userprofile.pk %}" method="POST" id="profile-update-form">
                         {% csrf_token %}
-                        
                         {{ form.default_street_address1 | as_crispy_field }}
                         {{ form.default_street_address2 | as_crispy_field }}
                         {{ form.default_town_or_city | as_crispy_field }}
@@ -34,14 +27,19 @@
                         {{ form.default_postcode | as_crispy_field }}
                         {{ form.default_country | as_crispy_field }}
                         {{ form.default_phone_number | as_crispy_field }}
-
-                        <button class="bg-success text-light float-right px-2 my-2">Update Information</button>
+                        <div class="d-none d-md-block d-flex flex-row">
+                            <button type="submit" class="btn main-btn-1 me-2">Update Information</button>
+                            <a href="{% url 'profiles:profile' request.user.userprofile.pk %}" class="btn main-btn-2">Cancel</a>
+                        </div>
+                        <div class="d-block d-md-none ">
+                            <button type="submit" class="btn main-btn-1 my-2">Update Information</button>
+                            <a href="{% url 'profiles:profile' request.user.userprofile.pk %}" class="btn main-btn-2">Cancel</a>
+                        </div>
                     </form>
                 </div>
-                <div class="col-12 col-lg-6">
-                    <p class="text-dgreen fs-5">My orders</p>
-                </div>
         </div>
+   
+</div>
 {% endblock %}
 
 {% block postloadjs %}
