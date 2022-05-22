@@ -12,7 +12,11 @@ from django.shortcuts import (
 from django.views.decorators.http import require_POST
 # from django.views.generic import TemplateView
 from bag.contexts import bag_contents
-from products.models import Product
+from products.models import (
+    Product,
+    Color,
+    Size,
+)
 from profiles.forms import UserProfileForm
 from profiles.models import UserProfile
 from .forms import OrderForm
@@ -87,6 +91,7 @@ def checkout(request):
                         if 'items_by_color' in item_data.keys():
                             for color, quantity in item_data[
                                     'items_by_color'].items():
+                                color = Color.objects.get(slug=color)
                                 order_line_item = OrderLineItem(
                                     order=order,
                                     product=product,
@@ -100,6 +105,7 @@ def checkout(request):
                                     'items_by_size'].values())[0], int):
                                 for size, quantity in item_data[
                                         'items_by_size'].items():
+                                    size = Size.objects.get(slug=size)
                                     order_line_item = OrderLineItem(
                                         order=order,
                                         product=product,
@@ -111,8 +117,10 @@ def checkout(request):
                                 # Handle products with size and color
                                 for size, colors in item_data[
                                         'items_by_size'].items():
+                                    size = Size.objects.get(slug=size)
                                     for color, quantity in colors[
                                             'items_by_color'].items():
+                                        color = Color.objects.get(slug=color)
                                         order_line_item = OrderLineItem(
                                             order=order,
                                             product=product,
@@ -235,9 +243,3 @@ def checkout_success(request, order_number):
     }
 
     return render(request, template, context)
-
-
-# class CancelView(TemplateView):
-#     """Stripe cancel view"""
-
-#     template_name = 'checkout/cancel.html'

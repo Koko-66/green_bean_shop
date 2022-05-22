@@ -7,7 +7,7 @@ from django.conf import settings
 from django.template.defaultfilters import slugify
 from django_countries.fields import CountryField
 
-from products.models import Product
+from products.models import Product, Color, Size, Type
 from profiles.models import UserProfile
 
 
@@ -51,7 +51,6 @@ class Order(models.Model):
         Update grand total each time a line item is added,
         accounting for delivery costs.
         """
-        
         self.order_total = self.lineitems.aggregate(
             Sum('lineitem_total'))['lineitem_total__sum'] or 0
         if self.order_total < settings.FREE_DELIVERY_THRESHOLD:
@@ -91,26 +90,26 @@ class OrderLineItem(models.Model):
                               related_name='lineitems')
     product = models.ForeignKey(Product, null=False, blank=False,
                                 on_delete=models.CASCADE)
-    product_size = models.CharField(max_length=3, null=True,
-                                    blank=True)
-    product_color = models.CharField(max_length=100, null=True,
-                                     blank=True)
+    product_size = models.ForeignKey(Size, null=True, blank=True,
+                                     on_delete=models.CASCADE)
+    product_color = models.ForeignKey(Color, null=True, blank=True,
+                                      on_delete=models.CASCADE)
     quantity = models.IntegerField(null=False, blank=False, default=0)
     lineitem_total = models.DecimalField(max_digits=6, decimal_places=2,
                                          null=False, blank=False,
                                          editable=False)
 
-    def _generate_sku(self):
+    def generate_sku(self):
         """Generate SKU"""
-        sku = f'{self.product.code}-{self.product.product_type}'
+        sku = f'{self.product.code}-{self.product.product_type.type_code}'
         if self.product_size: 
             if self.product_color:
-                sku = f'{sku}{self.product_size}{self.product_color}'
+                sku = f'{sku}-{self.product_size.size_short}{self.product.color.color_code}'
             else: 
-                sku = f'{sku}{self.product_size}'
+                sku = f'{sku}-{self.roduct_size.size_short}'
         else:
             if self.product_color:
-                sku = sku = f'{sku}{self.product_color}'
+                sku = sku = f'{sku}-{self.product_color.color_code}'
             else:
                 sku
         return sku
@@ -126,3 +125,4 @@ class OrderLineItem(models.Model):
 
     def __str__(self):
         return f'SKU {self._generate_sku()} on order {self.order.order_number}'
+
