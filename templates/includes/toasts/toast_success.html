@@ -4,8 +4,6 @@
     <div class="w-100 toast-capper bg-green"></div>
     <div class="toast-header">
         <strong class="me-auto text-green">Success!</strong>
-
-        <small class="text-muted"></small>
         <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
     </div>
     <div class="toast-body">
@@ -26,12 +24,12 @@
                     <p class="my-0"><strong>{{ item.product.name }}</strong></p>
                     <p class="my-0 small">Size:
                         {% if item.size %}
-                            {{ item.size }}{% else %}N/A
+                            {{ item.size|capfirst  }}{% else %}N/A
                         {% endif %}
                     </p>
                     <p class="my-0 small">Color:
-                        {% if item.color %}
-                            {{ item.color }}
+                        {% if item.color  %}
+                            {{ item.color|capfirst  }}
                             {% else %}N/A
                         {% endif %}
                     </p>
@@ -53,17 +51,14 @@
                     Spend <strong>£{{ free_delivery_delta }}</strong> more to get free next day delivery!
                 </p>
                 {% endif %}
-                <p class="bg-blue rounded-0 p-1 mb-0 text-center">
-                <a href="{% url 'bag:view_bag' %}" class="btn btn-black btn-block rounded-0">
+                <!-- <p class="bg-blue rounded-0 p-1 mb-0 text-center"> -->
+                <a href="{% url 'bag:view_bag' %}" class="btn main-btn-1 rounded-0 w-100">
                     <span class="text-uppercase text-light ">Go To Secure Checkout
                         <i class="fas fa-lock"></i>
                     </span>
                 </a>
-                </p>
             </div>
         </div>
         {% endif %}
     </div>
-    <!-- </div> -->
-    <!-- </div> -->
 </div>
