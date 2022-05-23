@@ -82,18 +82,19 @@
                                 {{ product.product_name }}
                             </p>
                             <p class="smaller-text mb-1 border-bottom border-secondary px-0">£{{ product.price }}</p>
-                            {% if avg_ratings %}
-                            {% for rated_product, rating in avg_ratings.items %}
-                            {% if rated_product == product %}
-                            <small class="px-0 text-muted border-bottom pb-1">
-                                {% for star in stars %}
-                                <i class="fas fa-star text-yellow"></i>
-                                {% endfor %}
-                                {% if h_star %}
-                                <i class="fas fa-star-half"></i>
+                            {% if star_ratings %}
+                            {% for rated_product, stars in star_ratings.items %}
+                                {% if rated_product == product %}
+                                <small class="px-0 text-muted border-bottom pb-1">
+                                    {% for star in stars %}
+                                    {% if star == 'star' %}
+                                    <i class="fas fa-star text-yellow"></i> 
+                                    {% elif star == 'h_star' %}
+                                    <i class="fas fa-star-half text-yellow"></i>
+                                    {% endif %}
+                                    {% endfor %}
+                                </small>
                                 {% endif %}
-                            </small>
-                            {% endif %}
                             {% endfor %}
                             {% else %}
                             <small class="px-0 text-muted border-bottom border-secondary">No rating</small>
