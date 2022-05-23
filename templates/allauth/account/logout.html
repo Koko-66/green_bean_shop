@@ -4,28 +4,27 @@
 
 {% block head_title %}{% trans "Sign Out" %}{% endblock %}
 
-{% block content %}
-<div class="container-fluid min-top-margin col-xs-12 col-sm-11 col-md-8 p-2">
-  <div class="d-md-flex flex-md-row-reverse bg-light mt-3 mt-md-5">
+{% block inner_content %}
+<div class="d-md-flex flex-md-row bg-light mt-2 mt-md-4">
     <div class="col m-2 p-2 main-text bg-light my-auto">
-      <h2 class="smaller mt-3 my-md-auto ms-1 ms-md-3">{% trans "Log out" %}</h2>
+        <h2 class="smaller my-auto mx-0 mx-lg-3 mt-2">{% trans "Log out" %}</h2>
+        <p class="ms-1 ms-md-3 d-block d-inline">{% trans 'Are you sure you want to sign out?' %}</p>
 
-      <p class="my-3 ms-1 ms-md-3 d-block d-inline">{% trans 'Are you sure you want to sign out?' %}</p>
-
-      <form method="post" action="{% url 'account_logout' %}">
-        {% csrf_token %}
-        {% if redirect_field_value %}
-        <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}"/>
-        {% endif %}
-        <button type="submit" class="btn-success text-glight px-2 ms-1 ms-md-3">{% trans 'Log out' %}</button>
-      </form>
+        <form method="post" action="{% url 'account_logout' %}">
+            {% csrf_token %}
+            {% if redirect_field_value %}
+            <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+            {% endif %}
+            <button type="submit" class="btn main-btn-1 text-glight px-2 ms-1 ms-md-3">{% trans 'Log out' %}</button>
+        </form>
     </div>
-    <div class="col img-fluid border my-auto">
-      <img src="https://res.cloudinary.com/dcslh2m3b/image/upload/v1649103642/GreenBean/pexels-teddy-tavan-4890733_mxqmip.jpg" alt="" class="img-fluid">
+    <div class="col img-fluid m-auto">
+        <img src="https://res.cloudinary.com/dcslh2m3b/image/upload/c_crop,h_3693/v1649103642/GreenBean/pexels-teddy-tavan-4890733_mxqmip.jpg"
+            alt="pexels-teddy-tavan-4890733_mxqmip image" class="img-fluid">
     </div>
-  </div>
 </div>
+
 <div class="auth-overlay">
-  <div class="position-absolute bottom-0 end-0 logo-watermark me-3">GreenBean</div>
+    <div class="position-absolute bottom-0 end-0 logo-watermark me-3">GreenBean</div>
 </div>
 {% endblock %}

@@ -4,41 +4,38 @@
 
 {% block head_title %}{% trans "Signup" %}{% endblock %}
 
-{% block content %}
-<div class="container-fluid min-top-margin col-xs-12 col-sm-11 col-md-8 p-2">
-    <div class="d-md-flex flex-md-row bg-light mt-3 mt-md-5">
-        <div class="col m-2 p-2 main-text bg-light my-auto">
-            
-            <h2 class="smaller my-auto mx-0 mx-lg-3 mt-2">{% trans "Sign Up" %}</h2>
+{% block inner_content %}
+<div class="d-md-flex flex-md-row bg-light mt-2 mt-md-4">
+    <div class="col m-2 p-2 main-text bg-light my-auto">
+        <h2 class="smaller my-auto mx-0 mx-lg-3 mt-2">{% trans "Sign Up" %}</h2>
 
-            <p class="mx-0 mx-lg-3 small">{% blocktrans %}Already have an account? Then please <a href="{{ login_url }}">sign
-                    in</a>.{% endblocktrans %}</p>
-            <!-- Form starts here -->
-            <form class="signup" id="signup_form" method="post" action="{% url 'account_signup' %}">
-                {% csrf_token %}
-                <!-- Custom styling using widget tweaks -->
-                {% for field in form %}
-                <div class="form-group small mx-0 mx-lg-3">
-                    <!-- <label for="{{ field.id_for_label }}" class="my-2">{{ field.label }}</label> -->
-                    <div>{% render_field field class="form-control p-1 text-smaller" placeholder=field.label %}</div>
-                    <!-- Block to display field errros -->
-                    <div class="mt-1 {% if field.errors %} invalid{% endif %}">
-                        {% for error in field.errors %}
-                        <p class="help-block text-warning">{{ error }}</p>
-                        {% endfor %}
-                    </div>
+        <p class="mx-0 mx-lg-3 small">{% blocktrans %}Already have an account? <a class="undecorated link-text"
+                href="{{ login_url }}">Sign
+                in</a>.{% endblocktrans %}</p>
+        <!-- Form starts here -->
+        <form class="signup" id="signup_form" method="post" action="{% url 'account_signup' %}">
+            {% csrf_token %}
+            <!-- Custom styling using widget tweaks -->
+            {% for field in form %}
+            <div class="form-group small mx-0 mx-lg-3">
+                <div>{% render_field field class="form-control p-1 text-smaller" placeholder=field.label %}</div>
+                <!-- Block to display field errros -->
+                <div class="mt-1 {% if field.errors %} invalid{% endif %}">
+                    {% for error in field.errors %}
+                    <p class="help-block text-warning">{{ error }}</p>
+                    {% endfor %}
                 </div>
-                {% endfor %}
-                {% if redirect_field_value %}
-                <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
-                {% endif %}
-                <button type="submit" class="bg-success text-light px-2 m-3">{% trans "Sign Up" %} &raquo;</button>
-            </form>
-        </div>
-        <div class="col my-auto me-2">
-            <img src="https://res.cloudinary.com/dcslh2m3b/image/upload/v1649103642/GreenBean/pexels-teddy-tavan-4890733_mxqmip.jpg"
-                    alt="pexels-teddy-tavan-4890733_mxqmip image" class="img-fluid">
-        </div>
+            </div>
+            {% endfor %}
+            {% if redirect_field_value %}
+            <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+            {% endif %}
+            <button type="submit" class="btn main-btn-1 text-light px-2 m-3">{% trans "Sign Up" %} &raquo;</button>
+        </form>
+    </div>
+    <div class="col img-fluid m-auto">
+        <img src="https://res.cloudinary.com/dcslh2m3b/image/upload/c_crop,h_3693/v1649103642/GreenBean/pexels-teddy-tavan-4890733_mxqmip.jpg"
+            alt="pexels-teddy-tavan-4890733_mxqmip image" class="img-fluid">
     </div>
 </div>
 <div class="auth-overlay">
