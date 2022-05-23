@@ -15,148 +15,207 @@
 
 {% block content %}
 <div class="container px-4 px-lg-5">
-    <div id="default-address" class="row">
-        <h5 class="text-dgreen mb-3">Default Delivery Address</h5>
-        <table class="d-none d-md-block table table-borderless table-responsive">
-            <thead>
-            </thead>
-            <tbody>
-                <tr>
-                    <td class="text-smaller text-muted text-uppercase">Address 1</td>
-                    <td class="fw-bold">{{ userprofile.default_street_address1 }}</td>
-                </tr>
-                <tr>
-                    <td class="text-smaller text-muted text-uppercase">Address 2</td>
-                    <td>{{ userprofile.default_street_address2 }}</td>
-                </tr>
-                <tr>
-                    <td class="text-smaller text-muted text-uppercase">County</td>
-                    <td>{{ userprofile.default_county }}</td>
-                </tr>
-                <tr>
-                    <td class="text-smaller text-muted text-uppercase">Town</td>
-                    <td>{{ userprofile.default_town_or_city }}</td>
-                <tr>
-                    <td class="text-smaller text-muted text-uppercase">Post Code</td>
-                    <td>{{ userprofile.default_postcode }}</td>
-                </tr>
-                <td class="text-smaller text-muted text-uppercase">Phone number</td>
-                <td>{{ userprofile.default_phone_number }}</td>
-                </tr>
-            </tbody>
-        </table>
-        <div class="d-block d-md-none col-12 col-lg-6 mb-3">
-            <div>
-                <p class="py-0 my-0 text-smaller text-muted text-uppercase">Address 1:</p>
-                <p class="mb-0">{{ userprofile.default_street_address1 }}</p>
-            </div>
-            <div>
-                <p class="py-0 my-0 text-smaller text-muted text-uppercase">Address 2:</p>
-                <p class="mb-0">{{ userprofile.default_street_address2 }}</p>
-            </div>
-            <div>
-                <p class="py-0 my-0 text-smaller text-muted text-uppercase">County:</p>
-                <p class="mb-0">{{ userprofile.default_county }}</p>
-            </div>
-            <div>
-                <p class="py-0 my-0 text-smaller text-muted text-uppercase">Town:</p>
-                <p class="mb-0">{{ userprofile.default_town_or_city }}</p>
-            </div>
-            <div>
-                <p class="py-0 my-0 text-smaller text-muted text-uppercase">Post Code:</p>
-                <p class="mb-0">{{ userprofile.default_phone_number }}</p>
-            </div>
-        </div>
-        <div>
-            <a href="{% url 'profiles:update_profile' profile.pk %}" class="btn main-btn-1 my-2 mb-4" role="button">Update
-            your information</a>
-        </div>
-        <hr> 
-    </div>
-    <div class="row my-3">
-        <h5 class="text-dgreen mb-3">Your orders</h5>
-        {{ userprofile.user.orders }}
-        <div class="col order-history mb-3">
-            <table class="table table-hover table-sm table-boderless">
+    <section id="default-address">
+        <div class="row">
+            <h5 class="text-dgreen mb-3">Default Delivery Address</h5>
+            <table class="d-none d-md-block table table-borderless table-responsive">
                 <thead>
-                    <tr>
-                        <th>Order &numero;</th>
-                        <th>Date</th>
-                        <th>Items</th>
-                        <th>Order Total</th>
-                    </tr>
                 </thead>
                 <tbody>
-                    {% for order in orders|slice:":10"  %}
                     <tr>
-                        <td>
-                            <a href="{% url 'profiles:past_order' profile.pk order.slug %}" title="{{ order.slug }}" class="text-smaller link-text">
-                                {{ order.order_number|truncatechars:6 }}
-                            </a>
-                        </td>
-                        <td class="small">{{ order.date|date:"D, d M Y" }}</td>
-                        <td>
-                            <ul class="list-unstyled">
-                        {% for item in order.lineitems.all %}
-                        <li class="small">
-                            {{ item.product }} x {{ item.quantity }}&nbsp;|
-                            {% if item.product_size %}
-                            <p>Size: {{ item.product_size|upper }}&nbsp;|
-                            {% endif %}
-                            {% if item.product_color %}
-                            Color: {{ item.product_color|upper }}&nbsp;|
-                            {% endif %}
-                            SKU: {{ item.generate_sku }}
-                        </li>
-                        {% endfor %}
-                            </ul>
-                        </td>
-                        <td class="small">£{{ order.grand_total }}</td>
+                        <td class="text-smaller text-muted text-uppercase">Address 1</td>
+                        <td>{{ userprofile.default_street_address1 }}</td>
                     </tr>
-                    {% endfor %}
+                    <tr>
+                        <td class="text-smaller text-muted text-uppercase">Address 2</td>
+                        <td>{{ userprofile.default_street_address2 }}</td>
+                    </tr>
+                    <tr>
+                        <td class="text-smaller text-muted text-uppercase">County</td>
+                        <td>{{ userprofile.default_county }}</td>
+                    </tr>
+                    <tr>
+                        <td class="text-smaller text-muted text-uppercase">Town</td>
+                        <td>{{ userprofile.default_town_or_city }}</td>
+                    <tr>
+                        <td class="text-smaller text-muted text-uppercase">Post Code</td>
+                        <td>{{ userprofile.default_postcode }}</td>
+                    </tr>
+                    <tr>
+                        <td class="text-smaller text-muted text-uppercase">Phone number</td>
+                        <td>{{ userprofile.default_phone_number }}</td>
+                    </tr>
                 </tbody>
             </table>
+            <div class="d-block d-md-none col-12 col-lg-6 mb-3">
+                <div>
+                    <p class="py-0 my-0 text-smaller text-muted text-uppercase">Address 1:</p>
+                    <p class="mb-0">{{ userprofile.default_street_address1 }}</p>
+                </div>
+                <div>
+                    <p class="py-0 my-0 text-smaller text-muted text-uppercase">Address 2:</p>
+                    <p class="mb-0">{{ userprofile.default_street_address2 }}</p>
+                </div>
+                <div>
+                    <p class="py-0 my-0 text-smaller text-muted text-uppercase">County:</p>
+                    <p class="mb-0">{{ userprofile.default_county }}</p>
+                </div>
+                <div>
+                    <p class="py-0 my-0 text-smaller text-muted text-uppercase">Town:</p>
+                    <p class="mb-0">{{ userprofile.default_town_or_city }}</p>
+                </div>
+                <div>
+                    <p class="py-0 my-0 text-smaller text-muted text-uppercase">Post Code:</p>
+                    <p class="mb-0">{{ userprofile.default_phone_number }}</p>
+                </div>
+            </div>
             <div>
-                {% if orders.count > 10%}
-                <a href="">View more...</a>
-                {% endif %}
+                <a href="{% url 'profiles:update_profile' profile.pk %}" class="btn main-btn-1 my-2 mb-4"
+                    role="button">Update
+                    your information</a>
             </div>
+            <hr>
         </div>
-        <hr>
-    </div>
-    <div class="row">
-        <h5 class="text-dgreen mb-3">Your review history</h5>
-        <div>
-            {% for rating in user_reviews %}
-            {% if rating.product.image %}
-                <img class="img-preview m-1" src="{{ rating.product.image.url }}">
-            {% endif %}
-            <div class="d-flex flex-row align-items-center">
-                <span class="text-dgreen me-3">{{ rating.product }}</span>
-                <span>{% if rating.rating == 5 %}
-                    {% include 'products/includes/5_stars.html' %}
-                    {% elif rating.rating == 4 %}
-                    {% include 'products/includes/4_stars.html' %}
-                    {% elif rating.rating == 3 %}
-                    {% include 'products/includes/3_stars.html' %}
-                    {% elif rating.rating == 2 %}
-                    {% include 'products/includes/2_stars.html' %}
-                    {% else %}
-                    {% include 'products/includes/1_star.html' %}
+    </section>
+    <section id="order-history">
+        <div class="row my-3">
+            <h5 class="text-dgreen mb-3">Your orders</h5>
+            {{ userprofile.user.orders }}
+            <div class="col mb-3">
+                <table class="table table-hover table-sm table-boderless">
+                    <thead>
+                        <tr>
+                            <th>Order &numero;</th>
+                            <th>Date</th>
+                            <th>Items</th>
+                            <th>Order Total</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for order in orders|slice:":5" %}
+                        <tr>
+                            <td>
+                                <a href="{% url 'profiles:past_order' profile.pk order.slug %}" title="{{ order.slug }}"
+                                    class="text-smaller link-text">
+                                    {{ order.order_number|truncatechars:6 }}
+                                </a>
+                            </td>
+                            <td class="small">{{ order.date|date:"D, d M Y" }}</td>
+                            <td>
+                                <ul class="list-unstyled">
+                                    {% for item in order.lineitems.all %}
+                                    <li class="small">
+                                        <p class="my-0">{{ item.product }} x {{ item.quantity }}</p>
+                                        <p class="my-0">
+                                            {% if item.product_size %}
+                                            {{ item.product_size|upper }}&nbsp;|
+                                            {% endif %}
+                                            {% if item.product_color %}
+                                            Color: {{ item.product_color|upper }}&nbsp;|
+                                            {% endif %}
+                                            SKU: {{ item.generate_sku }}
+                                        </p>
+                                    </li>
+                                    {% endfor %}
+                                </ul>
+                            </td>
+                            <td class="small">£{{ order.grand_total }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+                <div>
+                    {% if orders.count > 5 %}
+                    <a class="btn main-btn-2" data-bs-toggle="collapse" href="#collapseOrderHistory" role="button"
+                        aria-expanded="false" aria-controls="collapseOrderHistory">
+                        View older...
+                    </a>
                     {% endif %}
-                </span>
-                <span class="ms-1 small">({{ rating.rating }} stars)</span>
+                </div>
+                <div class="collapse pt-3" id="collapseOrderHistory">
+                    <p class="fw-bolder">Older orders</p>
+                    <table class="table table-hover table-sm table-boderless">
+                        <thead>
+                            <tr>
+                                <th>Order &numero;</th>
+                                <th>Date</th>
+                                <th>Items</th>
+                                <th>Order Total</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for order in orders|slice:"5:"  %}
+                            <tr>
+                                <td>
+                                    <a href="{% url 'profiles:past_order' profile.pk order.slug %}"
+                                        title="{{ order.slug }}" class="text-smaller link-text">
+                                        {{ order.order_number|truncatechars:6 }}
+                                    </a>
+                                </td>
+                                <td class="small">{{ order.date|date:"D, d M Y" }}</td>
+                                <td>
+                                    <ul class="list-unstyled">
+                                        {% for item in order.lineitems.all %}
+                                        <li class="small">
+                                            <p class="my-0">{{ item.product }} x {{ item.quantity }}</p>
+                                            <p class="my-0">
+                                                {% if item.product_size %}
+                                                Size: {{ item.product_size|upper }}&nbsp;|
+                                                {% endif %}
+                                                {% if item.product_color %}
+                                                Color: {{ item.product_color|upper }}&nbsp;|
+                                                {% endif %}
+                                                SKU: {{ item.generate_sku }}
+                                            </p>
+                                        </li>
+                                        {% endfor %}
+                                    </ul>
+                                </td>
+                                <td class="small">£{{ order.grand_total }}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
             </div>
-            <p><span class="small">Date: {{ rating.date|date:"D, d M Y" }}</span>
-            </p>
-            <p class="fst-italic w-100 w-md-75">&ldquo;{{ rating.comment }}&rdquo;</p>
-            <hr class="w-50">
-            {% endfor %}
         </div>
-    </div>
-    {% endblock %}
+    </section>
+    <section id="review-history">
+        <div class="row">
+            <h5 class="text-dgreen mb-3">Your review history (last 5 reviews)</h5>
+            <div>
+                {% for rating in user_reviews|slice:":5" %}
+                {% if rating.product.image %}
+                <img class="img-preview m-1" src="{{ rating.product.image.url }}">
+                {% endif %}
+                <div class="d-flex flex-row align-items-center">
+                    <span class="text-dgreen me-3">{{ rating.product }}</span>
+                    <span>{% if rating.rating == 5 %}
+                        {% include 'products/includes/5_stars.html' %}
+                        {% elif rating.rating == 4 %}
+                        {% include 'products/includes/4_stars.html' %}
+                        {% elif rating.rating == 3 %}
+                        {% include 'products/includes/3_stars.html' %}
+                        {% elif rating.rating == 2 %}
+                        {% include 'products/includes/2_stars.html' %}
+                        {% else %}
+                        {% include 'products/includes/1_star.html' %}
+                        {% endif %}
+                    </span>
+                    <span class="ms-1 small">({{ rating.rating }} stars)</span>
+                </div>
+                <p><span class="small">Date: {{ rating.date|date:"D, d M Y" }}</span>
+                </p>
+                <p class="fst-italic w-100 w-md-75">&ldquo;{{ rating.comment }}&rdquo;</p>
+                <hr class="w-50">
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+</div>
+{% endblock %}
 
-    {% block postloadjs %}
-    {{ block.super }}
-    <script src="{% static 'js/country_selector_color.js' %}"></script>
-    {% endblock %}
+{% block postloadjs %}
+{{ block.super }}
+<script src="{% static 'js/country_selector_color.js' %}"></script>
+{% endblock %}

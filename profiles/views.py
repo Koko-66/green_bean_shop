@@ -1,6 +1,4 @@
 """User profile views"""
-# from django.contrib import messages
-# from django.http import HttpResponseRedirect
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render, get_object_or_404
 from django.views.generic import (
@@ -8,6 +6,7 @@ from django.views.generic import (
     UpdateView,
 )
 from checkout.models import Order
+from products.models import Rating
 from .forms import UserProfileForm
 from .models import UserProfile
 
@@ -21,20 +20,24 @@ class UserProfileDetails(LoginRequiredMixin, DetailView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+
         pk = self.kwargs.get('pk')
+        user = self.request.user
+        user_reviews = Rating.objects.filter(user=user)
+
         context['profile'] = UserProfile.objects.get(pk=pk)
         context['orders'] = Order.objects.all()
         context['on_profile_page'] = True
+        context['user_reviews'] = user_reviews
         return context
 
 
 class UpdateProfile(LoginRequiredMixin, UpdateView):
     """Display and update userprofile"""
 
+    model = UserProfile
     form_class = UserProfileForm
     template_name = 'profiles/update_profile.html'
-    queryset = UserProfile.objects.all()
-    # success_url = HttpResponseRedirect(self.request.META.get('HTTP_REFERER'))
     success_message = "Profile updated"
 
     def get_context_data(self, **kwargs):
@@ -46,7 +49,6 @@ class UpdateProfile(LoginRequiredMixin, UpdateView):
 class PastOrderDetailView(LoginRequiredMixin, DetailView):
     """View details of past order"""
     model = Order
-    # success_message = f'Details of order placed on {order.date}.'
     template_name = 'checkout/success.html'
 
     def get(self, *args, **kwargs):
@@ -62,9 +64,3 @@ class PastOrderDetailView(LoginRequiredMixin, DetailView):
         }
         return render(self.request, self.template_name, context)
 
-    # def get_context_data(self, **kwargs):
-    #     pk = self.kwargs.get('pk')
-    #     context = super().get_context_data(**kwargs)
-    #     context['profile'] = UserProfile.objects.get(pk=pk)
-    #     context['from_profile'] = True
-    #     return context
