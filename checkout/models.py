@@ -104,7 +104,7 @@ class OrderLineItem(models.Model):
         sku = f'{self.product.code}-{self.product.product_type.type_code}'
         if self.product_size: 
             if self.product_color:
-                sku = f'{sku}-{self.product_size.size_short}{self.product.color.color_code}'
+                sku = f'{sku}-{self.product_size.size_short}{self.product_color.color_code}'
             else: 
                 sku = f'{sku}-{self.roduct_size.size_short}'
         else:
