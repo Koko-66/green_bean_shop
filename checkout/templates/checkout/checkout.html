@@ -6,82 +6,74 @@
 <link rel="stylesheet" href="{% static 'checkout/css/checkout.css' %}">
 {% endblock %}
 
-<!-- {% block page_header %}
-<div class="container-fluid header-container">
-    <div class="row">
-        <div class="col">
-            All products
-        </div>
-    </div>
+{% block page_header %}
+<div class="container p-4 p-lg-5 pb-0 pb-lg-1">
+    <h2 class="text-dgreen">Checkout</h2>
+    <hr>
 </div>
-{% endblock %} -->
+{% endblock %}
 
 {% block content %}
-<!-- <div class="overlay"></div> -->
-<div class="container mt-5">
+<div class="container px-4 px-lg-5">
     <div class="row">
-        <div class="col">
-            <h2 class="text-dgreen">Checkout</h2>
-            <hr>
-        </div>
-    </div>
-    <div class="row">
+        <!-- Order summary table -->
         <div class="col-12 col-lg-6 order-last mb-5">
-            <p class="text-muted">Order Summary ({{ product_count }})</p>
+            <p class="text-dgreen">ORDER SUMMARY ({{ product_count }})</p>
             <div class="row">
-                <div class="col-7 offset-2">
-                    <p class="mb-1 mt-0 small text-muted">Item</p>
+                <div class="col-7 offset-md-2">
+                    <p class="mb-1 mt-0 small text-dgreen fw-bold">Item</p>
                 </div>
-                <div class="col-3 text-right">
-                    <p class="mb-1 mt-0 small text-muted">Subtotal</p>
+                <div class="col-2 text-right">
+                    <p class="mb-1 mt-0 small text-dgreen fw-bold text-end">Subtotal</p>
                 </div>
             </div>
             {% for item in bag_items %}
                 <div class="row">
-                    <div class="col-2 mb-1">
+                    <div class="col-2 my-2">
                         <a href="{% url 'products:product_details' item.product.id %}">
                             {% if item.product.image %}
-                                <img class="w-100" src="{{ item.product.image.url }}" alt="{{ product.name }}">
+                                <img class="w-75" src="{{ item.product.image.url }}" alt="{{ product.name }}">
                             {% else %}
-                                <img class="w-100" src="{{ MEDIA_URL }}noimage.png" alt="{{ product.name }}">
+                                <img class="w-75" src="{{ MEDIA_URL }}noimage.png" alt="{{ product.name }}">
                             {% endif %}
                         </a>
                     </div>
-                    <div class="col-7">
+                    <div class="col-5 col-md-7 my-2">
                         <p class="my-0"><strong>{{ item.product.name }}</strong></p>
                         <p class="my-0 small">Size: {% if item.product.has_sizes %}{{ item.size|upper }}{% else %}N/A{% endif %}</p>
                         <p class="my-0 small text-muted">Qty: {{ item.quantity }}</p>
                     </div>
-                    <div class="col-3 text-right">
+                    <div class="col-2 my-2 text-end">
                         <p class="my-0 small text-muted">£{{ item.product.price | calc_subtotal:item.quantity }}</p>
                     </div>
                 </div>
             {% endfor %}
             <hr class="my-0">
-            <div class="row text-black text-right">
-                <div class="col-7 offset-2">
-                    <p class="my-0">Order Total:</p>
-                    <p class="my-0">Delivery:</p>
-                    <p class="my-0">Grand Total:</p>
+            <div class="row text-right">
+                <div class="col-7 offset-md-2">
+                    <p class="mt-1 mb-0 small">Order Total:</p>
+                    <p class="my-0 small">Delivery:</p>
+                    <p class="my-0 text-dgreen text-smaller fw-bold">GRAND TOTAL:</p>
                 </div>
-                <div class="col-3">
-                    <p class="my-0">£{{ total | floatformat:2 }}</p>
-                    <p class="my-0">£{{ delivery | floatformat:2 }}</p>
-                    <p class="my-0"><strong>£{{ grand_total | floatformat:2 }}</strong></p>
+                <div class="col-2 text-end">
+                    <p class="my-0 small">£{{ total | floatformat:2 }}</p>
+                    <p class="my-0 small">£{{ delivery | floatformat:2 }}</p>
+                    <p class="my-1 text-dgreen text-smaller fw-bold">£{{ grand_total | floatformat:2 }}</p>
                 </div>
             </div>
         </div>
+        <!-- Payment form -->
         <div class="col-12 col-lg-6">
-            <p class="text-lgreen">Fill in the form below to complete the order</p>
+            <p class="text-dgreen">Fill in the form below to complete the order</p>
             <form action="{% url 'checkout:checkout' %}" method="POST" id="payment-form">
                 {% csrf_token %}
-                <fieldset class="rounded px-3 mb-3">
-                    <legend class="fieldset-label small px-2 w-auto ">Details</legend>
+                <fieldset class="rounded mb-3">
+                    <legend class="fieldset-label px-2 w-auto text-smaller text-dgreen fw-bold">DETAILS</legend>
                         {{ order_form.full_name | as_crispy_field }}
                         {{ order_form.email | as_crispy_field }}
                     </fieldset>
-                <fieldset class="rounded px-3 mb-3">
-                    <legend class="fieldset-label small px-2 w-auto">Delivery</legend>
+                <fieldset class="rounded mb-3">
+                    <legend class="fieldset-label px-2 w-auto text-smaller text-dgreen fw-bold">DELIVERY</legend>
                         {{ order_form.street_address1 | as_crispy_field }}
                         {{ order_form.street_address2 | as_crispy_field }}
                         {{ order_form.town_or_city | as_crispy_field }}
@@ -101,8 +93,8 @@
 							{% endif %}
 						</div>
                 </fieldset>
-                <fieldset class="rounded px-3 mb-5">
-                    <legend class="fieldset-label small text-black px-2 w-auto">Payment</legend>
+                <fieldset class="rounded mb-1 mb-md-3">
+                    <legend class="fieldset-label small text-black px-2 w-auto text-smaller text-dgreen fw-bold">Payment</legend>
                         <!-- Stripe.js injects the Payment Element here-->
                         <div class="mb-3 form-control" id="card-element"></div>
 
@@ -110,23 +102,24 @@
                         <div class="mb-3 text-danger" id="card-errors" role="alert"></div>
                         <input type="hidden" value="{{ client_secret }}" name="client_secret">
                 </fieldset>
-                <div class="submit-button text-right mt-5 mb-2">                    
-                    <a href="{% url 'bag:view_bag' %}" class="btn btn-outline-black rounded-0">
+                <!-- Form buttons -->
+                <div class="submit-button text-right mt-1 mt-md-4 mb-2">                    
+                    <a href="{% url 'bag:view_bag' %}" class="btn main-btn-2">
                         <span class="icon">
                             <i class="fas fa-chevron-left"></i>
                         </span>
                         <span class="font-weight-bold">Adjust Bag</span>
                     </a>
-                    <button id="submit-button" type="submit" class="btn rounded-0">
+                    <button id="submit-button" type="submit" class="btn main-btn-1">
                         <div class="spinner hidden" id="spinner"></div>
-                        <span id="button-text" class="font-weight-bold">Pay now</span>
+                        <span>Pay now</span>
                         <span class="icon">
-                            <i class="fas fa-lock"></i>
+                            <i class="fas fa-lock text-light"></i>
                         </span>
                     </button>
                     <div id="card-message" class="hidden"></div>
-                    <p class="small text-danger my-0">
-                        <span class="icon">
+                    <p class="small text-danger mt-2 py-2">
+                        <span class="icon text-danger">
                             <i class="fas fa-exclamation-circle"></i>
                         </span>
                         <span>You will be charged <strong>£{{ grand_total|floatformat:2 }}</strong></span>
@@ -134,13 +127,14 @@
                     <input type="checkbox" id="newsletter-consent" name="newsletter-consent" value="0" class="d-inline">
                     <label for="newsletter-consent" class="d-inline small my-1">Please tick this box if you agree for us to use your email address to send you inspiration, new arrivals and our latest offers.</label>
                         <!-- Find out what you'd miss from us -->
-                    <p class="small mt-2">By placing your order you agree to the website terms and conditions and our <a href="https://www.privacypolicygenerator.info/live.php?token=cTUZDunlPrcGF9jii9s8srNcGa36rZPa" target="_blank" rel=”noopener”> privacy notice</a>.</p>
+                    <p class="small mt-2">By placing your order you agree to our <a href="https://www.privacypolicies.com/live/1654b4fb-8236-4d49-9699-aa648cb95e41" target="_blank" rel=”noopener” aria-label="Returns and refund policy" class="link-text">Returns and refund</a> and <a href="https://www.privacypolicygenerator.info/live.php?token=cTUZDunlPrcGF9jii9s8srNcGa36rZPa" target="_blank" rel=”noopener” aria-label="Privacy policy" class="link-text"> Privacy</a> policies.</p>
                     </p>
                 </div>
             </form>
         </div>   
     </div>
 </div>
+<!-- Spinner overlay -->
 <div id="loading-overlay">
     <h1 class="text-light logo-font loading-spinner">
         <span class="icon">
@@ -157,4 +151,5 @@
     {{ client_secret|json_script:"id_client_secret" }}
     {{ success_url|json_script:"id_success_url" }}
     <script src="{% static 'checkout/js/checkout.js' %}"></script>
+    <script src="{% static 'js/country_selector_color.js' %}"></script>
 {% endblock %}

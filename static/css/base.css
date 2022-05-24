@@ -54,7 +54,7 @@ body {
 }
 
   /* Font styling for author name */
-footer span {
+footer div span {
     font-family: "Festive", cursive;
 }
 
@@ -190,11 +190,6 @@ small {
 
 .img-preview {
     height: 150px;
-    width: auto;
-}
-
-.img-shopping-bag {
-    height: 200px;
     width: auto;
 }
 
@@ -539,18 +534,31 @@ div .table-cell { display:table-cell; }
     border-bottom-width: 1px;
     box-shadow: inset 0 0 0 9999px var(--bs-table-accent-bg); */
 }
+
+.row {
+    --bs-gutter-x: 2rem !important;
+}
+
+/* Shopping bag */
 .row-centered {
     text-align: center !important;
 }
 
-.row {
-    --bs-gutter-x: 2rem !important;
+.img-shopping-bag {
+    height: auto;
+    max-width: 150px;
 }
 
 .free-del-banner {
     cursor: default !important;
 }
 
+.color-indicator {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    border-color: black;
+}
 /* --- Media queries --- */
 
 @media only screen and (max-width: 1500px) {

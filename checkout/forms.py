@@ -40,8 +40,10 @@ class OrderForm(forms.ModelForm):
                 placeholder = placeholders[field]
             self.fields[field].widget.attrs['placeholder'] = placeholder
             if field != 'country':
-                self.fields[field].widget.attrs['class'] = 'stripe-style-input'
+                self.fields[field].widget.attrs['class'] = 'form-control\
+                    rounded border-secondary'
             else:
                 self.fields[field].widget.attrs[
-                    'class'] = 'stripe-style-input default-country'
+                    'class'] = 'form-control rounded default-country\
+                        border-secondary'
             self.fields[field].label = False
