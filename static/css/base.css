@@ -658,7 +658,7 @@ div .table-cell { display:table-cell; }
     #mc-toggle-btn-sm {
         right: 0;
         transform: rotate(0deg);
-        margin-right: 35px;
+        margin-right: 3px;
         padding-bottom: 0px;
         bottom: 0;
         background-color: rgba(131, 59, 47, 1);
