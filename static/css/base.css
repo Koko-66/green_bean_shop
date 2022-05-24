@@ -31,7 +31,7 @@ html {
 body {
     margin: 0px;
     padding: 0px;
-    font-family: 'Ubuntu', sans-serif;
+    /* font-family: 'Ubuntu', sans-serif !important; */
     height: 100%;
 }
 
@@ -192,6 +192,12 @@ small {
     height: 150px;
     width: auto;
 }
+
+.img-shopping-bag {
+    height: 200px;
+    width: auto;
+}
+
 /* buttons */
 
 .btn {
@@ -533,9 +539,16 @@ div .table-cell { display:table-cell; }
     border-bottom-width: 1px;
     box-shadow: inset 0 0 0 9999px var(--bs-table-accent-bg); */
 }
+.row-centered {
+    text-align: center !important;
+}
 
 .row {
     --bs-gutter-x: 2rem !important;
+}
+
+.free-del-banner {
+    cursor: default !important;
 }
 
 /* --- Media queries --- */
