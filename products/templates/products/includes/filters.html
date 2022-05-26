@@ -1,5 +1,5 @@
 <!-- Filters and sort options -->
-<div id="filters" class="offcanvas offcanvas-top mx-auto bg-light w-sm-100 w-md-75" >
+<div id="filters" class="offcanvas offcanvas-top mx-auto bg-light w-sm-100 w-md-75">
     <div class="row mb-3">
     <form action="{% url 'products:products' %}" method="GET">
         <div
@@ -17,7 +17,7 @@
                 <div class="d-flex flex-row flex-wrap lh-2">
                     <div class="d-flex flex-row flex-wrap mt-2">
                         {% for color in color_list %}
-                        <div class="circle bg-{{ color.slug }} me-2 mb-2">
+                        <div class="circle bg-{{ color.slug }} {% if color.slug == 'white' %}border border-secondary{% endif %} me-2 mb-2">
                             <input id="id_color-lg-{{ color.slug }}" type="radio" class="color d-none" name="color"
                                 value="{{ color.slug }}">
                             <label for="id_color-lg-{{ color.slug }}" class="circle"></label>
@@ -97,7 +97,7 @@
                     <div class="d-flex flex-row flex-wrap">
                         <div class="color d-flex flex-row flex-wrap mt-2">
                             {% for color in color_list %}
-                            <div class="circle bg-{{ color.slug }} me-2">
+                            <div class="circle bg-{{ color.slug }} {% if color.slug == 'white' %}border border-secondary{% endif %} me-2 mb-1">
                                 <input id="id_color-{{ color.slug }}" type="radio" class="color d-none"
                                     name="color" value="{{ color.slug }}">
                                 <label for="id_color-{{ color.slug }}" class="circle"></label>

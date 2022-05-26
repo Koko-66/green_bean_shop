@@ -57,18 +57,26 @@
         {% for product in product_list %}
         <div class="card-container pt-2 px-3 pb-0 m-md-1 my-md-4">
             <div class="card mb-3 border-bottom border-light">
+               
                 <div
-                    class="card-img my-auto h-100 {% if product.product_type.type_code == 'TS' %}card-img-bg{% endif %}">
+                    class="card-img my-auto h-100 {% if product.product_type.type_code == 'TS' %}card-img-bg{% endif %} position-relative"> {% for category in product.get_categories %}
+                    {% if category.slug == "new" %}
+                    <span class="badge bg-orange text-light position-absolute top-0 end-0 mb-2">New</span>
+                    {% endif %}
+                {% endfor %}
+                
                     {% if product.image %}
                     <a href="{% url 'products:product_details' product.id %}">
                         <img class="{% if product.product_type.type_code == 'TS' %}card-img-top{% endif %} img-fluid"
                             src="{{ product.image.url }}" alt="{{ product.name }}">
+                            
                     </a>
                     {% else %}
                     <a href="{% url 'products:product_details' product.id %}" class="m-auto">
                         <img class="img-fluid" src="{{MEDIA_URL}}noimage.png" alt="{{ product.name }}">
                     </a>
                     {% endif %}
+                    
                 </div>
                 <form action="{% url 'bag:add_to_bag' product.id %}" method="POST" class="px-0 py-0">
                     {% csrf_token %}
