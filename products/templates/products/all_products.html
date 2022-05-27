@@ -6,44 +6,58 @@
 {% endblock %}
 
 {% block page_header %}
-<div class="container-fluid px-4 pt-4 px-lg-5 pt-lg-5 text-dgreen">
-    <div class="d-flex flex-row align-items-center mx-sm-1 mx-md-3 mx-lg-5">
+<div class="container-fluid px-2 pt-3 px-lg-5 pt-lg-4 text-dgreen">
+    <div class="d-flex flex-row align-items-end mx-sm-1 mx-md-3 mx-lg-5">
+        <!-- Info about no of products displayed and filters -->
         <div>
-            <h4 class="text-dgreen mb-0 me-3">Products</h4>
-        </div>
-        <div>
+            {% if all_products.count == product_list.count %}
+            <h4 class="text-dgreen mb-0 me-md-3">Products: {{ all_products.count }}
+            </h4>
+            {% else %} 
+            <h4 class="text-dgreen mb-0 me-md-3">Products: {{ product_list.count }} of {{ all_products.count }} | <a href="{% url 'products:products' %}" class="undecorated text-yellow fs-5 py-0 px-1" aria-label="Show all">Show all</a>
+            </h4>
             <h6 class="mb-0">
-                {% if search_term %}
-                <a href="{% url 'products:products' %}" class=" undecorated text-lgreen">Show all</a> |
-                <span class="fs-6">{{ product_list.count }}
+                <!-- Check if searched by term -->
+                <p class="m-0 mb-1">{% if search_term %}
+                    {{ product_list.count }}
                     {% if product_list.count == 1 %}product{% else %}products{% endif %} with keyword
-                    '{{ search_term }}' </span>
-                {% elif current_categories %}
-                <a href="{% url 'products:products' %}" class=" undecorated text-yellow"> Show all</a> |
-                <span class="fs-6">{{ product_list.count }} products in
-                    {% for category in current_categories %}{{ category.friendly_name }}{% endfor %} category</span>
-                {% elif current_colors %}
-                <a href="{% url 'products:products' %}" class=" undecorated text-lgreen">Show all</a> |
-                <span class="fs-6">{{ product_list.count }} products in
-                    {% for color in current_colors %}
-                    {{ color.color }}
-                    {% endfor %}, </span>
-                {% elif current_sizes %}
-                <a href="{% url 'products:products' %}" class=" undecorated text-lgreen">Show all</a> |
-                <span class="fs-6">{{ product_list.count }} products in size
-                    {% for size in current_sizes %} {{ size.size_short }}{% endfor %}</span>
-                {% elif product_list.count == 0 %}
-                <a href="{% url 'products:products' %}" class="undecorated text-yellow"> Show all</a> |
-                No products found
-                {% else %}
-                <span class=""> All | {{ product_list.count }}
-                    {#% if product_list.count == 1 %}product{% else %}products{% endif %#}</span>
-                {% endif %}
-            </h6>
+                        '{{ search_term }}'
+                {% else %} 
+                </p>
+                <!-- <span class="text-decoration-underline bg-lgreen rounded mt-1 px-1 py-0">Filtered by</span> -->
+                <span class="bg-lgreen rounded mt-1 px-1 py-0">Filtered by</span>
+                    {% if current_categories %}
+                    <span>{% if current_categories.count == 1 %}Category{% else %}Categories{% endif %}
+                     {% for category in current_categories %}"{{ category.friendly_name }}"{% endfor %}&nbsp;|</span>
+                    {% endif %}
+
+                    {% if current_colors %}
+                    <span>{% if current_colors.count == 1 %}Color{% else %}Colors{% endif %}
+                        {% for color in current_colors %}"{{ color.color }}"{% endfor %}&nbsp;|</span>
+                    {% endif %}
+
+                    {% if current_sizes %}
+                    <span>{% if current_sizes.count == 1 %}Size{% else %}Sizes{% endif %}
+                        {% for size in current_sizes %} "{{ size.size_short }}"{% endfor %}&nbsp;|</span>
+                    {% endif %}
+                    {% if search_term == None and product_list.count == 0 %}
+                    No products found
+                    {% endif %}
+                    <!-- <span class=""> All | {{ product_list.count }}
+                        {% if product_list.count == 1 %}product{% else %}products{% endif %}</span>
+                    {% endif %}             -->
+            {% endif %}
+                </h6>
         </div>
-        <div class="flex-grow-1 text-end">
+        <!-- Link to filters on large devices -->
+        <div class="d-none d-md-block flex-grow-1 text-end">
             <small class="text-uppercase undecorated" data-bs-toggle="offcanvas" href="#filters" role="button"
-                aria-expanded="false" aria-controls="filters_div">Filter / sort</small>
+                aria-expanded="false" aria-controls="filters_div" aria-label="Filter and sort button">Filter / sort</small>
+        </div>
+        <!-- Link to filters on smaller devices -->
+        <div class="d-block d-md-none flex-grow-1 text-end pe-3">
+            <small class="text-uppercase undecorated" data-bs-toggle="offcanvas" href="#filters" role="button"
+                aria-expanded="false" aria-controls="filters_div" aria-label="Filter and sort button"><i class="fas fa-filter text-green"></i></small>
         </div>
         {% include 'products/includes/filters.html' with color_list=color_list category_list=category_list size_list=size_list %}
     </div>
@@ -52,28 +66,36 @@
 {% endblock %}
 
 {% block content %}
+<!-- Container with product list -->
 <div class="container-fluid text-center align-items-center mx-auto">
-    <div class="d-flex flex-row justify-content-center flex-wrap mx-sm-1 mx-md-3 mx-lg-5">
+    <div class="d-flex flex-row flex-wrap mx-sm-1 mx-md-3 mx-lg-5">
+    <!-- <div class="d-flex flex-row justify-content-center flex-wrap mx-sm-1 mx-md-3 mx-lg-5"> -->
         {% for product in product_list %}
         <div class="card-container pt-2 px-3 pb-0 m-md-1 my-md-4">
             <div class="card mb-3 border-bottom border-light">
-               
                 <div
-                    class="card-img my-auto h-100 {% if product.product_type.type_code == 'TS' %}card-img-bg{% endif %} position-relative"> {% for category in product.get_categories %}
+                    class="card-img my-auto {% if product.product_type.type_code == 'TS' %}card-img-bg {% endif %}position-relative"> 
+                {% for category in product.get_categories %}
                     {% if category.slug == "new" %}
-                    <span class="badge bg-orange text-light position-absolute top-0 end-0 mb-2">New</span>
+                    <span class="badge bg-orange border border-dark text-light position-absolute top-0 end-0 mb-2">New</span>
+                    {% endif %}
+                {% endfor %}
+                {% for category in product.get_categories %}
+                    {% if category.slug == "specials" %}
+                    <span class="badge bg-orange text-light position-absolute top-0 end-0 mb-2">Special offer</span>
                     {% endif %}
                 {% endfor %}
                 
                     {% if product.image %}
                     <a href="{% url 'products:product_details' product.id %}">
                         <img class="{% if product.product_type.type_code == 'TS' %}card-img-top{% endif %} img-fluid"
-                            src="{{ product.image.url }}" alt="{{ product.name }}">
-                            
+                            src="{{ product.image.url }}" alt="{{ product.name }}" aria-label="Image of {{product.name}}">  
+                        <!-- <img class="img-fluid"
+                            src="{{ product.image.url }}" alt="{{ product.name }}" aria-label="Image of {{product.name}}">   -->
                     </a>
                     {% else %}
                     <a href="{% url 'products:product_details' product.id %}" class="m-auto">
-                        <img class="img-fluid" src="{{MEDIA_URL}}noimage.png" alt="{{ product.name }}">
+                        <img class="img-fluid" src="{{MEDIA_URL}}noimage.png" alt="{{ product.name }}" aria-label="Image of {{product.name}}">
                     </a>
                     {% endif %}
                     
@@ -148,9 +170,9 @@
                 {% if request.user.is_superuser %}
                 <small class="mt-2">
                     <a href="{% url 'products:edit_product' product.pk %}"
-                        class="text-dgreen p-1 px-3 main-btn-2 me-2">EDIT</a>
+                        class="text-dgreen p-1 px-3 main-btn-2 me-2" aria-label="Edit">EDIT</a>
                     <a role="button" class="delete bs-modal text-red p-1 ms-2 main-btn-3"
-                        data-form-url="{% url 'products:delete_product' product.pk %}">DELETE</a>
+                        data-form-url="{% url 'products:delete_product' product.pk %}" aria-label="Delete">DELETE</a>
                 </small>
                 {% endif %}
             </div>
@@ -159,7 +181,7 @@
     </div>
 </div>
 <div class="btt-button shadow-sm rounded-0 border border-black">
-    <a class="btt-link d-flex h-100">
+    <a class="btt-link d-flex h-100" aria-label="Back to top button">
         <i class="fas fa-arrow-up text-yellow mx-auto my-auto"></i>
     </a>
 </div>
