@@ -6,21 +6,16 @@
 {% endblock %}
 
 {% block page_header %}
-    <div class="container header-container">
-        <div class="row">
-            <div class="col"></div>
-        </div>
+    <div class="container p-4 p-lg-5 pb-0 pb-lg-1">
+        <h2 class="text-dgreen">Thank you</h2>
+        <hr>
     </div>
 {% endblock %}
 
 {% block content %}
-    <div class="overlay"></div>
-    <div class="container">
-        <div class="row">
-            <div class="col">
-                <hr>
-                <h2 class="logo-font mb-4">Thank You</h2>
-                <hr>
+<div class="container px-4 px-lg-5">
+    <div class="row">
+        <div class="col-12 col-lg-6 order-last mb-5">
                 {% if from_profile %}
                 <p class="text-green">Your order information is below. A confirmation email has been sent to <strong>{{ order.email }}</strong>.</p>
                 {% else %}

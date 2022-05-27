@@ -20,11 +20,12 @@
     <div class="row p-2 p-md-4">
         <!-- Show only if there are items in the shopping bag -->
         {% if bag_items %}
-        <div class="d-none d-md-block">
+        <!-- Product table for large screens -->
+        <div class="d-none d-md-block product-table">
             <table class="table table-responsive table align-middle">
                 <thead class="text-black">
                     <tr>
-                        <th scope="col mx-auto" colspan="2">Product Info</th>
+                        <th scope="col" colspan="2">Product Info</th>
                         <th scope="col">Price</th>
                         <th scope="col">Qty</th>
                         <th scope="col">Subtotal</th>
@@ -45,13 +46,12 @@
                         </a>
                         {% endif %}
                     </td>
-                    <td>
+                    <td class="text-smaller">
                         <!-- <div class="mt-5"> -->
-                        <p class="my-0"><span class="text-muted">Product:</span> {{ item.product.product_name }}</p>
-                        <p class="my-0"><span class="text-muted">Size:</span> {{ item.size|capfirst }}</p>
-                        <p class="my-0"><span class="text-muted">Color:</span> {{ item.color|capfirst }}</p>
-                        <!-- <p class="my-0 small text-muted">SKU: {{ item.product.generate_sku|upper }}</p> -->
-                        <!-- </div> -->
+                        <p class="my-0"><span class="text-muted ms-1">Product:</span> {{ item.product.product_name }}</p>
+                        <p class="my-0"><span class="text-muted ms-1">Size:</span> {{ item.size|capfirst }}</p>
+                        <p class="my-0"><span class="text-muted ms-1">Color:</span> {{ item.color|capfirst }}</p>
+                        <!-- <p class="my-0"><span class="text-muted ms-1">Color:</span><span class="color-indicator bg-{{ item.color }} d-inline"></span></p> -->
                     </td>
                     <td>
                         <p class="my-0">£{{ item.product.price }}</p>
@@ -157,14 +157,16 @@
             </div> -->
 
         </div>
+        <!-- Product table for small screens -->
         <div class="d-block d-md-none">
-            <table class="table table-responsive table-borderless align-middle">
-                <thead class="text-black">
-                    <tr>
-                        <th scope="col mx-auto" colspan="2">Product Info</th>
-                    </tr>
-                </thead>
+            
                 {% for item in bag_items %}
+                <table class="table table-responsive table-borderless align-middle">
+                    <thead class="text-black">
+                        <tr>
+                            <th scope="col mx-auto" colspan="2">Product Info</th>
+                        </tr>
+                    </thead>
                 <tbody>
                     <tr>
                         <td>
