@@ -1,8 +1,8 @@
-<div class="offcanvas offcanvas-top" id="searchBar">
-    <div class="container-fluid my-auto mt-4">
-        <div class="m-auto py-lg-0 search-bar bg-light w-100">
+<div class="offcanvas offcanvas-top p-4 mx-md-4" id="searchBar">
+    <div class="container my-auto">
+        <div class="m-auto py-lg-0 search-bar bg-light w-100 rounded border border-secondary">
             <form method="GET" action="{% url 'products:products' %}">
-                <div class="d-flex flex-row">
+                <div class="d-flex flex-row align-items-center">
                     <input class="flex-grow-1 mx-auto ms-2 search-input py-1" type="text" name="q" placeholder="Search">
                     <span class="me-2 ">
                         <button class="form-group-text rounded-0 pe-2" type="submit">
