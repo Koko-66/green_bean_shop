@@ -1,11 +1,11 @@
 <!-- Filters and sort options -->
-<div id="filters" class="offcanvas offcanvas-top mx-auto bg-light w-sm-100 w-md-75">
+<div id="filters" class="offcanvas offcanvas-top mx-auto bg-light w-sm-100 w-md-75 pb-5">
     <div class="row mb-3">
     <form action="{% url 'products:products' %}" method="GET">
         <div
-            class="row text-uppercase small m-2 mb-0 me-5 justify-content-center justify-content-md-end fw-bolder small">
+            class="row text-uppercase small m-2 mb-0 me-md-5 justify-content-center justify-content-md-end fw-bolder small">
             Filter / Sort
-            <small type="button" class="btn-close ms-1 mt-1 fw-bold text-dgreen" data-bs-dismiss="offcanvas"
+            <small type="button" class="btn-close ms-1 fw-bold text-dgreen" data-bs-dismiss="offcanvas"
                 aria-label="Close"></small>
         </div>
         {% csrf_token %}
@@ -57,11 +57,7 @@
             <!-- Sorting -->
             <div class="col px-5">
                 <p class="text-dgreen text-uppercase fs-6 fw-bold mb-2">Sort by...</p>
-                <!-- Rating -->
-                <div class="sort-type">
-                    <input id="lg-rating" name="sort" value="rating" type="radio" class="d-none">
-                    <label for="lg-rating" class="dropdown-item sort-type">Rating</label>
-                </div>
+
                     <!-- Price ascending -->
                 <div class="sort-type">
                     <input id="lg-price-low-first" name="sort" value="price-asc" type="radio" class="d-none">

@@ -24,7 +24,6 @@
                         '{{ search_term }}'
                 {% else %} 
                 </p>
-                <!-- <span class="text-decoration-underline bg-lgreen rounded mt-1 px-1 py-0">Filtered by</span> -->
                 <span class="bg-lgreen rounded mt-1 px-1 py-0">Showing reults for</span>
                     {% if current_categories %}
                     <span>{% if current_categories.count == 1 %}Collection{% else %}Collections{% endif %}
@@ -47,11 +46,6 @@
                     {% if search_term == None and product_list.count == 0 %}
                     No products found
                     {% endif %}
-
-                    
-                    <!-- <span class=""> All | {{ product_list.count }}
-                        {% if product_list.count == 1 %}product{% else %}products{% endif %}</span>
-                    {% endif %}             -->
             {% endif %}
                 </h6>
         </div>
@@ -75,7 +69,6 @@
 <!-- Container with product list -->
 <div class="container-fluid text-center align-items-center mx-auto">
     <div class="d-flex flex-row flex-wrap mx-sm-1 mx-md-3 mx-lg-5">
-    <!-- <div class="d-flex flex-row justify-content-center flex-wrap mx-sm-1 mx-md-3 mx-lg-5"> -->
         {% for product in product_list %}
         <div class="card-container pt-2 px-3 pb-0 m-md-1 my-md-4">
             <div class="card mb-3 border-bottom border-light">
@@ -83,21 +76,19 @@
                     class="card-img my-auto {% if product.product_type.type_code == 'TS' %}card-img-bg {% endif %}position-relative"> 
                 {% for category in product.get_categories %}
                     {% if category.slug == "new" %}
-                    <span class="badge bg-orange border border-dark text-light position-absolute top-0 end-0 mb-2">New</span>
+                    <span class="badge bg-red border border-light text-light position-absolute top-0 end-0 mb-2">NEW</span>
                     {% endif %}
                 {% endfor %}
                 {% for category in product.get_categories %}
                     {% if category.slug == "specials" %}
-                    <span class="badge bg-orange text-light position-absolute top-0 end-0 mb-2">Special offer</span>
+                    <span class="badge bg-orange text-light border border-light position-absolute top-0 end-0 mb-2">SPECIAL</span>
                     {% endif %}
                 {% endfor %}
                 
                     {% if product.image %}
                     <a href="{% url 'products:product_details' product.id %}">
                         <img class="{% if product.product_type.type_code == 'TS' %}card-img-top{% endif %} img-fluid"
-                            src="{{ product.image.url }}" alt="{{ product.name }}" aria-label="Image of {{product.name}}">  
-                        <!-- <img class="img-fluid"
-                            src="{{ product.image.url }}" alt="{{ product.name }}" aria-label="Image of {{product.name}}">   -->
+                            src="{{ product.image.url }}" alt="{{ product.name }}" aria-label="Image of {{product.name}}">
                     </a>
                     {% else %}
                     <a href="{% url 'products:product_details' product.id %}" class="m-auto">
@@ -108,10 +99,8 @@
                 </div>
                 <form action="{% url 'bag:add_to_bag' product.id %}" method="POST" class="px-0 py-0">
                     {% csrf_token %}
-                    <!-- <div class="mt-3 end-0 d-flex justify-content-end"> -->
                     <input type="submit" class="btn main-btn-1 rounded-0 w-100 smaller-text" value="Add to bag">
                     <input type="hidden" name="redirect_url" value="{{ request.path }}">
-                    <!-- </div> -->
                     <div class="card-footer bg-white pt-0 order-0 justify-content-center h-100">
                         <div class="row mt-1">
                             <p class="smaller-text mb-1 border-bottom border-secondary text-blue px-0 font-amatic">
@@ -139,7 +128,6 @@
                                 <!-- Sizes -->
                                 {% if product.get_sizes %}
                                 <div class="size-selector border-secondary d-flex flex-row flex-wrap" id="sizes">
-                                    <!-- <span class="me-2">Sizes:</span> -->
                                     {% for size in product.get_sizes %}
                                     <div class="size-box my-2 me-2">
                                         <input id="id_size-{{ size.slug }}_prod-{{ product.id }}" type="radio"
@@ -197,6 +185,4 @@
 {{ block.super }}
 <script src="{% static 'products/js/products.js' %}"></script>
 <script src="{% static 'products/js/bs_modal_forms.js' %}"></script>
-
-<!-- <script src="{% static 'products/js/bs_modal_forms.js' %}"></script> -->
 {% endblock %}
