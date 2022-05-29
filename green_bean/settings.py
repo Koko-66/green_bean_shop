@@ -126,7 +126,7 @@ AUTHENTICATION_BACKENDS = [
 SITE_ID = 1
 
 # Settings for email
-if os.environ.get('DEVELOPMENT') == 'True':
+if os.path.isfile('env.py') and os.environ.get('DEVELOPMENT') == 'True':
     print('This is development')
     EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
     DEFAULT_FROM_EMAIL = os.environ.get(
