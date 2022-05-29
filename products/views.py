@@ -1,13 +1,11 @@
 """Views for products"""
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib import messages
-from django.db.models import Q, functions
+from django.db.models import Q, functions, Min, Avg
 from django.shortcuts import (
     render,
     redirect,
     reverse,
-    # HttpResponse,
-    # get_object_or_404,
 )
 from django.urls import reverse_lazy
 from django.views.generic import (
@@ -21,12 +19,13 @@ from bootstrap_modal_forms.generic import (
     BSModalDeleteView,
     BSModalCreateView,
 )
+from . import contexts
 from .models import (
     Category,
     Product,
     Color,
     Size,
-    # Rating,
+    Rating,
     Type,
 )
 from .forms import (
@@ -51,6 +50,7 @@ class ProductListView(ListView):
     # code adapted from CI boutique_ado walkthrough project
     def get(self, *args, **kwargs):
         """Override the class view default 'get' function"""
+        all_products = Product.objects.all()
         products = Product.objects.all()
         categories = None
         query = None
@@ -58,15 +58,12 @@ class ProductListView(ListView):
         direction = None
         colors = None
         sizes = None
+        types = None
 
         if 'sort' in self.request.GET:
             sortkey = self.request.GET['sort']
             sort = sortkey
             print(sortkey)
-            # if sortkey == 'rating':
-            #     products = products.annotate(
-            #         rating='rating'
-            #     )
 
             if sortkey == 'name-asc':
                 sortkey = 'product_name'
@@ -86,47 +83,38 @@ class ProductListView(ListView):
 
             if sortkey == 'price-desc':
                 sortkey = 'price'
-                direction = 'des'
-
-            if sortkey == 'rating':
-                sortkey = 'rating'
-                direction = 'asc'
-                # products = products.annotate(
-                #     rating_int=int('products__rating'))
+                direction = 'desc'
 
             if 'direction' and direction == 'desc':
-                # if direction == 'desc':
                 sortkey = f'-{sortkey}'
 
-                products = products.order_by(sortkey)
-                # print(products)
+            products = products.order_by(sortkey)
 
         # filter by category
         if 'category' in self.request.GET:
             categories = self.request.GET['category'].split(',')
-            # print(f'Categories passed in the url: {categories}')
             products = products.filter(category__slug__in=categories)
             categories = Category.objects.filter(slug__in=categories)
-            # print(f'Object:{categories}')
-            # print(products)
-
         # filter by color
         if 'color' in self.request.GET:
             colors = self.request.GET['color'].split(',')
-            # print(f'Colors passed in the url: {colors}')
             products = products.filter(color__slug__in=colors)
             colors = Color.objects.filter(slug__in=colors)
-            # print(f'Object:{colors}')
-            # print(products)
 
         # filter by size
         if 'size' in self.request.GET:
             sizes = self.request.GET['size'].split(',')
-            # print(f'Colors passed in the url: {sizes}')
             products = products.filter(size__slug__in=sizes)
             sizes = Size.objects.filter(slug__in=sizes)
-            # print(f'Object:{sizes}')
-            # print(products)
+
+        # filter by type
+        if 'type' in self.request.GET:
+            product_types = self.request.GET['type'].split(',')
+            products = products.filter(
+                product_type__slug__in=product_types)
+            types = Type.objects.filter(slug__in=product_types)
+            print(types)
+
 
         if 'q' in self.request.GET:
             query = self.request.GET['q']
@@ -149,8 +137,10 @@ class ProductListView(ListView):
         size_list = Size.objects.all()
 
         context = {
+            'all_products': all_products,
             'product_list': products,
             'search_term': query,
+            'current_types': types,
             'current_categories': categories,
             'current_sorting': current_sorting,
             'current_colors': colors,
@@ -186,15 +176,6 @@ class ProductDetailView(DetailView):
                 similar_prod.append(product)
         print(similar_prod)
         context['similar_prod'] = similar_prod
-        # """Get ratings for the product"""
-
-        # pk = self.kwargs.get('pk')
-        # product = Product.objects.get(pk=pk)
-        # latest_product_ratings = Rating.objects.filter(product=product)[:3]
-        # older_product_ratings = Rating.objects.filter(product=product)[4::]
-
-        # context['latest_product_ratings'] = latest_product_ratings
-        # context['older_product_ratings'] = older_product_ratings
         return context
 
 
@@ -255,7 +236,6 @@ class RateProduct(LoginRequiredMixin, BSModalCreateView):
 
     def get_success_url(self, *args, **kwargs):
         pk = self.kwargs.get('pk')
-        print(pk)
         return reverse_lazy('products:product_details', args=[pk])
 
 
