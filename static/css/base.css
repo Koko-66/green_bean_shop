@@ -366,12 +366,6 @@ button:active {
     text-align: center;
 }
 
-/* --- Landing page --- */
-
-#filter-results span {
-    font-size: 1.1em;
-}
-
 /* Toast */
 .toast {
     margin-top: 100px;
@@ -399,6 +393,7 @@ button:active {
 .update-link, 
 .remove-item {
     cursor: pointer;
+    text-decoration: none;
 }
 
 /* Mailchimp form */

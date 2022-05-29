@@ -3,7 +3,7 @@
 
 
 {% block page_header %}
-<div class="container p-5">
+<div class="container p-4 p-lg-5 pb-0 pb-lg-1">
     <div class="row">
         <h3 class="col text-dgreen">Manage products</h3>
     </div>
@@ -16,7 +16,7 @@
 {% endblock %}
 
 {% block content %}
-<div class="container pt-1 pt-md-3 pt-lg-5">
+<div class="container px-4 px-lg-5">
     <div class="accordion accordion-flush" id="accordionProductMangement">
         <!-- Products -->
         <div class="accordion-item">
@@ -27,13 +27,13 @@
                         Products
                     </button>
                 </h2>
-                <div><a href="{% url 'products:add_product' %}" type="button" class="main-btn-1 small py-0">Add new</a>
+                <div><a href="{% url 'products:add_product' %}" type="button" class="btn main-btn-1 small py-0">Add new</a>
                 </div>
             </div>
             <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne"
                 data-bs-parent="#accordionProductMangement">
                 <div class="accordion-body">
-                    <table class="table">
+                    <table class="table table-responsive table-hover">
                         <thead>
                             <tr>
                                 <th>Product</th>
@@ -68,12 +68,12 @@
                        Categories
                     </button>
                 </h2>
-                <div><a data-form-url="{% url 'products:create_category' %}" type="button" class="create-new main-btn-1 py-0 small">Add new</a></div>
+                <div><a data-form-url="{% url 'products:create_category' %}" type="button" class="create-new btn main-btn-1 py-0 small">Add new</a></div>
             </div>
             <div id="flush-collapseTwo" class="accordion-collapse collapse" aria-labelledby="flush-headingTwo"
                 data-bs-parent="#accordionProductMangement">
                 <div class="accordion-body">
-                    <table class="table">
+                    <table class="table table-responsive table-hover">
                         <thead>
                             <tr>
                                 <th>Friendly name</th>
@@ -109,12 +109,12 @@
                     Product Types
                 </button>
             </h2>
-            <div><a data-form-url="{% url 'products:create_type' %}" type="button" class="create-new main-btn-1 py-0 small">Add new</a></div>
+            <div><a data-form-url="{% url 'products:create_type' %}" type="button" class="create-new btn main-btn-1 py-0 small">Add new</a></div>
             </div>
             <div id="flush-collapseThree" class="accordion-collapse collapse" aria-labelledby="flush-headingThree"
                 data-bs-parent="#accordionProductMangement">
                 <div class="accordion-body">
-                    <table class="table">
+                    <table class="table table-responsive table-hover">
                         <thead>
                             <tr>
                                 <th>Type</th>
@@ -150,12 +150,12 @@
                     Colors
                 </button>
             </h2>
-            <div><a data-form-url="{% url 'products:create_color' %}" type="button" class="create-new main-btn-1 py-0 small">Add new</a></div>
+            <div><a data-form-url="{% url 'products:create_color' %}" type="button" class="create-new btn main-btn-1 py-0 small">Add new</a></div>
             </div>
             <div id="flush-collapseFour" class="accordion-collapse collapse" aria-labelledby="flush-headingFour"
                 data-bs-parent="#accordionProductMangement">
                 <div class="accordion-body">
-                    <table class="table">
+                    <table class="table table-responsive table-hover">
                         <thead>
                             <tr>
                                 <th>Color</th>
@@ -191,12 +191,12 @@
                     Sizes
                 </button>
             </h2>
-            <div><a data-form-url="{% url 'products:create_size' %}" type="button" class="create-new main-btn-1 py-0 small">Add new</a></div>
+            <div><a data-form-url="{% url 'products:create_size' %}" type="button" class="create-new btn main-btn-1 py-0 small">Add new</a></div>
             </div>
             <div id="flush-collapseFive" class="accordion-collapse collapse" aria-labelledby="flush-headingFive"
                 data-bs-parent="#accordionProductMangement">
                 <div class="accordion-body">
-                    <table class="table">
+                    <table class="table table-responsive table-hover">
                         <thead>
                             <tr>
                                 <th>Size</th>

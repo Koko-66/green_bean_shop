@@ -9,7 +9,7 @@
 <div class="container-fluid px-2 pt-3 px-lg-5 pt-lg-4 text-dgreen">
     <div class="d-flex flex-row align-items-end mx-sm-1 mx-md-3 mx-lg-5">
         <!-- Info about no of products displayed and filters -->
-        <div>
+        <div id="filter-results">
             {% if all_products.count == product_list.count %}
             <h4 class="text-dgreen mb-0 me-md-3">Products: {{ all_products.count }}
             </h4>
@@ -25,10 +25,10 @@
                 {% else %} 
                 </p>
                 <!-- <span class="text-decoration-underline bg-lgreen rounded mt-1 px-1 py-0">Filtered by</span> -->
-                <span class="bg-lgreen rounded mt-1 px-1 py-0">Filtered by</span>
+                <span class="bg-lgreen rounded mt-1 px-1 py-0">Showing reults for</span>
                     {% if current_categories %}
-                    <span>{% if current_categories.count == 1 %}Category{% else %}Categories{% endif %}
-                     {% for category in current_categories %}"{{ category.friendly_name }}"{% endfor %}&nbsp;|</span>
+                    <span>{% if current_categories.count == 1 %}Collection{% else %}Collections{% endif %}
+                     {% for category in current_categories %} "{{ category.friendly_name }}"{% endfor %}&nbsp;|</span>
                     {% endif %}
 
                     {% if current_colors %}
@@ -40,9 +40,15 @@
                     <span>{% if current_sizes.count == 1 %}Size{% else %}Sizes{% endif %}
                         {% for size in current_sizes %} "{{ size.size_short }}"{% endfor %}&nbsp;|</span>
                     {% endif %}
+                    {% if current_types %}
+                    <span>{% if current_types.count == 1 %}Type{% else %}Types{% endif %}
+                        {% for type in current_types %} "{{ type.product_type }}"{% endfor %}&nbsp;|</span>
+                    {% endif %}
                     {% if search_term == None and product_list.count == 0 %}
                     No products found
                     {% endif %}
+
+                    
                     <!-- <span class=""> All | {{ product_list.count }}
                         {% if product_list.count == 1 %}product{% else %}products{% endif %}</span>
                     {% endif %}             -->
@@ -108,7 +114,7 @@
                     <!-- </div> -->
                     <div class="card-footer bg-white pt-0 order-0 justify-content-center h-100">
                         <div class="row mt-1">
-                            <p class="smaller-text mb-1 border-bottom border-secondary text-blue px-0">
+                            <p class="smaller-text mb-1 border-bottom border-secondary text-blue px-0 font-amatic">
                                 {{ product.product_name }}
                             </p>
                             <p class="smaller-text mb-1 border-bottom border-secondary px-0">£{{ product.price }}</p>
@@ -170,8 +176,8 @@
                 {% if request.user.is_superuser %}
                 <small class="mt-2">
                     <a href="{% url 'products:edit_product' product.pk %}"
-                        class="text-dgreen p-1 px-3 main-btn-2 me-2" aria-label="Edit">EDIT</a>
-                    <a role="button" class="delete bs-modal text-red p-1 ms-2 main-btn-3"
+                        class="text-dgreen p-1 px-3 btn main-btn-2 me-2" aria-label="Edit">EDIT</a>
+                    <a role="button" class="delete bs-modal text-red p-1 ms-2 btn main-btn-3"
                         data-form-url="{% url 'products:delete_product' product.pk %}" aria-label="Delete">DELETE</a>
                 </small>
                 {% endif %}

@@ -1,12 +1,12 @@
 {% extends 'base.html' %}
 
   {% block content %}
-  <div class="container-fluid top-margin col-xs-12 col-sm-11 col-md-8 p-2">
+  <div class="container col-xs-12 col-sm-11 col-md-8 p-2">
    {% block inner_content %}
    {% endblock %}
   </div>
   <div class="auth-overlay">
-    <div class="position-absolute bottom-0 end-0 logo-watermark me-3">GreenBean</div>
+    <div class="d-none d-md-block position-absolute bottom-0 end-0 logo-watermark me-3">GreenBean</div>
   </div>
   {% endblock %}
     {% block extra_body %}
