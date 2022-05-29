@@ -70,9 +70,13 @@
     background: url(https://res.cloudinary.com/dcslh2m3b/image/upload/c_scale,w_365/v1649103642/GreenBean/pexels-fwstudio-131683_vme1s9.jpg);
 }
 
-.card-img {
-    height: 250px;
+.badge {
+    margin-top: -1.5vh;
+    margin-right: -1.5vw;
 }
+/* .card-img {
+    height: 18vh;
+} */
 
 .detail-img {
     width: 400px;
@@ -88,7 +92,7 @@
 }
 
 #filters {
-    top: 10vh;
+    top: 5vh;
     position: fixed;
     width: 75vw;
     overflow: scroll;
@@ -167,7 +171,6 @@
         width: 100vw;
     }
 }
-
 
 @media only screen and (max-width: 468px) {
     .card-container {
