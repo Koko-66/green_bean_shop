@@ -367,54 +367,10 @@ button:active {
 }
 
 /* --- Landing page --- */
-.home {
-    font-size: 1.2rem;
-    bottom: 0;
-    height: calc(100vh - 60px);
-}
-
-.home a {
-    text-decoration: none;
-    color:rgb(17, 65, 74)
-}
-
-.specials  {
-    border: 4px solid #fafafa;
-}
-
-.home-overlay {
-    background: #e6e3e3;
-    top: 0;
-    bottom: 0;
-    right: 0;
-    left: 0;
-    height: 100%;
-    position: fixed;
-    z-index: -1;
-}
-
-#about {
-    border-radius: 5px;
-    font-size: 1.2rem;
-}
-
-.home-img-square {
-     background: url(https://res.cloudinary.com/dcslh2m3b/image/upload/v1649103642/GreenBean/pexels-teddy-tavan-4890733_mxqmip.jpg) no-repeat right top;
-}
-
-.home-img-container {
-    top: 0;
-    bottom: 0;
-    background-color: rgb(29, 68, 116) !important;
-    background-size: 1000px auto;
-    min-height: 100vh;
-}
 
 #filter-results span {
     font-size: 1.1em;
 }
-
-
 
 /* Toast */
 .toast {
@@ -511,53 +467,10 @@ div .table-cell { display:table-cell; }
 }
 /* --- Media queries --- */
 
-@media only screen and (max-width: 1500px) {
-
-    .home-img {
-        /* background: url(https://res.cloudinary.com/dcslh2m3b/image/upload/v1649103642/GreenBean/pexels-teddy-tavan-4890733_mxqmip.jpg) 
-        no-repeat right center; */
-        background: url(https://res.cloudinary.com/dcslh2m3b/image/upload/v1652894048/GreenBean/pexels-teddy-tavan-4890733_mxqmip_square_czzo7j.jpg) no-repeat right center;
-        background-size: 700px auto;
-    } 
-}
-
-@media only screen and (max-width: 1160px) {
-
-    .home-img-container {
-        background-size: 700px auto;
-        background-position-y: center;
-        background-position-x: center;
-    }
-
-    #about {
-        /* margin-top: 200px; */
-        top: 0;
-        bottom: 0;
-        /* position: absolute; */
-        /* width: 400px; */
-        /* margin-top: 95px; */
-        font-size: 1.3em;
-        /* background-color: rgb(29, 68, 116); */
-
-    } 
-}
-
 @media only screen and (max-width: 991px) {
-
-    .home-img-container {
-        /* background: url(https://res.cloudinary.com/dcslh2m3b/image/upload/c_crop,h_3357,w_2456/v1649103642/GreenBean/pexels-teddy-tavan-4890733_mxqmip.jpg) no-repeat right top; */
-        background-size: 800px auto;
-    }
 
     #top-banner p {
         font-size: 0.9em;
-    }
-
-    #about {
-        /* margin-top: 150px; */
-        font-size: 1.2em;
-        /* background: rgba(41, 42, 42, 0.5) */
-        /* background: rgba(29, 68, 116, 0.5) */
     }
 
     #page-container {
@@ -565,48 +478,7 @@ div .table-cell { display:table-cell; }
     }
 }
 
-@media only screen and (max-width: 860px) {
-
-    #about {
-        /* margin-top: 120px; */
-        /* width: 320px; */
-        font-size: 1.2em;
-        /* background: rgba(41, 42, 42, 0.5) */
-        /* background: rgba(29, 68, 116, 0.5) */
-    }
-}
-
 @media only screen and (max-width: 768px) {
-    /* h3 {
-        font-size: 1.2em !important;
-    } */
-
-    #about {
-        top: 0;
-        bottom: 0;
-        position: relative;
-        margin-top: 50px;
-        font-size: 1.2em;
-        color: rgba(227, 240, 240, 1);
-        font-family: a;
-        /* background-color: rgba(227, 240, 240, 1); */
-        background: rgb(29, 68, 116);
-        font-family: 'Amatic SC', cursive;
-
-        /* background: none; */
-        /* background: rgba(29, 68, 116, 0.5) */
-    }
-
-    .home-img-container {
-        top: 0;
-        bottom: 0;
-        position: absolute;
-        /* width: 320px; */
-        font-size: 1.2em;
-        /* background: rgba(41, 42, 42, 0.5) */
-        /* background: rgba(29, 68, 116, 0.5) */
-        z-index: -4;
-    }
 
     #mc-toggle-btn-sm {
         right: 0;
@@ -620,24 +492,10 @@ div .table-cell { display:table-cell; }
 
 @media only screen and (max-width: 450px) {
 
-    .home-img-container {
-        /* background: url(https://res.cloudinary.com/dcslh2m3b/image/upload/v1649103642/GreenBean/pexels-teddy-tavan-4890733_mxqmip.jpg) no-repeat center top; */
-        /* background-size: 500px auto; */
-    }
-
     #top-banner p {
         font-size: 0.9em;
     }
-
-    #about {
-        /* margin-top: 150px; */
-        border-radius: 5px;
-        /* color:rgb(180, 216, 192); */
-        /* font-size: 1.em; */
-        /* background: rgba(217, 221, 223, 0.5) */
-        /* font-family: 'Ubuntu', sans-serif; */
-    }
-
+    
     footer div {
         font-size: 0.7em;
       }

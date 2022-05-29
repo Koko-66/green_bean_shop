@@ -1,20 +1,26 @@
 {% extends 'base.html' %}
+{% load static %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'home/css/home.css' %}">
+{% endblock %}
+
 {% block content %}
-<div class="container-fluid home">
-    <div class="row align-items-center">
+<div class="container home">
+    <div class="row align-items-center mt-md-5 mt-lg-0">
         <!-- <div id="about" class="col-xs-12 col-sm-11 col-md-8 col-lg-5 my-auto"> -->
-        <div id="about" class="col-12 col-md-5">
-            <h3 class="m-2 ms-lg-4 ps-lg-2 mt-3">Green Bean is an <strong>eco-friendly slow fashion brand</strong>, where great design meets sustainability.
-                <!-- The perfect place to get your perfect <i class="fas fa-tshirt"></i> and more!</h3> -->
-            <h4 class="m-2 ms-lg-4 ps-lg-2 mt-3 lh-2">Our <strong>high quality T-shirts</strong> and beautiful unique jewelery are made to last with sustainability in mind.
-                At Green Bean we believe that with great design comes great responsibily for the environment and those who help us make it happen. That's why all our products are responsibly sourced, made from recycled and recycable materials and by those who we know are compensated fairly for their work.
-            <span class="text-orange">Support our passion and our partners!</span></4>
+        <div id="about" class="col-12 col-md-5 mt-5">
+            <h3 class="m-2 ms-lg-4 ps-lg-2 border-bottom border-secondary">Green Bean is a <strong class="fs-3">slow fashion brand</strong>, where great design meets sustainability.</h3>
+            <p class="m-2 ms-lg-4 ps-lg-2 mt-3 lh-2 fs-4 text-secondary">
+                Our <strong class="text-blue fs-4">high quality T-shirts</strong> and beautiful unique jewelery are made to last with sustainability in mind.
+            At Green Bean we believe that with great design comes great responsibily for the environment and those who help us make it happen. That's why all our <strong class="text-blue fs-4">products are responsibly sourced, made from recycled and recycable materials</strong> and by those who we know are compensated fairly for their work.
+            <span class="text-blue fs-4">Support our passion and our partners!</span></p>
             <div class="d-flex justify-content-center">
                 <a class="link-button p-2 my-3 fs-6 text-uppercase" href="{% url 'products:products' %}">Shop with us <strong>NOW!</strong></a>
             </div>
+            <p class="d-block d-md-none col home-img home-img-container"></p>
         </div>
-        <div class="d-none d-md-block col home-img home-img-container"></div>
-        <div class="d-block d-md-none bg-blue home-img-container"></div>
+        <div class="col d-none d-md-block home-img home-img-container"></div>
     </div>
 </div>
 {% endblock %}
