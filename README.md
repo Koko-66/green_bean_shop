@@ -15,7 +15,6 @@
     3.2.8. [Product reviews](#rating)<br>
     3.2.9. [Products management](#products-management)<br>
     3.2.10. [Custom error pages](#error-pages)<br>
-    <!-- 3.2.8. [](#)<br> -->
   3.3. [Features left to implement](#left-to-implement)<br>
 4. [Management via Django admin](#django-admin)<br>
 5. [Marketing strategy](#marketing-strategy)<br>
@@ -45,7 +44,7 @@ The e-shop was developed using Agile methodology, with User Stories managed with
 
 ## <a name="models-and-flow"></a>Models and functional design
 
-The website data about the user, products, orders and all other relevant data are stored in a Postgres relationship database. The database model comprises the following main tables:
+The website data about the user, products, orders and all other relevant data are stored in a Postgres relationship database. The database model comprises of the following main tables:
 
   ### Product:
   `Product` model stores all the main information about the product and relates to the following supporting models: `Type` (type of product), `Size`, `Color` and `Category`. `Type` is required for each product and is used for their top level categorisation as well as in the generated SKU. All other supporting models are optional and can be left blank. This way the site owner has greater flexibility when adding new products and allows to easily scale up the product range, i.e. add new products that do not have different sizes or colours. Each of these supporting models also includes a `slug` for use in references within the code to prevent errors.
@@ -87,9 +86,6 @@ The website data about the user, products, orders and all other relevant data ar
   ### <a name="#landing-page"></a>__Landing page__
 
   The landing page contains a blurb with information about the brand that sets out its purpose. The content was composed with the SEO in mind and features some of the keywords identified as valuable for the target audience. It also has a link to an outside source with information on slow fashion, which can be considered a source of authority.
-
-  Admin user's home page<br>
-<!--<img src="" width="500"> -->
 
   ### <a name="#navigation"></a>__Top banner and navigation__
 
@@ -184,11 +180,16 @@ The website data about the user, products, orders and all other relevant data ar
 
   ### <a name="#rating"></a>__Product reviews__
 
-  The website at present has a basic framework for product review, allowing the registered user to leave a review for any product. The review comprises a star rating (from 1/Poor to 5/Excellent and comment, and is saved against the product as well as the user account. 
+  The website at present has a basic framework for product review, allowing the registered user to leave a review for any product. The review comprises of a star rating (from 1/Poor to 5/Excellent and comment, and is saved against the product as well as the user account. 
 
   <img src="https://github.com/Koko-66/green_bean_shop/blob/main/media/assets/data/add-product-review.png" width="500"><br>
 
-  At present, the user can access a review page from the product detail view. In the next feature update, the reviews will be restricted to products the shoppers purchased and they will receive an email with a request to leave a review. The reviews will also be monitored and will need to be approved by the site moderator before being published on the site. 
+  At present, the user can access a review page from the product detail view. In the next feature update, the reviews will be restricted to products the shoppers purchased and they will receive an email with a request to leave a review. The reviews will also be monitored and will need to be approved by the site moderator before being published on the site.
+
+  The average product rview is shown as part of product details while individual reviews for each product appear at the bottom of the _Product details_ page. By detault only 3 first reviews are shown and the rest can be expanded by clicking _Show more..._ button.
+
+  <img src="https://github.com/Koko-66/green_bean_shop/blob/main/media/assets/data/..." width="500"><br>
+
   
   ### <a name="#user-profile"></a>__User profile__
 
@@ -196,7 +197,7 @@ The website data about the user, products, orders and all other relevant data ar
 
   <img src="https://github.com/Koko-66/green_bean_shop/blob/main/media/assets/data/profile-menu.png" width="500"><br>
 
-  The profile page comprises of 3 sections:  
+  The profile page comprises of of 3 sections:  
   1. The __Default delivery address__ section features a button with a link to update profile page<br>
     <img src="https://github.com/Koko-66/green_bean_shop/blob/main/media/assets/data/profile-address-section.png" width="500"><br>
     Update address<br>
@@ -207,7 +208,7 @@ The website data about the user, products, orders and all other relevant data ar
   <img src="https://github.com/Koko-66/green_bean_shop/blob/main/media/assets/data/profile-order-section.png" width="500"><br>
   
   3. __Your review hisory__ section shows only 5 latest ratings, since access to these is not crucial to the user.<br>
-  <img src="https://github.com/Koko-66/green_bean_shop/blob/main/media/assets/ profile-ratings-section.png" width="500"><br>
+  <img src="https://github.com/Koko-66/green_bean_shop/blob/main/media/assets/profile-ratings-section.png" width="500"><br>
 
 
   ### <a name="#products-management"></a>__Products management__
@@ -220,6 +221,7 @@ The website data about the user, products, orders and all other relevant data ar
    <img src="https://github.com/Koko-66/green_bean_shop/blob/main/media/assets/data/manage-products-2.png" width="500"><br>
 
   Editing and adding new products are managed on a separate page while editing and adding types, categories, colours and sizes in modals, which is easier and quicker considering the number of fields for these models. These elements can also be added directly from Add new product page, which makes it easier for the shop owner to manage their product database. 
+  One feature worth mentioning here is the presence of an image thumbnail in the Edit product form providing reference to the user of what they are editing.
 
   Next to the elements that can have more than one element selected (which can be done using Shift or Ctrl/Cmd and click) the user also has access to _Clear all_ button that clears all the selected product types, colours, categories and sizes. This button is also available in the _Edit product_ template.
 
@@ -230,6 +232,7 @@ The website data about the user, products, orders and all other relevant data ar
    Add new category and clear all buttons within product add view.
    <img src="https://github.com/Koko-66/green_bean_shop/blob/main/media/assets/data/add-product-with-add-category.png" width="500"><br>
 
+  Products and all other models can be also of course managed via django admin site. For brevity, this will not be discussed in detail here. 
 
   ### <a name="#error-pages"></a>__Custom error pages__
 
@@ -250,6 +253,7 @@ An e-commerce website is a complex application that requires constant developmen
 3. Add a pre-publish status on products after they are added, to allow for product posting QC.
 4. Appropriate management for special offers and discounts and their presentation on the product pages. Discounts would be set up as a separate model and added to the product model as a foreign key. 
 5. Add handling of registration for a newsletter on the Checkout page.
+6. Change layout of policies to home branding.
 
 # <a name="marketing-strategy"></a>Marketing strategy
 
