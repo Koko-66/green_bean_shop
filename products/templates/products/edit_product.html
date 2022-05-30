@@ -24,15 +24,16 @@
                 {% crispy form %}
                 <div class="modal-footer m-auto mt-5">
                     <div class="m-auto">
-                        <a href="{% url 'products:products' %}" class="main-btn-2">Cancel</a>
-                        <button type="submit" class="main-btn-1 rounded-0" aria-label="Save">Save</button>
+                        <a href="{% url 'products:products' %}" class="btn main-btn-2">Cancel</a>
+                        <button type="submit" class="btn main-btn-1" aria-label="Save">Save</button>
                     </div>
                 </div>
             </form>
         </div>            
     </div>
-    <div class="text-end">
-        <a href="{% url 'products:manage_products' %}" class="undecorated link-text fw-regular small text-uppercase">&lt;&lt; Back to Manage products</a>
+    <div class="d-flex justify-content-between mb-3">
+        <a href="{% url 'products:manage_products' %}" class="btn main-btn-2 fw-bold small">&lt;&lt; Back to <u>Manage products</u></a>
+        <a href="{% url 'products:products' %}" class="btn main-btn-2 fw-bold small">&lt;&lt; Back to <u>All products</u></a>
     </div>
 </div>
 {% endblock %}

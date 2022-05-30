@@ -61,9 +61,6 @@
 }
 
 /* cards */
-.card-img-top {
-    margin-top: -6%;
-}
 
 .card-img-bg {
     /* background-color: rgba(152, 163, 176, 0.5); */
@@ -72,7 +69,7 @@
 
 .badge {
     margin-top: -1.5vh;
-    margin-right: -1.5vw;
+    margin-right: -0.5vw;
 }
 /* .card-img {
     height: 18vh;

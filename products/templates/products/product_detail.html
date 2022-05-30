@@ -8,7 +8,6 @@
 {% block page_header %}
 <div class="container px-4 pt-4 pb-md-0">
     <h2 class="text-dgreen">Product details</h2>
-    <!-- <h3 class="text-secondary">Edit product</h3> -->
     <hr>
 </div>
 {% endblock %}
@@ -21,10 +20,10 @@
             <div class="py-auto mt-4 mt-md-0">
                 {% if product.image %}
                 <a href="{{ product.image.url }}" aria-label="{{ product.name }}" target="_blank">
-                <img class="img-fluid card-img-bg detail-img" src="{{ product.image.url }}" alt="{{ product.name }}"></a>
+                <img class="img-fluid card-img-bg detail-img" src="{{ product.image.url }}" alt="{{ product.product_name }}" aria-label="Image for {{ product.product_name }}"></a>
                 {% else %}
                 <img class="img-fluid card-img-bg detail-img"
-                    src="{{MEDIA_URL}}noimage.png" alt="No product available" aria-label="No product available"></a>
+                    src="https://res.cloudinary.com/dcslh2m3b/image/upload/c_mfit,h_714,w_573/v1652947053/GreenBean/noimage_kak6df.png" alt="No image" aria-label="No image for {{ product.product_name }}"></a>
                 {% endif %}
             </div>
         </div>
@@ -59,7 +58,6 @@
                     <div class="form-row">
                         <!-- Sizes -->
                         {% if product.get_sizes %}
-                        <!-- <p class="mt-3 me-2 fw-bolder">Sizes:</p> -->
                         <div class="size-selector d-flex flex-row flex-wrap align-items-center my-4" id="sizes">
                             <span class="me-2 fw-bolder">Sizes:</span>
                             {% for size in product.get_sizes %}
@@ -74,7 +72,6 @@
                         {% endif %}
                         <!-- Colors -->
                         {% if product.get_colors %}
-                        <!-- <p class="mt-3 me-2 fw-bolder">Colors:</p> -->
                         <div class="color-selector d-flex flex-row flex-wrap my-4 align-items-center">
                             <span class="me-2 fw-bolder">Colors:</span>
                             {% for color in product.get_colors %}
@@ -86,12 +83,7 @@
                             {% endfor %}
                         </div>
                         {% endif %}
-                        
-                        <!-- {% if request.user.is_authenticated %}
-                        <a data-form-url="{% url 'products:add_rating' product.pk %}" class="add-rating undecorated text-uppercase text-dgreen ms-2 link-text" title="Rate this product" aria-label="Rate product">Rate product</a>
-                        {% endif %} -->
                         <div class="col-12">
-                            <!-- <p class="mt-3"><strong>Quantity:</strong></p> -->
                             <div class="form-group d-flex flex-row">
                                 <span class="mt-2 me-2 fw-bolder">Quantity:</span>
                                 <div class="input-group input-group-{{ product.id }}">

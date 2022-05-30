@@ -18,10 +18,11 @@
             </h4>
             <h6 class="mb-0">
                 <!-- Check if searched by term -->
-                <p class="m-0 mb-1">{% if search_term %}
+                <p class="m-0 mb-1">
+                {% if search_term %}
                     {{ product_list.count }}
                     {% if product_list.count == 1 %}product{% else %}products{% endif %} with keyword
-                        '{{ search_term }}'
+                    '{{ search_term }}'
                 {% else %} 
                 </p>
                 <span class="bg-lgreen rounded mt-1 px-1 py-0">Showing reults for</span>
@@ -44,8 +45,9 @@
                         {% for type in current_types %} "{{ type.product_type }}"{% endfor %}&nbsp;|</span>
                     {% endif %}
                     {% if search_term == None and product_list.count == 0 %}
-                    No products found
+                        No products found
                     {% endif %}
+                {% endif %}
             {% endif %}
                 </h6>
         </div>
@@ -73,7 +75,7 @@
         <div class="card-container pt-2 px-3 pb-0 m-md-1 my-md-4">
             <div class="card mb-3 border-bottom border-light">
                 <div
-                    class="card-img my-auto {% if product.product_type.type_code == 'TS' %}card-img-bg {% endif %}position-relative"> 
+                    class="card-img my-auto position-relative"> 
                 {% for category in product.get_categories %}
                     {% if category.slug == "new" %}
                     <span class="badge bg-red border border-light text-light position-absolute top-0 end-0 mb-2">NEW</span>
@@ -87,12 +89,12 @@
                 
                     {% if product.image %}
                     <a href="{% url 'products:product_details' product.id %}">
-                        <img class="{% if product.product_type.type_code == 'TS' %}card-img-top{% endif %} img-fluid"
-                            src="{{ product.image.url }}" alt="{{ product.name }}" aria-label="Image of {{product.name}}">
+                        <img class="img-fluid"
+                            src="{{ product.image.url }}" alt="{{ product.product_name }}" aria-label="Image of {{product.product_name}}">
                     </a>
                     {% else %}
                     <a href="{% url 'products:product_details' product.id %}" class="m-auto">
-                        <img class="img-fluid" src="{{MEDIA_URL}}noimage.png" alt="{{ product.name }}" aria-label="Image of {{product.name}}">
+                        <img class="img-fluid" src="https://res.cloudinary.com/dcslh2m3b/image/upload/c_mfit,h_714,w_573/v1652947053/GreenBean/noimage_kak6df.png" alt="No image" aria-label="No image for {{product.product_name}}">
                     </a>
                     {% endif %}
                     

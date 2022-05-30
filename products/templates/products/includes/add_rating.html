@@ -38,19 +38,13 @@
                                     {% if radio.id_for_label == 'id_rating_4' %}
                                         {% include 'products/includes/5_stars.html' %}
                                     {% elif radio.id_for_label == 'id_rating_3' %}
-                                    <i class="fas fa-star text-warning"></i>
-                                    <i class="fas fa-star text-warning"></i>
-                                    <i class="fas fa-star text-warning"></i>
-                                    <i class="fas fa-star text-warning"></i>
+                                        {% include 'products/includes/4_stars.html' %}
                                     {% elif radio.id_for_label == 'id_rating_2' %}
-                                    <i class="fas fa-star text-warning"></i>
-                                    <i class="fas fa-star text-warning"></i>
-                                    <i class="fas fa-star text-warning"></i>
+                                        {% include 'products/includes/3_stars.html' %}
                                     {% elif radio.id_for_label == 'id_rating_1' %}
-                                    <i class="fas fa-star text-warning"></i>
-                                    <i class="fas fa-star text-warning"></i>
+                                        {% include 'products/includes/2_stars.html' %}
                                     {% else %}
-                                    <i class="fas fa-star text-warning"></i>
+                                        {% include 'products/includes/1_star.html' %}
                                     {% endif %}
                                 </label></td>
                         </tr>

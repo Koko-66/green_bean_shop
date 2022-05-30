@@ -10,7 +10,6 @@ from django.shortcuts import (
     reverse,
 )
 from django.views.decorators.http import require_POST
-# from django.views.generic import TemplateView
 from bag.contexts import bag_contents
 from products.models import (
     Product,
@@ -197,7 +196,6 @@ def checkout(request):
         'order_form': form,
         'stripe_public_key': stripe_public_key,
         'client_secret': intent.client_secret,
-        # 'pk': order.pk,
     }
 
     return render(request, template, context)

@@ -128,6 +128,10 @@ small {
     background-color: rgb(25, 116, 48)
 }
 
+.bg-black {
+    background-color: rgb(54 49 49);
+}
+
 .bg-lgreen {
     background-color: rgb(180, 216, 192) !important;
  }
@@ -161,7 +165,7 @@ small {
 }
 
 .link-text {
-    text-decoration: none;
+    /* text-decoration: none; */
     color: rgba(11, 110, 128, 1);
     font-weight: bolder;
 }
@@ -333,7 +337,8 @@ button:active {
 .search-bar,
 .search-bar:active,
 .search-bar:focus {
-    border-radius: 2px;
+    align-items: center;
+    border-radius: 0.25rem;
     background-color: rgb(231 231 231);
 }
 
@@ -389,6 +394,7 @@ button:active {
 
 /* Apply coursor to links accross the site */
 /* Update and remvoe link in the bag, used to apply js */
+.link-text,
 .btt-link, 
 .update-link, 
 .remove-item {
