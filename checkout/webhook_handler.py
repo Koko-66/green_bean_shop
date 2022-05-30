@@ -49,6 +49,7 @@ class StripeWhHandler:
         pid = intent.id
         bag = intent.metadata.bag
         save_info = intent.metadata.save_info
+        print(save_info)
 
         billing_details = intent.charges.data[0].billing_details
         shipping_details = intent.shipping

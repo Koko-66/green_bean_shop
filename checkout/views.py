@@ -160,9 +160,6 @@ def checkout(request):
         intent = stripe.PaymentIntent.create(
             amount=stripe_total,
             currency=settings.STRIPE_CURRENCY,
-            automatic_payment_methods={
-                    'enabled': True,
-                },
         )
 
         if request.user.is_authenticated:

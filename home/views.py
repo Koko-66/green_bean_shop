@@ -9,11 +9,11 @@ class HomeView(TemplateView):
     template_name = 'home/index.html'
 
 
-# def error_404(request, exception):
-#     """Custom 404 error page"""
-#     return render(request, '404.html')
+def error_404(request, exception):
+    """Custom 404 error page"""
+    return render(request, '404.html')
 
 
-# def error_500(request):
-#     """Custom 500 error page"""
-#     return render(request, '500.html')
+def error_500(request):
+    """Custom 500 error page"""
+    return render(request, '500.html')
