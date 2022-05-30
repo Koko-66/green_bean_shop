@@ -49,7 +49,6 @@ def checkout(request):
     stripe_secret_key = settings.STRIPE_SECRET_KEY
 
     if request.method == 'POST':
-        # print('Reached post')
         bag = request.session.get('bag', {})
 
         form_data = {

@@ -6,4 +6,4 @@ from .models import UserProfile
 @admin.register(UserProfile)
 class UserProfileAdmin(admin.ModelAdmin):
     """Register UserProfile on admin"""
-    list_display = ('pk', 'user')
+    list_display = ('pk', 'user', 'fullname')

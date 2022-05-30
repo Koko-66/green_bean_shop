@@ -122,7 +122,6 @@ def adjust_bag(request, item_id):
     if 'color' in request.POST:
         color = request.POST['color']
     bag = request.session.get('bag', {})
-    print(bag)
     str_item_id = str(item_id)
     # Handle different types of products depending on whether they have size
     # or color, both or none.
@@ -171,7 +170,6 @@ def adjust_bag(request, item_id):
                 messages.success(request, f'Removed <strong>\
                     {product.product_name} {color}</strong>.')
         else:
-            print('code reached here')
             if quantity > 0:
                 bag[str_item_id] = quantity
                 messages.success(request, f'Updated quantity of <strong>\
@@ -183,7 +181,6 @@ def adjust_bag(request, item_id):
 
     # Overwrite bag in the session with updated one
     request.session['bag'] = bag
-    print(request.session['bag'])
     return redirect(reverse('bag:view_bag'))
 
 
@@ -235,9 +232,7 @@ def remove_item(request, item_id):
                     {product.product_name}</strong>.')
 
         request.session['bag'] = bag
-        print(request.session['bag'])
         return HttpResponse(status=200)
 
     except Exception as e:
-        print(e)
         return HttpResponse(status=500)

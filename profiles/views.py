@@ -51,16 +51,15 @@ class PastOrderDetailView(LoginRequiredMixin, DetailView):
     model = Order
     template_name = 'checkout/success.html'
 
-    def get(self, *args, **kwargs):
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+
         pk = self.kwargs.get('pk')
         slug = self.kwargs.get('slug')
         profile = get_object_or_404(UserProfile, pk=pk)
         order = get_object_or_404(Order, slug=slug)
 
-        context = {
-            'profile': profile,
-            'order': order,
-            'from_profile': True
-        }
-        return render(self.request, self.template_name, context)
-
+        context['profile'] = profile
+        context['order'] = order
+        context['from_profile'] = True
+        return context

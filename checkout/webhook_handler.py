@@ -9,9 +9,8 @@ from products.models import Product
 from profiles.models import UserProfile
 from .models import Order, OrderLineItem
 
+
 # All functions adapted slightly from CI BoutiqueAdo walkthrough project
-
-
 class StripeWhHandler:
     """Handle Stripe webhooks"""
 

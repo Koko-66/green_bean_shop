@@ -29,24 +29,7 @@ class CreateProductForm(forms.ModelForm):
     class Meta:
         """Meta class specifying fields."""
         model = Product
-        # fields = '__all__'
         exclude = ('slug',)
-
-    # https://www.programcreek.com/python/example/60825/django.forms.CheckboxSelectMultiple
-    # color = forms.MultipleChoiceField(
-    #     widget=forms.CheckboxSelectMultiple,
-    #     choices=[(c.pk, c.color) for c in Color.objects.all()],
-    # )
-
-    # size = forms.MultipleChoiceField(
-    #     widget=forms.CheckboxSelectMultiple,
-    #     choices=[(s.pk, s.size_short) for s in Size.objects.all()],
-    # )
-
-    # category = forms.MultipleChoiceField(
-    #     widget=forms.CheckboxSelectMultiple,
-    #     choices=[(cat.pk, cat.friendly_name) for cat in Category.objects.all()]
-    # )
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -84,13 +67,13 @@ class CreateProductForm(forms.ModelForm):
                         <i class="fas fa-eraser"></i></span>
                     {% if not form.product_name.value %}<span>
                         <a data-form-url="{% url 'products:add_category'%}"
-                        class="create-new text-green pointer" title="Add new product
+                        class="create-new text-green pointer"
+                        title="Add new product
                         type" aria-label="Add new product type">
                         <i class="fas fa-plus"></i></a></span>
                     {% endif %}</div>
                 """),),
-                ), css_class="form-control mb-3 bg-light",
-            ),
+                ), css_class="form-control mb-3 bg-light",),
             Div(Row(
                 Column('color', css_class='col-12 col-md-11'),
                 Column(HTML("""
@@ -106,12 +89,13 @@ class CreateProductForm(forms.ModelForm):
                 {% endif %}</div>
                 """),),
                 ), css_class="form-control mb-3 bg-light",
-            ),
+                ),
             Div(Row(
                 Column('size', css_class='col-12 col-md-11'),
                 Column(HTML("""
                 <div class="text-end">
-                <span class="clear_size text-green pointer" title="Clear selection"
+                <span class="clear_size text-green pointer"
+                    title="Clear selection"
                     aria-label="Clear selection">
                     <i class="fas fa-eraser"></i></span>
                 {% if not form.product_name.value %}<span>
@@ -121,11 +105,8 @@ class CreateProductForm(forms.ModelForm):
                     <i class="fas fa-plus text-green pointer"></i></a></span>
                     {% endif %}</div>
                 """),),
-                ), css_class="form-control mb-3 bg-light",
-            ),
-            # 'category',
-            # 'size',
-            # 'color',
+                 ), css_class="form-control mb-3 bg-light",
+                ),
             Div(
                 'price', css_class="w-25 text-smaller"),
             HTML("""
@@ -150,7 +131,6 @@ class AddRatingForm(PopRequestMixin,
         """Specify model and form fields"""
         model = Rating
         fields = ('user', 'product', 'rating', 'comment')
-        # fields = ('rating',)
 
         widgets = {
             'rating': forms.RadioSelect(),
@@ -169,7 +149,6 @@ class CreateTypeForm(PopRequestMixin,
     class Meta:
         """Meta class specifying fields."""
         model = Type
-        # fields = '__all__'
         exclude = ('slug',)
 
 
@@ -180,7 +159,6 @@ class UpdateTypeForm(PopRequestMixin,
     class Meta:
         """Meta class specifying fields."""
         model = Type
-        # fields = '__all__'
         exclude = ('slug',)
 
 
@@ -192,7 +170,6 @@ class CreateCategoryForm(PopRequestMixin,
     class Meta:
         """Meta class specifying fields."""
         model = Category
-        # fields = '__all__'
         exclude = ('slug',)
 
 
@@ -203,7 +180,6 @@ class UpdateCategoryForm(PopRequestMixin,
     class Meta:
         """Meta class specifying fields."""
         model = Category
-        # fields = '__all__'
         exclude = ('slug',)
 
 
@@ -215,7 +191,6 @@ class CreateSizeForm(PopRequestMixin,
     class Meta:
         """Meta class specifying fields."""
         model = Size
-        # fields = '__all__'
         exclude = ('slug',)
 
 
@@ -226,7 +201,6 @@ class UpdateSizeForm(PopRequestMixin,
     class Meta:
         """Meta class specifying fields."""
         model = Size
-        # fields = '__all__'
         exclude = ('slug',)
 
 
@@ -248,5 +222,4 @@ class UpdateColorForm(PopRequestMixin,
     class Meta:
         """Meta class specifying fields."""
         model = Color
-        # fields = '__all__'
         exclude = ('slug',)

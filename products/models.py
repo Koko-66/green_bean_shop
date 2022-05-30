@@ -55,10 +55,6 @@ class Color(models.Model):
         self.slug = slugify(self.color)
         super().save(*args, **kwargs)
 
-    # def color_lower(self):
-    #     """Change color name to lowercase"""
-    #     return self.color.lower()
-
     def __str__(self):
         """String method for color"""
         return self.color
@@ -108,8 +104,6 @@ class Product(models.Model):
     color = models.ManyToManyField(Color, blank=True, related_name='colors')
     price = models.DecimalField(max_digits=6, decimal_places=2, null=True,
                                 blank=True, default=00.00)
-    # rating = models.DecimalField(
-        # max_digits=6, decimal_places=2, null=True, blank=True)
 
     def get_sizes(self):
         """Get all sizes for a product"""
@@ -137,7 +131,6 @@ class Product(models.Model):
         code = random.randint(10000, 99999)
         products = Product.objects.all()
         codes = [product.code for product in products]
-        # print(codes)
 
         while code in codes:
             new_code = random.randint(10000, 99999)

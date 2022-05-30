@@ -31,15 +31,17 @@ def get_ratings(request):
             if h_star:
                 stars.append('h_star')
             star_ratings[product] = stars
-           
+
             # Get list of users who rated the product
             users_rev = []
             for rating in all_prod_ratings:
                 users_rev.append(rating.user)
                 all_rev_users[product] = users_rev
 
-        latest_product_ratings[product] = Rating.objects.filter(product=product)[:3]
-        older_product_ratings[product] = Rating.objects.filter(product=product)[4::]
+        latest_product_ratings[product] = Rating.objects.filter(
+            product=product)[:3]
+        older_product_ratings[product] = Rating.objects.filter(
+            product=product)[4::]
 
     context = {
         'latest_product_ratings': latest_product_ratings,

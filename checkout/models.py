@@ -7,7 +7,7 @@ from django.conf import settings
 from django.template.defaultfilters import slugify
 from django_countries.fields import CountryField
 
-from products.models import Product, Color, Size, Type
+from products.models import Product, Color, Size
 from profiles.models import UserProfile
 
 
@@ -70,9 +70,9 @@ class Order(models.Model):
         """
         if not self.order_number:
             self.order_number = self._generate_order_number()
-        
+
         self.slug = slugify(self.order_number).upper()
-        
+
         super().save(*args, **kwargs)
 
     def __str__(self):
@@ -102,10 +102,11 @@ class OrderLineItem(models.Model):
     def generate_sku(self):
         """Generate SKU"""
         sku = f'{self.product.code}-{self.product.product_type.type_code}'
-        if self.product_size: 
+        if self.product_size:
             if self.product_color:
-                sku = f'{sku}-{self.product_size.size_short}{self.product_color.color_code}'
-            else: 
+                sku = f'{sku}-{self.product_size.size_short}\
+                    {self.product_color.color_code}'
+            else:
                 sku = f'{sku}-{self.roduct_size.size_short}'
         else:
             if self.product_color:
@@ -119,10 +120,8 @@ class OrderLineItem(models.Model):
         Override the save method to set the lineitem total
         and update the order total.
         """
-        print(type(self.product.price))
         self.lineitem_total = self.product.price * self.quantity
         super().save(*args, **kwargs)
 
     def __str__(self):
         return f'SKU {self._generate_sku()} on order {self.order.order_number}'
-

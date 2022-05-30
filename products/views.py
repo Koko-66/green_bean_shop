@@ -1,7 +1,7 @@
 """Views for products"""
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib import messages
-from django.db.models import Q, functions, Min, Avg
+from django.db.models import Q, functions
 from django.shortcuts import (
     render,
     redirect,
@@ -19,13 +19,11 @@ from bootstrap_modal_forms.generic import (
     BSModalDeleteView,
     BSModalCreateView,
 )
-from . import contexts
 from .models import (
     Category,
     Product,
     Color,
     Size,
-    Rating,
     Type,
 )
 from .forms import (
@@ -36,9 +34,7 @@ from .forms import (
     CreateColorForm,
     UpdateColorForm,
     CreateSizeForm,
-    # UpdateSizeForm,
     CreateCategoryForm,
-    # UpdateCategoryForm,
 )
 
 
@@ -63,7 +59,6 @@ class ProductListView(ListView):
         if 'sort' in self.request.GET:
             sortkey = self.request.GET['sort']
             sort = sortkey
-            print(sortkey)
 
             if sortkey == 'name-asc':
                 sortkey = 'product_name'
@@ -113,8 +108,6 @@ class ProductListView(ListView):
             products = products.filter(
                 product_type__slug__in=product_types)
             types = Type.objects.filter(slug__in=product_types)
-            print(types)
-
 
         if 'q' in self.request.GET:
             query = self.request.GET['q']
@@ -166,7 +159,6 @@ class ProductDetailView(DetailView):
         pk = self.kwargs.get('pk')
         product = Product.objects.get(pk=pk)
         product_cs = product.get_categories()
-        print(f'Product categories: {product_cs}')
         products = Product.objects.exclude(pk=pk)
         similar_prod = []
         for product in products:
@@ -174,7 +166,6 @@ class ProductDetailView(DetailView):
             common = any(check in product_cs for check in c)
             if common:
                 similar_prod.append(product)
-        print(similar_prod)
         context['similar_prod'] = similar_prod
         return context
 
