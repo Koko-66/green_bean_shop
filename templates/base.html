@@ -13,6 +13,7 @@
     <meta name="keywords"
         content="good quality t-shirts, high quality t-shirts, unique design t-shirts, unique graphic t-shirts, unique design jewellery and accessories, slow fashion, sustainable fashion, recycled clothing, cool sustainable t-shirts, buy sustainable clothing, sustainable clothing uk, ethical clothing, ethical fashion, eco-friendly clothing, sustainable brand,  buy sustainable products, buy eco-friendly t-shirts online, buy recycled clothes">
     <title>GreenBean</title>
+    <link rel="shortcut icon" type="image/png" href="{% static 'favicon.ico' %}"/>
     {% endblock %}
 
     {% block extra_meta %}
@@ -49,7 +50,7 @@
                 <!-- <div class="text-center"> -->
                     <div class="fs-sm-6 fs-md-5 text-uppercase justify-content-end">
                         <!-- Socials -->
-                        <a href="" rel="noopener" target="_blank"><i class="fab fa-facebook top-banner-text me-1"></i></a>
+                        <a href="https://www.facebook.com/Green-Bean-110567381669843/" rel="noopener" target="_blank"><i class="fab fa-facebook top-banner-text me-1"></i></a>
                         <a href="https://www.instagram.com/" rel="noopener" target="_blank"><i class="fab fa-instagram-square top-banner-text me-1"></i></a>
                         <!-- User icon with dropdown -->
                         <a id="userMenuBtn" data-bs-toggle="dropdown" aria-expanded="false">
@@ -141,7 +142,6 @@
             </div>
         </div>
         {% include 'includes/searchbar_popup.html' %}
-
     </header>
     {% if messages %}
     <div class="message-container">
@@ -177,7 +177,7 @@
             </div>
         </div>
         {% include 'includes/mailchimp_form.html' %}
-    {% block page_footer%}
+    {% block page_footer %}
     <!-- Footer -->
     <footer class="site-footer">
         <div id="footer" class="px-1 px-md-3 text-muted small border-top">
@@ -220,6 +220,14 @@
             })
             toastList.forEach(toast => toast.show());
             console.log(toastList)
+        </script>
+        <!-- Mailchimp pop up -->
+        <script id="mcjs">
+            ! function (c, h, i, m, p) {
+                m = c.createElement(h), p = c.getElementsByTagName(h)[0], m.async = 1, m.src = i, p.parentNode.insertBefore(m,
+                    p)
+            }(document, "script",
+                "https://chimpstatic.com/mcjs-connected/js/users/8472d8143796a74cb56d90d96/49603e05f1240b697c8780ba2.js");
         </script>
     {% endblock %}
 </body>
