@@ -54,7 +54,7 @@ class StripeWhHandler:
         billing_details = intent.charges.data[0].billing_details
         shipping_details = intent.shipping
         grand_total = round(intent.charges.data[0].amount / 100, 2)
-
+        name = intent.charges.data[0].billing_details
         # Replace empty strings from stripe data with None.
         for field, value in shipping_details.address.items():
             if value == "":
@@ -66,6 +66,7 @@ class StripeWhHandler:
         if username != "AnonymousUser":
             profile = UserProfile.objects.get(user__username=username)
             if save_info:
+                profile.fullname = name
                 profile.default_street_address1 = shipping_details.address.line1
                 profile.default_street_address2 = shipping_details.address.line2
                 profile.default_town_or_city = shipping_details.address.city

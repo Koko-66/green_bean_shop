@@ -13,6 +13,7 @@ class UserProfile(models.Model):
     and order history"""
 
     user = models.OneToOneField(User, on_delete=models.CASCADE)
+    fullname = models.CharField(max_length=350)
     # default address
     default_street_address1 = models.CharField(
         max_length=80, null=True, blank=True)

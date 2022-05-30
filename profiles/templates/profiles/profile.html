@@ -18,10 +18,15 @@
     <section id="default-address">
         <div class="row">
             <h5 class="text-dgreen mb-3">Default Delivery Address</h5>
+            <!-- Delivery address for large devices -->
             <table class="d-none d-md-block table table-borderless table-responsive">
                 <thead>
                 </thead>
                 <tbody>
+                    <tr>
+                        <td class="text-smaller text-muted text-uppercase">First Name</td>
+                        <td>{{ userprofile.fullname }}</td>
+                    </tr>
                     <tr>
                         <td class="text-smaller text-muted text-uppercase">Address 1</td>
                         <td>{{ userprofile.default_street_address1 }}</td>
@@ -47,6 +52,7 @@
                     </tr>
                 </tbody>
             </table>
+            <!-- Delivery address for small devices -->
             <div class="d-block d-md-none col-12 col-lg-6 mb-3">
                 <div>
                     <p class="py-0 my-0 text-smaller text-muted text-uppercase">Address 1:</p>
