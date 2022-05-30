@@ -55,7 +55,6 @@ footer div span {
 }
 
 /* ---- Text styling ---- */
-
 .text-smaller {
     font-size: 0.9rem;
 }
@@ -67,21 +66,6 @@ small {
 .undecorated {
     text-decoration: none;
 }
-
-/* .font-ubuntu {
-    font-family: 'Ubuntu', sans-serif !important;
-    font-family: 'Amatic SC', cursive;
-} */
-
-/* .font-amatic {
-    font-family: 'Amatic SC', sans-serif, !important;
-    font-size: 1.1rem;
-}
-
-.font-shadows {
-    font-family: 'Shadows Into Light', cursive;
-    font-size: 1.05rem;
-} */
 
 /* Text colors */
 
@@ -465,6 +449,10 @@ div .table-cell { display:table-cell; }
     height: 10px;
     border-radius: 50%;
     border-color: black;
+}
+
+#mailchimp_form {
+    bottom: 0 !important;
 }
 /* --- Media queries --- */
 
