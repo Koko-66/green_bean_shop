@@ -5,9 +5,9 @@ Thank you for shopping with us. Your oder information is below:
 Order Number: {{ order.slug }}
 Order Date: {{ order.date }}
 
-Order Total: £{{ order.order_total }}
-Delivery: £{{ order.delivery_cost }}
-Grand Total: £{{ order.grand_total }}
+Order Total: ${{ order.order_total }}
+Delivery: ${{ order.delivery_cost }}
+Grand Total: ${{ order.grand_total }}
 
 We will deliver your order to {{ order.street_address1 }} in {{ order.town_or_city }}, {{ order.postcode }}, {{ order.country }}.
 

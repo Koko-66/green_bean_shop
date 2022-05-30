@@ -3,55 +3,56 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
-    {% block meta %}
-    <!-- <meta http-equiv="X-UA-Compatible" content="ie=edge"> -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description"
-        content="Gren Bean Shop for sustainable, recycable and uniquely designed t-shirts and other product.">
-    <meta name="keywords"
-        content="good quality t-shirts, high quality t-shirts, unique design t-shirts, unique graphic t-shirts, unique design jewellery and accessories, slow fashion, sustainable fashion, recycled clothing, cool sustainable t-shirts, buy sustainable clothing, sustainable clothing uk, ethical clothing, ethical fashion, eco-friendly clothing, sustainable brand,  buy sustainable products, buy eco-friendly t-shirts online, buy recycled clothes">
-    <title>GreenBean</title>
-    <link rel="shortcut icon" type="image/png" href="{% static 'favicon.ico' %}"/>
-    {% endblock %}
+    <head>
+        {% block meta %}
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name="description"
+            content="Gren Bean Shop for sustainable, recycable and uniquely designed t-shirts and other product.">
+        <meta name="keywords"
+            content="good quality t-shirts, high quality t-shirts, unique design t-shirts, unique graphic t-shirts, unique design jewellery and accessories, slow fashion, sustainable fashion, recycled clothing, cool sustainable t-shirts, buy sustainable clothing, sustainable clothing uk, ethical clothing, ethical fashion, eco-friendly clothing, sustainable brand,  buy sustainable products, buy eco-friendly t-shirts online, buy recycled clothes">
+        <title>GreenBean</title>
+        <link rel="shortcut icon" type="image/png" href="{% static 'favicon.ico' %}" />
+        {% endblock %}
 
-    {% block extra_meta %}
-    {% endblock %}
+        {% block extra_meta %}
+        {% endblock %}
 
-    {% block corecss %}
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato&display=swap">
-    <link rel="stylesheet" href="{% static 'css/base.css' %}">
-    <!-- Bootstrap -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    {% endblock %}
+        {% block corecss %}
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato&display=swap">
+        <link rel="stylesheet" href="{% static 'css/base.css' %}">
+        <!-- Bootstrap -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+            integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+        {% endblock %}
 
-    {% block extra_css %}
-    {% endblock %}
+        {% block extra_css %}
+        {% endblock %}
 
-    <title>{% block extra_title %}{% endblock %}extra title</title>
-</head>
+        <title>{% block extra_title %}{% endblock %}extra title</title>
+    </head>
 
-<body>
-    <!-- <header class="container-fluid fixed-top"> -->
-    <header class="sticky-top">
-        <div id="overlay"></div>
-        <!-- Top banner -->
-        <div id="top-banner"
-            class="mx-0 d-flex flex-row justify-content-between align-items-center w-100 py-1 pe-1 pe-md-3 top-banner-text">
-            <div class="mx-auto">
-                <p class="d-block d-md-none m-0 small fs-md-5 text-uppercase text-center mx-1">Free delivery over £{{ free_delivery_threshold }}!
-                <p class="d-none d-md-block m-0 small fs-md-5 text-uppercase text-center mx-1">Free delivery for orders over £{{ free_delivery_threshold }}!
-                </p>
-            </div>
-            <!-- User menu -->
-            <div class="dropdown">
-                <!-- <div class="text-center"> -->
+    <body>
+        <header class="sticky-top">
+            <div id="overlay"></div>
+            <!-- Top banner -->
+            <div id="top-banner"
+                class="mx-0 d-flex flex-row justify-content-between align-items-center w-100 pt-1 pe-1 pe-md-3 top-banner-text">
+                <div class="mx-auto">
+                    <p class="d-block d-md-none m-0 small fs-md-5 text-uppercase text-center mx-1">Free delivery over
+                        ${{ free_delivery_threshold }}!</p>
+                    <p class="d-none d-md-block m-0 small fs-md-5 text-uppercase text-center mx-1">Free delivery for
+                        orders over ${{ free_delivery_threshold }}!
+                    </p>
+                </div>
+                <!-- User menu -->
+                <div class="dropdown">
                     <div class="fs-sm-6 fs-md-5 text-uppercase justify-content-end">
                         <!-- Socials -->
-                        <a href="https://www.facebook.com/Green-Bean-110567381669843/" rel="noopener" target="_blank"><i class="fab fa-facebook top-banner-text me-1"></i></a>
-                        <a href="https://www.instagram.com/" rel="noopener" target="_blank"><i class="fab fa-instagram-square top-banner-text me-1"></i></a>
+                        <a href="https://www.facebook.com/Green-Bean-110567381669843/" rel="noopener" target="_blank"><i
+                                class="fab fa-facebook top-banner-text me-1"></i></a>
+                        <a href="https://www.instagram.com/" rel="noopener" target="_blank"><i
+                                class="fab fa-instagram-square top-banner-text me-1"></i></a>
                         <!-- User icon with dropdown -->
                         <a id="userMenuBtn" data-bs-toggle="dropdown" aria-expanded="false">
                             <i class="fas fa-user-circle top-banner-text pointer"></i>
@@ -59,10 +60,10 @@
                         <!-- User dropdown menu -->
                         <ul class="dropdown-menu" aria-labelledby="userMenuBtn">{% if request.user.is_authenticated %}
                             {% if request.user.is_superuser %}
-                            <li><a href="{% url 'products:manage_products' %}" class="dropdown-item">Manage Products</a>
-                            </li>
+                            <li><a href="{% url 'products:manage_products' %}" class="dropdown-item">Manage Products</a></li>
                             {% endif %}
-                            <li><a href="{% url 'profiles:profile' request.user.userprofile.pk %}" class="dropdown-item">My Profile</a></li>
+                            <li><a href="{% url 'profiles:profile' request.user.userprofile.pk %}" class="dropdown-item">My
+                                    Profile</a></li>
                             <li><a href="{% url 'account_logout' %}" class="dropdown-item">Logout</a></li>
                             {% else %}
                             <li><a href="{% url 'account_signup' %}" class="dropdown-item">Register</a></li>
@@ -70,104 +71,103 @@
                             {% endif %}
                         </ul>
                     </div>
-                <!-- </div> -->
-            </div>
-        </div>
-        <div class="small border-bottom text-end pe-1 pe-md-3 text-light bg-dgreen">
-            {% if request.user.is_authenticated %}
-            Logged in as: {{ request.user|upper }}
-            {% endif %}
-        </div>
-        
-        <div class="main-nav pt-1 d-flex flex-col justify-content-between align-items-center mb-0 border-bottom shadow">
-            <!-- Logo and main nav div -->
-            <div class="col">
-                <div class="d-flex m-0">
-                    <!-- Logo -->
-                    <a href="{% url 'home:home'%}" class="nav-link main-logo-link d-none d-lg-block my-0">
-                        <h2 class="logo-text my-0">GreenBean</h2>
-                    </a>
-                    <!-- Main navigation -->
-                    <div class="flex-grow-1 my-auto">
-                        <nav class="navbar navbar-expand-lg navbar-light w-100 p-0">
-                            <a class="icon navbar-toggler m-2 m-sm-0" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#main-nav" aria-controls="main-nav" aria-expanded="false"
-                                aria-label="Toggle navigation">
-                                <span class="fs-5 border-none"><i class="fas fa-bars"></i></span>
-                            </a>
-                            {% include 'includes/mobile_nav.html' %}
-                            {% include 'includes/main_nav.html' %}
-                        </nav>
-                    </div>
                 </div>
             </div>
-            <!-- Search bar and shopping basket div-->
-            <div class="d-none d-lg-block">
-                <div class="d-flex justify-content-end align-items-center">
-                    <div class="my-auto py-1 py-lg-0 search-bar">
-                        <form method="GET" action="{% url 'products:products' %}">
-                            <div class="form-group">
-                                <input class="mx-auto search-input p-1 ms-2" type="text" name="q" placeholder="Search">
-                                <span class="my-5 me-2 ">
-                                    <button class="form-group-text rounded-0 pe-2" type="submit">
-                                        <i class="fas fa-search icon"></i>
-                                    </button>
-                                </span>
-                            </div>
-                        </form>
-                    </div>
-                    <!-- Shopping basket -->
-                    <div id="shopping-cart" class="flex-shrink-1 my-auto py-1 py-lg-0 pe-3">
-                        <a class="{% if grand_total %}fw-bold{% else %}{% endif %} nav-link"
-                            href="{% url 'bag:view_bag' %}">
-                            <div class="text-end">
-                                <div class="position-relative m-0 p-0">
-                                    <div class="position-absolute top-0 start-100 translate-middle bag-item-counter mt-1 me-2"">
-                                    <!-- <div class="bag-item-counter"> -->
-                                       {{ product_count }}
-                                    </div>
-                                <i class="fas fa-shopping-bag fa-lg icon me-2"></i>
-                                <p class="my-0 icon">
-                                    {% if total %}
-                                    £{{ total|floatformat:2 }}
-                                    {% else %}
-                                    £0.00
-                                    {% endif %}
-                                </p>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                </div>
+            <div class="small border-bottom text-end pe-1 pe-md-3 text-light bg-dgreen">
+                {% if request.user.is_authenticated %}
+                Logged in as: {{ request.user|upper }}
+                {% endif %}
             </div>
-        </div>
-        {% include 'includes/searchbar_popup.html' %}
-    </header>
-    {% if messages %}
-    <div class="message-container">
-        {% for message in messages %}
-        {% with message.level as level %}
-        {% if level == 40 %}
-        {% include 'includes/toasts/toast_error.html' %}
-        {% elif level == 30 %}
-        {% include 'includes/toasts/toast_warning.html' %}
-        {% elif level == 25 %}
-        {% include 'includes/toasts/toast_success.html' %}
-        {% else %}
-        {% include 'includes/toasts/toast_info.html' %}
-        {% endif %}
-        {% endwith %}
-        {% endfor %}
-    </div>
-    {% endif %}
 
-    {% block page_header%}
-    {% endblock %}
-    <main class="page-wrapper">
+            <div class="main-nav pt-1 d-flex flex-col justify-content-between align-items-center mb-0 border-bottom shadow">
+                <!-- Logo and main nav div -->
+                <div class="col">
+                    <div class="d-flex m-0">
+                        <!-- Logo -->
+                        <a href="{% url 'home:home'%}" class="nav-link main-logo-link d-none d-lg-block my-0">
+                            <h2 class="logo-text my-0">GreenBean</h2>
+                        </a>
+                        <!-- Main navigation -->
+                        <div class="flex-grow-1 my-auto">
+                            <nav class="navbar navbar-expand-lg navbar-light w-100 p-0">
+                                <a class="icon navbar-toggler m-2 m-sm-0" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#main-nav" aria-controls="main-nav" aria-expanded="false"
+                                    aria-label="Toggle navigation">
+                                    <span class="fs-5 border-none"><i class="fas fa-bars"></i></span>
+                                </a>
+                                {% include 'includes/mobile_nav.html' %}
+                                {% include 'includes/main_nav.html' %}
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+                <!-- Search bar and shopping basket div-->
+                <div class="d-none d-lg-block">
+                    <div class="d-flex justify-content-end align-items-center">
+                        <div class="my-auto py-1 py-lg-0 search-bar">
+                            <form method="GET" action="{% url 'products:products' %}">
+                                <div class="form-group">
+                                    <input class="mx-auto search-input p-1 ms-2" type="text" name="q" placeholder="Search">
+                                    <span class="my-5 me-2 ">
+                                        <button class="form-group-text rounded-0 pe-2" type="submit">
+                                            <i class="fas fa-search icon"></i>
+                                        </button>
+                                    </span>
+                                </div>
+                            </form>
+                        </div>
+                        <!-- Shopping basket -->
+                        <div id="shopping-cart" class="flex-shrink-1 my-auto py-1 py-lg-0 pe-3">
+                            <a class="{% if grand_total %}fw-bold{% else %}{% endif %} nav-link"
+                                href="{% url 'bag:view_bag' %}">
+                                <div class="text-end">
+                                    <div class="position-relative m-0 p-0">
+                                        <div
+                                            class="position-absolute top-0 start-100 translate-middle bag-item-counter mt-1 me-2">
+                                            {{ product_count }}
+                                        </div>
+                                        <i class="fas fa-shopping-bag fa-lg icon me-2"></i>
+                                        <p class="my-0 icon">
+                                            {% if total %}
+                                            ${{ total|floatformat:2 }}
+                                            {% else %}
+                                            $0.00
+                                            {% endif %}
+                                        </p>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% include 'includes/searchbar_popup.html' %}
+        </header>
+        {% if messages %}
+        <div class="message-container">
+            {% for message in messages %}
+            {% with message.level as level %}
+            {% if level == 40 %}
+            {% include 'includes/toasts/toast_error.html' %}
+            {% elif level == 30 %}
+            {% include 'includes/toasts/toast_warning.html' %}
+            {% elif level == 25 %}
+            {% include 'includes/toasts/toast_success.html' %}
+            {% else %}
+            {% include 'includes/toasts/toast_info.html' %}
+            {% endif %}
+            {% endwith %}
+            {% endfor %}
+        </div>
+        {% endif %}
+
+        {% block page_header%}
+        {% endblock %}
+        <main class="page-wrapper">
             {% block content %}
             <!-- Main page content -->
             {% endblock %}
-    </main>
+        </main>
         <!-- Modal to display BS modal -->
         <div class="modal fade" tabindex="-1" role="dialog" id="modal">
             <div class="modal-dialog" role="document">
@@ -177,41 +177,45 @@
             </div>
         </div>
         {% include 'includes/mailchimp_form.html' %}
-    {% block page_footer %}
-    <!-- Footer -->
-    <footer class="site-footer">
-        <div id="footer" class="px-1 px-md-3 text-muted small border-top">
-         <!-- Policies and name of site creator -->
-            <div class="text-smaller mt-1">made by&nbsp;<span>kokoMedia</span></div>
-            <div class="">
-                <p class="me-2 d-inline">GreenBean Shop</p>|
-                <p class="d-inline mx-2"><a href="https://www.privacypolicygenerator.info/live.php?token=cTUZDunlPrcGF9jii9s8srNcGa36rZPa" rel="noopener" target="_blank" class="link-text">Privacy policy</a></p>|
-                <p class="d-inline ms-2"><a href="https://www.privacypolicies.com/live/1654b4fb-8236-4d49-9699-aa648cb95e41" rel="noopener" target="_blank" class="link-text">Returns policy</a>
+        {% block page_footer %}
+        <!-- Footer -->
+        <footer class="site-footer">
+            <div id="footer" class="px-1 px-md-3 text-muted small border-top">
+                <!-- Policies and name of site creator -->
+                <div class="text-smaller mt-1">made by&nbsp;<span>kokoMedia</span></div>
+                <div class="">
+                    <p class="me-2 d-inline">GreenBean Shop</p>|
+                    <p class="d-inline mx-2"><a
+                        href="https://www.privacypolicygenerator.info/live.php?token=cTUZDunlPrcGF9jii9s8srNcGa36rZPa"
+                        rel="noopener" target="_blank" class="link-text">Privacy policy</a></p>|
+                    <p class="d-inline ms-2"><a
+                        href="https://www.privacypolicies.com/live/1654b4fb-8236-4d49-9699-aa648cb95e41" rel="noopener"
+                        target="_blank" class="link-text">Returns policy</a>
+                </div>
             </div>
-        </div>
-    </footer>
-    {% endblock %}
-    {% block corejs %}
-    <!-- Font Awesome -->
-    <script src="https://kit.fontawesome.com/e9c73d7092.js" crossorigin="anonymous"></script>
-    <!-- Bootstrap script -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
-    </script>
-    <!-- JQuery -->
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
-        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-    <!-- Stripe -->
-    <script src="https://js.stripe.com/v3/"></script>
-    <!-- BS modal forms -->
-    <script src="{% static 'js/jquery.bootstrap.modal.forms.js' %}"></script>
-    <!-- <script src="checkout.js" defer></script> -->
-    {% endblock %}
+        </footer>
+        {% endblock %}
+        {% block corejs %}
+        <!-- Font Awesome -->
+        <script src="https://kit.fontawesome.com/e9c73d7092.js" crossorigin="anonymous"></script>
+        <!-- Bootstrap script -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
+        </script>
+        <!-- JQuery -->
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+            integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+        <!-- Stripe -->
+        <script src="https://js.stripe.com/v3/"></script>
+        <!-- BS modal forms -->
+        <script src="{% static 'js/jquery.bootstrap.modal.forms.js' %}"></script>
+        <!-- <script src="checkout.js" defer></script> -->
+        {% endblock %}
 
-    {% block extra_js %}
-    {% endblock %}
+        {% block extra_js %}
+        {% endblock %}
 
-    {% block postloadjs %}
+        {% block postloadjs %}
         <!-- Toast -->
         <script type="text/javascript">
             var toastElList = [].slice.call(document.querySelectorAll('.toast'))
@@ -224,12 +228,13 @@
         <!-- Mailchimp pop up -->
         <script id="mcjs">
             ! function (c, h, i, m, p) {
-                m = c.createElement(h), p = c.getElementsByTagName(h)[0], m.async = 1, m.src = i, p.parentNode.insertBefore(m,
+                m = c.createElement(h), p = c.getElementsByTagName(h)[0], m.async = 1, m.src = i, p.parentNode.insertBefore(
+                    m,
                     p)
             }(document, "script",
                 "https://chimpstatic.com/mcjs-connected/js/users/8472d8143796a74cb56d90d96/49603e05f1240b697c8780ba2.js");
         </script>
-    {% endblock %}
-</body>
+        {% endblock %}
+    </body>
 
 </html>

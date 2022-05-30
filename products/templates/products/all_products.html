@@ -108,7 +108,7 @@
                             <p class="smaller-text mb-1 border-bottom border-secondary text-blue px-0 font-amatic">
                                 {{ product.product_name }}
                             </p>
-                            <p class="smaller-text mb-1 border-bottom border-secondary px-0">£{{ product.price }}</p>
+                            <p class="smaller-text mb-1 border-bottom border-secondary px-0">${{ product.price }}</p>
                             {% if star_ratings %}
                             {% for rated_product, stars in star_ratings.items %}
                                 {% if rated_product == product %}

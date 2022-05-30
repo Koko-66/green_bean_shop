@@ -50,6 +50,7 @@ INSTALLED_APPS = [
     'cloudinary',
     'django.contrib.sites',
 
+    # third party
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
@@ -58,7 +59,6 @@ INSTALLED_APPS = [
     "crispy_bootstrap5",
     'bootstrap_modal_forms',
 
-    # third party
     # this project
     'home',
     'products',
@@ -215,9 +215,9 @@ STANDARD_DELIVERY_LOWER = 2.99
 STANDARD_DELIVERY_HIGHER = 4.99
 
 # Stripe settings
-STRIPE_CURRENCY = 'gbp'
-if os.path.isfile('env.py'):
-    STRIPE_PUBLIC_KEY = os.environ.get('STRIPE_PUBLIC_KEY')
-    STRIPE_SECRET_KEY = os.environ.get('STRIPE_SECRET_KEY')
-    DOMAIN = os.environ.get('DOMAIN')
-    STRIPE_WH_SECRET = os.environ.get('STRIPE_WH_SECRET')
+STRIPE_CURRENCY = 'usd'
+
+STRIPE_PUBLIC_KEY = os.environ.get('STRIPE_PUBLIC_KEY')
+STRIPE_SECRET_KEY = os.environ.get('STRIPE_SECRET_KEY')
+DOMAIN = os.environ.get('DOMAIN')
+STRIPE_WH_SECRET = os.environ.get('STRIPE_WH_SECRET')

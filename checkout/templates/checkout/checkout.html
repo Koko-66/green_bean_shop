@@ -44,7 +44,7 @@
                         <p class="my-0 small text-muted">Qty: {{ item.quantity }}</p>
                     </div>
                     <div class="col-2 my-2 text-end">
-                        <p class="my-0 small text-muted">£{{ item.product.price | calc_subtotal:item.quantity }}</p>
+                        <p class="my-0 small text-muted">${{ item.product.price | calc_subtotal:item.quantity }}</p>
                     </div>
                 </div>
             {% endfor %}
@@ -56,9 +56,9 @@
                     <p class="my-0 text-dgreen text-smaller fw-bold">GRAND TOTAL:</p>
                 </div>
                 <div class="col-2 text-end">
-                    <p class="my-0 small">£{{ total | floatformat:2 }}</p>
-                    <p class="my-0 small">£{{ delivery | floatformat:2 }}</p>
-                    <p class="my-1 text-dgreen text-smaller fw-bold">£{{ grand_total | floatformat:2 }}</p>
+                    <p class="my-0 small">${{ total | floatformat:2 }}</p>
+                    <p class="my-0 small">${{ delivery | floatformat:2 }}</p>
+                    <p class="my-1 text-dgreen text-smaller fw-bold">${{ grand_total | floatformat:2 }}</p>
                 </div>
             </div>
         </div>
@@ -111,7 +111,6 @@
                         <span class="font-weight-bold">Adjust Bag</span>
                     </a>
                     <button id="submit-button" type="submit" class="btn main-btn-1">
-                        <div class="spinner hidden" id="spinner"></div>
                         <span>Pay now</span>
                         <span class="icon">
                             <i class="fas fa-lock text-light"></i>
@@ -122,13 +121,12 @@
                         <span class="icon text-danger">
                             <i class="fas fa-exclamation-circle"></i>
                         </span>
-                        <span>You will be charged <strong>£{{ grand_total|floatformat:2 }}</strong></span>
+                        <span>You will be charged <strong>${{ grand_total|floatformat:2 }}</strong></span>
                     </p>
                     <input type="checkbox" id="newsletter-consent" name="newsletter-consent" value="0" class="d-inline">
                     <label for="newsletter-consent" class="d-inline small my-1">Please tick this box if you agree for us to use your email address to send you inspiration, new arrivals and our latest offers.</label>
                         <!-- Find out what you'd miss from us -->
                     <p class="small mt-2">By placing your order you agree to our <a href="https://www.privacypolicies.com/live/1654b4fb-8236-4d49-9699-aa648cb95e41" target="_blank" rel=”noopener” aria-label="Returns and refund policy" class="link-text">Returns and refund</a> and <a href="https://www.privacypolicygenerator.info/live.php?token=cTUZDunlPrcGF9jii9s8srNcGa36rZPa" target="_blank" rel=”noopener” aria-label="Privacy policy" class="link-text"> Privacy</a> policies.</p>
-                    </p>
                 </div>
             </form>
         </div>   

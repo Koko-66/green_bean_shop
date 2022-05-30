@@ -32,7 +32,6 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.environ.get('DEBUG', 'False') == 'True'
-# DEBUG = False
 DEVELOPMENT = os.environ.get('DEVELOPMENT', 'False') == 'True'
 
 
@@ -51,7 +50,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'cloudinary',
     'django.contrib.sites',
-
+    
+    # third party
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
@@ -60,7 +60,6 @@ INSTALLED_APPS = [
     "crispy_bootstrap5",
     'bootstrap_modal_forms',
 
-    # third party
     # this project
     'home',
     'products',
@@ -125,14 +124,6 @@ AUTHENTICATION_BACKENDS = [
 
 SITE_ID = 1
 
-# Settings for email
-# if os.path.isfile('env.py') and os.environ.get('DEVELOPMENT') == 'True':
-#     print('This is development')
-#     EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
-#     DEFAULT_FROM_EMAIL = os.environ.get(
-#         'DEVELOPMENT_FROM_EMAIL')
-# else:
-#     print('This is not in development')
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_USE_TLS = True
 EMAIL_PORT = 587
@@ -218,7 +209,7 @@ STANDARD_DELIVERY_LOWER = 2.99
 STANDARD_DELIVERY_HIGHER = 4.99
 
 # Stripe settings
-STRIPE_CURRENCY = 'gbp'
+STRIPE_CURRENCY = 'usd'
 
 STRIPE_PUBLIC_KEY = os.environ.get('STRIPE_PUBLIC_KEY')
 STRIPE_SECRET_KEY = os.environ.get('STRIPE_SECRET_KEY')

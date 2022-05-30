@@ -2,10 +2,6 @@
 {% load static %}
 {% load bag_tools %}
 
-{% block extra_css %}
-<!-- <link rel="stylesheet" href="{% static 'bag/css/bag.css' %}"> -->
-{% endblock %}
-
 {% block page_header %}
 <div class="container p-4 p-lg-5 pb-0 pb-lg-1">
     <h2 class="text-dgreen">Shopping bag</h2>
@@ -15,7 +11,6 @@
 {% endblock %}
 
 {% block content %}
-<!-- <div class="overlay"></div> -->
 <div class="container px-sm-1 px-md-4 px-lg-5">
     <div class="row p-2 p-md-4">
         <!-- Show only if there are items in the shopping bag -->
@@ -47,14 +42,13 @@
                         {% endif %}
                     </td>
                     <td class="text-smaller">
-                        <!-- <div class="mt-5"> -->
-                        <p class="my-0"><span class="text-muted ms-1">Product:</span> {{ item.product.product_name }}</p>
+                        <p class="my-0"><span class="text-muted ms-1">Product:</span> {{ item.product.product_name }}
+                        </p>
                         <p class="my-0"><span class="text-muted ms-1">Size:</span> {{ item.size|capfirst }}</p>
                         <p class="my-0"><span class="text-muted ms-1">Color:</span> {{ item.color|capfirst }}</p>
-                        <!-- <p class="my-0"><span class="text-muted ms-1">Color:</span><span class="color-indicator bg-{{ item.color }} d-inline"></span></p> -->
                     </td>
                     <td>
-                        <p class="my-0">£{{ item.product.price }}</p>
+                        <p class="my-0">${{ item.product.price }}</p>
                     </td>
                     <td class="row-centered">
                         <form action="{% url 'bag:adjust_bag' item.item_id %}" method="POST" class="update-form">
@@ -93,80 +87,29 @@
                         </form>
                         <a class="update-link undecorated" title="Update item quantity"
                             aria-label="Update item quantity">
-                            <!-- <small>Update</small>&nbsp; -->
                             <small><i class="fas fa-redo text-green"></i></small>
                         </a>&nbsp;|&nbsp;
                         <a class="remove-item undecorated float-right" id="remove_{{ item.item_id }}"
                             data-size="{{ item.size }}" data-color="{{ item.color }}" title="Remove item"
                             aria-label="Remove item">
-                            <!-- <small>Remove</small> -->
                             <i class="fas fa-trash text-red"></i>
                         </a>
                     </td>
                     <td class="py-3">
-                        <p class="my-0">£{{ item.product.price | calc_subtotal:item.quantity }}</p>
+                        <p class="my-0">${{ item.product.price | calc_subtotal:item.quantity }}</p>
                     </td>
                 </tr>
                 {% endfor %}
-                <!-- <tr>
-                    <td colspan="5" class="pt-5 text-right">
-                        <div class="py-2">
-                            <p class="fs-6 mb-0"><strong>Bag Total: £{{ total|floatformat:2 }}</strong></p>
-                            <p class="fs-6">Delivery: £{{ delivery|floatformat:2 }}</p>
-                            <p class="fs-5 mt-4"><strong>Grand Total: £{{ grand_total|floatformat:2 }}</strong></p>
-                            {% if free_delivery_delta > 0 %}
-                            <p class="mb-1 text-danger">
-                                You could get free delivery by spending just <strong>£{{ free_delivery_delta }}</strong>
-                                more!
-                            </p>
-                            {% endif %}
-                        </div>
-                    </td>
-                </tr> -->
-                <!-- <tr>
-                    <td colspan="5" class="text-right">
-                        <a href="{% url 'products:products' %}" class="btn main-btn-2">
-                            <span class="icon">
-                                <i class="fas fa-chevron-left"></i>
-                            </span>
-                            <span class="">Keep Shopping</span>
-                        </a>
-                        <a href="{% url 'checkout:checkout' %}" class="btn main-btn-1">
-                            <span class="text-uppercase">Secure Checkout</span>
-                            <span class="icon text-white">
-                                <i class="fas fa-lock"></i>
-                            </span>
-                        </a>
-                    </td>
-                </tr> -->
             </table>
-
-            <!-- <div>
-                <a href="{% url 'products:products' %}" class="btn main-btn-2">
-                    <span class="icon">
-                        <i class="fas fa-chevron-left"></i>
-                    </span>
-                    <span class="">Keep Shopping</span>
-                </a>
-                <a href="{% url 'checkout:checkout' %}" class="btn main-btn-1">
-                    <span class="text-uppercase">Secure Checkout</span>
-                    <span class="icon text-white">
-                        <i class="fas fa-lock"></i>
-                    </span>
-                </a>
-            </div> -->
-
         </div>
-        <!-- Product table for small screens -->
         <div class="d-block d-md-none">
-            
-                {% for item in bag_items %}
-                <table class="table table-responsive table-borderless align-middle">
-                    <thead class="text-black">
-                        <tr>
-                            <th scope="col mx-auto" colspan="2">Product Info</th>
-                        </tr>
-                    </thead>
+            {% for item in bag_items %}
+            <table class="table table-responsive table-borderless align-middle">
+                <thead class="text-black">
+                    <tr>
+                        <th scope="col mx-auto" colspan="2">Product Info</th>
+                    </tr>
+                </thead>
                 <tbody>
                     <tr>
                         <td>
@@ -185,15 +128,12 @@
                             <p class="my-0"><span class="text-muted">Product:</span> {{ item.product.product_name }}</p>
                             <p class="my-0"><span class="text-muted">Size:</span> {{ item.size|capfirst }}</p>
                             <p class="my-0"><span class="text-muted">Color:</span> {{ item.color|capfirst }}</p>
-                            <!-- <p class="my-0 small text-muted">SKU: {{ item.product.generate_sku|upper }}</p> -->
-                            <!-- </div> -->
                         </td>
                     </tr>
                 </tbody>
             </table>
 
-            <p><span class="fw-bolder">Item price:</span> £{{ item.product.price }}</p>
-            <!-- <p><span class="fw-bolder">Quantity:</span> -->
+            <p><span class="fw-bolder">Item price:</span> ${{ item.product.price }}</p>
             <div class="row-centered mx-auto w-75">
                 <form action="{% url 'bag:adjust_bag' item.item_id %}" method="POST" class="update-form">
                     {% csrf_token %}
@@ -230,34 +170,29 @@
                     </div>
                 </form>
                 <a class="update-link undecorated" title="Update item quantity" aria-label="Update item quantity">
-                    <!-- <small>Update</small>&nbsp; -->
                     <small><i class="fas fa-redo text-green"></i></small>
                 </a>&nbsp;|&nbsp;
                 <a class="remove-item undecorated float-right" id="remove_{{ item.item_id }}"
                     data-size="{{ item.size }}" data-color="{{ item.color }}" title="Remove item"
                     aria-label="Remove item">
-                    <!-- <small>Remove</small> -->
                     <i class="fas fa-trash text-red"></i>
                 </a>
             </div>
-            <!-- <td class="py-3">
-                        <p class="my-0">£{{ item.product.price | calc_subtotal:item.quantity }}</p>
-                    </td> -->
             <hr>
             {% endfor %}
         </div>
 
         <div class="py-3">
-            <p class="fs-6 mb-0"><strong>Bag Total: £{{ total|floatformat:2 }}</strong></p>
-            <p class="fs-6">Delivery: £{{ delivery|floatformat:2 }}</p>
+            <p class="fs-6 mb-0"><strong>Bag Total: ${{ total|floatformat:2 }}</strong></p>
+            <p class="fs-6">Delivery: ${{ delivery|floatformat:2 }}</p>
             {% if free_delivery_delta > 0 %}
             <button class="mb-2 text-smaller bg-yellow p-1 px-2 free-del-banner" role="text">
-                You could get free delivery by spending just <strong>£{{ free_delivery_delta }}</strong>
+                You could get free delivery by spending just <strong>${{ free_delivery_delta }}</strong>
                 more!
             </button>
             {% endif %}
             <p class="fs-5 mt-4 text-green"><strong>Total</strong> <small>(incl. delivery)</small>:
-                <strong>£{{ grand_total|floatformat:2 }}</strong></p>
+                <strong>${{ grand_total|floatformat:2 }}</strong></p>
         </div>
 
         <div id="shopping-basket-btns" class="d-none d-md-block">
@@ -294,7 +229,7 @@
     <a href="{% url 'products:products' %}" class="btn main-btn-1">Go back</a>
     {% endif %}
 </div>
-</div>
+
 {% endblock %}
 
 {% block postloadjs %}
