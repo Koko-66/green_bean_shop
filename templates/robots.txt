@@ -1,0 +1,6 @@
+User-agent: *
+Disallow: /accounts/
+Disallow: /bag/
+Disallow: /checkout/
+
+Sitemap: https://green-bean-shop.herokuapp.com/sitemap.xml
