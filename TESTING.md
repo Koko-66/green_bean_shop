@@ -178,12 +178,12 @@ The site user/shopper can securely register for an account. The registration pro
 
 ***Fix and Result***<br>
 
-
 ### TEST 12
 <u>_User profile pages with ratings and order history_</u><br>
 Creating and testing the profile page with order history unveiled an issue with the way product `color` and `size` are stored in the OrderLine model. The initial `OrderLine` model structure followed the BoutiqueAdo walkthrough project, which assumed colour and size are stored as strings. Considering these are separate models in this project, the `OrderLine` model needed an update to store these as references to the instances of `Color` and `Size` models. 
 
 1. Order history is not rendering information about the products contained in the orders and the generation of SKUs is not working as expected.
+
 ***Fix and Result***<br>
 The initial template called on properties within the instance of `product` attached to the `orderline` rather than properties of the `orderline` itself.
 
@@ -204,6 +204,27 @@ The offcanvas does not come up on _All products_ and _Product detail_ pages
 ***Fix and Result***<br>
 After some investigation using DevTools it transpired that this is caused by the sizing of the `page-wrapper` on these pages. Fixed by adding a special CSS class for the Mailchimp form overriding the bootstrap offcanvas `bottom` rule and changing it from `auto` to `0`.
 
+### TEST 15
+<u>_Test making purchase in deployed environment</u><br>
+Moving to the checkout in the deployed environment resulted in 500 error. 
+ 
+***Fix and Result***<br>
+The issue apparently caused by CORS. Changed version of Django to 3.2 instead of 4 which resolved the issue.
+
+### TEST 16
+<u>_Test adding and displaying product ratings</u><br>
+The test carried out on the deployed site exposed issues with the ratings.
+
+1. The average rating does not update as expected on the _Product details_ page.
+
+***Fix and Result***<br>
+Replaced code on the _Products details_ page with the one from _All products_ which fixed the issue.
+
+2. _The Show more..._ button does not appear even if there are more than 3 reviews
+
+***Fix and Result***<br>
+The slicing  of the older_product_ratings in the contexts function skipped one element. Changed the slicing to start from 3, not 4.
+
 ## <a name="performance-testing"></a>Testing the performance and responsiveness
 Performance testing was done by running the application on various devices and browsers, including:
 - Browsers: Firefox 9, Chrome, Safari, Samsung (mobile)
@@ -215,11 +236,7 @@ The testing showed some differences in the way the site appears on different bro
 ## <a name="validator-testing"></a>Validator testing 
 Each view file has been checked with [Pep 8 online check](http://pep8online.com/) validator. The development took place also in an environment with enabled linters: pylint, flake8 and cornflakes-linter (VS Code extensions).
 Some errors raised by Pep 8 refer to the length of links to code referenced in comments and have not been resolved.
-HTML and CSS were checked in their relevant W3C validators and results with some notes on the remaining errors and warnings are available [here]().
-Lighthouse reports can be accessed [here]
+HTML and CSS were checked in their relevant W3C validators and any indicated errors or warning resolved. The pages have also been checked for accessibility and other metrics with Lighthouse whith no resulsts falling below acceptable levels. The tools suggestions regarging images were considered, however not always acted on considering how important they are to the site and its funcionality(e.g. they have not been converted to the new formats due to potential issues with compatibilty with other browsers).
 
 ## <a name="programmatic-testing"></a>Programmatic testing 
-In addition to testing the code during the development using various print statments, parts of the code was also tested programmatically using Unittest.
-Each application has its own `tests` with test files divided according to the part they are testing - `models`, `views` and `forms`. 
-The testing is done in an SQlite database separate from the production one, which uses its own `test_settings.py` file.
-These tests in this application are not extensive due to time constraints.
+In addition to testing the code during the development using various print statments, parts of the code was also tested programmatically using Unittest. The test have been designed for `home`, `products`, and `profiles` apps and are not complete due to time constraints.

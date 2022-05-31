@@ -46,10 +46,7 @@ def get_ratings(request):
     context = {
         'latest_product_ratings': latest_product_ratings,
         'older_product_ratings': older_product_ratings,
-        'avg_rating': avg_rating,
         'avg_ratings': avg_ratings,
-        'stars': stars,
-        'h_star': h_star,
         'all_rev_users': all_rev_users,
         'star_ratings': star_ratings,
     }

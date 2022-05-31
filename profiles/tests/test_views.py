@@ -1,9 +1,8 @@
 """Test profile views"""
 from django.test import TestCase
 from django.contrib.auth.models import User
-# from django.shortcuts import reverse
-from profiles.models import UserProfile
 from checkout.models import Order
+from profiles.models import UserProfile
 
 
 class ProfileTestCase(TestCase):
@@ -31,7 +30,6 @@ class ProfileTestCase(TestCase):
 
         self.client.login(username='test', password='password')
         response = self.client.get(f'/profile/{self.user.pk}/update/')
-        # print(response.context)
         self.assertEqual(response.context['on_profile_page'], True)
 
     def test_past_orders_view(self):
@@ -43,16 +41,10 @@ class ProfileTestCase(TestCase):
             f'/{self.user.pk}/order_history/{self.order.slug}')
         self.assertTemplateUsed('checkout/success.html')
 
-        # profile = UserProfile.objects.get(user=self.user)
         order = Order.objects.get(slug=self.order.slug)
-        # self.assertEqual(self.profile[0], 'test')
         self.assertEqual(
             UserProfile.objects.get(user=self.user).user.username, 'test')
         self.assertEqual(
             Order.objects.get(slug=self.order.slug).slug, '797917HAHHPHAP')
 
-        print(response.context)
-
-        # self.assertEqual()
         self.assertEqual(response.status_code, 200)
-        # self.assertEqual(response.context['order'], self.order)
