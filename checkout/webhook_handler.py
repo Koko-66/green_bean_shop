@@ -54,7 +54,7 @@ class StripeWhHandler:
         billing_details = intent.charges.data[0].billing_details
         shipping_details = intent.shipping
         grand_total = round(intent.charges.data[0].amount / 100, 2)
-        name = intent.charges.data[0].billing_details
+        name = intent.charges.data[0].billing_details.name
         # Replace empty strings from stripe data with None.
         for field, value in shipping_details.address.items():
             if value == "":
@@ -74,6 +74,7 @@ class StripeWhHandler:
                 profile.default_postcode = shipping_details.address.postal_code
                 profile.default_country = shipping_details.address.country
                 profile.default_phone_number = shipping_details.phone
+                profile.save()
         # Check if the order already exists and if not create it in the webhook
         order_exists = False
         # Add a delay to prevent creating an order in the view and webhook as

@@ -29,26 +29,39 @@
                     </tr>
                     <tr>
                         <td class="text-smaller text-muted text-uppercase">Address 1</td>
+                        {% if userprofile.default_street_address1 != None %}
                         <td>{{ userprofile.default_street_address1 }}</td>
+                        {% endif %}
                     </tr>
                     <tr>
                         <td class="text-smaller text-muted text-uppercase">Address 2</td>
+                        {% if userprofile.default_street_address2 != None %}
                         <td>{{ userprofile.default_street_address2 }}</td>
+                        {% endif %}
+
                     </tr>
                     <tr>
                         <td class="text-smaller text-muted text-uppercase">County</td>
+                        {% if userprofile.default_county != None %}
                         <td>{{ userprofile.default_county }}</td>
+                        {% endif %}
                     </tr>
                     <tr>
                         <td class="text-smaller text-muted text-uppercase">Town</td>
+                        {% if userprofile.default_town_or_city != None %}
                         <td>{{ userprofile.default_town_or_city }}</td>
+                        {% endif %}
                     <tr>
                         <td class="text-smaller text-muted text-uppercase">Post Code</td>
+                        {% if userprofile.default_postcode != None %}
                         <td>{{ userprofile.default_postcode }}</td>
+                        {% endif %}
                     </tr>
                     <tr>
                         <td class="text-smaller text-muted text-uppercase">Phone number</td>
+                        {% if userprofile.default_phone_number != None %}
                         <td>{{ userprofile.default_phone_number }}</td>
+                        {% endif %}
                     </tr>
                 </tbody>
             </table>
@@ -56,23 +69,33 @@
             <div class="d-block d-md-none col-12 col-lg-6 mb-3">
                 <div>
                     <p class="py-0 my-0 text-smaller text-muted text-uppercase">Address 1:</p>
+                    {% if userprofile.default_street_address1 != None %}
                     <p class="mb-0">{{ userprofile.default_street_address1 }}</p>
+                    {% endif %}
                 </div>
                 <div>
                     <p class="py-0 my-0 text-smaller text-muted text-uppercase">Address 2:</p>
+                    {% if userprofile.default_street_address2 != None %}
                     <p class="mb-0">{{ userprofile.default_street_address2 }}</p>
+                    {% endif %}
                 </div>
                 <div>
                     <p class="py-0 my-0 text-smaller text-muted text-uppercase">County:</p>
+                    {% if userprofile.default_county != None %}
                     <p class="mb-0">{{ userprofile.default_county }}</p>
+                    {% endif %}
                 </div>
                 <div>
                     <p class="py-0 my-0 text-smaller text-muted text-uppercase">Town:</p>
+                    {% if userprofile.default_town_or_city != None %}
                     <p class="mb-0">{{ userprofile.default_town_or_city }}</p>
+                    {% endif %}
                 </div>
                 <div>
                     <p class="py-0 my-0 text-smaller text-muted text-uppercase">Post Code:</p>
+                    {% if userprofile.default_phone_number != None %}
                     <p class="mb-0">{{ userprofile.default_phone_number }}</p>
+                    {% endif %}
                 </div>
             </div>
             <div>
