@@ -129,15 +129,17 @@ def checkout(request):
                                         order_line_item.save()
                 except Product.DoesNotExist:
                     messages.error(request, (
-                        "We couldn't fine one or more of the products in your \
+                        "We couldn't find one or more of the products in your \
                         bag. Please contact our support team to discuss \
                         options."
                     ))
                     order.delete()
                     return redirect(reverse('bag:view_bag'))
             # Check if user wanted to save their info
-            request.session['save_info'] = 'save-info' in request.POST
 
+            # Save the info to the user's profile if all is well
+            request.session['save_info'] = 'save-info' in request.POST
+          
             return redirect(reverse('checkout:success',
                             args=[order.order_number]))
         else:
@@ -166,7 +168,7 @@ def checkout(request):
             try:
                 profile = UserProfile.objects.get(user=request.user)
                 form = OrderForm(initial={
-                    'full_name': profile.user.get_full_name(),
+                    'full_name': profile.fullname,
                     'email': profile.user.email,
                     'street_address1': profile.default_street_address1,
                     'street_address2': profile.default_street_address2,
