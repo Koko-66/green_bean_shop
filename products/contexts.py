@@ -41,7 +41,7 @@ def get_ratings(request):
         latest_product_ratings[product] = Rating.objects.filter(
             product=product)[:3]
         older_product_ratings[product] = Rating.objects.filter(
-            product=product)[4::]
+            product=product)[3::]
 
     context = {
         'latest_product_ratings': latest_product_ratings,

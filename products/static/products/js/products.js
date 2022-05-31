@@ -61,4 +61,8 @@ $(document).ready(function () {
     $(".clear_category").click(function(){
         $("#id_category").val([]);
     })
+
+    $("#show-reviews").click(function(){
+        $(this).text($(this).text() == "Show less..." ? "Show more..." : "Show less...");
+    });
 })

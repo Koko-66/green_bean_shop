@@ -155,7 +155,7 @@
                 </table>
                 <div>
                     {% if orders.count > 5 %}
-                    <a class="btn main-btn-2" data-bs-toggle="collapse" href="#collapseOrderHistory" role="button"
+                    <a id="show-orders" class="btn main-btn-2" data-bs-toggle="collapse" href="#collapseOrderHistory" role="button"
                         aria-expanded="false" aria-controls="collapseOrderHistory">
                         View older...
                     </a>
@@ -247,4 +247,11 @@
 {% block postloadjs %}
 {{ block.super }}
 <script src="{% static 'js/country_selector_color.js' %}"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+    $("#show-orders").click(function(){
+        $(this).text($(this).text() == "Hide older..." ? "View older..." : "Hide older...");
+    });
+})
+</script>
 {% endblock %}

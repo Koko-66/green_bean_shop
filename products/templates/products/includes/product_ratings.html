@@ -50,7 +50,7 @@
         {% if rated_product.pk == product.pk %}
             {% if ratings %}
             <div class="older_ratings mb-5 small">
-                <a id="show-reviews" data-bs-toggle="collapse" href="#collapseMoreRatings" role="button" aria-expanded="false" aria-controls="collapseMoreRatings">
+                <a id="show-reviews" class="btn main-btn-2" data-bs-toggle="collapse" href="#collapseMoreRatings" role="button" aria-expanded="false" aria-controls="collapseMoreRatings" aria-label="Show more ratings">
                     Show more...</a>
                 <div class="collapse mt-3" id="collapseMoreRatings">
                 {% for rating in ratings %}

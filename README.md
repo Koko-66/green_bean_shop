@@ -12,7 +12,7 @@
     3.2.5. [Browsing products](#browsing)<br>
     3.2.6. [Product details and selection](#product-details-selection)<br>
     3.2.7. [Making a pruchase](#purchase)<br>
-    3.2.8. [Product reviews](#rating)<br>
+    3.2.8. [Product reviews](#reviews)<br>
     3.2.9. [Products management](#products-management)<br>
     3.2.10. [Custom error pages](#error-pages)<br>
   3.3. [Features left to implement](#left-to-implement)<br>
@@ -186,7 +186,7 @@ The website data about the user, products, orders and all other relevant data ar
   The shopper also receives order confirmation via e-mail to the email they have provided during the purchase.<br>
   <img src="https://github.com/Koko-66/green_bean_shop/blob/main/media/assets/data/order-confirmation-email.png" width="500"><br>
 
-  ### <a name="#rating"></a>__Product reviews__
+  ### <a name="#reviews"></a>__Product reviews__
 
   The website at present has a basic framework for product review, allowing the registered user to leave a review for any product. The review comprises of a star rating (from 1/Poor to 5/Excellent and comment, and is saved against the product as well as the user account. 
 
@@ -196,7 +196,8 @@ The website data about the user, products, orders and all other relevant data ar
 
   The average product rview is shown as part of product details while individual reviews for each product appear at the bottom of the _Product details_ page. By detault only 3 first reviews are shown and the rest can be expanded by clicking _Show more..._ button.
 
-  <img src="https://github.com/Koko-66/green_bean_shop/blob/main/media/assets/data/..." width="500"><br>
+  <img src="https://github.com/Koko-66/green_bean_shop/blob/main/media/assets/data/reviews-show-more" width="250"><br>
+  <img src="https://github.com/Koko-66/green_bean_shop/blob/main/media/assets/data/reviews-show-less" width="250"><br>
 
   
   ### <a name="#user-profile"></a>__User profile__
