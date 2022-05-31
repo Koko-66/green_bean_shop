@@ -27,7 +27,7 @@
 
 # <a name="intro"></a>Green Bean e-shop
 
-Green Bean is a __slow fashion__ brand where a responsible attitude to the environment meets great design. Green Bean products are made with sustainability in mind using high-quality, recycled and responsibly sourced materials and designs that are truly unique. The brand targets young adults and adults located in the UK to avoid international shipping, who are interested in the environment, slow fashion and ecology.
+Green Bean is a __slow fashion__ brand where a responsible attitude to the environment meets great design. Green Bean products are made with sustainability in mind using high-quality, recycled and responsibly sourced materials and designs that are truly unique. The brand targets young adults and adults located in the US, who are interested in the environment, slow fashion and ecology.
 The brand's page and e-commerce store is available here: https://green-bean-shop.herokuapp.com/
 
 # <a name="ux"></a>UX
@@ -52,7 +52,7 @@ The website data about the user, products, orders and all other relevant data ar
   ### Rating: 
   The rating model stores users' ratings and reviews for individual products. The user can choose a product rating between Poor (1) and Excellent (5) and leave a comment to help other shoppers make their decision about the purchase. The model links to `User` and `Product` models and the ratings are displayed along with the product information on the site (average and individual ratings).
 
-  Average rating on product pages
+  Average rating on product pages<br>
   <img src="https://github.com/Koko-66/green_bean_shop/blob/main/media/assets/data/average-ratings.png" width="500">
  
 
@@ -63,7 +63,7 @@ The website data about the user, products, orders and all other relevant data ar
   ### UserProfile: 
   `UserProfile` model stores information about the user and their default delivery address. The UserProfile gets created when the user registers to the website and the address is saved at the time of placing an order when the __Save information__ box is ticked. 
 
-  The components of each model and the relationships between them are represented in a graphic model representation available [here](https://github.com/Koko-66/green-bean-shop).
+  The components of each model and the relationships between them are represented in a graphic model representation available [here](https://github.com/Koko-66/green_bean_shop/blob/main/media/assets/data/GreenBean_model_and_flowchart.pdf).
 
 ## <a name="existing-features"></a>Existing Features
 
@@ -81,6 +81,13 @@ The website data about the user, products, orders and all other relevant data ar
   Registration form<br>
   <img src="https://github.com/Koko-66/green_bean_shop/blob/main/media/assets/data/signup.png" width="500">
 
+  Taking into consideration of the type of the site, the user needs to validate their email before they can fully register. After they submit a valid registration form (validated by Allauth) the user sees information about this next step.<br>
+  <img src="https://github.com/Koko-66/green_bean_shop/blob/main/media/assets/data/verify-email-sent.png" width="500">
+
+  They receive an email with a link taking them back to the site to confirm the email and complete registration.<br>
+  <img src="https://github.com/Koko-66/green_bean_shop/blob/main/media/assets/data/confirm-pswd-email.png" width="500">
+
+
   All users are managed via the backend Django admin site by _superadmin_. 
 
   ### <a name="#landing-page"></a>__Landing page__
@@ -93,13 +100,13 @@ The website data about the user, products, orders and all other relevant data ar
   The shopping bag has a badge showing the number of items that are currently in the shopping bag as well as the total price for all items added to the bag to allow the user to monitor how much they are about to spend.
   If the user is logged in, a bar showing their user name appears between the two elements described above.
 
-  Navigation:
+  Navigation:<br>
   <img src="https://github.com/Koko-66/green_bean_shop/blob/main/media/assets/data/nav-bar-large.png" width="500">
 
   <img src="https://github.com/Koko-66/green_bean_shop/blob/main/media/assets/data/nav-bar-large_with-dropdown.png" width="500">
 
-  Navigation on smaller devices:
-  <img src="https://github.com/Koko-66/green_bean_shop/blob/main/media/assets/data/nav-bar-small.png" width="500">
+  Navigation on smaller devices:<br>
+  <img src="https://github.com/Koko-66/green_bean_shop/blob/main/media/assets/data/nav-bar-small.png" width="500"><br>
 
   <img src="https://github.com/Koko-66/green_bean_shop/blob/main/media/assets/data/nav-bar-small-with-dropdown.png" width="500">
 
@@ -124,14 +131,14 @@ The website data about the user, products, orders and all other relevant data ar
 
   The user can search products by keywords that can appear either in the product names or their descriptions directly from the search bar at the top of the page. The product titles and descriptions are composed with searchability in mind to help users find what they are looking for more easily.
 
-  <img src="https://github.com/Koko-66/green_bean_shop/blob/main/media/assets/data/search-box.png" width="500">
+  <img src="https://github.com/Koko-66/green_bean_shop/blob/main/media/assets/data/search-box.png" width="250">
 
   #### __*Filtering and sorting*__
 
   When the user clicks on _Fitler/Sort_ on the main products page, a pop up comes up, where they can filter products by size, colour and category as well as sort alphabetically and by price. Once the shopper is happy with their selection they can apply the filters or clear the filters.
 
  <img src="https://github.com/Koko-66/green_bean_shop/blob/main/media/assets/data/filters-large.png" width="500"><br>
- <img src="https://github.com/Koko-66/green_bean_shop/blob/main/media/assets/data/filters-small.png" width="500">
+ <img src="https://github.com/Koko-66/green_bean_shop/blob/main/media/assets/data/filters-small.png" width="250">
 
   ### <a name="#product-details-selection"></a>__Product details and selection__
 
@@ -142,7 +149,7 @@ The website data about the user, products, orders and all other relevant data ar
 
   When clicked, the image opens in a separate browser tab, so that the user can have a closer look at the product.
 
-  <img src="https://github.com/Koko-66/green_bean_shop/blob/main/media/assets/data/product-details-small.png" width="500">
+  <img src="https://github.com/Koko-66/green_bean_shop/blob/main/media/assets/data/product-details-small.png" width="250">
 
   The product page also contains suggestions of other products in the same categories that might be of interest to the user and has a list of previous reviews.
 
@@ -150,7 +157,7 @@ The website data about the user, products, orders and all other relevant data ar
 
   In order to make a purchase, the user needs to first select size and/or colour if these are options for the product they wish to purchase. To prevent errors, an option for each of these is already preselected (first option for colour and "M" for the size) and the user only needs to select another one if needed. Once these are selected, they can add the product to the bag. On adding the product to the bag, the user sees a pop up confirming that the item has been added to their shopping bag, and they can either close it and continue shopping or click on the button which directs them to the shopping cart.
 
-  <img src="https://github.com/Koko-66/green_bean_shop/blob/main/media/assets/data/added-to-bag-notification.png" width="500">
+  <img src="https://github.com/Koko-66/green_bean_shop/blob/main/media/assets/data/added-to-bag-notification.png" width="250">
 
   The shopping bag can be accessed from the popup, by clicking _Go to secure checkout_ or, if the pop-up was dismissed, by clicking the shopping bag icon. 
 
@@ -159,24 +166,25 @@ The website data about the user, products, orders and all other relevant data ar
   <img src="https://github.com/Koko-66/green_bean_shop/blob/main/media/assets/data/shopping-bag-view.png" width="500"><br>
   
   The shopper also receives feedback on the change made to the order line, product that was changed and the updated status of the bag.<br>
-  'Item removed' confirmation
-  <img src="https://github.com/Koko-66/green_bean_shop/blob/main/media/assets/data/remove-item-from-bag-success.png" width="500">
+  'Item removed' confirmation<br>
+  <img src="https://github.com/Koko-66/green_bean_shop/blob/main/media/assets/data/remove-item-from-bag-success.png" width="250"><br>
   <br>
-  'Quantity updated' confirmation
-  <img src="https://github.com/Koko-66/green_bean_shop/blob/main/media/assets/data/update-quantity-in-bag-success.png" width="500">
+  'Quantity updated' confirmation<br>
+  <img src="https://github.com/Koko-66/green_bean_shop/blob/main/media/assets/data/update-quantity-in-bag-success.png" width="500"><br>
   Clicking on the product image in the list takes the shopper back to the product details page.
 
   When the shopper is happy to move on, they click on _Secure checkout_ and are taken to a _Checkout_ page to complete their purchase. 
-  If the shopper is logged in and have a saved address the address in the checkout form is populated with the saved data. They can update it by clicking on Save info button. If the shopper is not logged in, he/she is prompted to log in or register for an account to save their information.
-  <img src="https://github.com/Koko-66/green_bean_shop/blob/main/media/assets/data/checkout-top.png" width="500">
-  <img src="https://github.com/Koko-66/green_bean_shop/blob/main/media/assets/data/save-info-and-gdpr.png" width="500">
-  <img src="https://github.com/Koko-66/green_bean_shop/blob/main/media/assets/data/create-login-prompt-in-checkout.png" width="500">
+  If the shopper is logged in and have a saved address the address in the checkout form is populated with the saved data. They can update it by checking the _Save info_ checkbox. If the shopper is not logged in, he/she is prompted to log in or register for an account to save their information.
+  <img src="https://github.com/Koko-66/green_bean_shop/blob/main/media/assets/data/checkout-top.png" width="500"><br>
+  <img src="https://github.com/Koko-66/green_bean_shop/blob/main/media/assets/data/save-info-and-gdpr.png" width="500"><br>
+  <img src="https://github.com/Koko-66/green_bean_shop/blob/main/media/assets/data/create-login-prompt-in-checkout.png" width="500"><br>
 
   The checkout also contains links to the Privacy and Return and Refunds policies and a consent box to receive the brand's newsletter. 
 
-  Once an order is complete the user is redirected to a page with order confirmation details.
-
-   <img src="https://github.com/Koko-66/green_bean_shop/blob/main/media/assets/data/order-complete.png" width="500">
+  Once an order is complete the user is redirected to a page with order confirmation details.<br>
+  <img src="https://github.com/Koko-66/green_bean_shop/blob/main/media/assets/data/order-complete.png" width="500"><br>
+  The shopper also receives order confirmation via e-mail to the email they have provided during the purchase.<br>
+  <img src="https://github.com/Koko-66/green_bean_shop/blob/main/media/assets/data/order-confirmation-email.png" width="500"><br>
 
   ### <a name="#rating"></a>__Product reviews__
 
@@ -195,12 +203,13 @@ The website data about the user, products, orders and all other relevant data ar
 
   Every registered user has a user profile, which can be accessed from the top banner menu, by clicking on the user account icon.<br>
 
-  <img src="https://github.com/Koko-66/green_bean_shop/blob/main/media/assets/data/profile-menu.png" width="500"><br>
+  <img src="https://github.com/Koko-66/green_bean_shop/blob/main/media/assets/data/profile-menu.png" width="250"><br>
 
   The profile page comprises of of 3 sections:  
   1. The __Default delivery address__ section features a button with a link to update profile page<br>
-    <img src="https://github.com/Koko-66/green_bean_shop/blob/main/media/assets/data/profile-address-section.png" width="500"><br>
-    Update address<br>
+    <kbd><img src="https://github.com/Koko-66/green_bean_shop/blob/main/media/assets/data/profile-address-section.png" width="500"><br>
+
+    __Update address__<br>
     <img src="https://github.com/Koko-66/green_bean_shop/blob/main/media/assets/data/profile-update-address.png" width="500"><br>
 
   2. __Your orders__ section listing the user's order history shows the last 5 orders and the rest can be viewed by clicking the _View Older_ button.<br>
@@ -208,7 +217,7 @@ The website data about the user, products, orders and all other relevant data ar
   <img src="https://github.com/Koko-66/green_bean_shop/blob/main/media/assets/data/profile-order-section.png" width="500"><br>
   
   3. __Your review hisory__ section shows only 5 latest ratings, since access to these is not crucial to the user.<br>
-  <img src="https://github.com/Koko-66/green_bean_shop/blob/main/media/assets/profile-ratings-section.png" width="500"><br>
+  <img src="https://github.com/Koko-66/green_bean_shop/blob/main/media/assets/data/profile-ratings-section.png" width="500"><br>
 
 
   ### <a name="#products-management"></a>__Products management__
@@ -228,7 +237,7 @@ The website data about the user, products, orders and all other relevant data ar
   Add new product<br>
    <img src="https://github.com/Koko-66/green_bean_shop/blob/main/media/assets/data/add-product.png" width="500"><br>
    Edit category - modal view<br>
-   <img src="https://github.com/Koko-66/green_bean_shop/blob/main/media/assets/data/edit-category-modal.png" width="500"><br>
+   <img src="https://github.com/Koko-66/green_bean_shop/blob/main/media/assets/data/edit-type-modal.png" width="500"><br>
    Add new category and clear all buttons within product add view.
    <img src="https://github.com/Koko-66/green_bean_shop/blob/main/media/assets/data/add-product-with-add-category.png" width="500"><br>
 
@@ -264,11 +273,11 @@ Considering the type of business Green Bean is as well as its target audience, t
 Keyword research was carried out following the process below: 
 1. Jotted down a list of topics related to the site: t-shirts, slow fashion, design and sustainability
 2. Brainstormed to obtain a list of long and short-tail keywords related to the topics above. This exercise resulted in the following list: <br>
-t-shirts, quality t-shirts, clothing, jewellery, design t-shirts, unique t-shirts, unique jewellery and accessories, slow fashion, sustainable fashion, recycled clothing, great t-shirts, cool t-shirts, buy sustainable clothing, t-shirts for a gift, custom t-shirts, unique t-shirts uk
+t-shirts, quality t-shirts, clothing, jewellery, design t-shirts, unique t-shirts, unique jewellery and accessories, slow fashion, sustainable fashion, recycled clothing, great t-shirts, cool t-shirts, buy sustainable clothing, t-shirts for a gift, custom t-shirts, unique t-shirts us
 3. Researched the list created in point 2 using Google Search to expand/refine it. This resulted in the addition of a couple of new terms and the following list: <br>
-good quality t-shirts, high quality t-shirts, quality t-shirts, design t-shirts, unique jewellery and accessories, slow fashion, sustainable fashion, recycled clothing, unique graphic t-shirts, buy sustainable products, unique t-shirts uk, buy recycled t-shirts online, buy recycled clothes online, best ethical t-shirts uk<br>
+good quality t-shirts, high quality t-shirts, quality t-shirts, design t-shirts, unique jewellery and accessories, slow fashion, sustainable fashion, recycled clothing, unique graphic t-shirts, buy sustainable products, unique t-shirts us, buy recycled t-shirts online, buy recycled clothes online, best ethical t-shirts us<br>
 4. Assessed whether the selected keywords are relevant and have authority using wordtracker.com, which resulted in the final list composed of: <br>
-good quality t-shirts, high quality t-shirts, unique design t-shirts, unique graphic t-shirts, unique design jewellery and accessories, slow fashion, sustainable fashion, recycled clothing, cool sustainable t-shirts, buy sustainable clothing, sustainable clothing uk, ethical clothing, ethical fashion, eco-friendly clothing, sustainable brand,  buy sustainable products, buy eco-friendly t-shirts online, buy recycled clothes
+good quality t-shirts, high quality t-shirts, unique design t-shirts, unique graphic t-shirts, unique design jewellery and accessories, slow fashion, sustainable fashion, recycled clothing, cool sustainable t-shirts, buy sustainable clothing, sustainable clothing us, ethical clothing, ethical fashion, eco-friendly clothing, sustainable brand,  buy sustainable products, buy eco-friendly t-shirts online, buy recycled clothes
 
 ### Implementation of SEO in HTML
 
@@ -294,7 +303,7 @@ The subscriptions are managed in two ways. Firstly, after 5 seconds from enterin
 <img src="https://github.com/Koko-66/green_bean_shop/blob/main/media/assets/data/mailchimp-signup_pop-up.png" width="500"><br>
 
 Secondly, as a backup since once dismiss the pop up will not appear again until the browser data is cleared, the site also features an embeded sign up form which can be accessed by clicking a 'SUBSCRIBE' button placed on every page of the site.<br>
-<img src="https://github.com/Koko-66/green_bean_shop/blob/main/media/assets/data/subscribe-button.png" width="500"><br>
+<img src="https://github.com/Koko-66/green_bean_shop/blob/main/media/assets/data/subscribe-button.png" width="250"><br>
 <img src="https://github.com/Koko-66/green_bean_shop/blob/main/media/assets/data/mailchimp-signup.png" width="500"><br>
 
 Another place where the shopper can register for the newsletter is the Checkout page, however, this feature is still under development.
@@ -369,7 +378,8 @@ The website was built using Python3.8. All other requirements are contained in t
 The application was built following the Code Institute's Boutique Ado walkthrough project - thank you to CI for providing the basis! 
 
 In addition, a great thank you to: 
-- My mentor, Caleb Mbakwe, for invaluable advice on the best approach to the project, organisation of code, and support throughout and CI tutors.
+- My mentor, Caleb Mbakwe, for invaluable advice on the best approach to the project, organisation of code, and support throughout.
+- CI tutors, especially Gemma, for helping to search for sources of bugs and fixing them.
 - Stackoverflow community and those behind running it for making it possible to solve almost any problem.
 - Creators of Django and Heroku documentation as well as authors of all the plugins and libraries used in this application.
 - Artists posting their pictures on [Pexels](pexels.com) for the great pictures!
