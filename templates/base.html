@@ -29,7 +29,7 @@
         {% block extra_css %}
         {% endblock %}
 
-        <title>{% block extra_title %}{% endblock %}extra title</title>
+        <!-- <title>{% block extra_title %}{% endblock %}extra title</title> -->
     </head>
 
     <body>
@@ -54,7 +54,7 @@
                         <a href="https://www.instagram.com/" rel="noopener" target="_blank"><i
                                 class="fab fa-instagram-square top-banner-text me-1"></i></a>
                         <!-- User icon with dropdown -->
-                        <a id="userMenuBtn" data-bs-toggle="dropdown" aria-expanded="false">
+                        <a id="userMenuBtn" data-bs-toggle="dropdown" aria-expanded="false" href="">
                             <i class="fas fa-user-circle top-banner-text pointer"></i>
                         </a>
                         <!-- User dropdown menu -->
@@ -90,7 +90,7 @@
                         <!-- Main navigation -->
                         <div class="flex-grow-1 my-auto">
                             <nav class="navbar navbar-expand-lg navbar-light w-100 p-0">
-                                <a class="icon navbar-toggler m-2 m-sm-0" type="button" data-bs-toggle="collapse"
+                                <a class="icon navbar-toggler m-2 m-sm-0" role="button" data-bs-toggle="collapse"
                                     data-bs-target="#main-nav" aria-controls="main-nav" aria-expanded="false"
                                     aria-label="Toggle navigation">
                                     <span class="fs-5 border-none"><i class="fas fa-bars"></i></span>
@@ -217,7 +217,7 @@
 
         {% block postloadjs %}
         <!-- Toast -->
-        <script type="text/javascript">
+        <script>
             var toastElList = [].slice.call(document.querySelectorAll('.toast'))
             var toastList = toastElList.map(function (toastEl) {
                 return new bootstrap.Toast(toastEl)
