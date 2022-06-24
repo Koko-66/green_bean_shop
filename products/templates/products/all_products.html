@@ -18,13 +18,13 @@
             </h4>
             <h6 class="mb-0">
                 <!-- Check if searched by term -->
-                <p class="m-0 mb-1">
+                <span class="m-0 mb-1">
                 {% if search_term %}
                     {{ product_list.count }}
                     {% if product_list.count == 1 %}product{% else %}products{% endif %} with keyword
                     '{{ search_term }}'
                 {% else %} 
-                </p>
+                </span>
                 <span class="bg-lgreen rounded mt-1 px-1 py-0">Showing reults for</span>
                     {% if current_categories %}
                     <span>{% if current_categories.count == 1 %}Collection{% else %}Collections{% endif %}
@@ -48,18 +48,18 @@
                         No products found
                     {% endif %}
                 {% endif %}
+            </h6>
             {% endif %}
-                </h6>
         </div>
         <!-- Link to filters on large devices -->
         <div class="d-none d-md-block flex-grow-1 text-end">
-            <small class="text-uppercase undecorated" data-bs-toggle="offcanvas" href="#filters" role="button"
-                aria-expanded="false" aria-controls="filters_div" aria-label="Filter and sort button">Filter / sort</small>
+            <a class="text-small text-uppercase undecorated" data-bs-toggle="offcanvas" href="#filters" role="button"
+                aria-expanded="false" aria-controls="filters_div" aria-label="Filter and sort button"><small class="text-green">Filter / sort</small></a>
         </div>
         <!-- Link to filters on smaller devices -->
         <div class="d-block d-md-none flex-grow-1 text-end pe-3">
-            <small class="text-uppercase undecorated" data-bs-toggle="offcanvas" href="#filters" role="button"
-                aria-expanded="false" aria-controls="filters_div" aria-label="Filter and sort button"><i class="fas fa-filter text-green"></i></small>
+            <a class="text-uppercase undecorated" data-bs-toggle="offcanvas" href="#filters" role="button"
+                aria-expanded="false" aria-controls="filters_div" aria-label="Filter and sort button"><i class="fas fa-filter text-green"></i></a>
         </div>
         {% include 'products/includes/filters.html' with color_list=color_list category_list=category_list size_list=size_list %}
     </div>
@@ -129,7 +129,7 @@
                             <div class="form-row px-0">
                                 <!-- Sizes -->
                                 {% if product.get_sizes %}
-                                <div class="size-selector border-secondary d-flex flex-row flex-wrap" id="sizes">
+                                <div class="size-selector border-secondary d-flex flex-row flex-wrap">
                                     {% for size in product.get_sizes %}
                                     <div class="size-box my-2 me-2">
                                         <input id="id_size-{{ size.slug }}_prod-{{ product.id }}" type="radio"

@@ -5,8 +5,8 @@
         <div
             class="row text-uppercase small m-2 mb-0 me-md-5 justify-content-center justify-content-md-end fw-bolder small">
             Filter / Sort
-            <small type="button" class="btn-close ms-1 fw-bold text-dgreen" data-bs-dismiss="offcanvas"
-                aria-label="Close"></small>
+            <button type="button" class="btn-close ms-1 fw-bold text-dgreen small" data-bs-dismiss="offcanvas" 
+                aria-label="Close"></button>
         </div>
         {% csrf_token %}
         <!-- Filters for LARGE SCREENS -->
@@ -137,8 +137,8 @@
             </div>
             <!-- Sorting -->
             <div class="col my-2">
-                <p class="text-dgreen text-uppercase undecorated fs-6 fw-bold mb-2" data-bs-toggle="collapse"
-                    href="#sort">Sort by...</p>
+                <a class="text-dgreen text-uppercase undecorated fs-6 fw-bold mb-2" data-bs-toggle="collapse"
+                    href="#sort">Sort by...</a>
                 <div id="sort" class="collapse">
                     <!-- Rating -->
                     <div class="sort-type w-50">
