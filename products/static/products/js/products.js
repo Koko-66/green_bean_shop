@@ -34,7 +34,6 @@ $(document).ready(function () {
     });
     // Preselect size M in the product detail and all products views
     $(".size-selector").each(function(index){
-        // $(this).find('*').filter(':input:first').attr("checked", true);
         $(this).find("*").filter(":input[value='m']").attr("checked", true);
         $(this).find("*").filter(":input:first").attr("required", true);
     });
@@ -42,11 +41,6 @@ $(document).ready(function () {
     $("#clear-filters").click(function(event){
         $("input[type='radio']").prop("checked", false);
     });
-
-    // $(".rating-list").each(function(){
-    //     // $('.rating-list td label').children().css({"opacity":"0"});
-    //     $(this).find(':radio').attr('checked','checked').end().find('label').children().css({"color":"yellow"});
-    // })
 
     // Clear selected items in the add and edit product forms
 
