@@ -28,7 +28,7 @@
 # <a name="intro"></a>Green Bean e-shop
 
 Green Bean is a __slow fashion__ brand where a responsible attitude to the environment meets great design. Green Bean products are made with sustainability in mind using high-quality, recycled and responsibly sourced materials and designs that are truly unique. The brand targets young adults and adults located in the US, who are interested in the environment, slow fashion and ecology.
-The brand's page and e-commerce store is available here: https://green-bean-shop.herokuapp.com/
+The brand's page and e-commerce store is available here: https://green-bean-shop.onrender.com
 
 # <a name="ux"></a>UX
 
