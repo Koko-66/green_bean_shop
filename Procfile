@@ -1,1 +1,0 @@
-web: gunicorn green_bean.wsgi
