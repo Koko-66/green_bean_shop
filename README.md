@@ -32,7 +32,7 @@ The brand's page and e-commerce store is available here: https://green-bean-shop
 
 # <a name="ux"></a>UX
 
-The design of the site aims to follow best User Experience practices, focusing on easy browsing and a pleasant shopping experience. Considering the website is an e-commerce one, it is important it is visually appealing and that functionality and aesthetics are balanced correctly. The planning of the site involved creating [wireframes](https://github.com/Koko-66/green_bean_shop/blob/main/static/assets/data/GreenBean_wireframes.pdf) to visualise the final look of the site.
+The design of the site aims to follow best User Experience practices, focusing on easy browsing and a pleasant shopping experience. Considering the website is an e-commerce one, it is important it is visually appealing and that functionality and aesthetics are balanced correctly. The planning of the site involved creating [wireframes](https://github.com/Koko-66/green_bean_shop/blob/main/media/assets/data/GreenBean_wireframes.pdf) to visualise the final look of the site.
 
 The Colour scheme is kept simple with a mostly white or light background to emphasise products and their images while the typology reflects the artistic side of the brand.
 
