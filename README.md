@@ -196,8 +196,9 @@ The website data about the user, products, orders and all other relevant data ar
 
   The average product rview is shown as part of product details while individual reviews for each product appear at the bottom of the _Product details_ page. By detault only 3 first reviews are shown and the rest can be expanded by clicking _Show more..._ button.
 
-  <img src="https://github.com/Koko-66/green_bean_shop/blob/main/media/assets/data/reviews-show-more" width="250"><br>
-  <img src="https://github.com/Koko-66/green_bean_shop/blob/main/media/assets/data/reviews-show-less" width="250"><br>
+  <img src="https://github.com/Koko-66/green_bean_shop/blob/main/media/assets/data/reviews-show-more.png" width="500"><br>
+  ___
+  <img src="https://github.com/Koko-66/green_bean_shop/blob/main/media/assets/data/reviews-show-less.png" width="500"><br>
 
   
   ### <a name="#user-profile"></a>__User profile__
@@ -208,10 +209,11 @@ The website data about the user, products, orders and all other relevant data ar
 
   The profile page comprises of of 3 sections:  
   1. The __Default delivery address__ section features a button with a link to update profile page<br>
-    <kbd><img src="https://github.com/Koko-66/green_bean_shop/blob/main/media/assets/data/profile-address-section.png" width="500"><br>
+  <img src="https://github.com/Koko-66/green_bean_shop/blob/main/media/assets/data/profile-address-section.png" width="500px"><br>
 
-    __Update address__<br>
-    <img src="https://github.com/Koko-66/green_bean_shop/blob/main/media/assets/data/profile-update-address.png" width="500"><br>
+  __Update address__
+
+<img src="media/assets/data/profile-update-address.png" width="500px">
 
   2. __Your orders__ section listing the user's order history shows the last 5 orders and the rest can be viewed by clicking the _View Older_ button.<br>
   
@@ -346,7 +348,7 @@ Programming languages used in the project:
 
 The error handling is currently mostly handled by the inbuilt functionality of class-based views as well as some if-statement based checks within these. Going forward, the application will be using a more robust approach using a set of custom error classes.
 
-Information about the application testing is available in a separate file [here](https://github.com/Koko-66/green-bean-shop/blob/main/TESTING.md).
+Information about the application testing is available in a separate file [here](TESTING.md).
 
 # <a name="deployment"></a>Deployment
 The program was deployed to Heroku at the start of the project to ensure its correct functioning and is accessible here: 
